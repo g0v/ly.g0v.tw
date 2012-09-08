@@ -4,22 +4,22 @@
 [AngularJS](http://angularjs.org) + [Brunch](http://brunch.io)
 
 Features:
-* Coffeescrpt / Less / Sass / SCSS / Stylus automatically compiled on save
+* LiveScript / Less / Sass / SCSS / Stylus automatically compiled on save
 * auto-reload during development saves you from manually refreshing the page
 * Javascript / CSS minification for production
 * [testacular](https://github.com/vojtajina/testacular) integration for
   unit tests
 * Bootstrap integration with themes.
 
-## How to use angular-brunch-seed
+## How to use angular-brunch-seed-livescript
 
-* `git clone https://github.com/scotch/angular-brunch-seed.git` to clone the **angular-brunch-seed** repository
-* `cd angular-brunch-seed`
+* `git clone https://github.com/clkao/angular-brunch-seed-livescript.git` to clone the **angular-brunch-seed-livescript** repository
+* `cd angular-brunch-seed-livescript`
 * `./scripts/init.sh` to install node packages
 
 or if you have **Brunch** installed run:
 
-`brunch new myapp --skeleton https://github.com/scotch/angular-brunch-seed`
+`brunch new myapp --skeleton https://github.com/clkao/angular-brunch-seed-livescript`
 
 ### Running the app during development
 
@@ -43,7 +43,7 @@ will be integrated.
 
 Notes:
 
-- If you would like to write your test in coffeescript run `./scripts/compile-tests.sh` in a 
+- If you would like to write your test in livescript run `./scripts/compile-tests.sh` in a 
 seperate window.
 - Testacular will run tests on save. To insure that changes are
 saved be sure to have `./script/server.sh` or `./script/development.sh` running in the console.
@@ -73,10 +73,10 @@ fetch the changes and merge them into your project with git.
                                   These files should not be edited directly
     app/                      --> all of the files to be used in production
       app/                    --> base directory for app
-        controllers.js        --> application controllers
-        directives.js         --> custom angular directives
-        filters.js            --> custom angular filters
-        services.js           --> custom angular services
+        controllers.ls        --> application controllers
+        directives.ls         --> custom angular directives
+        filters.ls            --> custom angular filters
+        services.ls           --> custom angular services
       assets                  --> a place for static assets. These files will be copied to
                                   the public directory un-modified.
         font/                 --> [fontawesome](http://fortawesome.github.com/Font-Awesome/) rendering icons
@@ -96,14 +96,14 @@ fetch the changes and merge them into your project with git.
             _override.less    --> styles that should beloaded after bootstrap.
             _variables.less   --> bootstrap variables to be used during the compilation process
         app.less              --> a file for importing styles.
-      app.coffee              --> application definition and routes.
-      init.coffee             --> application bootstrap
+      app.ls                  --> application definition and routes.
+      init.ls                 --> application bootstrap
 
     node_modules              --> NodeJS modules
 
     scripts/                  --> handy shell scripts
       compile-jade.sh         --> compiles jade to html
-      compile-tests.sh        --> compiles coffeescript test to javascript
+      compile-tests.sh        --> compiles livescript test to javascript
       development.sh          --> compiles files and watches for changes
       init.sh                 --> installs node modules
       production.sh           --> compiles and compresses files for production use
@@ -150,6 +150,6 @@ fetch the changes and merge them into your project with git.
             _variables.less
 ## Contact
 
-Comming soon...
+Coming soon...
 
 For more information on angular please check out http://sapling.scotchmedia.com/
