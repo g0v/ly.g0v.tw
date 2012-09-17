@@ -23,10 +23,13 @@
     "LiveScript-brunch": ">= 1.0 < 1.5",
 
     "css-brunch": ">= 1.0 < 1.5",
-    "less-brunch": "git+ssh://git@github.com:mlamby/less-brunch.git",
+    "less-brunch": "git://git@github.com:mlamby/less-brunch.git",
     "stylus-brunch": ">= 1.0 < 1.5",
 
-    "auto-reload-brunch": "git+ssh://git@github.com:brunch/auto-reload-brunch.git",
+    "jade-brunch": ">= 1.0 < 1.5",
+    "static-jade-brunch": "*",
+
+    "auto-reload-brunch": "git://git@github.com:brunch/auto-reload-brunch.git",
 
     "uglify-js-brunch": ">= 1.0 < 1.5",
     "clean-css-brunch": ">= 1.0 < 1.5"
