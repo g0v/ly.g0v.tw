@@ -19,7 +19,7 @@ exports.config =
       order:
         before:
           'vendor/scripts/console-helper.js'
-          'vendor/scripts/jquery-1.7.2.js'
+          'vendor/scripts/jquery-1.8.2.js'
           'vendor/scripts/angular/angular.js'
           'vendor/scripts/angular/angular-resource.js'
           'vendor/scripts/angular/angular-cookies.js'
