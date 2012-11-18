@@ -1,10 +1,10 @@
-# angular-brunch-seed
-### A started project for AngularJS using Brunch.io
+# angular-brunch-seed-livescript
+### A started project for AngularJS using Brunch.io wiht LiveScript
 
-[AngularJS](http://angularjs.org) + [Brunch](http://brunch.io)
+[AngularJS](http://angularjs.org) + [Brunch](http://brunch.io) + [LiveScript](http://livescript.net/)
 
 Features:
-* LiveScript / Less / Sass / SCSS / Stylus automatically compiled on save
+* LiveScript / Sass / SCSS / Stylus automatically compiled on save
 * auto-reload during development saves you from manually refreshing the page
 * Javascript / CSS minification for production
 * [testacular](https://github.com/vojtajina/testacular) integration for
