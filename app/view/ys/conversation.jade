@@ -1,0 +1,17 @@
+each entry in conversation
+  .well
+    if entry[0] == 'interp'
+      - name = entry[1][0][0]
+      a.btn.pull-right(data-toggle='collapse', data-target='#interpellation-#{name}') +
+      h4 #{name}
+      div.interp.collapse.in(id="interpellation-#{name}")
+        !{renderConversation(entry[1])}
+    else if entry[0] == 'interpdoc'
+      - name = entry[1][0]
+      a.btn.pull-right(data-toggle='collapse', data-target='#interpellation-#{name}') +
+      div.interp.collapse.in(id="interpellation-#{name}")
+        !{renderConversation(entry[1])}
+    else
+      if entry[0]
+        span.speaker.label #{entry[0]}
+      .content !{entry[1]}

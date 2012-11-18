@@ -1,7 +1,6 @@
 exports.config =
   # See docs at http://brunch.readthedocs.org/en/latest/config.html.
   modules:
-    definition: false
     wrapper: (path, data) ->
       """
 (function() {
@@ -29,7 +28,14 @@ exports.config =
         'css/app.css': /^(app|vendor)/
 
     templates:
-      joinTo: 'js/templates.js'
+      joinTo:
+        'js/_unused.js': /\.jade$/
 
   # Enable or disable minifying of result js / css files.
   # minify: true
+  plugins:
+    jade:
+      pretty: yes
+    static_jade:
+      extension: '.static.jade'
+      path: [ /^app/ ]

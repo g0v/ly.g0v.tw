@@ -1,12 +1,14 @@
 # Declare app level module which depends on filters, and services
-App = angular.module \app <[ngCookies ngResource app.controllers app.directives app.filters app.services]>
+
+angular.module('scroll', []).value('$anchorScroll', angular.noop)
+
+App = angular.module \app <[ngCookies ngResource app.controllers app.directives app.filters app.services scroll]>
 
 App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationProvider, config) ->
   $routeProvider
-    .when \/view1 templateUrl: \/partials/app/partial1.html
-    .when \/view2 templateUrl: \/partials/app/partial2.html
+    .when \/sitting templateUrl: \/partials/app/sitting.html
     # Catch all
-    .otherwise redirectTo: \/view1
+    .otherwise redirectTo: \/sitting
 
   # Without serve side support html5 must be disabled.
-  $locationProvider.html5Mode false
+  $locationProvider.html5Mode true

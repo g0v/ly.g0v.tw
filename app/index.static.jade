@@ -19,8 +19,9 @@ html(lang='en')
         enabled: true
       };
     script(src='/js/vendor.js')
+    script(src='/js/templates.js')
     script(src='/js/app.js')
-  body(ng-controller='AppCtrl')
+  body(ng-controller='AppCtrl',data-spy="scroll")
     .wrapper
       .navbar
         .navbar-inner
@@ -33,13 +34,6 @@ html(lang='en')
               a(href='/') Angular Brunch Seed
             .nav-collapse
               div(ng-include="'/partials/app/nav.html'")
-      .container.main-content
+      .container-fluid.main-content
         div(ng-view)
-        div Angular Brunch seed app: v<span app-version></span>
       .push
-
-    footer.footer
-      .container
-        p
-          small
-            a(href='https://github.com/scotch/angular-brunch-seed') angular-brunch-seed | source

@@ -1,0 +1,24 @@
+h2 質詢事項
+.push
+a.btn.pull-right(data-toggle='collapse', data-target='#interpellation-answers') +
+h3 詢答
+section#interpellation-answers.collapse
+    each entry, item in content.answers
+        div(id="interpellation-answer-#{item}")
+            .content
+                !{ renderConversation([entry]) }
+
+.push
+a.btn.pull-right(data-toggle='collapse', data-target='#interpellation-questions') +
+h3 質詢
+section#interpellation-questions.collapse
+    each entry, item in content.questions
+        div(id="interpellation-question-#{item}")
+            .content
+                !{ renderConversation([entry]) }
+
+.push
+a.btn.pull-right(data-toggle='collapse', data-target='#interpellation') +
+h3 質詢
+section#interpellation.collapse.in
+    !{ renderConversation(content.interpellation) }

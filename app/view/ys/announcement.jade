@@ -1,0 +1,10 @@
+.push
+a.btn.btn-navbar.pull-right(data-toggle='collapse', data-target='#announcement') +
+h2 報告事項
+section#announcement.collapse
+    each entry, item in content
+        div(id="announcement-#{item}")
+            h3 #{entry.subject}
+            .content
+                !{ renderConversation(entry.conversation) }
+
