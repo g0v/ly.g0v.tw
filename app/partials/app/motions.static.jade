@@ -1,0 +1,29 @@
+.motions(ng-controller="LYMotions",ng-class="{list: list}")
+  h1 第八屆第二會期
+  .chart
+  .list(ng-show="list")
+      .head(data-spy="affix",data-offset-top="30")
+          h2 第 {{ sitting}} 次院會
+          span.close(ng-click="list=false",style="opacity: 1") Close
+          ul.type
+              li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+          ul.status
+              li(ng-repeat="s in allStatus",ng-click="setStatus(s)",ng-class="{active: s == status}") {{s}}
+          .clearfix
+          input.filter(ng-model="filter",placeholder="Search")
+      ul.motions(ng-class="{{type}}")
+          li(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+              .avatars
+                  span(ng-repeat="avatar in e.avatars")
+                      img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
+              .motion
+                  span.item {{ e.item }}
+                  span.proposer {{ e.proposer }}
+                  span.summary {{ e.summary }}
+              .resolution {{ e.resolution }}
+
+
+
+
+script
+    loadMotions();

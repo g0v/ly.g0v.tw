@@ -6,9 +6,12 @@ App = angular.module \app <[ngCookies ngResource app.controllers app.directives 
 
 App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationProvider, config) ->
   $routeProvider
+    .when \/motions templateUrl: \/partials/app/motions.html
     .when \/sitting templateUrl: \/partials/app/sitting.html
     # Catch all
-    .otherwise redirectTo: \/sitting
+    .otherwise redirectTo: \/motions
 
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
+
+window.App = App

@@ -1,0 +1,52 @@
+.motions
+    &.list .chart
+        opacity: 0.2
+    .chart
+        float: left
+    .list
+        position: absolute
+        width: 80%
+        float: left
+        left: 10%
+        ul
+            list-style: none
+            &.type li, &.status li
+                cursor: pointer
+                display: block
+                padding-right: 6px
+                padding-left: 6px
+                border-right: 1px solid #DCDCDC
+                float: left
+                width: auto
+                &:hover
+                    text-decoration: underline
+                &:last-child
+                    border: none
+                &:active
+                    color: orange
+            &.motions
+                div.avatars
+                    float: left
+                    img.avatar
+                        width: 50px
+                        height: 50px
+                        border: 4px solid
+                        margin: 5px
+                        &.KMT
+                            border-color: #55f
+                        &.DPP
+                            border-color: #090
+                        &.NSU
+                            border-color: #fbb
+                        &.TSU
+                            border-color: #b26
+                        &.PFP
+                            border-color: #f90
+                .motion
+                    float: left
+                    margin: 20px
+                .resolution
+                    padding-left: 80px
+                    border-left: 3px solid purple // XXX match color
+                    margin: 5px
+                    clear: both
