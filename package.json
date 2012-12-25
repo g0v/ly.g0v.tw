@@ -1,12 +1,12 @@
 {
   "author": "Chia-liang Kao",
-  "name": "angular-brunch-seed-livescript",
-  "description": "AngularJS + Brunch + LiveScript",
-  "version": "0.1.1",
-  "homepage": "https://github.com/clkao/angular-brunch-seed-livescript",
+  "name": "ly.g0v.tw",
+  "description": "ly.g0v.tw",
+  "version": "0.1.1-1",
+  "homepage": "https://github.com/g0v/ly.g0v.tw",
   "repository": {
     "type": "git",
-    "url": "https://github.com/clkao/angular-brunch-seed-livescript"
+    "url": "https://github.com/g0v/ly.g0v.tw"
   },
   "engines": {
     "node": "0.8.x",
