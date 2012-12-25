@@ -55,7 +55,6 @@ stacked-bars = (data, $scope) ->
     y.domain [0, d3.max data, (.total)]
 
     show = (type, name, i) ->
-        console.log \show type, name, i 
         $scope.$root.$broadcast \show i, type, name
 
     svg.append("g")

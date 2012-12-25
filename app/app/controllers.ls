@@ -11,7 +11,6 @@ angular.module 'app.controllers' []
     else
       ''
 .controller LYMotions: <[$scope LYService]> +++ ($scope, LYService) ->
-    console.log \hime
     $scope.$on \data (_, d)->
         $scope.data = d
     $scope.$on \show (_, sitting, type, status) -> $scope.$apply ->
@@ -28,7 +27,6 @@ angular.module 'app.controllers' []
               value: \臨時提案
         setType: (type) ->
             [data] = [s for s in $scope.data when s.meeting.sitting is $scope.sitting]
-            console.log type, data
             entries = data[type]
             allStatus = [\all] +++ [a for a of {[e.status, true] for e in entries}]
             $scope.status = '' unless $scope.status in allStatus
