@@ -78,6 +78,18 @@ stacked-bars = (data, $scope) ->
 
     cur_desc = null
 
+    state.selectAll("rect.sep")
+        .data -> [it.sitting]
+        .enter!append \rect .attr \class \sep
+        .attr \width 1
+        .attr \y 0
+        .attr \x x.rangeBand! + 3
+        .attr \height height
+        .style \fill \none
+        .style \stroke \black
+        .style \stroke-width 1
+        .style \opacity 0.2
+
     state.selectAll("rect.col")
         .data -> [it.sitting]
         .enter!append \rect .attr \class \col
