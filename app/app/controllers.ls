@@ -28,7 +28,7 @@ angular.module 'app.controllers' []
         setType: (type) ->
             [data] = [s for s in $scope.data when s.meeting.sitting is $scope.sitting]
             entries = data[type]
-            allStatus = [\all] +++ [a for a of {[e.status, true] for e in entries}]
+            allStatus = [\all] +++ [a for a of {[e.status ? \unknown, true] for e in entries}]
             $scope.status = '' unless $scope.status in allStatus
             for e in entries when !e.avatars?
                 if e.proposer?match /委員(.*?)等/
@@ -38,4 +38,5 @@ angular.module 'app.controllers' []
 
         setStatus: (s) ->
             s = '' if s is \all
+            s = '' if s is \unknown
             $scope.status = s
