@@ -31,7 +31,7 @@ angular.module 'app.controllers' []
             allStatus = [\all] +++ [a for a of {[e.status ? \unknown, true] for e in entries}]
             $scope.status = '' unless $scope.status in allStatus
             for e in entries when !e.avatars?
-                if e.proposer?match /委員(.*?)等/
+                if e.proposer?match /委員(.*?)(、|等)/
                     party = LYService.resolveParty that.1
                     e.avatars = [party: party, name: that.1, avatar: CryptoJS.MD5 "MLY/#{that.1}" .toString!]
             $scope <<< {type, entries, allStatus}
