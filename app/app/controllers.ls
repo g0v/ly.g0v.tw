@@ -28,8 +28,8 @@ angular.module 'app.controllers' []
         setType: (type) ->
             [data] = [s for s in $scope.data when s.meeting.sitting is $scope.sitting]
             entries = data[type]
-            allStatus = [\all] +++ [a for a of {[e.status ? \unknown, true] for e in entries}]
-            $scope.status = '' unless $scope.status in allStatus
+            allStatus = [key: \all, value: \全部] +++ [{key: a, value: $scope.statusName a} for a of {[e.status ? \unknown, true] for e in entries}]
+            $scope.status = '' unless $scope.status in allStatus.map (.key)
             for e in entries when !e.avatars?
                 if e.proposer?match /委員(.*?)(、|等)/
                     party = LYService.resolveParty that.1
@@ -40,3 +40,18 @@ angular.module 'app.controllers' []
             s = '' if s is \all
             s = '' if s is \unknown
             $scope.status = s
+        statusName: (s) ->
+            names = do
+                unknown: \未知
+                other: \其他
+                passed: \通過
+                consultation: \協商
+                retrected: \撤回
+                unhandled: \未處理
+                ey: \請行政院研處
+                prioritized: \逕付二讀
+                committee: \交委員會
+                rejected: \退回
+                accepted: \查照
+            names[s] ? s
+    window.loadMotions!

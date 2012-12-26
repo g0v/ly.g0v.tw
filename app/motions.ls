@@ -1,5 +1,6 @@
 window.loadMotions = -> $ ->
-    $scope = angular.element('.motions').scope!
+    $scope = angular.element 'div.motions' .scope!
+    console.log $scope
 
     motions <- d3.json '/data/8-2.json'
     data = motions.map ({meeting, announcement, discussion}) ->
@@ -149,7 +150,7 @@ stacked-bars = (data, $scope) ->
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .text -> it
+        .text -> $scope.statusName it
 
     svg.append("g")
         .attr("class", "y axis")
@@ -159,5 +160,5 @@ stacked-bars = (data, $scope) ->
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Motions")
+        .text("議案數")
 
