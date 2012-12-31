@@ -1,7 +1,11 @@
 .bill
+  margin-left: 10%
   h1
     margin: 1em
-  margin-left: 25px
+    white-space: nowrap
+    overflow: hidden
+    width: 100%
+    text-overflow: ellipsis
   width: 80%
   .role
     float: left
@@ -11,6 +15,7 @@
     ul
       list-style: none
     &.proposal, &.committee
+      margin-left: 3em
       width: 25%
       li
         width: 135px
@@ -26,16 +31,28 @@
         float: left
   .description
     font-size: larger
-    margin-top: 3em
-    width: 70%
+    margin: 1em
+    margin-right: 2em
+    width: 60%
     float: right
     position: relative
 
 .related
   margin: 2em
   margin-left: 3em
+  width: 80%
   ul
     list-style: none
+    li
+      float: left
+      width: 50%
+      img.avatar
+        float: left
+      span.summary
+        float: left
+        padding-top: 10px
+        width: 80%
+        margin-left: 10px
 
 table.legend
   margin: 2em

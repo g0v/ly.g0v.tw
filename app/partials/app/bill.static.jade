@@ -1,29 +1,28 @@
-.motions(ng-controller="LYBill")
-  .bill
-      h1 {{summary}}
-      .role.committee(ng-show="committee")
-          ul
-              li(ng-repeat="c in committee")
-                  span
-                      img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{e.name}}",ng-class="{{c.abbr}}")
-                      span.name {{c.name}}委員會
-      .role.proposal(ng-show="proposal")
-          h2 提案人
-          ul
-              li(ng-repeat="e in proposal")
-                  span
-                      img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
-                      span.name {{e.name}}
-      .description
-          p {{abstract}}
-          
-      .role.petition(ng-show="petition")
-          h2 連署人
-          ul
-              li(ng-repeat="e in petition")
-                  span
-                      img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
-                      span.name {{e.name}}
+.bill(ng-controller="LYBill")
+  h1(title="{{summary}}") {{summary}}
+  .role.committee(ng-show="committee")
+      ul
+          li(ng-repeat="c in committee")
+              span
+                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{e.name}}",ng-class="{{c.abbr}}")
+                  span.name {{c.name}}委員會
+  .role.proposal(ng-show="proposal")
+      h2 提案人
+      ul
+          li(ng-repeat="e in proposal")
+              span
+                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
+                  span.name {{e.name}}
+  .description
+      p {{abstract}}
+
+  .role.petition(ng-show="petition")
+      h2 連署人
+      ul
+          li(ng-repeat="e in petition")
+              span
+                  img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
+                  span.name {{e.name}}
 
   .clearfix
   .related(ng-show="related")
@@ -33,6 +32,7 @@
                   img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
                   span.summary {{r.summary}}
 
+  .clearfix
   .content.default(ng-repeat="(i, d) in diff")
       h2 {{d.name}}
       table.diff.legend
