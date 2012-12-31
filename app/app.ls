@@ -10,6 +10,7 @@ App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationPr
     .when \/bill templateUrl: \/partials/app/bill.html
     .when \/bill/:billId templateUrl: \/partials/app/bill.html
     .when \/sitting templateUrl: \/partials/app/sitting.html
+    .when \/about templateUrl: \/partials/app/about.html
     # Catch all
     .otherwise redirectTo: \/motions
 
