@@ -40,7 +40,7 @@
               td.delete
                   {{d.diffbase}}
               td vs
-              td(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
+              td.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
       ul.lawdiff
           li(ng-repeat="e in d.diffcontent")
               .diff(ng-bind-html-unsafe="e.diff")
