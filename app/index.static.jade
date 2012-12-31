@@ -23,6 +23,15 @@ html(lang='en')
     script(src='/js/templates.js')
     script(src='/js/app.js')
   body(ng-controller='AppCtrl',data-spy="scroll")
+    #fb-root
+      script
+          (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+              fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
     .wrapper
       .navbar
         .navbar-inner
@@ -38,12 +47,3 @@ html(lang='en')
       .container-fluid.main-content
         div(ng-view)
       .push
-    #fb-root
-      script
-          (function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-              fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
