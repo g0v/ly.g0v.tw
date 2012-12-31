@@ -7,6 +7,8 @@ App = angular.module \app <[ngCookies ngResource app.controllers app.directives 
 App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationProvider, config) ->
   $routeProvider
     .when \/motions templateUrl: \/partials/app/motions.html
+    .when \/bill templateUrl: \/partials/app/bill.html
+    .when \/bill/:billId templateUrl: \/partials/app/bill.html
     .when \/sitting templateUrl: \/partials/app/sitting.html
     # Catch all
     .otherwise redirectTo: \/motions

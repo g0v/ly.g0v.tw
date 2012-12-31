@@ -1,3 +1,13 @@
+committees = do
+    IAD: \內政
+    FND: \外交及國防
+    ECO: \經濟
+    FIN: \財政
+    EDU: \教育及文化
+    TRA: \交通
+    JUD: \司法及法制
+    SWE: \社會福利及衛生環境
+
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $resource $rootScope]> +++ (s, $location, $resource, $rootScope) ->
 
@@ -10,6 +20,65 @@ angular.module 'app.controllers' []
       'active'
     else
       ''
+.controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
+    $routeParams.billId ?= '1011130070300200'
+    {content}:bill <- $http.get "/data/#{$routeParams.billId}.json" .success
+    $scope <<< bill{summary,abstract} <<< do
+        committee: bill.committee?map ->
+            name: committees[it], abbr: it
+        related: if bill.committee
+            bill.related?map ([id, summary]) ->
+                # XXX: get meta directly with id when we have endpoint
+                {id, summary} <<< if [_, mly]? = summary.match /本院委員(.*?)等/
+                    party: LYService.resolveParty mly
+                    avatar: CryptoJS.MD5 "MLY/#{mly}" .toString!
+                    name: mly
+                else
+                    {}
+
+        proposal: bill.proposal?map ->
+            party = LYService.resolveParty it
+            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
+        petition: bill.petition?map ->
+            party = LYService.resolveParty it
+            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
+        setDiff: (diff, version) ->
+            idx = [i for n, i in diff.header when n is version]
+            base-index = diff.base-index
+            c = diff.comment-index
+            diff <<< do
+                diffnew: version
+                diffcontent: diff.content.map (entry) ->
+                    comment: entry[c][diff.header[idx].replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
+                    diff: diffview do
+                        baseTextLines: entry[base-index] ? ' '
+                        newTextLines: entry[idx] || entry[base-index]
+                        baseTextName: diff.header[base-index]
+                        newTextName: diff.header[idx]
+                        inline: true
+                    .0
+
+        diff: content.map (diff) ->
+            h = diff.header
+            [base-index] = [i for n, i in h when n is \現行條文]
+            [c] = [i for n, i in h when n is \說明]
+
+            diff{header,content,name} <<< do
+                versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
+                base-index: base-index
+                comment-index: c
+                diffbase: h[base-index]
+                diffnew: h.0
+                diffcontent: diff.content.map (entry) ->
+                    comment: entry[c][h.0.replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
+                    diff: diffview do
+                        baseTextLines: entry[base-index] ? ' '
+                        newTextLines: entry.0 || entry[base-index]
+                        baseTextName: h[base-index] ? ''
+                        newTextName: h.0
+                        inline: true
+                    .0
+
 .controller LYMotions: <[$scope LYService]> +++ ($scope, LYService) ->
     $scope.$on \data (_, d)->
         $scope.data = d

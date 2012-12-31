@@ -1,0 +1,60 @@
+.bill
+  h1
+    margin: 1em
+  margin-left: 25px
+  width: 80%
+  .role
+    float: left
+    clear: left
+    span.name
+      padding-left: 12px
+    ul
+      list-style: none
+    &.proposal, &.committee
+      width: 25%
+      li
+        width: 135px
+        float: left
+    &.committee
+      .avatar
+        margin: 8px
+      span.name
+        padding-left: 4px
+    &.petition
+      li
+        width: 60px
+        float: left
+  .description
+    font-size: larger
+    margin-top: 3em
+    width: 70%
+    float: right
+    position: relative
+
+.related
+  margin: 2em
+  margin-left: 3em
+  ul
+    list-style: none
+
+table.legend
+  margin: 2em
+  margin-left: 3em
+  td
+    padding: 1em
+.lawdiff
+  list-style: none
+  li
+    padding: 1em
+
+  table
+    width: 80%
+  .comment
+    width: 80%
+    margin: 2em
+
+  table.diff tbody th
+    padding: 0.2em
+    width: 30px
+  tfoot, thead
+    display: none
