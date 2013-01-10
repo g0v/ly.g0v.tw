@@ -38307,1269 +38307,1603 @@
                 "proposer": "本院委員吳育仁等18人",
                 "summary": "擬具「勞工安全衛生法第十四條及第二十五條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 2
+                "agendaItem": 2,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200400",
                 "proposer": "本院委員田秋堇等21人",
                 "summary": "擬具「勞工安全衛生法修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 3
+                "agendaItem": 3,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200300",
                 "proposer": "本院委員田秋堇等19人",
                 "summary": "擬具「國籍法部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 4
+                "agendaItem": 4,
+                "resolution": "決定：交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011224070200100",
                 "proposer": "本院親民黨黨團",
                 "summary": "擬具「國籍法部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 5
+                "agendaItem": 5,
+                "resolution": "決定：交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201400",
                 "proposer": "本院委員劉建國等16人",
                 "summary": "擬具「空氣污染防制法第十二條及第十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 6
+                "agendaItem": 6,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201500",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「菸酒管理法第三十三條之一及第五十七條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 7
+                "agendaItem": 7,
+                "resolution": "決定：交財政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201100",
                 "proposer": "本院委員邱志偉等16人",
                 "summary": "擬具「菸酒管理法第四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 8
+                "agendaItem": 8,
+                "resolution": "決定：交財政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200800",
                 "proposer": "本院委員邱志偉等16人",
                 "summary": "擬具「發展觀光條例第五十五條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 9
+                "agendaItem": 9,
+                "resolution": "決定：交交通委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200900",
                 "proposer": "本院委員邱志偉等16人",
                 "summary": "擬具「兒童及少年性交易防制條例第三十三條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 10
+                "agendaItem": 10,
+                "resolution": "決定：交司法及法制、社會福利及衛生環境兩委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201000",
                 "proposer": "本院委員邱志偉等19人",
                 "summary": "擬具「性別工作平等法第三十八條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 11
+                "agendaItem": 11,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200200",
                 "proposer": "本院委員江惠貞等16人",
                 "summary": "擬具「性別工作平等法第十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 12
+                "agendaItem": 12,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200200",
                 "proposer": "本院委員許智傑等16人",
                 "summary": "擬具「藥師法第二十八條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 13
+                "agendaItem": 13,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011226070200200",
                 "proposer": "本院委員羅明才等19人",
                 "summary": "擬具「所得稅法第七條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 14
+                "agendaItem": 14,
+                "resolution": "決定：交財政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200500",
                 "proposer": "本院委員林淑芬等17人",
                 "summary": "擬具「所得稅法第十七條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 15
+                "agendaItem": 15,
+                "resolution": "決定：交財政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200600",
                 "proposer": "本院委員林淑芬等17人",
                 "summary": "擬具「合作社法第三條之一、第五十五條之一及第七十四條之一條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 16
+                "agendaItem": 16,
+                "resolution": "決定：交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070200700",
                 "proposer": "本院委員林淑芬等16人",
                 "summary": "擬具「勞工保險條例第六十九條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 17
+                "agendaItem": 17,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011228070200300",
                 "proposer": "本院委員黃偉哲等17人",
                 "summary": "擬具「勞工保險條例第十六條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 18
+                "agendaItem": 18,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201200",
                 "proposer": "本院委員蘇震清等16人",
                 "summary": "擬具「飼料管理法第二十二條之一及第三十一條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 19
+                "agendaItem": 19,
+                "resolution": "決定：交經濟委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011222070201300",
                 "proposer": "本院委員蘇震清等16人",
                 "summary": "擬具「水利法第八十二條、第八十三條及第八十三條之一條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 20
+                "agendaItem": 20,
+                "resolution": "決定：交經濟委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011224070200200",
                 "proposer": "本院委員林世嘉等18人",
                 "summary": "擬具「全民健康保險法刪除部分條文草案」，請審議案。",
                 "result": "",
-                "agendaItem": 21
+                "agendaItem": 21,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011227070200800",
                 "proposer": "本院委員陳節如等16人",
                 "summary": "擬具「全民健康保險法第三十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 22
+                "agendaItem": 22,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011225070200200",
                 "proposer": "本院委員蘇清泉等17人",
                 "summary": "擬具「農業部組織法草案」，請審議案。",
                 "result": "",
-                "agendaItem": 23
+                "agendaItem": 23,
+                "resolution": "決定：交司法及法制、經濟兩委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011225070200300",
                 "proposer": "本院委員蘇清泉等17人",
                 "summary": "擬具「農業部林業試驗所組織法草案」，請審議案。",
                 "result": "",
-                "agendaItem": 24
+                "agendaItem": 24,
+                "resolution": "決定：交司法及法制、經濟兩委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011226070200100",
                 "proposer": "本院委員林正二等29人",
                 "summary": "擬具「儲蓄互助社法部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 25
+                "agendaItem": 25,
+                "resolution": "決定：交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200100",
                 "proposer": "本院委員江啟臣等17人",
                 "summary": "擬具「懲治走私條例第二條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 26
+                "agendaItem": 26,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011226070200300",
                 "proposer": "本院委員邱文彥等24人",
                 "summary": "擬具「濕地保育法草案」，請審議案。",
                 "result": "",
-                "agendaItem": 27
+                "agendaItem": 27,
+                "resolution": "決定：交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200300",
                 "proposer": "本院委員李昆澤等18人",
                 "summary": "擬具「兵役法第三十七條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 28
+                "agendaItem": 28,
+                "resolution": "決定：交外交及國防委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200400",
                 "proposer": "本院委員李昆澤等18人",
                 "summary": "擬具「消費者保護法第八條、第四十六條及第五十七條之一條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 29
+                "agendaItem": 29,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200500",
                 "proposer": "本院委員薛凌等19人",
                 "summary": "擬具「貪污治罪條例增訂第十七條之一條文草案」，請審議案。",
                 "result": "",
-                "agendaItem": 30
+                "agendaItem": 30,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200700",
                 "proposer": "本院委員薛凌等19人",
                 "summary": "擬具「監察法第二十五條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 31
+                "agendaItem": 31,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011227070200600",
                 "proposer": "本院委員薛凌等19人",
                 "summary": "擬具「立法院職權行使法第六十條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 32
+                "agendaItem": 32,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010503070202700",
                 "proposer": "本院委員邱議瑩等20人",
                 "summary": "擬具「立法院職權行使法部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 33
+                "agendaItem": 33,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011005070200500",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「立法院職權行使法部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 34
+                "agendaItem": 34,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011119070200100",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「立法院職權行使法第三十七條、第四十三條及第四十四條之一條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 35
+                "agendaItem": 35,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011228070200400",
                 "proposer": "本院委員邱志偉等16人",
                 "summary": "擬具「中華民國刑法第二百二十二條之一及第二百二十四條之一條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 36
+                "agendaItem": 36,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011228070200500",
                 "proposer": "本院委員何欣純等16人",
                 "summary": "擬具「電信法第三十二條、第三十三條及第四十六條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 37
+                "agendaItem": 37,
+                "resolution": "決定：交交通委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011228070200100",
                 "proposer": "本院委員段宜康等17人",
                 "summary": "擬具「行政院組織法第十二條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011228070200200",
                 "proposer": "本院委員鄭麗君等17人",
                 "summary": "擬具「立法院各委員會組織法第八條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 39
+                "agendaItem": 39,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010303070201500",
                 "proposer": "本院民進黨黨團",
                 "summary": "擬具「政黨及其附隨組織取得財產清查及處理條例草案」，請審議案。",
                 "result": "",
-                "agendaItem": 40
+                "agendaItem": 40,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010224070200400",
                 "proposer": "本院委員李應元等24人",
                 "summary": "擬具「立法院程序委員會組織規程第五條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 41
+                "agendaItem": 41,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010503070202800",
                 "proposer": "本院委員邱議瑩等20人",
                 "summary": "擬廢止「立法院程序委員會組織規程」，請審議案。",
                 "result": "",
-                "agendaItem": 42
+                "agendaItem": 42,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010319070203000",
                 "proposer": "本院委員陳亭妃等22人",
                 "summary": "擬具「陸海空軍軍官士官服役條例第三十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 43
+                "agendaItem": 43,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010521070202200",
                 "proposer": "本院委員薛凌等18人",
                 "summary": "擬具「陸海空軍軍官士官服役條例第三十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 44
+                "agendaItem": 44,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011205070200400",
                 "proposer": "本院委員陳其邁等18人",
                 "summary": "擬具「陸海空軍軍官士官服役條例第三十六條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 45
+                "agendaItem": 45,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010319070200400",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「陸海空軍軍官士官服役條例第三十三條及第三十四條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 46
+                "agendaItem": 46,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010521070200300",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「陸海空軍軍官士官服役條例第三十二條、第三十二條之一及第三十二條之二條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 47
+                "agendaItem": 47,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010319070202800",
                 "proposer": "本院委員陳亭妃等22人",
                 "summary": "擬具「日治時期日本政府國庫券及債券處理條例草案」，請審議案。",
                 "result": "",
-                "agendaItem": 48
+                "agendaItem": 48,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010403070200100",
                 "proposer": "本院委員蕭美琴等25人",
                 "summary": "擬具「難民法草案」，請審議案。",
                 "result": "",
-                "agendaItem": 49
+                "agendaItem": 49,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010426070200200",
                 "proposer": "本院委員鄭麗君等20人",
                 "summary": "擬具「國家安全法第九條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 50
+                "agendaItem": 50,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011108070201000",
                 "proposer": "本院委員姚文智等20人",
                 "summary": "擬具「國家安全法第九條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 51
+                "agendaItem": 51,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010503070202600",
                 "proposer": "本院委員邱議瑩等20人",
                 "summary": "擬具「立法院組織法刪除第七條條文草案」，請審議案。",
                 "result": "",
-                "agendaItem": 52
+                "agendaItem": 52,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010503070203000",
                 "proposer": "本院委員邱議瑩等20人",
                 "summary": "擬具「立法院議事規則部分條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 53
+                "agendaItem": 53,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010521070200600",
                 "proposer": "本院委員陳明文等22人",
                 "summary": "擬具「中資來台投資管理條例草案」，請審議案。",
                 "result": "",
-                "agendaItem": 54
+                "agendaItem": 54,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011203070200700",
                 "proposer": "本院委員劉建國等16人",
                 "summary": "擬具「藥事法第九十二條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 55
+                "agendaItem": 55,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011206070200600",
                 "proposer": "本院委員尤美女等22人",
                 "summary": "擬具「政治檔案法草案」，請審議案。",
                 "result": "",
-                "agendaItem": 56
+                "agendaItem": 56,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011211070200400",
                 "proposer": "本院委員李俊俋等16人",
                 "summary": "擬具「中華民國總統府組織法第十六條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 57
+                "agendaItem": 57,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1010514070201200",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬廢止「戰士授田憑據處理條例」，請審議案。",
                 "result": "",
-                "agendaItem": 58
+                "agendaItem": 58,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011210070200200",
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「臺灣地區與大陸地區人民關係條例第二十一條條文修正草案」，請審議案。",
                 "result": "",
-                "agendaItem": 59
+                "agendaItem": 59,
+                "resolution": "決定：退回程序委員會重新提出。",
+                "status": "rejected"
             },
             {
                 "id": "1011228070200800",
                 "proposer": "本院國民黨黨團",
                 "summary": "撤回對民進黨黨團於第8屆第1會期第3次會議擬具「非核家園推動法草案」之復議案。",
                 "result": "",
-                "agendaItem": 60
+                "agendaItem": 60,
+                "resolution": "決定：同意撤回。",
+                "status": "retrected"
             },
             {
                 "id": "1011226071000200",
                 "proposer": "司法院",
                 "summary": "函請審議「行政法院組織法部分條文修正草案」案。",
                 "result": "",
-                "agendaItem": 61
+                "agendaItem": 61,
+                "resolution": "決定：交司法及法制委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011123071000200",
                 "proposer": "行政院勞工委員會",
                 "summary": "函送該會就業安定基金101年10月執行預算法第62條之1所定政策宣導之廣告預算動支情形，請查照案。",
                 "result": "",
-                "agendaItem": 62
+                "agendaItem": 62,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001300",
                 "proposer": "行政院勞工委員會",
                 "summary": "函，為修正「勞工退休金條例施行細則」第三十四條條文，請查照案。",
                 "result": "",
-                "agendaItem": 63
+                "agendaItem": 63,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001200",
                 "proposer": "行政院勞工委員會",
                 "summary": "函送「技能職類測驗能力認證審查費收費辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 64
+                "agendaItem": 64,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001600",
                 "proposer": "行政院勞工委員會",
                 "summary": "函送該會就業安定基金101年11月執行預算法第62條之1所定「政策宣導」之「廣告」預算動支情形，請查照案。",
                 "result": "",
-                "agendaItem": 65
+                "agendaItem": 65,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011123071000300",
                 "proposer": "財政部",
                 "summary": "函，為修正「外國之事業機關團體組織在中華民國境內從事參加展覽或臨時商務活動申請退還加值型營業稅實施辦法」第五條及第九條條文，請查照案。",
                 "result": "",
-                "agendaItem": 66
+                "agendaItem": 66,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000900",
                 "proposer": "財政部",
                 "summary": "函，為公告「菸酒管理法第四十六條第三項輸入私菸及私酒之一定數量」，並自102年1月1日生效，請查照案。",
                 "result": "",
-                "agendaItem": 67
+                "agendaItem": 67,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001400",
                 "proposer": "財政部",
                 "summary": "函，為修正「通關網路經營許可及管理辦法」第六條條文，請查照案。",
                 "result": "",
-                "agendaItem": 68
+                "agendaItem": 68,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001100",
                 "proposer": "財政部",
                 "summary": "函，為修正「快遞貨物通關辦法」第九條條文，請查照案。",
                 "result": "",
-                "agendaItem": 69
+                "agendaItem": 69,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000100",
                 "proposer": "行政院環境保護署",
                 "summary": "函送「違反室內空氣品質管理法罰鍰額度裁罰準則」，請查照案。",
                 "result": "",
-                "agendaItem": 70
+                "agendaItem": 70,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000500",
                 "proposer": "行政院環境保護署",
                 "summary": "函送「室內空氣品質維護管理專責人員設置管理辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 71
+                "agendaItem": 71,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000100",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為修正「新購電動自行車補助辦法」第二條、第五條及第十條條文，請查照案。",
                 "result": "",
-                "agendaItem": 72
+                "agendaItem": 72,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000200",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為修正「新購電動輔助自行車補助辦法」第二條、第五條及第十條條文，請查照案。",
                 "result": "",
-                "agendaItem": 73
+                "agendaItem": 73,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000300",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為修正「公民營廢棄物清除處理機構許可管理辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 74
+                "agendaItem": 74,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000500",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為廢止「車用汽、柴油密度檢測方法—數位密度分析儀法（NIEA A204.72C）」，並自102年3月15日生效，請查照案。",
                 "result": "",
-                "agendaItem": 75
+                "agendaItem": 75,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000900",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為公告「車用汽、柴油密度檢測方法—數位密度分析儀法（NIEA A204.73C）」，並自102年3月15日生效，請查照案。",
                 "result": "",
-                "agendaItem": 76
+                "agendaItem": 76,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002200",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為修正「海洋污染防治各項許可申請收費辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 77
+                "agendaItem": 77,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002400",
                 "proposer": "行政院環境保護署",
                 "summary": "函，為修正「物品回收清除處理費費率」，請查照案。",
                 "result": "",
-                "agendaItem": 78
+                "agendaItem": 78,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002900",
                 "proposer": "行政院環境保護署",
                 "summary": "函送「行政院環境保護署環境保護產品證書規費收費標準」，請查照案。",
                 "result": "",
-                "agendaItem": 79
+                "agendaItem": 79,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000200",
                 "proposer": "國家安全局",
                 "summary": "函，為修正「國家安全局特種勤務實施辦法」第一條條文，請查照案。",
                 "result": "",
-                "agendaItem": 80
+                "agendaItem": 80,
+                "resolution": "決定：交外交及國防委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000300",
                 "proposer": "行政院衛生署",
                 "summary": "函，為修正「特定醫療技術檢查檢驗醫療儀器施行或使用管理辦法」第十條條文及第二條附表，請查照案。",
                 "result": "",
-                "agendaItem": 81
+                "agendaItem": 81,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001800",
                 "proposer": "行政院衛生署",
                 "summary": "函，為修正「傳染病檢驗及檢驗機構管理辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 82
+                "agendaItem": 82,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002000",
                 "proposer": "行政院衛生署",
                 "summary": "函送「藥品查驗登記審查準則」第七十二條修正規定勘誤表，請查照案。",
                 "result": "",
-                "agendaItem": 83
+                "agendaItem": 83,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002100",
                 "proposer": "行政院衛生署",
                 "summary": "函，為修正「藥事法施行細則」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 84
+                "agendaItem": 84,
+                "resolution": "決定：交社會福利及衛生環境委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003200",
                 "proposer": "行政院衛生署",
                 "summary": "函送「食品中海洋生物毒素之檢驗方法－河豚毒素之檢驗(一)」，請查照案。",
                 "result": "",
-                "agendaItem": 85
+                "agendaItem": 85,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003300",
                 "proposer": "行政院衛生署",
                 "summary": "函送「食品中海洋生物毒素之檢驗方法－河豚毒素之檢驗(二)」，請查照案。",
                 "result": "",
-                "agendaItem": 86
+                "agendaItem": 86,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001200",
                 "proposer": "行政院衛生署、經濟部",
                 "summary": "函，為修正「食品工廠建築及設備設廠標準」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 87
+                "agendaItem": 87,
+                "resolution": "決定：交社會福利及衛生環境、經濟兩委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000900",
                 "proposer": "行政院衛生署、法務部",
                 "summary": "函送「全民健康保險保險對象收容於矯正機關者就醫管理辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 88
+                "agendaItem": 88,
+                "resolution": "決定：交社會福利及衛生環境、司法及法制兩委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000600",
                 "proposer": "教育部",
                 "summary": "函，為廢止「教育部空中教學委員會組織規程」，請查照案。",
                 "result": "",
-                "agendaItem": 89
+                "agendaItem": 89,
+                "resolution": "決定：交司法及法制、教育及文化兩委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000800",
                 "proposer": "教育部",
                 "summary": "函，為修正「特殊教育法施行細則」，請查照案。",
                 "result": "",
-                "agendaItem": 90
+                "agendaItem": 90,
+                "resolution": "決定：交教育及文化委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001700",
                 "proposer": "教育部",
                 "summary": "函，為修正「全國大專校院運動會舉辦準則」第七條、第八條及第十三條條文，請查照案。",
                 "result": "",
-                "agendaItem": 91
+                "agendaItem": 91,
+                "resolution": "決定：交教育及文化委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003000",
                 "proposer": "教育部",
                 "summary": "函，為有關101年度預算因部分科目獎補助費不敷，申請動支第一預備金新臺幣6,660萬元乙案，業經行政院主計總處同意備案，請查照案。",
                 "result": "",
-                "agendaItem": 92
+                "agendaItem": 92,
+                "resolution": "決定：交教育及文化委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071000700",
                 "proposer": "金融監督管理委員會",
                 "summary": "函，為修正「銀行資本適足性及資本等級管理辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 93
+                "agendaItem": 93,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000100",
                 "proposer": "金融監督管理委員會",
                 "summary": "函，為修正「證券交易法施行細則」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 94
+                "agendaItem": 94,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001400",
                 "proposer": "金融監督管理委員會",
                 "summary": "函，為修正「會計師懲戒委員會與懲戒覆審委員會組織及審議規則」第二條及第四條條文，請查照案。",
                 "result": "",
-                "agendaItem": 95
+                "agendaItem": 95,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001600",
                 "proposer": "金融監督管理委員會、交通部",
                 "summary": "函，為修正「強制汽車責任保險費率表」，請查照案。",
                 "result": "",
-                "agendaItem": 96
+                "agendaItem": 96,
+                "resolution": "決定：交財政、交通兩委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001000",
                 "proposer": "內政部",
                 "summary": "函，為修正「大陸地區人民在臺灣地區依親居留長期居留或定居許可辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 97
+                "agendaItem": 97,
+                "resolution": "決定：交內政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001100",
                 "proposer": "內政部",
                 "summary": "函，為修正「大陸地區人民在臺灣地區依親居留長期居留及定居數額表」，請查照案。",
                 "result": "",
-                "agendaItem": 98
+                "agendaItem": 98,
+                "resolution": "決定：交內政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001500",
                 "proposer": "內政部",
                 "summary": "函，為101年度中央政府總預算決議，建請行政院經濟建設委員會及相關單位檢討現行公有土地劃定範圍及使用限制合理性，提出調查報告，並請行政院於1個月內訂定花東公有土地放領辦法，以維花東民眾權益乙案，復如說明，請查照案。",
                 "result": "",
-                "agendaItem": 99
+                "agendaItem": 99,
+                "resolution": "決定：交內政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000700",
                 "proposer": "內政部",
                 "summary": "函送「無障礙住宅設計基準及獎勵辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 100
+                "agendaItem": 100,
+                "resolution": "決定：交內政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000800",
                 "proposer": "內政部",
                 "summary": "函，為修正「建築技術規則」建築設計施工編第九十九條之一條文，請查照案。",
                 "result": "",
-                "agendaItem": 101
+                "agendaItem": 101,
+                "resolution": "決定：交內政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001500",
                 "proposer": "內政部、行政院衛生署",
                 "summary": "函，為修正「老人福利機構設立標準」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 102
+                "agendaItem": 102,
+                "resolution": "決定：交社會福利及衛生環境委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001600",
                 "proposer": "行政院國家科學委員會",
                 "summary": "函，為修正「行政院國家科學委員會科學技術研究發展成果歸屬及運用辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 103
+                "agendaItem": 103,
+                "resolution": "決定：交教育及文化委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001800",
                 "proposer": "行政院國家科學委員會",
                 "summary": "函送國家型科技計畫101年度第三季成果摘要報告，請查照案。",
                 "result": "",
-                "agendaItem": 104
+                "agendaItem": 104,
+                "resolution": "決定：交教育及文化委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011204071001700",
                 "proposer": "司法院",
                 "summary": "函，為修正「法院訴訟當事人在途期間標準」，請查照案。",
                 "result": "",
-                "agendaItem": 105
+                "agendaItem": 105,
+                "resolution": "決定：交司法及法制委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011214071000100",
                 "proposer": "司法院",
                 "summary": "函送財團法人法律扶助基金會101年第3季扶助律師平均接案案件量及酬金數額量表，請查照案。",
                 "result": "",
-                "agendaItem": 106
+                "agendaItem": 106,
+                "resolution": "決定：交司法及法制委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001800",
                 "proposer": "司法院、行政院",
                 "summary": "函送「偵查不公開作業辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 107
+                "agendaItem": 107,
+                "resolution": "決定：交司法及法制委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000200",
                 "proposer": "經濟部",
                 "summary": "函，為修正「專利年費減免辦法」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 108
+                "agendaItem": 108,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000400",
                 "proposer": "經濟部",
                 "summary": "函，為公告「中華民國一百零二年度再生能源電能躉購費率及其計算公式」，請查照案。",
                 "result": "",
-                "agendaItem": 109
+                "agendaItem": 109,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001300",
                 "proposer": "經濟部",
                 "summary": "函送該部所屬事業中油、台電、台糖、台水及漢翔公司101年10月份公益支出、委託調查、會費、捐助及睦鄰支出明細表，請查照案。",
                 "result": "",
-                "agendaItem": 110
+                "agendaItem": 110,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001500",
                 "proposer": "經濟部",
                 "summary": "函，為修正「有關專利申請之生物材料寄存辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 111
+                "agendaItem": 111,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000600",
                 "proposer": "經濟部",
                 "summary": "函，為修正「燃氣台爐能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 112
+                "agendaItem": 112,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000700",
                 "proposer": "經濟部",
                 "summary": "函，為修正「即熱式燃氣熱水器能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 113
+                "agendaItem": 113,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000800",
                 "proposer": "經濟部",
                 "summary": "函，為修正「安定器內藏式螢光燈泡能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 114
+                "agendaItem": 114,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001200",
                 "proposer": "經濟部",
                 "summary": "函，為修正「電冰箱能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 115
+                "agendaItem": 115,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001300",
                 "proposer": "經濟部",
                 "summary": "函，為修正「窗(壁)型及箱型冷氣機能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 116
+                "agendaItem": 116,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001900",
                 "proposer": "經濟部",
                 "summary": "函，為修正「除濕機能源耗用量與其能源效率分級標示事項、方法及檢查方式」，請查照案。",
                 "result": "",
-                "agendaItem": 117
+                "agendaItem": 117,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003400",
                 "proposer": "經濟部",
                 "summary": "函，為修正「工廠管理輔導法」第13條第2項規定之「產業類別」，請查照案。",
                 "result": "",
-                "agendaItem": 118
+                "agendaItem": 118,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003500",
                 "proposer": "經濟部",
                 "summary": "函，為修正「工廠從事物品製造加工範圍及面積電力容量熱能規模認定標準」第三條條文，請查照案。",
                 "result": "",
-                "agendaItem": 119
+                "agendaItem": 119,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003600",
                 "proposer": "經濟部",
                 "summary": "函，為修正「應施檢驗感熱紙商品之相關檢驗規定」，請查照案。",
                 "result": "",
-                "agendaItem": 120
+                "agendaItem": 120,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000300",
                 "proposer": "交通部",
                 "summary": "函，為修正「鐵路運送規則」第五條及第二十條條文，請查照案。",
                 "result": "",
-                "agendaItem": 121
+                "agendaItem": 121,
+                "resolution": "決定：交交通委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001000",
                 "proposer": "交通部",
                 "summary": "函，為修正「大眾運輸事業補貼辦法」第五條附件一，請查照案。",
                 "result": "",
-                "agendaItem": 122
+                "agendaItem": 122,
+                "resolution": "決定：交交通委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000500",
                 "proposer": "國家通訊傳播委員會",
                 "summary": "函送非法廣播電臺聯合取締小組101年第3季執行成果統計表，請查照案。",
                 "result": "",
-                "agendaItem": 123
+                "agendaItem": 123,
+                "resolution": "決定：交交通委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071000400",
                 "proposer": "國家通訊傳播委員會",
                 "summary": "函，為修正「無線廣播電視電臺設置使用管理辦法」部分條文，請查照案。",
                 "result": "",
-                "agendaItem": 124
+                "agendaItem": 124,
+                "resolution": "決定：交交通委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071000600",
                 "proposer": "國防部",
                 "summary": "函，為修正「志願士兵不適服現役賠償辦法」第二條及第四條條文，請查照案。",
                 "result": "",
-                "agendaItem": 125
+                "agendaItem": 125,
+                "resolution": "決定：交外交及國防委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001000",
                 "proposer": "中央銀行",
                 "summary": "函送「票據交換所個人資料檔案安全維護計畫標準辦法」，請查照案。",
                 "result": "",
-                "agendaItem": 126
+                "agendaItem": 126,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011207071001400",
                 "proposer": "行政院農業委員會",
                 "summary": "函，為公告「梅、東方李為適用植物品種及種苗法之植物種類」，請查照案。",
                 "result": "",
-                "agendaItem": 127
+                "agendaItem": 127,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002500",
                 "proposer": "行政院農業委員會",
                 "summary": "函，為修正「農田水利會組織規程」第十四條條文，請查照案。",
                 "result": "",
-                "agendaItem": 128
+                "agendaItem": 128,
+                "resolution": "決定：交司法及法制、經濟兩委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002700",
                 "proposer": "行政院農業委員會",
                 "summary": "函，為修正「漁船輸出許可準則」第八條及第十一條條文，請查照案。",
                 "result": "",
-                "agendaItem": 129
+                "agendaItem": 129,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002800",
                 "proposer": "行政院農業委員會",
                 "summary": "函送「農藥管理法第七條第二款所定摻雜其他有效成分含量之限量基準」，請查照案。",
                 "result": "",
-                "agendaItem": 130
+                "agendaItem": 130,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071003100",
                 "proposer": "行政院農業委員會",
                 "summary": "函，為公告修正「巴西為牛海綿狀腦病發生國家」，請查照案。",
                 "result": "",
-                "agendaItem": 131
+                "agendaItem": 131,
+                "resolution": "決定：交經濟委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001100",
                 "proposer": "審計部",
                 "summary": "函送中央政府莫拉克颱風災後重建特別預算截至101年第3季執行情形審核報告，請查照案。",
                 "result": "",
-                "agendaItem": 132
+                "agendaItem": 132,
+                "resolution": "決定：交財政委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071001700",
                 "proposer": "僑務委員會",
                 "summary": "函，為公告「一百零二年度永久居留權取得困難之國家或地區及其居留資格認定基準」，請查照案。",
                 "result": "",
-                "agendaItem": 133
+                "agendaItem": 133,
+                "resolution": "決定：交外交及國防委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011213071002600",
                 "proposer": "法務部",
                 "summary": "函，為廢止「法務部法規委員會組織規程」，請查照案。",
                 "result": "",
-                "agendaItem": 134
+                "agendaItem": 134,
+                "resolution": "決定：交司法及法制委員會。",
+                "status": "committee"
             },
             {
                 "id": "1011224071000300",
                 "proposer": "（密）經濟部",
                 "summary": "函送所屬台灣電力股份有限公司配合廉政署及檢調進行內部遭舉發案件之專案調查報告，請查照案。",
                 "result": "",
-                "agendaItem": 135
+                "agendaItem": 135,
+                "resolution": "決定：交經濟委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011224071000200",
                 "proposer": "行政院大陸委員會",
                 "summary": "函，為有關該會主管之中華發展基金預算遭凍結乙案，請列入議程安排報告，請查照案。",
                 "result": "",
-                "agendaItem": 136
+                "agendaItem": 136,
+                "resolution": "決定：交內政委員會處理。",
+                "status": "committee"
             },
             {
                 "id": "1011225071000100",
                 "proposer": "交通部",
                 "summary": "函，為101年度中央政府總預算案附屬單位預算決議，有關該部臺灣鐵路管理局就預算編列退休金、卹償金之法源與使用情況乙案，檢送書面資料，請查照案。",
                 "result": "",
-                "agendaItem": 137
+                "agendaItem": 137,
+                "resolution": "決定：交交通委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011226071001800",
                 "proposer": "交通部",
                 "summary": "函，為101年度中央政府總預算附屬單位預算決議，有關中華郵政股份有限公司固定資產建設改良擴充計畫編列20億6,460萬9,000元，該項目所需預算龐大，但預算書過於簡要，爰凍結該預算20％乙案，檢送具體成本效益試算書面報告，請安排報告，請查照案。",
                 "result": "",
-                "agendaItem": 138
+                "agendaItem": 138,
+                "resolution": "決定：交交通委員會處理。",
+                "status": "committee"
             },
             {
                 "id": "1011227071002200",
                 "proposer": "教育部",
                 "summary": "函送101年度國立大學校院校務基金「固定資產之建設改良擴充」解凍書面報告，請查照案。",
                 "result": "",
-                "agendaItem": 139
+                "agendaItem": 139,
+                "resolution": "決定：交教育及文化委員會處理。",
+                "status": "committee"
             },
             {
                 "id": "1011222071000100",
                 "proposer": "本院司法及法制委員會",
                 "summary": "函，為院會交付審查行政院函送101年第2季政策宣導廣告執行情形乙案，建請改交內政委員會審查，請查照案。",
                 "result": "",
-                "agendaItem": 140
+                "agendaItem": 140,
+                "resolution": "決定：改交內政委員會審查。",
+                "status": "committee"
             },
             {
                 "id": "1011224071000100",
                 "proposer": "本院內政委員會",
                 "summary": "報告審查委員蔡正元等21人擬具「政治獻金法第七條條文修正草案」，經審查決議:「不予審議」，請查照案。",
                 "result": "",
-                "agendaItem": 141
+                "agendaItem": 141,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011226071000100",
                 "proposer": "本院外交及國防委員會",
                 "summary": "函，為院會交付審查國家安全局、國防部函送修正「情報協助人員補償及救助辦法」部分條文等4案，業經本院第8屆第1會期第13次會議報告後決定：「展延審查期限。」，復逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 142
+                "agendaItem": 142,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071001600",
                 "proposer": "本院司法及法制、外交及國防兩委員會",
                 "summary": "函，為院會交付審查行政院國軍退除役官兵輔導委員會函送「臺北榮民總醫院桃園分院辦事細則」、「臺中榮民總醫院埔里分院辦事細則」、「高雄榮民總醫院臺南分院辦事細則」、「臺北榮民總醫院桃園分院編制表」、「臺中榮民總醫院埔里分院編制表」、「高雄榮民總醫院臺南分院編制表」等案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 143
+                "agendaItem": 143,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071002000",
                 "proposer": "本院司法及法制、外交及國防兩委員會",
                 "summary": "函，為院會交付審查國家安全局函送修正「國家安全局處務規程」案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 144
+                "agendaItem": 144,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071001700",
                 "proposer": "本院司法及法制、財政兩委員會",
                 "summary": "函，為院會交付審查行政院金融監督管理委員會函送「金融監督管理委員會處務規程」、「金融監督管理委員會編制表」，修正「行政院金融監督管理委員會銀行局處務規程」、「行政院金融監督管理委員會銀行局編制表」、「行政院金融監督管理委員會證券期貨局處務規程」部分條文、「行政院金融監督管理委員會證券期貨局編制表」、「行政院金融監督管理委員會保險局處務規程」、「行政院金融監督管理委員會保險局編制表」、「行政院金融監督管理委員會檢查局處務規程」、「行政院金融監督管理委員會檢查局編制表」，名稱並分別修正為「金融監督管理委員會銀行局處務規程」、「金融監督管理委員會銀行局編制表」、「金融監督管理委員會證券期貨局處務規程」、「金融監督管理委員會證券期貨局編制表」、「金融監督管理委員會保險局處務規程」、「金融監督管理委員會保險局編制表」、「金融監督管理委員會檢查局處務規程」、「金融監督管理委員會檢查局編制表」，自101年7月1日生效等案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 145
+                "agendaItem": 145,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071001900",
                 "proposer": "本院司法及法制委員會",
                 "summary": "函，為院會交付審查法務部函送「檢察官評鑑實施辦法」案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 146
+                "agendaItem": 146,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071001800",
                 "proposer": "本院司法及法制委員會",
                 "summary": "函，為院會交付審查法務部函送「檢察官評鑑委員會組織規程」案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 147
+                "agendaItem": 147,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011221071002100",
                 "proposer": "本院司法及法制委員會",
                 "summary": "函，為院會交付審查法務部函送「檢察官倫理規範」案，已逾立法院職權行使法第61條所定審查期限，依規定函請提報院會存查，請查照案。",
                 "result": "",
-                "agendaItem": 148
+                "agendaItem": 148,
+                "resolution": "",
+                "status": "accepted"
             },
             {
                 "id": "1011227087800100",
                 "proposer": "行政院函送本院委員江啟臣等23人於第8屆第2會期第3次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 149
+                "agendaItem": 149,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800200",
                 "proposer": "行政院函送本院委員賴士葆等26人於第8屆第2會期第5次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 150
+                "agendaItem": 150,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800300",
                 "proposer": "行政院函送本院委員賴士葆等18人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 151
+                "agendaItem": 151,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800400",
                 "proposer": "行政院函送本院委員賴士葆等21人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 152
+                "agendaItem": 152,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800500",
                 "proposer": "行政院函送本院委員簡東明等18人於第8屆第2會期第5次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 153
+                "agendaItem": 153,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800600",
                 "proposer": "行政院函送本院委員簡東明等22人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 154
+                "agendaItem": 154,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800700",
                 "proposer": "行政院函送本院委員詹凱臣等26人於第8屆第2會期第5次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 155
+                "agendaItem": 155,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800800",
                 "proposer": "行政院函送本院委員林正二等21人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 156
+                "agendaItem": 156,
+                "status": "accepted"
             },
             {
                 "id": "1011227087800900",
                 "proposer": "行政院函送本院委員管碧玲等11人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 157
+                "agendaItem": 157,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801000",
                 "proposer": "行政院函送本院委員劉建國等16人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 158
+                "agendaItem": 158,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801100",
                 "proposer": "行政院函送本院委員陳淑慧等28人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 159
+                "agendaItem": 159,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801200",
                 "proposer": "行政院函送本院委員陳淑慧等28人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 160
+                "agendaItem": 160,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801300",
                 "proposer": "行政院函送本院委員陳碧涵等18人於第8屆第2會期第6次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 161
+                "agendaItem": 161,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801400",
                 "proposer": "行政院函送本院委員陳碧涵等26人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 162
+                "agendaItem": 162,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801500",
                 "proposer": "行政院函送本院委員陳碧涵等15人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 163
+                "agendaItem": 163,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801600",
                 "proposer": "行政院函送本院委員吳育仁等27人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 164
+                "agendaItem": 164,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801700",
                 "proposer": "行政院函送本院委員吳育仁等28人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 165
+                "agendaItem": 165,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801800",
                 "proposer": "行政院函送本院委員孔文吉等17人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 166
+                "agendaItem": 166,
+                "status": "accepted"
             },
             {
                 "id": "1011227087801900",
                 "proposer": "行政院函送本院委員孔文吉等21人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 167
+                "agendaItem": 167,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802000",
                 "proposer": "行政院函送本院委員林佳龍等11人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 168
+                "agendaItem": 168,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802100",
                 "proposer": "行政院函送本院委員江惠貞等16人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 169
+                "agendaItem": 169,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802200",
                 "proposer": "行政院函送本院委員江惠貞等17人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 170
+                "agendaItem": 170,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802300",
                 "proposer": "行政院函送本院委員李貴敏等23人於第8屆第2會期第7次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 171
+                "agendaItem": 171,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802400",
                 "proposer": "行政院函送本院台灣團結聯盟黨團於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 172
+                "agendaItem": 172,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802500",
                 "proposer": "行政院函送本院台灣團結聯盟黨團於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 173
+                "agendaItem": 173,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802600",
                 "proposer": "行政院函送本院委員蔡其昌等16人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 174
+                "agendaItem": 174,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802700",
                 "proposer": "行政院函送本院委員盧嘉辰等28人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 175
+                "agendaItem": 175,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802800",
                 "proposer": "行政院函送本院委員廖正井等11人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 176
+                "agendaItem": 176,
+                "status": "accepted"
             },
             {
                 "id": "1011227087802900",
                 "proposer": "行政院函送本院委員劉櫂豪等21人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 177
+                "agendaItem": 177,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803000",
                 "proposer": "行政院函送本院委員徐欣瑩等26人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 178
+                "agendaItem": 178,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803100",
                 "proposer": "行政院函送本院委員蔣乃辛等18人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 179
+                "agendaItem": 179,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803200",
                 "proposer": "行政院函送本院委員邱文彥等32人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 180
+                "agendaItem": 180,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803300",
                 "proposer": "行政院函送本院委員鄭麗君等13人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 181
+                "agendaItem": 181,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803400",
                 "proposer": "行政院函送本院委員鄭麗君等14人於第8屆第2會期第10次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 182
+                "agendaItem": 182,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803500",
                 "proposer": "行政院函送本院委員楊玉欣等28人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 183
+                "agendaItem": 183,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803600",
                 "proposer": "行政院函送本院委員王進士等18人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 184
+                "agendaItem": 184,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803700",
                 "proposer": "行政院函送本院委員李昆澤等14人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 185
+                "agendaItem": 185,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803800",
                 "proposer": "行政院函送本院委員王育敏等24人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 186
+                "agendaItem": 186,
+                "status": "accepted"
             },
             {
                 "id": "1011227087803900",
                 "proposer": "行政院函送本院委員姚文智等12人於第8屆第2會期第8次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 187
+                "agendaItem": 187,
+                "status": "accepted"
             },
             {
                 "id": "1011227087804000",
                 "proposer": "行政院函送本院委員林德福等26人於第8屆第2會期第9次會議所提臨時提案之研處情形，請查照案。",
                 "summary": "",
-                "agendaItem": 188
+                "agendaItem": 188,
+                "status": "accepted"
             }
         ],
         "discussion": [
@@ -39578,750 +39912,967 @@
                 "subItem": 1,
                 "proposer": "本院財政委員會",
                 "summary": "報告審查行政院函請審議「中華民國102年度中央政府總預算案（含附屬單位預算及綜計表－營業及非營業部分）」案。（未含內政、外交及國防─公開部分、經濟、教育及文化、社會福利及衛生環境五委員會審查報告）",
-                "agendaItem": 1
+                "agendaItem": 1,
+                "item": 2,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011224070300200",
                 "subItem": 2,
                 "proposer": "本院財政委員會",
                 "summary": "報告內政等五委員會未及列入審查總報告乙節，外交及國防（公開部分）、經濟、教育及文化、社會福利及衛生環境等四委員會業經提出審查報告，請併「中華民國102年度中央政府總預算案審查總報告」討論案。",
-                "agendaItem": 1
+                "agendaItem": 1,
+                "item": 2,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011225070300100",
                 "subItem": 3,
                 "proposer": "本院財政委員會",
                 "summary": "報告有關內政委員會未及列入審查總報告乙節，該委員會業經提出審查報告，請併「中華民國102年度中央政府總預算案審查總報告」討論案。",
-                "agendaItem": 1
+                "agendaItem": 1,
+                "item": 2,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011220070300300",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查委員鄭天財等23人擬具「刑事訴訟法第三十一條及第九十五條條文修正草案」案。",
-                "agendaItem": 2
+                "agendaItem": 2,
+                "item": 3,
+                "resolution": "決議：刑事訴訟法第三十一條及第九十五條條文修正通過。（二讀、三讀均照審查會條文通過；並通過1項附帶決議：本法修正通過後，請司法院會同法務部就刑事訴訟法中有關智能障礙之用語，全面檢討後提出法律修正案。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1010608070300400",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查行政院、司法院函請審議「跨國移交受刑人法草案」案。",
-                "agendaItem": 3
+                "agendaItem": 3,
+                "item": 4,
+                "resolution": "決議：跨國移交受刑人法草案修正通過。（二讀、三讀均依協商結論照審查會名稱、章名及條文通過；並通過2項附帶決議：1.有關本法第二十三條施行前之準備情形，行政院應會同司法院向本院報告，並於施行後每半年向本院報告執行情形。2.本法通過後，請司法院、法務部、行政院大陸委員會、外交部、內政部等就我國國民於境外涉入，除本法外之政治、宗教等司法保護處理情形提出書面報告。）",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011211070300300",
                 "subItem": 1,
                 "proposer": "本院經濟、司法及法制兩委員會",
                 "summary": "報告審查行政院函請審議「營業秘密法增訂部分條文草案」案。",
-                "agendaItem": 4
+                "agendaItem": 4,
+                "item": 5,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011011070200400",
                 "subItem": 2,
                 "proposer": "本院委員呂學樟等52人",
                 "summary": "擬具「營業秘密法增訂部分條文草案」，請審議案。",
-                "agendaItem": 4
+                "agendaItem": 4,
+                "item": 5,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1010412070201100",
                 "subItem": 3,
                 "proposer": "本院委員李貴敏等27人",
                 "summary": "擬具「營業秘密法增訂第十條之一條文草案」，請審議案。",
-                "agendaItem": 4
+                "agendaItem": 4,
+                "item": 5,
+                "resolution": "決議：協商後再行處理。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011218070300200",
                 "subItem": 1,
                 "proposer": "本院教育及文化委員會",
                 "summary": "報告審查委員蔣乃辛等31人擬具「教師法第十八條之一條文修正草案」案。",
-                "agendaItem": 5
+                "agendaItem": 5,
+                "item": 6,
+                "resolution": "決議：教師法第十八條之一條文修正通過。（二讀、三讀均照審查會條文通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011220070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告併案審查考試院函請審議、委員陳節如等19人、委員邱志偉等22人及委員鄭天財等29人分別擬具「公務人員任用法第二十八條條文修正草案」案。",
-                "agendaItem": 6
+                "agendaItem": 6,
+                "item": 7,
+                "resolution": "決議：公務人員任用法第二十八條條文修正通過。〔二讀、三讀均照審查會條文通過；並通過2項附帶決議：1.請行政院及考試院邀集各相關執業執照法與證照法之主管機關，將《技師法》、《建築師法》、《不動產估價師法》、《地政士法》，及《記帳士法》等（如附表）透過法律限制精神病患領取職業執照、撤銷執照及聘用之歧視性規定，進行檢討修正，並於本屆下會期開議前，將各項法規之修正版本送本院審查。附表：2.請人事行政總處函請各用人主管機關，檢討其主管之相關人員管理辦法，是否仍有非法律規定而對精神疾病及精神障礙者限制任用之條文規定。如教育部、經濟部、經濟部工業局及國家通訊傳播委員會所主管《各級學校專任運動教練聘任管理辦法》、《石油業儲油設備代行檢查機構設置管理辦法》、《計量技術人員管理辦法》、《經濟部工業局所屬工業區管理機構人事管理辦法》，以及《電視增力機、變頻機及社區共同天線電視設備設立辦法》（如附表）等限制精神病患者聘用的規定，各主管機關應儘速修改相關辦法，並於六個月內完成。〕附表：",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011218070300100",
                 "subItem": 1,
                 "proposer": "本院交通委員會",
                 "summary": "報告併案審查委員林岱樺等17人、委員陳根德等52人分別擬具「政府採購法部分條文修正草案」案及委員張慶忠等19人擬具「政府採購法第八十五條之一條文修正草案」案。",
-                "agendaItem": 7
+                "agendaItem": 7,
+                "item": 8,
+                "resolution": "決議：交黨團進行協商。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011220070300200",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告審查行政院函請審議「動物用藥品管理法部分條文修正草案」案。",
-                "agendaItem": 8
+                "agendaItem": 8,
+                "item": 9,
+                "resolution": "決議：動物用藥品管理法增訂第十四條之一及第十四條之二條文；刪除第十二條之三條文；並將第十二條、第十四條、第二十六條、第三十三條、第三十五條、第三十六條、第四十條及第四十三條條文修正通過。（二讀時，第十二條之三條文，予以刪除；其餘均照審查會條文通過；三讀時，均照二讀文字通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011222070300100",
                 "subItem": 1,
                 "proposer": "本院外交及國防委員會",
                 "summary": "報告審查行政院函送「財團法人國防工業發展基金會102年度預算書」及國防部函送「財團法人戒嚴時期不當叛亂暨匪諜審判案件補償基金會102年度預算書」等2案。",
-                "agendaItem": 9
+                "agendaItem": 9,
+                "item": 10,
+                "resolution": "決議：交黨團進行協商。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011225070300200",
                 "subItem": 1,
                 "proposer": "本院教育及文化委員會",
                 "summary": "報告審查委員楊麗環等35人擬具「特殊教育法第三條條文修正草案」案。",
-                "agendaItem": 10
+                "agendaItem": 10,
+                "item": 11,
+                "resolution": "決議：特殊教育法第三條條文修正通過。（二讀、三讀均照審查會條文通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011225070300300",
                 "subItem": 1,
                 "proposer": "本院教育及文化委員會",
                 "summary": "報告審查委員蔣乃辛等25人擬具「特殊教育法第九條條文修正草案」案。",
-                "agendaItem": 11
+                "agendaItem": 11,
+                "item": 12,
+                "resolution": "決議：交黨團進行協商。",
+                "dtype": "default",
+                "status": "consultation"
             },
             {
                 "id": "1011225070300400",
                 "subItem": 1,
                 "proposer": "本院教育及文化委員會",
                 "summary": "報告審查委員鄭麗君等21人擬具「特殊教育法部分條文修正草案」案。",
-                "agendaItem": 12
+                "agendaItem": 12,
+                "item": 13,
+                "resolution": "決議：特殊教育法增訂第三十條之一條文；並將第十四條、第二十三條、第二十四條、第三十條、第三十三條及第四十五條條文修正通過。（二讀、三讀均照審查會條文通過；並通過1項附帶決議：為提供特殊教育學生之適性教育，落實特殊教育本次修法之目的，教育部應督促高等教育學校設置專責單位及專責人員等，以協助身心障礙學生之學習及發展。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011225070300500",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查考試院函請審議「公務人員考試法第十九條條文修正草案」案。",
-                "agendaItem": 13
+                "agendaItem": 13,
+                "item": 14,
+                "resolution": "決議：公務人員考試法第十九條條文修正通過。（二讀、三讀均照審查會條文通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011225070300600",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告併案審查考試院函請審議「專門職業及技術人員考試法修正草案」、委員邱志偉等22人擬具「專門職業及技術人員考試法第十四條條文修正草案」及親民黨黨團擬具「專門職業及技術人員考試法第十七條條文修正草案」案。",
-                "agendaItem": 14
+                "agendaItem": 14,
+                "item": 15,
+                "resolution": "決議：專門職業及技術人員考試法修正通過。（二讀時，第八條第二項及第九條第二項條文中日期空白部分均填入「一百零二年一月八日」；其餘均照審查會條文通過；三讀時，均照二讀文字通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011228070300400",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告併案審查委員丁守中等30人及委員蔡煌瑯等17人擬具「野生動物保育法第三十六條條文修正草案」案。",
-                "agendaItem": 15
+                "agendaItem": 15,
+                "item": 16,
+                "resolution": "決議：野生動物保育法第三十六條條文修正通過。（二讀、三讀均照審查會條文通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011228070300500",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告審查委員林淑芬等32人擬具「野生動物保育法第二十四條及第四十條條文修正草案」案。",
-                "agendaItem": 16
+                "agendaItem": 16,
+                "item": 17,
+                "resolution": "決議：野生動物保育法第二十四條條文修正通過。（二讀時，第四十條維持現行法條文，不予修正；第二十四條照審查會條文通過；三讀時，照二讀文字通過。）",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1011228070300600",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查委員廖正井等21人擬具「中華民國刑法第四十一條、第五十條及第五十四條條文修正草案」案。",
-                "agendaItem": 17
+                "agendaItem": 17,
+                "item": 18,
+                "resolution": "決議：中華民國刑法第五十條條文修正通過。(二讀時，第四十一條及第五十四條均維持現行法條文，不予修正；第五十條照審查會條文通過；三讀時，照二讀文字通過。)",
+                "dtype": "default",
+                "status": "passed"
             },
             {
                 "id": "1010509070300200",
                 "subItem": 1,
                 "proposer": "本院內政委員會",
                 "summary": "報告併案審查委員紀國棟等26人及委員吳宜臻等19人分別擬具「公職人員選舉罷免法第七十四條條文修正草案」案。",
-                "agendaItem": 18
+                "agendaItem": 18,
+                "status": "unhandled"
             },
             {
                 "id": "1010531070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查司法院函請審議「司法院組織法第二十二條之一及第二十三條條文修正草案」案。",
-                "agendaItem": 19
+                "agendaItem": 19,
+                "status": "unhandled"
             },
             {
                 "id": "1010531070300200",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查司法院函請審議「司法院司法人員研習所組織條例修正草案」案。",
-                "agendaItem": 20
+                "agendaItem": 20,
+                "status": "unhandled"
             },
             {
                 "id": "1010608070300600",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告審查行政院函請審議「法務部司法官訓練所組織法草案」案。",
-                "agendaItem": 21
+                "agendaItem": 21,
+                "status": "unhandled"
             },
             {
                 "id": "1010523070300300",
                 "subItem": 1,
                 "proposer": "本院司法及法制、教育及文化兩委員會",
                 "summary": "報告審查行政院函請審議「教育部青年發展署組織法草案」及「國家運動訓練中心設置條例草案」案。",
-                "agendaItem": 22
+                "agendaItem": 22,
+                "status": "unhandled"
             },
             {
                 "id": "1010523070300200",
                 "subItem": 1,
                 "proposer": "本院司法及法制、外交及國防兩委員會",
                 "summary": "報告審查行政院函請審議「國軍退除役官兵輔導委員會組織法草案」及「榮民總醫院組織通則草案」案。",
-                "agendaItem": 23
+                "agendaItem": 23,
+                "status": "unhandled"
             },
             {
                 "id": "1010514070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制、經濟兩委員會",
                 "summary": "報告審查行政院函請審議「國家發展委員會組織法草案」及「國家發展委員會檔案管理局組織法草案」案。",
-                "agendaItem": 24
+                "agendaItem": 24,
+                "status": "unhandled"
             },
             {
                 "id": "1010514070200900",
                 "subItem": 2,
                 "proposer": "本院委員吳宜臻等17人",
                 "summary": "擬具「國家發展委員會組織法草案」，請審議案。",
-                "agendaItem": 24
+                "agendaItem": 24,
+                "status": "unhandled"
             },
             {
                 "id": "1010510070201800",
                 "subItem": 3,
                 "proposer": "本院委員尤美女等21人",
                 "summary": "擬具「國家發展委員會組織法草案」，請審議案。",
-                "agendaItem": 24
+                "agendaItem": 24,
+                "status": "unhandled"
             },
             {
                 "id": "1011026070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制、教育及文化兩委員會",
                 "summary": "報告審查行政院函請審議「財團法人文化創意產業發展研究院設置條例草案」案。",
-                "agendaItem": 25
+                "agendaItem": 25,
+                "status": "unhandled"
             },
             {
                 "id": "1011101070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制、教育及文化兩委員會",
                 "summary": "報告併案審查行政院函請審議、委員趙天麟等23人擬具「國家表演藝術中心設置條例草案」及委員許智傑等19人擬具「衛武營藝術中心設置條例草案」案。",
-                "agendaItem": 26
+                "agendaItem": 26,
+                "status": "unhandled"
             },
             {
                 "id": "1010611070300300",
                 "subItem": 1,
                 "proposer": "本院司法及法制、外交及國防兩委員會",
                 "summary": "報告審查行政院函請審議「國家中山科學研究院設置條例草案」案。",
-                "agendaItem": 27
+                "agendaItem": 27,
+                "status": "unhandled"
             },
             {
                 "id": "1011206070301200",
                 "subItem": 1,
                 "proposer": "本院司法及法制、交通兩委員會",
                 "summary": "報告併案審查行政院函請審議「交通及建設部組織法草案」、「交通及建設部觀光署組織法草案」、「交通及建設部高速公路局組織法草案」、「交通及建設部公路局組織法草案」、「交通及建設部航港局組織法草案」、「交通及建設部民用航空局組織法草案」、「交通及建設部鐵道局組織法草案」及「交通及建設部運輸研究所組織法草案」暨委員尤美女等16人擬具「交通及建設部鐵道局組織法草案」案。",
-                "agendaItem": 28
+                "agendaItem": 28,
+                "status": "unhandled"
             },
             {
                 "id": "1011120070300300",
                 "subItem": 1,
                 "proposer": "本院司法及法制、內政兩委員會",
                 "summary": "報告併案審查行政院函請審議、親民黨黨團及委員林正二等25人分別擬具「內政部組織法修正草案」案、行政院函請審議「內政部消防署組織條例修正草案」及委員管碧玲等21人擬具「內政部消防署組織條例第十一條條文修正草案」案暨行政院函請審議「內政部國土管理署組織法草案」案。",
-                "agendaItem": 29
+                "agendaItem": 29,
+                "status": "unhandled"
             },
             {
                 "id": "1011102070300200",
                 "subItem": 1,
                 "proposer": "本院司法及法制、內政兩委員會",
                 "summary": "報告併案審查行政院函請審議、委員王育敏等25人擬具「內政部警政署組織法草案」及行政院函請審議「內政部入出國及移民署組織法修正草案」、「內政部役政署組織法草案」、「內政部空中勤務總隊組織法修正草案」、「內政部建築研究所組織法草案」案。",
-                "agendaItem": 30
+                "agendaItem": 30,
+                "status": "unhandled"
             },
             {
                 "id": "1011102070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制、內政兩委員會",
                 "summary": "報告審查行政院函請審議「大陸委員會組織法草案」案。",
-                "agendaItem": 31
+                "agendaItem": 31,
+                "status": "unhandled"
             },
             {
                 "id": "1010529070300300",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告審查委員鄭天財等22人擬具「山坡地保育利用條例第三十七條條文修正草案」案。",
-                "agendaItem": 32
+                "agendaItem": 32,
+                "status": "unhandled"
             },
             {
                 "id": "1010529070300600",
                 "subItem": 1,
                 "proposer": "本院社會福利及衛生環境委員會",
                 "summary": "報告審查行政院函請審議「農民健康保險條例第五條、第二十條及第四十九條之一條文修正草案」案。",
-                "agendaItem": 33
+                "agendaItem": 33,
+                "status": "unhandled"
             },
             {
                 "id": "1010607070300700",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告審查行政院函請審議「植物防疫檢疫法部分條文修正草案」案。",
-                "agendaItem": 34
+                "agendaItem": 34,
+                "status": "unhandled"
             },
             {
                 "id": "1010614070300100",
                 "subItem": 1,
                 "proposer": "本院司法及法制委員會",
                 "summary": "報告併案審查委員鄭天財等18人及委員高志鵬等21人分別擬具「公務人員行政中立法第九條條文修正草案」案。",
-                "agendaItem": 35
+                "agendaItem": 35,
+                "status": "unhandled"
             },
             {
                 "id": "1011203070300100",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告審查委員丁守中等25人擬具「公平交易法增訂第二十七條之二條文草案」案。",
-                "agendaItem": 36
+                "agendaItem": 36,
+                "status": "unhandled"
             },
             {
                 "id": "1011205070300100",
                 "subItem": 1,
                 "proposer": "本院教育及文化委員會",
                 "summary": "報告併案審查委員邱志偉等20人、委員蔣乃辛等23人及委員陳淑慧等26人分別擬具「補習及進修教育法第九條條文修正草案」案。",
-                "agendaItem": 37
+                "agendaItem": 37,
+                "status": "unhandled"
             },
             {
                 "id": "1011112070300100",
                 "subItem": 1,
                 "proposer": "本院社會福利及衛生環境委員會",
                 "summary": "報告併案審查委員王惠美等21人、委員潘孟安等21人、委員蔣乃辛等22人、委員李昆澤等22人、委員趙天麟等28人、委員管碧玲等19人及委員吳育仁等23人分別擬具「勞工保險條例第六十九條條文修正草案」案。",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "status": "unhandled"
             },
             {
                 "id": "1011025070200700",
                 "subItem": 2,
                 "proposer": "本院親民黨黨團",
                 "summary": "擬具「勞工保險條例第六十六條、第六十七條及第六十九條條文修正草案」，請審議案。",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "status": "unhandled"
             },
             {
                 "id": "1011025070200800",
                 "subItem": 3,
                 "proposer": "本院委員陳亭妃等23人",
                 "summary": "擬具「勞工保險條例第六十九條條文修正草案」，請審議案。",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "status": "unhandled"
             },
             {
                 "id": "1011029070201300",
                 "subItem": 4,
                 "proposer": "本院委員劉建國等18人",
                 "summary": "擬具「勞工保險條例第六十七條及第六十九條條文修正草案」，請審議案。",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "status": "unhandled"
             },
             {
                 "id": "1011029070200300",
                 "subItem": 5,
                 "proposer": "本院台灣團結聯盟黨團",
                 "summary": "擬具「勞工保險條例第六十九條條文修正草案」，請審議案。",
-                "agendaItem": 38
+                "agendaItem": 38,
+                "status": "unhandled"
             },
             {
                 "id": "1010927070300100",
                 "subItem": 1,
                 "proposer": "本院親民黨黨團",
                 "summary": "，建請本院作成決議：「釣魚台列嶼附屬臺灣省，為中華民國領土之一部分……具體作為方案，由立法院院長邀集國防部、海巡署及相關部會進行協商，於兩週內實施。」，請公決案。",
-                "agendaItem": 39
+                "agendaItem": 39,
+                "status": "unhandled"
             },
             {
                 "id": "1011002070300100",
                 "subItem": 1,
                 "proposer": "本院內政委員會",
                 "summary": "報告審查本院程序委員會函送中華民國消費者文教基金會，針對居住正義五法提出相關辦法與配套措施請願文書，經審查結果，應成為議案案。",
-                "agendaItem": 40
+                "agendaItem": 40,
+                "status": "unhandled"
             },
             {
                 "id": "1011116070300100",
                 "subItem": 1,
                 "proposer": "本院國民黨黨團，",
                 "summary": "針對102年度中央政府總預算案有關退休(職、伍)軍公教人員年終慰問金之發放對象，原則應僅限月退俸在兩萬元以下與因作戰傷亡殘廢的退休人員或及其遺族(眷)，要求行政院應會同考試院共同協商，並自中華民國103年度起予以法制化（制度化）。是否有當 ？請公決案。",
-                "agendaItem": 41
+                "agendaItem": 41,
+                "status": "unhandled"
             },
             {
                 "id": "1010518070300100",
                 "subItem": 1,
                 "proposer": "本院經濟委員會",
                 "summary": "報告併案審查委員廖國棟等19人擬具「石油管理法第二十四條及第三十六條條文修正草案」及委員林正二等18人擬具「石油管理法第三十六條條文修正草案」案。",
-                "agendaItem": 42
+                "agendaItem": 42,
+                "status": "unhandled"
             },
             {
                 "id": "1010531070100100",
                 "subItem": 2,
                 "proposer": "行政院",
                 "summary": "函請審議「石油管理法部分條文修正草案」案。",
-                "agendaItem": 42
+                "agendaItem": 42,
+                "status": "unhandled"
             },
             {
                 "id": "1010514070201600",
                 "subItem": 3,
                 "proposer": "本院委員江啟臣等18人",
                 "summary": "擬具「石油管理法第十五條之一、第三十四條及第三十五條條文修正草案」，請審議案。",
-                "agendaItem": 42
+                "agendaItem": 42,
+                "status": "unhandled"
             },
             {
                 "id": "1011130070200200",
                 "subItem": 1,
                 "proposer": "本院國民黨黨團",
                 "summary": "，鑑於「證所稅」即將於102年1月1日開始實施，為維護金融秩序及穩定，避免影響國內證券市場之正常運作，要求財政部應比照「奢侈稅」，於正式實施一定時間後，再進行檢討評估。是否有當？請公決案。",
-                "agendaItem": 43
+                "agendaItem": 43,
+                "status": "unhandled"
             },
             {
                 "id": "1011130070300400",
                 "subItem": 1,
                 "proposer": "本院國民黨黨團",
                 "summary": "，為捍衛新聞媒體專業自主、維護言論多元性、健全投資環境及消弭社會質疑壹傳媒交易案引發跨媒體壟斷問題，要求行政院統籌跨部會處理，責成公平交易委員會、金融監督管理委員會及國家通訊傳播委員會依法獨立行使職權，不受其他因素影響。是否有當？請公決案。",
-                "agendaItem": 44
+                "agendaItem": 44,
+                "status": "unhandled"
             },
             {
                 "id": "1020102070300200",
                 "subItem": 1,
                 "proposer": "本院親民黨黨團，",
                 "summary": "建請決議：中央政府各部會所屬公營事業機構及財團法人之年度經營績效獎金發放，應與經營損益切實連結，以增進效率，並促進公益；凡因配合「重大政策因素」所致虧損部分之經營責任豁免，不宜率由該公營事業機構或財團法人與其主管部會自行片面計算及調整核定，國會亦須同時保留進行實質監督之權力。準此，中央政府各部會所屬公營事業機構及財團法人，於年度結束後，須將上報影響決算盈餘之政策因素項目，及其自行核算各項政策因素之影響金額，一併送立法院備查。是否有當？請公決案。",
-                "agendaItem": 45
+                "agendaItem": 45,
+                "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 1,
                 "id": "1020108089900800",
-                "item": 1,
+                "item": 19,
                 "proposer": "本院委員許忠信、李昆澤、劉櫂豪等14人，",
                 "summary": "鑒於導盲犬提供便利視障者之生活及安全其保障，無疑是協助視障者最直接有效之辦法。目前我國導盲犬隻數嚴重不足，究其原因在於導盲犬學校設立資格嚴苛。內政部雖於2012年4月26日部務會報通過放寬申請設立資格但仍緩不濟急，爰此，建請內政部儘速輔導民間團體，協助設立導盲犬學校。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 2,
                 "id": "1020108089900700",
-                "item": 2,
+                "item": 20,
                 "proposer": "本院委員李貴敏、陳鎮湘、邱文彥、呂學樟、陳碧涵、李慶華、王惠美、楊玉欣等25人，",
                 "summary": "鑑於人才乃產業發展之核心，行政院目前研擬推動醫療照護、生物科技及綠色能源等六大新興產業，企需各領域尖端研發、管理人才。然而人才培育需要時間，為能儘早搶佔發展先機，台灣必須即刻自國外引進相關人才。又鑑於目前勞委會雖已針對部份產業或滿足特定條件之企業，鬆綁具學士學位以上之外國人來台工作之工作經驗門檻，惟期整體思維仍以「滿足現有專業人力需求」為主，未能以長遠的視野，就行政院規劃之六大新興產業，有計畫地引進各領域人才。爰建請行政院立即整合有關單位，審慎評估未來產業發展之專業人力需求，儘速引進台灣尚待培養，但為產業發展需要之專業人才，以協助新興產業發展。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 3,
                 "id": "1020108089902600",
-                "item": 3,
+                "item": 21,
                 "proposer": "本院委員林正二、張曉風、簡東明等16人，",
                 "summary": "針對國防部於50年前以租借名義要求台東縣政府將馬蘭部落族人所共同擁有的「聚會所（Sfi）」及周邊土地交由空軍司令部來管轄充為眷舍之用，查土地閒置荒廢多年形同棄置，顯無公用之事實，依法應移由財政部國有財產局管理，惟國防部卻逕行納入眷改基金擬作價變賣，嚴重曲解了馬蘭會館之土地歷史事實，也割裂了族人之土地情感，更侵害了部落的土地權益，爰此，行政院應責成國防部參照馬蘭部落族人提供之「租借關係函文」、耆老口述歷史之「文化祭儀使用事實」以及專家學者之「土地調查文書」等相關證明資料，函請行政院將馬蘭會館（東英新村）予以剔除在「眷村總冊」之眷改基金內，並無償撥用為原住民保留地供作馬蘭部落族人使用。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 4,
                 "id": "1020108089902300",
-                "item": 4,
+                "item": 35,
                 "proposer": "本院委員邱文彥、張曉風等19人，",
                 "summary": "鑒於最近研究調查顯示，台灣西海岸「中華白海豚（Sousa chinensis）」的族群數量由數年前的80餘隻銳減至62隻，由於中華白海豚為「國際保育聯盟（IUCN）」紅皮書列為「極度瀕危之物種」，該一組織又為聯合國「重要濕地公約」（Ramsar Convention）」之秘書處，我國如未能善盡保育之責，不無遭到如美國漁民保護法「培利修正案（Pelly's Amendment)」國際制裁之可能，爰建請行政院責成農委會與相關機關，加強漁民之教育及溝通，儘速劃設台灣中華白海豚之重要棲息環境，編列長期經費進行研究調查，並強化海洋生物保育之權責。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 5,
                 "id": "1020108089901200",
-                "item": 5,
+                "item": 23,
                 "proposer": "本院委員簡東明、孔文吉、徐耀昌、楊瓊瓔等21人，",
                 "summary": "鑑於目前原住民保留地造林總面積高達80,604公頃，但其中有26,610公頃仍為私有林地，「完全未領有任何補償」。因此，本席爰提案要求農委會林務局、原民會、行政院主計總處應編列預算，補償原住民。以達成政府「全面禁伐、全面補償」的政策目標。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 6,
                 "id": "1011225089901100",
-                "item": 6,
+                "item": 24,
                 "proposer": "本院委員吳育仁等11人，",
                 "summary": "鑒於日前外勞鬆綁與基本工資脫鉤議題已造成社會不安與對立氛圍，基於國際勞工組織（ILO）的國民待遇原則，本勞與外勞不能脫勾，屆時，自由經濟示範區若規劃外勞鬆鄉，社會各界必以放大鏡檢視，不可不慎。為實踐公平勞動與道德經濟，勞工主管機關應針對勞工權益保障恪守兩大原則，第一、鬆綁外勞必須要創造本勞的就業機會；第二、不僅要「鮭魚返鄉」，更要「引鳳築巢」。爰此，本席要求行政院勞工委員會針對「自由經濟示範區」設立後，須逐年針對「勞動條件與就業情況」進行評估報告。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 7,
                 "id": "1020108089901100",
-                "item": 7,
+                "item": 25,
                 "proposer": "本院委員蘇清泉、楊玉欣等19人，",
                 "summary": "鑑於二代健保即將在明年元旦正式上路，全臺各地的矯正機關收容人，將可同步享用參與合作醫療院所提供的健保資源，粗估約有6萬5千人可享用健保相關醫療服務。健保局依據「全民健康保險提供保險對象收容於矯正機關者醫療服務計畫」，由責任醫院與合作醫院組成的醫療團隊，依據各地矯正機關的需求，提供健保給付之服務項目及非健保給付之項目（如： 公醫門診、戒護病房設置等等），目前健保局提供矯正所受刑人之就醫服務給付，但是責任醫院因應未來提供照護服務需要，需要額外投入環境與設備的成本，包括：(1)設立戒護病房的費用；(2)醫院到監所看診之必要費用；建請行政院補助責任醫院，因受刑人接受醫療服務所需之設立戒護病房費用及監所看診必須網路設備之費用。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 8,
                 "id": "1011218089902000",
-                "item": 8,
+                "item": 26,
                 "proposer": "本院委員蔡錦隆、盧秀燕等15人，",
                 "summary": "鑑於原台中縣、市合併升格後已近二年，為平衡縣市差距，均衡區域發展，各項財源亟待財源挹注，惟中央對於「公共債務法」修法進度始終延宕不前，至今仍未完成修法，以致於升格後的台中市可舉債建設額度仍然停留在省轄市的規模，且升格直轄市後，中央計畫型補助款比率降低，台中市負擔相對沉重，無論在財政或經濟建設上，都面臨重大困境與挑戰。建請行政院針對現今「公共債務法」修法版本，將台中市財政需求納入考量，以保障台中市民權益。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 9,
                 "id": "1020108089902400",
-                "item": 9,
+                "item": 27,
                 "proposer": "本院委員陳淑慧、詹凱臣等34人，",
                 "summary": "鑒於現行僑生於台灣就讀學校，其每次入出境時，均須經學校同意並出具證明轉移民署辦理後，始得入出境；然現行外籍學生出入境之規定，其入出境無需經學校同意，且於居留證效期內可自由入出國門，兩者有關入出國之規範顯有差別待遇，又現今人權意識抬頭，學生自主性提高，且為使僑生遇有緊急事故時，得以順利出境處理，相關管制措施應可適度放寬，爰建請行政院針對僑生入出國管制之相關規定進行檢討。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 10,
                 "id": "1020108089901800",
-                "item": 10,
+                "item": 28,
                 "proposer": "本院委員王育敏、江惠貞、陳碧涵、蔣乃辛等15人，",
                 "summary": "有鑑於去年（101年）年底新北市發生三歲女童遭保母虐殺案件，凸顯我國現行兒虐通報防制機制仍有疏漏。雖然目前針對危機家庭與高風險兒童少年，各行政機關多已建置資料庫，但各系統間幾無交集，甚為可惜。爰此，行政院應積極整合各系統資料庫，進行跨部會的勾稽查核，並針對具備多項危險因子的家庭和兒少，由各主責單位進行關懷訪視，及早介入提供個案所需的協助，預防兒虐致死案件發生。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 11,
                 "id": "1020108089902500",
-                "item": 11,
+                "item": 29,
                 "proposer": "本院委員陳碧涵、林郁方、呂玉玲等17人，",
                 "summary": "有鑑於客家委員會為鼓勵客家青年參與海外客家事務、多元文化發展、藝術專業領域之國際性參與計畫，特於民國94年起辦理「築夢計畫」，該計畫執行八年來，已補助了140位客家青年出國築夢，每年計畫結束後都公開舉辦成果發表會，並將其集結於回國報告書中，看得出這是極具意義的補助計畫。但是，人才培育是項長遠的希望工程，對這些青年們而言，「築夢計畫」對他們的人生究竟發生了什麼樣的影響？是否尚需要其他接續性的培育計畫或平台？每年的「築夢計畫」公開成果發表會，是否藉由經驗的分享而發揮了最大的『擴散效應』？爰此，建請客家委員會應展開追蹤調查計畫，以深入探究參與築夢計畫者之經驗效益、該計畫之影響度及提出可行之後續進階性計畫等；另外，「築夢計畫」成果發表會由單一地點方式，擴大至各大專院校進行巡迴經驗分享對話，使築夢計畫更有延伸性及影響力。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 12,
                 "id": "1020108089900100",
-                "item": 12,
+                "item": 30,
                 "proposer": "本院委員賴士葆、陳碧涵、江惠貞等22人，",
                 "summary": "查國內兒童幾乎百分之百均有使用網路，且社群網站已經成為新的兒童遊樂場和成長過程中重要的一部分。雖然兒童上網人數增加，有助提升兒童的數位化能力，但網路上充斥著各類情色與暴力資訊亦多未設防，容易對兒童的身心發展帶來嚴重影響，同時亦有網交及個資外洩等問題。因此，為提昇兒童上網品質、減少兒童接觸色情與暴力資訊，爰提案要求教育部、內政部、NCC等政府相關單位會同各ISP業者，針對自Gateway端「免費」提供申請設定不當資訊過濾系統服務，以及由政府建置全國「不當資訊內容資料庫」作一可行性之評估報告。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 13,
                 "id": "1011228089901200",
-                "item": 13,
+                "item": 31,
                 "proposer": "本院委員黃文玲、邱志偉等17人，",
                 "summary": "為彰化縣溪州鄉溪州仔段遭盜採砂石案，暴露出地方政府在河川保護、水利維持、國土安全、環境保護上，整合工作的困難程度。爰提案要求政府應出面整合行政院環境保護署、行政院農業委員會、經濟部水利署、內政部警政署等單位，指派專責政務委員，組成專案小組，針對本次事件始末，於三個月內完成調查，依據調查結果，針對被盜挖採地段之復原、盜挖採嫌疑人、其中是否涉及舞弊或勾結，同時針對本案檢討，如何預防未來類似情形再度發生等，做成完整報告向本院說明。以期維護國土安全，保障人民生計。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 14,
                 "id": "1020108089900500",
-                "item": 14,
+                "item": 32,
                 "proposer": "本院台灣團結聯盟黨團，",
                 "summary": "有鑒於中國國務院台灣事務辦公室（簡稱：國台辦）副主任孫亞夫，於12月10日來台參加「台北會談：強化認同互信、深化和平發展」研討會，但12月14日與花蓮縣長會面，談論並承諾將全力推動中國各省與台灣花蓮縣直航乙事，明顯違反來台申請目的，目的事業主管機關教育部已裁決孫員言論實屬不該，移民署卻仍推諉責任、不予處理，特提案要求行政院責成相關單位移民署、教育部，就孫員違反申請來台規定立即召開會議，並將會議結論送至本院備查。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 15,
                 "id": "1020108089902100",
-                "item": 15,
+                "item": 33,
                 "proposer": "本院委員江惠貞、王育敏、吳育仁等16人，",
                 "summary": "根據健保局統計發現，全國愛逛醫院、愛吃藥的六十五歲以上老人，約有兩萬多名，每年至少到六家醫院看病，全年就醫次數超過百次，每天吃六種、十顆藥以上，每人一年平均醫療費用高達五十六萬元，其中一半用於藥費。另台灣已經步入高齡化社會，六十五歲以上老人目前占十．九%，二○一六年老年人口將破三百萬人大關，二○二五年每五人就有一人是老人，將成為「超高齡社會」，到時老人用藥安全問題將會越來越嚴重。為確保民眾用藥安全，本席建請衛生署應加強推動整合性門診、掛號及領藥系統，以減緩慢性病患者重複用藥的情況，並強化「高診次」個案用藥以及宣導正確用藥方式，確保民眾不會因為過度用藥造成身體傷害，以減少醫療資源浪費。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 16,
                 "id": "1020108089900300",
-                "item": 16,
+                "item": 34,
                 "proposer": "本院委員李昆澤、邱志偉、許智傑等13人，",
                 "summary": "針對此次「公共債務法」修法，依財政部設算，高雄市賸餘舉債空間因修法增加137億元，但實際上，卻是較現制減少80億元，其主因乃財政部計算，僅依原高雄市GNP 1.8%計算，未將合併前原高雄縣約300億元之舉債空間計入，是以，將因此減少80億元舉債空間。揆諸高雄縣市合併，為平衡大高雄區域發展、齊一福利水平、加強基礎建設，亟需經費挹注建設之際，爰此，建議由中央再釋出GDP之0.06%予高雄市，並於公共債務法修正，高雄市分配比率由0.15%，增加為0.21%，以支援合併後所需之建設財源。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 17,
                 "id": "1020108089900600",
-                "item": 17,
+                "item": 22,
                 "proposer": "本院委員黃偉哲等11人，",
                 "summary": "鑒於部分民眾雖有行動不便的情況，但外觀上並無法明確辨識，搭乘大眾運輸工具時易造成博愛座讓座與否之糾紛，故建請行政院交通部及衛生署等相關主管機關研議，由醫療人員發予識別用之貼紙或識別證，以避免糾紛發生。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 18,
                 "id": "1011204089901500",
-                "item": 18,
+                "item": 36,
                 "proposer": "本院委員盧秀燕、江惠貞、楊玉欣等21人，",
                 "summary": "有鑑於近6年來數據反映學生吸毒人數翻倍，尤其是三級毒品使用量暴升10倍，加上日前在新竹、苗栗均有破獲校園販毒集團及校園幫派組織，在在顯示毒品已經大肆入侵校園，為杜絕毒品進入校園毒害下一代，本席特提案建請教育部及警政署針對毒品、幫派入侵校園之情況，完整建構長期聯繫的平台與網路，與校方共同加強掌握學生狀況，並請教育部盡速研擬計畫增加各學校學生尿液檢查次數及加強反毒宣導，並配合各校針對吸毒可能性較高之學生建立追蹤名冊，加強校方輔導、警方追蹤，以及早發現學生使用毒品之狀況以便後續追蹤輔導、治療並將毒品徹底趕出校園。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 19,
                 "id": "1011225089901600",
-                "item": 19,
+                "item": 37,
                 "proposer": "本院委員江啟臣、吳育仁等23人，",
                 "summary": "鑑於教育部訂定「教育部補助留學生就學貸款辦法」之目的在於協助我國留學生至國外修讀國外碩、博士學位，但現行規定下，教育部卻以是否領有外國高中、大學畢業證書，有無國外生活經驗作為篩選之手段，與補助辦理留學貸款的目的存有落差；進一步來說，國內青年可透過海外留學吸取國外新知，增廣國際觀，豐富我國海外人才庫，與一般遊學或打工度假的意義、目的皆有不同，然而教育部之補助辦法除排富條款外，尚增加有無取得國外學歷之限制，顯與法規的目的不相符合；爰此，要求教育部於三個月內檢討「教育部補助留學生就學貸款辦法」。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 20,
                 "id": "1020108089902700",
-                "item": 20,
+                "item": 38,
                 "proposer": "本院委員蔣乃辛、陳碧涵、呂玉玲、王育敏、王惠美等22人，",
                 "summary": "有鑑於我國大學畢業生不僅面臨起薪過低，且平均失業時間越來越長，高學歷、高失業率日漸惡化，均不利於我國青年競爭力之培養。根據主計處101年1月至11月最新統計，我國15至24歲年輕人平均失業率為13.41%，已遠高於整體失業率的4.27%。另外，年輕族群長期失業人數不斷增加，101年上半年，長期失業的年輕人比例已占整體失業人數的17.98%，且這比例仍持續攀升，顯見我國年輕人勞動參與率與年輕人占整體勞動人口的比例都在不斷下降中。為避免青年勞動市場情況繼續惡化，本席等爰提案要求行政院立即成立跨部會專案小組解決青年失業問題；從檢討學校課程結構；改善學用落差問題，讓高等教育的知識與技術內容符合勞動市場所需；加強年輕人第二專長的訓練與補助；提高青年創業優惠貸款，多管齊下，避免我國青年勞動市場面臨崩毀危機。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 21,
                 "id": "1011228089901100",
-                "item": 21,
+                "item": 39,
                 "proposer": "本院委員呂玉玲、楊應雄、丁守中、王廷升、楊瓊瓔等21人，",
                 "summary": "有鑑於目前車輛安全三角標誌尺寸不一，雖然交通部規範邊長應該要60公分，但民眾卻很難買到，而一般車輛最常附送符合國家標準局規定的45到55公分的邊長，卻有車禍責任歸屬難以判定的疑慮。爰此，提案研擬統一車輛故障標誌之規格為中空之正等邊三角形，反光體部分不得低於長45CM，寬7CM，另加邊框寬1CM，採用摺疊式或整體式。反光體為紅色，邊框為白色或銀色。以鋁質或其他適當材料製作，將車輛故障標誌規格化，以確保用路人之安全。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 22,
                 "id": "1011225089900500",
-                "item": 22,
+                "item": 40,
                 "proposer": "本院委員徐欣瑩、羅淑蕾、邱文彥、張曉風、葉宜津等27人，",
                 "summary": "有鑑於台電核四廠預計明（102）年填裝核燃料棒開始試運轉，民國103年底正式商轉。然而，近來社會各界對台電核四廠之運轉安全問題有諸多疑慮，並一再呼籲核四廠反應爐位在破碎斷層帶，極易成為海嘯起源區，而台電公司所提出之核四報告，卻宣稱其興建安全無虞。為確保國人之生命財產安全，爰特建請行政院應儘速於台電核四廠試運轉前，提出台電核四廠可安全運轉之專案報告及核安應變計畫，並納入公正第三者之專業安全分析，以使國人不受核污染之威脅。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 23,
                 "id": "1020108089900200",
-                "item": 23,
+                "item": 41,
                 "proposer": "本院委員邱志偉、許智傑、李昆澤、管碧玲、何欣純等15人，",
                 "summary": "鑒於國內各機場的服務規費均相同，因此目前進駐台灣的十一家廉價航空和一般航空公司一樣，都選擇在桃園和松山機場起降。但在國外，廉價航空會因規費差異性，而選擇在中小型或較遠的機場進行起降。由於廉價航空不但可載台灣民眾出國，同時也可帶進觀光客，為有效提升小港機場的使用率，並帶動高雄經濟及觀光產業發展，交通部應於三個月內完成小港機場成為廉價航廈之可行性評估報告，並調整機場規費，以差別訂價導引廉價航空改到小港機場起降。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 24,
                 "id": "1020108089901000",
-                "item": 24,
+                "item": 42,
                 "proposer": "本院委員羅明才、詹凱臣、林明溱等19人，",
                 "summary": "鑒於現行〈所得稅法〉第七條第二項條文規定，「在中華民國境內有住所，並經常居住中華民國境內者。」其中「經常居住」之標準僅由財政部函釋為居住滿31天或1天以上未滿31天，但其生活及經濟重心在中華民國境內。但同樣是國民義務的兵役問題，役男申請緩徵出國唸書，除了放假回台灣以外，尚可在台灣逗留時間超過兩個月，其申請的效力才會被取消。另以英國為例，同樣是有設定戶籍制度的國家，則是規定以居住滿90天與否作為課稅的認定。爰此，本席特提案建請行政院召集財政、僑委等相關部會首長，研討將「經常居住」之定義函釋為居住滿90天，並不應納入「未滿90天，但其生活及經濟重心在中華民國境內。」之但書與模糊空間，以擴張解釋「經常居住」之認定。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 25,
                 "id": "1011211089902500",
-                "item": 25,
+                "item": 43,
                 "proposer": "本院委員吳育昇等14人，",
                 "summary": "有鑑於現行貿易商報運進口五噸以下往復式冷媒壓縮機，主要係供箱型、窗型冷暖氣機使用，依現行規定，海關可免予代徵貨物稅，應俟產製成箱型、窗型冷暖氣機出廠時，再行對空調產品課徵20%貨物稅。但稅捐單位卻未積極取締部分廠商逃漏稅捐，以致守法廠商因成本原則無法降低售價，而涉嫌逃漏稅之廠商卻可以削價競爭，以黑心商品低價打擊合法廠商。建請財政部研擬嚴格追蹤壓縮機流向並直接在進口時比照5噸以上之壓縮機直接課徵貨物稅；或只有製造廠可以辦理進口，以同時嚴格管控製造廠壓縮機流向，以建立一套完整的課稅制度，讓所有業者均可公平納稅。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 26,
                 "id": "1020108089901600",
-                "item": 26,
+                "item": 44,
                 "proposer": "本院委員許添財等11人，",
                 "summary": "有鑑於台灣與外國進行雙邊與多邊貿易談判時效率不彰，迄今只與中美洲五國簽署四個「自由貿易協定」（FTA），其餘與美國及歐盟等重要國家簽署的雙邊「自由貿易協定」與「跨太平洋夥伴協議」（TPP）進度皆延宕不前，嚴重落後於同居於亞洲四小龍的新加坡、大韓民國之後，特建議行政院參考美國貿易代表辦公室（USTR）提升談判位階與跨部會協調整合能力，將我國經貿談判代表辦公室（OTN）提升至可直接向行政院院長及立法院負責的行政院層級並將組織法制化。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 27,
                 "id": "1011225089901900",
-                "item": 27,
+                "item": 45,
                 "proposer": "本院委員潘孟安、姚文智、李昆澤等13人，",
                 "summary": "有鑒於中國政府在其新版護照內之中國地圖，擅自將台灣及南海劃入其版圖，明顯違背事實以及嚴重傷害台灣主權，且此事件牽涉的鄰近國家中，菲律賓、越南及印度都已正式致函向中國提出抗議，唯獨我國僅由陸委會發表乙篇聲明。為求明確表達我國抗議中國侵犯主權之立場，馬總統應立即主動召開國際記者會親自出面回應。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 28,
                 "id": "1020108089901900",
-                "item": 28,
+                "item": 46,
                 "proposer": "本院委員王惠美等23人，",
                 "summary": "針對法務部矯正署為提高民眾檢舉貪瀆案件之誘因，擬修正「獎勵保護檢舉貪污瀆職辦法」，將現行一審判決有罪才發給檢舉獎金之規定，改為案件一經檢察官起訴，即發給部分獎金，即使案件經檢察官職權不起訴或緩起訴者，仍得視案件別不同核發檢舉獎金。固然對於公務人員利用職權機會直接間接圖利，應積極遏止，讓貪腐無所遁形，然而，長久以來貪污案件之定罪率偏低，顯示相關刑事法令及檢審偵辦、審案品質均有待檢討，僅修正檢舉獎金規定，不但無助於澄清吏治，反將有損我國民主法治及司法威信，並造成公務員處理公務時之障礙，進而影響國家競爭力。故為肅貪防弊、毋枉毋縱，應優先檢討修正刑事相關法令，強化檢審品質，俾能確保國家政府之清明，進而達到建立廉能政府之目的。是否有當，請公決案。",
+                "resolution": "決議：函請行政院及司法院研處。",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 29,
                 "id": "1020108089901400",
-                "item": 29,
+                "item": 47,
                 "proposer": "本院委員蔡其昌、葉宜津、吳秉叡、管碧玲等14人，",
                 "summary": "鑒於台灣近年來已發生近五十起國人於住家、工作場所、校園等地方因電動鐵捲門無防夾防壓裝置而造成重傷甚至死亡之情事，而經濟部標準檢驗局雖已有電動鐵捲門之防夾防壓裝置標準，但尚未被主管機關營建署納入強制規範。爰此，為維護國人之人身安全以避免再有憾事發生，建請行政院將防夾防壓裝置納入電動鐵捲門之必要配件，並首先從學校校園之設備改善起，以維護學童安全。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 30,
                 "id": "1011211089900100",
-                "item": 30,
+                "item": 48,
                 "proposer": "本院委員何欣純、蔡其昌等12人，",
                 "summary": "針對台中地區旱溪上游，從國光橋至六順路尚有約2.6公里長，極需進行親水整治與綠美化工程，惟水岸空間應與周邊社區發展及生態保護緊密結合，並配合水路整治予以開發，創造都會區優質的休憩生活空間。鑑此，建請經濟部水利署將旱溪上游列入「區域排水整治及環境營造計畫」並編列預算執行，讓民眾早日擁有居住安全與美麗河岸景觀，及帶動台中市大里區、東區、南區整體發展。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 31,
                 "id": "1020108089902200",
-                "item": 31,
+                "item": 49,
                 "proposer": "本院委員吳宜臻、劉建國、徐欣瑩、林正二、田秋堇、江啟臣、陳歐珀、廖正井等20人，",
                 "summary": "有鑒於客語傳承與推廣的重要性，且客家基本法明訂政府「應提供獎勵措施，發展客語生活化之學習環境」以及在客家文化重點區「加強客家語言、文化與文化產業之傳承及發揚」，依該法精神客語傳承與推廣使用應著重常民生活中之落實。爰此，建請行政院提出「客語友誼商店」認證之獎補助辦法，鼓勵客庄商店使用客語服務，並於客家文化重點發展區中進行試辦計畫，以建構多元客語學習環境、強化客庄之旅遊文化深度，進而使在地客家認同能進一步深耕。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 32,
                 "id": "1020108089901500",
-                "item": 32,
+                "item": 50,
                 "proposer": "本院委員陳歐珀、林佳龍等13人，",
                 "summary": "有鑑於進入秋冬之後連續多日下雨，造成包括宜蘭金柑（俗稱金棗）、三星蔥、新竹、台中柑橘落果及水傷嚴重，其中宜蘭更已連下近一個月大雨，達到氣象學界定義之「東北季風異常降雨」。宜蘭地區農產包括金柑、三星蔥重要農特產，皆受到程度不一發生落果或水傷情形，造成農民巨大損失，近年全球氣候異常，四季皆有可能發生因天候所造成之天然災害，為維護農民生計、市場價格穩定，建請農委會應參考農作物採收旺季因素，訂出符合時宜、氣候因素、可於災害發生時，即時補助農民的新救助辦法。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 33,
                 "id": "1020108089900900",
-                "item": 33,
+                "item": 51,
                 "proposer": "本院委員魏明谷等11人，",
                 "summary": "鑒於彰化縣台76線東西向快速公路漢寶草屯線台19線以東早已完工，台61線至台19線路段因民眾抗爭反對興建，完工之日遙遙無期，影響地方觀光、產業發展甚鉅。爰建請交通部責成公路總局應儘速重行檢討，以沿員林大排施設福鹿溪高架道路作為替代方案，將福鹿溪兩側平面道路高架化，以銜接全線東西向快速道路至西濱公路沿海鄉鎮，既可解決目前用地爭議，亦可帶動鹿港、福興地區觀光、產業發展，促進都市繁榮。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 34,
                 "id": "1020108089901700",
-                "item": 34,
+                "item": 52,
                 "proposer": "本院委員林佳龍等11人，",
                 "summary": "鑒於台灣省政府於1956年進駐中台灣，分別在台中、南投設置省府機關及省府員工宿舍群，精省後，這些省府設施，呈現閒置，終致荒廢損毀現象。這些省府機關與宿舍群不但是台灣戰後重要的政治場域，更是政府在台灣極少數的市鎮建設成功案例，應該受到國家級文化資產對待，並獲得完整、整體保存。爰建請行政院立即成立「台灣省政府在中台灣機關與宿舍群跨部會專案小組」，並責成財政部主動整理台灣省政府在中台灣所有公用與非公用財產清冊，交由該管專案小組於半年內完成台灣省政府國家級資產保存與活化計畫，作為新一代國土保存計劃，並給予城市青年文化創意及創意產業之機會平台。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 35,
                 "id": "1011225089901500",
-                "item": 35,
+                "item": 53,
                 "proposer": "本院委員鄭麗君、潘孟安、蔡其昌等14人，",
                 "summary": "有鑑於教育部推動「邁向頂尖大學計畫」以及「獎勵大學教學卓越計畫」，藉由額外經費之編列，挹注特定大專院校。惟接受補助之大專院校竟浮濫編列經費、甚至發生「購買碳粉匣、墨水匣即耗費1億1千七百萬補助經費」而遭到監察院糾正之情事，而受領補助之大專院校依舊年年傳出校務基金短絀之狀況。受補助學校不思整合資源、撙節支出，竟欲以調漲學費之方式填補經費缺口。爰要求教育部自103年度起重新檢討「邁向頂尖大學計畫」及「獎勵大學教學卓越計畫」之預算編列對象和額度；在前述計畫補助預算重新調整之前，全國大專院校學雜費應予以凍漲。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 36,
                 "id": "1020108089902000",
-                "item": 36,
+                "item": 54,
                 "proposer": "本院委員詹凱臣、羅明才等20人，",
                 "summary": "現行〈所得基本稅額條例〉第12條規定，未計入綜合所得總額之非中華民國來源所得，且一申報戶全年之本款所得合計數達新臺幣一百萬元以上者，即計入個人之基本所得額；並且不論於僑居地申報稅務與否皆須向國內申報。台商、海外僑胞即使如實申報海外所得，也因居住國所得稅率一般高於台灣海外所得稅率，台灣實際課徵到的海外所得稅非常有限。但申報台灣海外所得的過程令人咋舌，並且需檢附之證明文件繁複。爰此，本席特提案建請財政部檢討、簡化海外僑胞申報海外所得之程序與檢附之文件。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 37,
                 "id": "1020108089900400",
-                "item": 37,
+                "item": 55,
                 "proposer": "本院委員王進士、蘇清泉等25人，",
                 "summary": "鑒於目前依規定經營計程車客運業者僅能使用四門轎車作為計程車使用，但因計程車市場競爭激烈，一般乘客多以寬敞、舒適車型為主要選擇，對於車型較小之經營戶明顯不利。而交通部又擬推動「無障礙計程車」制度以服務身障朋友。爰此，建請交通部研擬修正汽車運輸業管理規則，全面開放「廂式」或「旅行式」車輛作為一般計程車使用，並研擬相關購車補助方案以符民眾需求。是否有當，請公決案。",
-                "status": "unhandled"
+                "resolution": "決議：函請行政院研處。",
+                "dtype": "exmotion",
+                "status": "ey"
             },
             {
                 "type": "exmotion",
                 "exItem": 38,
                 "id": "1020108089901300",
-                "item": 38,
+                "item": 56,
                 "proposer": "本院委員劉建國等14人，",
                 "summary": "針對教育部預計編列200億元從今（102）年到105年，推動「第二期技職教育再造方案」，其旨在達成無論高職、專科、技術校院畢業生皆需具有就業能力，提供產業所需人力等。惟，該技職教育再造方案一推出即引發諸多爭議，其中，全國高級中等學校教育產業工會等團體質疑，該方案未和十二年國教整合推出，導致壓縮到技術型高中特殊招生需求，恐已危害技職教育之生機。為此，爰要求行政院責成教育部及相關單位，應於三個月內，研議提出（一）提供有招生特殊需要之高職，一條更多元及彈性的免試入學管道；（二）教育部技術及職業教育司須將技職教育之定義，界定清楚；（三）教育部與各部會應做好橫向溝通，並將技職教育政策一體化、結合業界共同培育人才、引進產業進駐技專校院等策略，納入本方案；（四）儘速將技職教育再造方案的目標管理暨辦理時程之具體性計畫內容，送交本院備查，俾使技職教育之推動更有效率，讓學子們能適性發展。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
             },
             {
                 "type": "exmotion",
                 "exItem": 39,
                 "id": "1011211089900600",
-                "item": 39,
+                "item": 57,
                 "proposer": "本院委員黃志雄、江惠貞、謝國樑等18人，",
                 "summary": "鑒於國內每六對夫妻就有一對不孕，不孕夫妻求子若渴。衛生署更於民國94年曾研擬代孕生殖法草案，並已辦理過多場公聽會，且實際上台灣已有多數夫妻赴國外尋求代理孕母，顯見國內對於代理孕母之需求早已不容忽視。爰此建請衛生署等相關部會應就倫理道德、費用定義、代孕者委託者資格、責任、權益等法理情各面向，盡速制訂一套完整機制，以提供實際需求予需要協助生育之民眾。是否有當，請公決案。",
+                "resolution": "（本案暫不予處理）",
+                "dtype": "exmotion",
                 "status": "unhandled"
+            },
+            {
+                "extra": true,
+                "item": 1,
+                "dtype": "default",
+                "summary": "本院親民黨黨團，建請決議：中央政府各部會所屬公營事業機構及財團法人之年度經營績效獎金發放，應與經營損益切實連結，以增進效率，並促進公益；凡因配合「重大政策因素」所致虧損部分之經營責任豁免，不宜率由該公營事業機構或財團法人與其主管部會自行片面計算及調整核定，國會亦須同時保留進行實質監督之權力。準此，中央政府各部會所屬公營事業機構及財團法人，於年度結束後，須將上報影響決算盈餘之政策因素項目，及其自行核算各項政策因素之影響金額，一併送立法院備查，請公決案。（本案逕付二讀）",
+                "remark": "本案逕付二讀",
+                "eod": false,
+                "resolution": "決議：中央政府各部會所屬公營事業機構及財團法人之年度經營績效獎金發放，應與經營損益切實連結，以增進效率，並促進公益；凡因配合「重大政策因素」所致虧損部分之經營責任豁免，不宜率由該公營事業機構或財團法人與其主管部會自行片面計算及調整核定，國會亦須同時保留進行實質監督之權力。準此，中央政府各部會所屬公營事業機構及財團法人，於年度結束後，須將上報影響決算盈餘之政策因素項目，及其自行核算各項政策因素之影響金額，一併送立法院備查。",
+                "status": "other"
+            },
+            {
+                "extra": true,
+                "item": 58,
+                "dtype": "default",
+                "summary": "本院國民黨黨團，針對第15次會議報告事項第四十四案至第四十八案民進黨黨團擬具「公務人員退休法第九條之一及第十三條條文修正草案」、「公務人員撫卹法增訂第九條之一條文草案」、「軍人撫卹條例增訂第十七條之一條文草案」、「學校教職員退休條例增訂第七條之一條文草案」及「警察人員人事條例第三十六條之一條文修正草案」之決定，提出復議，請公決案。",
+                "eod": false,
+                "resolution": "決議：另定期處理。其他事項",
+                "status": "other"
             }
         ]
     },
