@@ -60,7 +60,7 @@ angular.module 'app.controllers' []
 
         diff: content.map (diff) ->
             h = diff.header
-            [base-index] = [i for n, i in h when n is \現行條文]
+            [base-index] = [i for n, i in h when n is /^現行/]
             [c] = [i for n, i in h when n is \說明]
 
             diff{header,content,name} <<< do
