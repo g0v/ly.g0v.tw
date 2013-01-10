@@ -51,7 +51,7 @@ angular.module 'app.controllers' []
                 diffcontent: diff.content.map (entry) ->
                     comment: entry[c][diff.header[idx].replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
                     diff: diffview do
-                        baseTextLines: entry[base-index] ? ' '
+                        baseTextLines: entry[base-index] or ' '
                         newTextLines: entry[idx] || entry[base-index]
                         baseTextName: diff.header[base-index]
                         newTextName: diff.header[idx]
@@ -72,7 +72,7 @@ angular.module 'app.controllers' []
                 diffcontent: diff.content.map (entry) ->
                     comment: entry[c][h.0.replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
                     diff: diffview do
-                        baseTextLines: entry[base-index] ? ' '
+                        baseTextLines: entry[base-index] or ' '
                         newTextLines: entry.0 || entry[base-index]
                         baseTextName: h[base-index] ? ''
                         newTextName: h.0
