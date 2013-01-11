@@ -55,7 +55,9 @@ angular.module 'app.controllers' []
                         newTextLines: entry[idx] || entry[base-index]
                         baseTextName: diff.header[base-index]
                         newTextName: diff.header[idx]
-                        inline: true
+                        tchar: ""
+                        tsize: 0
+                        #inline: true
                     .0
 
         diff: content.map (diff) ->
@@ -76,7 +78,9 @@ angular.module 'app.controllers' []
                         newTextLines: entry.0 || entry[base-index]
                         baseTextName: h[base-index] ? ''
                         newTextName: h.0
-                        inline: true
+                        tchar: ""
+                        tsize: 0
+                        #inline: true
                     .0
 
 .controller LYMotions: <[$scope LYService]> +++ ($scope, LYService) ->
