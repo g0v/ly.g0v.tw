@@ -1,3 +1,4 @@
+#!/usr/bin/env lsc -cj
 author: 'Chia-liang Kao'
 name: 'ly.g0v.tw'
 description: 'ly.g0v.tw'
@@ -11,7 +12,7 @@ engines:
   npm: '1.1.x'
 scripts:
   prepublish: './node_modules/.bin/lsc -cj package.ls'
-  start: './node_modules/.bin/brunch watch --server'
+  start: './node_modules/.bin/brunch b --config brunch-templates.ls && ./node_modules/.bin/brunch watch --server'
   test: 'testacular test/testacular.config.js'
 dependencies: {}
 devDependencies:

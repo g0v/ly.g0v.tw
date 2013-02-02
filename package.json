@@ -2,7 +2,7 @@
   "author": "Chia-liang Kao",
   "name": "ly.g0v.tw",
   "description": "ly.g0v.tw",
-  "version": "0.1.1-1",
+  "version": "0.1.1",
   "homepage": "https://github.com/g0v/ly.g0v.tw",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "prepublish": "./node_modules/.bin/lsc -cj package.ls",
-    "start": "./node_modules/.bin/brunch watch --server",
+    "start": "./node_modules/.bin/brunch b --config brunch-templates.ls && ./node_modules/.bin/brunch watch --server",
     "test": "testacular test/testacular.config.js"
   },
   "dependencies": {},
