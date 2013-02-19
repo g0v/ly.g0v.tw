@@ -1,0 +1,30 @@
+- Session
+    - Uniquely identified by "AD"(=term),"session"(1,2,3...),"extra"(null,1,2,3...)
+- Meeting (references session)
+    - committee(null),sitting(1,2,3,....)
+    - committee(array(committee-key)),sitting(1,2,3,....)
+- Committee member membership
+    - unique(session,member-name,committee-key) within an AD
+- Bill
+    - bill_id (primary key)
+    - When first proposed it's in a state of not-discussed
+        - bill_id is always non-null
+    - When discussing, the discussion itself is a bill (refs multiple bills)
+        - bill_id is always non-null
+- Motion
+    - meeting(mtype=('discussion'|'announcement'),agendaItem,subItem) => bill_id  # at INSERT, either;
+        - meeting(mtype,item) => bill_id                # After UPDATE
+        - (mtype='announcement',reply=>(mtype,exItem)) # heuristic based on text similarity
+            - may be resolved back to bill_id
+                - for each bill_id mentioned by multiple exItems, only the last
+                  one gets a mtype='announcement' response.
+- Motion-Ex
+    - meeting(mtype='exmotion',exItem) => bill_id              # at INSERT, or.
+        - May have an actual discussion order but not referenced in the future
+        - Replies in future motion may refer back to the exItem
+- Motino-Meta
+    - meeting(mtype='meta-discussion'|'meta-announcement')
+        - Possible reference to discussion/announcement within the same meeting
+    - 復議案 = reference to cross-meeting announcement
+        - Outcome: UPDATE previous meeting's announcement to deleted
+    
