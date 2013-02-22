@@ -32,6 +32,10 @@ angular.module 'app.controllers' []
         bill <<< {committee: [abbr]}
         console.log bill
 
+#    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
+#    console.log content
+#    console.log history
+#    window.bill-history history, $scope
     $scope <<< bill{summary,abstract} <<< do
         committee: bill.committee?map ->
             name: committees[it], abbr: it
