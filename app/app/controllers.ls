@@ -22,12 +22,21 @@ angular.module 'app.controllers' []
       ''
 .controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
-    {content}:bill <- $http.get "/data/#{$routeParams.billId}.json" .success
+    {data}:bill <- $http.get 'http://lqfb-test.g0v.tw:3000/collections/bills' do
+        params: {+fo, q: JSON.stringify bill_id: $routeParams.billId}
+    .success
+    #
+    # XXX should be in data already
+    if [_, committee]? = bill.proposer is /^本院(.*)委員會/
+        [abbr] = [a for a, name of committees when name is committee]
+        bill <<< {committee: [abbr]}
+        console.log bill
+
     $scope <<< bill{summary,abstract} <<< do
         committee: bill.committee?map ->
             name: committees[it], abbr: it
         related: if bill.committee
-            bill.related?map ([id, summary]) ->
+            data.related?map ([id, summary]) ->
                 # XXX: get meta directly with id when we have endpoint
                 {id, summary} <<< if [_, mly]? = summary.match /本院委員(.*?)等/
                     party: LYService.resolveParty mly
@@ -60,7 +69,7 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-        diff: content.map (diff) ->
+        diff: data.content.map (diff) ->
             h = diff.header
             [base-index] = [i for n, i in h when n is /^現行/]
             [c] = [i for n, i in h when n is \說明]
