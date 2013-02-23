@@ -22,7 +22,7 @@ angular.module 'app.controllers' []
       ''
 .controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
-    {data}:bill <- $http.get 'http://lqfb-test.g0v.tw:3000/collections/bills' do
+    {data}:bill <- $http.get 'http://api.ly.g0v.tw/collections/bills' do
         params: {+fo, q: JSON.stringify bill_id: $routeParams.billId}
     .success
     #
