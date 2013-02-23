@@ -18,10 +18,9 @@ getBillDetails = (id, cb) ->
 
     bill = try require "../twlyparser/source/bill/#{id}/index.json"
     _, {size}? <- fs.stat file
-    return cb bill if !size
 
     doit = ->
-        parser = new BillParser
+        parser = new BillParser {-chute}
         content = []
         return cb null unless bill
         parser.output-json = -> content.push it
@@ -43,6 +42,8 @@ getBillDetails = (id, cb) ->
 
     _, {size}? <- fs.stat html
     return doit! if size
+
+    return cb bill if !size
 
     util.convertDoc file, do
         lodev: true
