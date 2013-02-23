@@ -19,5 +19,6 @@
               .motion
                   span.item {{ e.item }}
                   span.proposer {{ e.proposer }}
-                  span.summary {{ e.summary }}
+                  a(ng-href="/bill/{{ e.id }}")
+                      span.summary {{ e.summary }}
               .resolution {{ e.resolution }}
