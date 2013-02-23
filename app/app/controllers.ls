@@ -73,7 +73,7 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-        diff: data.content.map (diff) ->
+        diff: data?content?map (diff) ->
             h = diff.header
             [base-index] = [i for n, i in h when n is /^現行/]
             [c] = [i for n, i in h when n is \說明]
