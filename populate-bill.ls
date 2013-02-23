@@ -65,8 +65,9 @@ bills.forEach (b) ->
         bill <- getBillDetails b.bill_id
         return done! unless bill
 
-        b <<< bill{proposal, petition, abstract} <<< {data: JSON.stringify bill{content, doc, related}}
-        <- b.save <[doc proposal petition abstract data]> .ok
+        console.log bill
+        b <<< bill{committee, proposal, petition, abstract} <<< {data: JSON.stringify bill{content, doc, related}}
+        <- b.save <[doc committee proposal petition abstract data]> .ok
         console.log \saved b.bill_id
         done!
 <- async.waterfall funcs
