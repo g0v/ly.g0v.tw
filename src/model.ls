@@ -7,6 +7,7 @@ BillModel = do
   proposer: \text
   proposal: 'text[]'
   petition: 'text[]'
+  committee: 'text[]'
   data: \json
 
 SessionModel = do
