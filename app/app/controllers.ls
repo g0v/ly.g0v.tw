@@ -40,7 +40,7 @@ angular.module 'app.controllers' []
         committee: bill.committee?map ->
             name: committees[it], abbr: it
         related: if bill.committee
-            data.related?map ([id, summary]) ->
+            data?related?map ([id, summary]) ->
                 # XXX: get meta directly with id when we have endpoint
                 {id, summary} <<< if [_, mly]? = summary.match /本院委員(.*?)等/
                     party: LYService.resolveParty mly
