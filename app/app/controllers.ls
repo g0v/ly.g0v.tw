@@ -22,23 +22,20 @@ angular.module 'app.controllers' []
       ''
 .controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
-    {data}:bill <- $http.get 'http://api.ly.g0v.tw/collections/bills' do
+    {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/collections/bills' do
         params: {+fo, q: JSON.stringify bill_id: $routeParams.billId}
     .success
     #
     # XXX should be in data already
-    if [_, committee]? = bill.proposer is /^本院(.*)委員會/
-        [abbr] = [a for a, name of committees when name is committee]
-        bill <<< {committee: [abbr]}
-        console.log bill
+    if committee
+        committee = committee.map -> { abbr: it, name: committees[it] }
 
 #    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
 #    console.log content
 #    console.log history
 #    window.bill-history history, $scope
     $scope <<< bill{summary,abstract} <<< do
-        committee: bill.committee?map ->
-            name: committees[it], abbr: it
+        committee: committee,
         related: if bill.committee
             data?related?map ([id, summary]) ->
                 # XXX: get meta directly with id when we have endpoint

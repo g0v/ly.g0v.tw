@@ -4,7 +4,7 @@
       ul
           li(ng-repeat="c in committee")
               span
-                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{e.name}}",ng-class="{{c.abbr}}")
+                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
                   span.name {{c.name}}委員會
   .role.proposal(ng-show="proposal")
       h2 提案人
