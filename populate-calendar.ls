@@ -13,7 +13,7 @@ update-list = (year, cb) ->
     err, {rows:[{max:seen}]} <- plx.conn.query "select max(id) from calendar"
 
     funcs = []
-    entries <- ly.getCalendarByYear year, if all => 0 else seen if 0
+    entries <- ly.getCalendarByYear year, if all => 0 else seen
 
     for d in entries => let d
         id = delete d.id
@@ -24,6 +24,7 @@ update-list = (year, cb) ->
 
     console.log \torun funcs.length
     err, res <- async.series funcs
+    cb!
 
 <- update-list year
 
