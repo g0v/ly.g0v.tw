@@ -9,6 +9,7 @@ plx <- pgrest.new DB
 update-list = (year, cb) ->
     return cb! unless year
     err, {rows:[{max:seen}]} <- plx.conn.query "select max(id) from calendar"
+    throw err if err
 
     funcs = []
     entries <- ly.getCalendarByYear year, if all => 0 else seen
@@ -26,7 +27,7 @@ update-list = (year, cb) ->
 
 <- update-list year
 
-err, {rows:entries} <- plx.conn.query "select * from calendar #{if force => "" else "where ad is null"} order by id desc"
+err, {rows:entries}? <- plx.conn.query "select * from calendar #{if force => "" else "where ad is null"} order by id desc"
 throw err if err
 console.log entries.length
 
