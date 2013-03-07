@@ -1,6 +1,4 @@
 const { USER, DB } = process.env
-{CalendarModel} = require \./lib/model
-Sequelize = require \sequelize
 
 require! <[async optimist path fs ../twlyparser/lib/util ../twlyparser/lib/ly pgrest]>
 
