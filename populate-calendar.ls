@@ -60,7 +60,7 @@ update-from-raw = (id, {name,chair=''}:raw, cb) ->
     $set = raw{ad,session,time} <<< {name,type,extra,committee,chair,sitting} <<< do
         summary: raw.agenda
         raw: JSON.stringify raw
-    <- plx.upsert collection: \calendar, {q: {id}, $set}, _, -> throw it
+    <- plx.upsert {collection: \calendar, q: {id}, $set}, _, -> throw it
     cb!
 
 funcs = entries.map ({ad,id}:entry) ->
