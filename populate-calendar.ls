@@ -18,7 +18,7 @@ update-list = (year, cb) ->
         id = delete d.id
         funcs.push (done) ->
             console.log id
-            res <- plx.upsert collection: \calendar, q: {id}, $set: {d.date, raw: JSON.stringify d}, _, -> throw it
+            res <- plx.upsert collection: \calendar, q: {id}, $: $set: {d.date, raw: JSON.stringify d}, _, -> throw it
             done!
 
     console.log \torun funcs.length
@@ -60,7 +60,7 @@ update-from-raw = (id, {name,chair=''}:raw, cb) ->
     $set = raw{ad,session,time} <<< {name,type,extra,committee,chair,sitting} <<< do
         summary: raw.agenda
         raw: JSON.stringify raw
-    <- plx.upsert {collection: \calendar, q: {id}, $set}, _, -> throw it
+    <- plx.upsert {collection: \calendar, q: {id}, $: {$set}}, _, -> throw it
     cb!
 
 funcs = entries.map ({ad,id}:entry) ->
