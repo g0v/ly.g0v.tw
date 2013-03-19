@@ -2,7 +2,7 @@
 
 angular.module('scroll', []).value('$anchorScroll', angular.noop)
 
-App = angular.module \app <[ngCookies ngResource app.controllers app.directives app.filters app.services scroll]>
+App = angular.module \app <[ngCookies ngResource ngGrid app.controllers app.directives app.filters app.services scroll]>
 
 App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationProvider, config) ->
   $routeProvider
