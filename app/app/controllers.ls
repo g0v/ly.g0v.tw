@@ -21,7 +21,18 @@ angular.module 'app.controllers' []
       'active'
     else
       ''
+
+.filter \committee, ->
+    (committee) ->
+        return '院會' unless committee?
+        return '院會' if committee is \null # orz, we got stringified version at filter
+        committee = [committee] unless $.isArray committee
+        res = for c in committee
+            """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
+        res.join ''
+
 .controller LYCalendar: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
+    # XXX: unused.  use filter instead
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
         res = for c in committee
@@ -47,11 +58,18 @@ angular.module 'app.controllers' []
             ..setSeconds 0
             ..
         start <= now <= end
-    $scope.gridOptions = {+showFilter, +showColumnMenu} <<< do
-        rowHeight: 60
+    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel} <<< do
+        groups: <[committee]>
+        rowHeight: 65
         data: \calendar
+        i18n: \zh-tw
+        aggLabelFilter: "committee"
         aggregateTemplate: """
-        <div xxxng-init="row.setExpand(true)" ng-click="row.toggleExpand()" ng-style="{'left': row.offsetleft}" class="ngAggregate"><span class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span><div class="{{row.aggClass()}}"></div></div>	
+        <div ng-click="row.toggleExpand()" ng-style="{'left': row.offsetleft}" class="ngAggregate">
+          <span ng-if="row.field == 'committee'" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
+          <span ng-if="row.field != 'committee'" class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
+          <div class="{{row.aggClass()}}"></div>
+        </div>
         """
         columnDefs:
           * field: 'ad'
@@ -70,21 +88,28 @@ angular.module 'app.controllers' []
             <div ng-bind-html-unsafe="chair(row)"></div>
             """
           * field: 'committee'
+            visible: false
             displayName: \委員會
+            width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="committee(row)"></div>
+            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
             """
           * field: 'date'
-            filter: \date
+            cellFilter: 'date: mediumDate'
+            width: 100px
             displayName: \日期
           * field: 'time'
+            width: 100px
             displayName: \時間
             cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'}]
             """
           * field: 'name'
             displayName: \名稱
+            visible: false
+            width: '*'
           * field: 'summary'
             displayName: \議程
+            width: '*'
     {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
         params: do
             s: JSON.stringify date: 1, time: 1
@@ -92,7 +117,6 @@ angular.module 'app.controllers' []
                 date: $gt: \2013-03-18, $lt: \2013-03-25
     .success
     $scope.calendar = entries
-    $scope.gridOptions <<< { groups: <[committee]> }
 
 .controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
