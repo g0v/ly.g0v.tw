@@ -7,6 +7,7 @@ committees = do
     TRA: \交通
     JUD: \司法及法制
     SWE: \社會福利及衛生環境
+    PRO: \程序
 
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $resource $rootScope]> +++ (s, $location, $resource, $rootScope) ->
@@ -20,6 +21,79 @@ angular.module 'app.controllers' []
       'active'
     else
       ''
+.controller LYCalendar: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
+    $scope.committee = ({{committee}:entity}, col) ->
+        return '院會' unless committee
+        res = for c in committee
+            """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
+        res.join ''
+
+    $scope.chair = ({{chair}:entity}, col) ->
+        return '' unless chair
+        party = LYService.resolveParty chair
+        avatar = CryptoJS.MD5 "MLY/#{chair}" .toString!
+        chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
+    ymd = (d) -> <[getFullYear getMonth getDate]>.map -> d[it]!
+    now = new Date!
+    today = ymd now
+
+    $scope.onair = ({{date,time}:entity}) ->
+        return false unless today === ymd new Date date
+        [start, end] = time.split \~ .map ->
+          [hour,minute] = it.split \: .map -> +it
+          new Date!
+            ..setHours hour
+            ..setMinutes minute
+            ..setSeconds 0
+            ..
+        start <= now <= end
+    $scope.gridOptions = {+showFilter, +showColumnMenu} <<< do
+        rowHeight: 60
+        data: \calendar
+        aggregateTemplate: """
+        <div xxxng-init="row.setExpand(true)" ng-click="row.toggleExpand()" ng-style="{'left': row.offsetleft}" class="ngAggregate"><span class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span><div class="{{row.aggClass()}}"></div></div>	
+        """
+        columnDefs:
+          * field: 'ad'
+            displayName: \屆
+            width: 24
+          * field: 'session'
+            displayName: \會期
+            width: 24
+          * field: 'type'
+            displayName: \類別
+            width: 56
+          * field: 'chair'
+            displayName: \主席
+            width: 130
+            cellTemplate: """
+            <div ng-bind-html-unsafe="chair(row)"></div>
+            """
+          * field: 'committee'
+            displayName: \委員會
+            cellTemplate: """
+            <div ng-bind-html-unsafe="committee(row)"></div>
+            """
+          * field: 'date'
+            filter: \date
+            displayName: \日期
+          * field: 'time'
+            displayName: \時間
+            cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'}]
+            """
+          * field: 'name'
+            displayName: \名稱
+          * field: 'summary'
+            displayName: \議程
+    {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
+        params: do
+            s: JSON.stringify date: 1, time: 1
+            q: JSON.stringify do
+                date: $gt: \2013-03-18, $lt: \2013-03-25
+    .success
+    $scope.calendar = entries
+    $scope.gridOptions <<< { groups: <[committee]> }
+
 .controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
     {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/v0/collections/bills' do

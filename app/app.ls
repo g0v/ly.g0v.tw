@@ -8,6 +8,7 @@ App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationPr
   $routeProvider
     .when \/motions templateUrl: \/partials/app/motions.html
     .when \/bill templateUrl: \/partials/app/bill.html
+    .when \/calendar templateUrl: \/partials/app/calendar.html
     .when \/bill/:billId templateUrl: \/partials/app/bill.html
     .when \/sitting templateUrl: \/partials/app/sitting.html
     .when \/about templateUrl: \/partials/app/about.html
