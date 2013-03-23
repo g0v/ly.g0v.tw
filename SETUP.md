@@ -29,9 +29,6 @@ Add apt.postgresql.org , ref: https://wiki.postgresql.org/wiki/Apt
 ### Database
 	sudo -u postgres createdb ly
 
-### PgREST
-https://github.com/g0v/twlyparser#to-install-nodejs-and-npm-and-livescript-in-ubunutu
-
 ## FreeBSD
 
 ### Packages
@@ -69,7 +66,23 @@ Get dumped data from: http://dl.dropbox.com/u/30657009/ly/ly-dump.bz2
 or
 	bzcat ly-dump.bz2 | sudo -u pgsql psql -d ly -U pgsql
 
-# run PgREST
+# PgREST
+
+## Install nodejs and npm
+
+### Ubuntu
+
+Install from ppa:chris-lea/node.js
+
+Ref: https://github.com/g0v/twlyparser#to-install-nodejs-and-npm-and-livescript-in-ubunutu
+
+### FreeBSD
+
+Install ports:
+
+  * www/npm
+
+## run PgREST
 
 (old) install Plack-App-PgREST from cpan (https://github.com/clkao/Plack-App-PgREST)
 
