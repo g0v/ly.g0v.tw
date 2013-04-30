@@ -64,8 +64,9 @@ angular.module 'app.controllers' []
         data: \calendar
         i18n: \zh-tw
         aggLabelFilter: "committee"
+        groupsCollapsedByDefault: false
         aggregateTemplate: """
-        <div ng-click="row.toggleExpand()" ng-style="{'left': row.offsetleft}" class="ngAggregate">
+        <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate">
           <span ng-if="row.field == 'committee'" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
           <span ng-if="row.field != 'committee'" class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
           <div class="{{row.aggClass()}}"></div>
