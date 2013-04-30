@@ -60,10 +60,10 @@ window.bill-history = (data, $scope) ->
     y = d3.scale.linear!.rangeRound [height, 0]
 
     # XXX use sitting or date
-    meetings = data.map(-> it.motions.map (.meeting)).reduce (+++)
+    meetings = data.map(-> it.motions.map (.meeting)).reduce (++)
     min = d3.min meetings
     max = d3.max meetings
-    x.domain data.map(-> it.motions.map (.meeting)).reduce (+++)
+    x.domain data.map(-> it.motions.map (.meeting)).reduce (++)
 
     xAxis = (d3.svg.axis!.scale x).orient 'bottom'
 

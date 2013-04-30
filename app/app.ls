@@ -2,16 +2,16 @@
 
 angular.module('scroll', []).value('$anchorScroll', angular.noop)
 
-App = angular.module \app <[ngCookies ngResource ngGrid app.controllers app.directives app.filters app.services scroll]>
+App = angular.module \app <[ngGrid app.controllers app.directives app.filters app.services scroll partials]>
 
-App.config <[$routeProvider $locationProvider]> +++ ($routeProvider, $locationProvider, config) ->
+App.config <[$routeProvider $locationProvider]> ++ ($routeProvider, $locationProvider, config) ->
   $routeProvider
-    .when \/motions templateUrl: \/partials/app/motions.html
-    .when \/bill templateUrl: \/partials/app/bill.html
-    .when \/calendar templateUrl: \/partials/app/calendar.html
-    .when \/bill/:billId templateUrl: \/partials/app/bill.html
-    .when \/sitting templateUrl: \/partials/app/sitting.html
-    .when \/about templateUrl: \/partials/app/about.html
+    .when \/motions templateUrl: \/partials/motions.html
+    .when \/bill templateUrl: \/partials/bill.html
+    .when \/calendar templateUrl: \/partials/calendar.html
+    .when \/bill/:billId templateUrl: \/partials/bill.html
+    .when \/sitting templateUrl: \/partials/sitting.html
+    .when \/about templateUrl: \/partials/about.html
     # Catch all
     .otherwise redirectTo: \/motions
 

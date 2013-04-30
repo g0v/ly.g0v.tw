@@ -1,7 +1,7 @@
 # Services
 
 # Create an object to hold the module.
-mod = LYService: <[$http]> +++ ($http) ->
+mod = LYService: <[$http]> ++ ($http) ->
     mly = []
     $http.get '/data/mly-8.json' .success -> mly := it
     do

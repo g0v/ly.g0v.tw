@@ -7,7 +7,6 @@ build.xml
 .settings
 .idea/*
 app/assets/*html
-app/assets/partials/app/*.html
 
 _public
 node_modules/*

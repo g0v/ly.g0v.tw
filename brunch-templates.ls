@@ -12,7 +12,7 @@ exports.config =
 
     templates:
       joinTo:
-        'js/templates.js': /\.jade$/
+        'js/templates.js': /^app\/view.*\.jade$/
 
   # Enable or disable minifying of result js / css files.
   # minify: true

@@ -14,12 +14,12 @@ html(lang='en')
       script(src='http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js')
     //if lte IE 8
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
-    script
-      window.brunch = window.brunch || {};
-      window.brunch['auto-reload'] = {
-        enabled: true
-      };
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js')
     script(src='/js/vendor.js')
+    script(src='/js/partials.js')
     script(src='/js/templates.js')
     script(src='/js/app.js')
   body(ng-controller='AppCtrl',data-spy="scroll")
@@ -43,7 +43,7 @@ html(lang='en')
             .brand
               a(href='/') ly.g0v.tw 台灣零時政府立法院
             .nav-collapse
-              div(ng-include="'/partials/app/nav.html'")
+              div(ng-include="'/partials/nav.html'")
       .container-fluid.main-content
         div(ng-view)
       .push

@@ -3,7 +3,7 @@
 # Create an object to hold the module.
 mod = {}
 
-mod.appVersion = <[version]> +++ (version) ->
+mod.appVersion = <[version]> ++ (version) ->
   (scope, elm, attrs) ->
     elm.text version
 

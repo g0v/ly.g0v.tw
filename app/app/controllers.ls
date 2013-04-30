@@ -10,7 +10,7 @@ committees = do
     PRO: \程序
 
 angular.module 'app.controllers' []
-.controller AppCtrl: <[$scope $location $resource $rootScope]> +++ (s, $location, $resource, $rootScope) ->
+.controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
 
   s <<< {$location}
   s.$watch '$location.path()' (activeNavId or '/') ->
@@ -31,7 +31,7 @@ angular.module 'app.controllers' []
             """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
         res.join ''
 
-.controller LYCalendar: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
+.controller LYCalendar: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
     # XXX: unused.  use filter instead
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
@@ -118,7 +118,7 @@ angular.module 'app.controllers' []
     .success
     $scope.calendar = entries
 
-.controller LYBill: <[$scope $http $routeParams LYService]> +++ ($scope, $http, $routeParams, LYService) ->
+.controller LYBill: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
     {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/v0/collections/bills' do
         params: {+fo, q: JSON.stringify bill_id: $routeParams.billId}
@@ -191,7 +191,7 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-.controller LYMotions: <[$scope LYService]> +++ ($scope, LYService) ->
+.controller LYMotions: <[$scope LYService]> ++ ($scope, LYService) ->
     $scope.$on \data (_, d)->
         $scope.data = d
     $scope.$on \show (_, sitting, type, status) -> $scope.$apply ->
@@ -209,7 +209,7 @@ angular.module 'app.controllers' []
         setType: (type) ->
             [data] = [s for s in $scope.data when s.meeting.sitting is $scope.sitting]
             entries = data[type]
-            allStatus = [key: \all, value: \全部] +++ [{key: a, value: $scope.statusName a} for a of {[e.status ? \unknown, true] for e in entries}]
+            allStatus = [key: \all, value: \全部] ++ [{key: a, value: $scope.statusName a} for a of {[e.status ? \unknown, true] for e in entries}]
             $scope.status = '' unless $scope.status in allStatus.map (.key)
             for e in entries when !e.avatars?
                 if e.proposer?match /委員(.*?)(、|等)/
