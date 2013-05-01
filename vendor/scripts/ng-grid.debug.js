@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 04/23/2013 14:36
+* Compiled At: 05/02/2013 00:25
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -265,6 +265,11 @@ ngGridServices.factory('$domUtilityService',['$utilityService', function($utils)
             cols = $scope.columns,
             sumWidth = 0;
 
+        var groupPadding = 0;
+        if (grid.config.inlineAggregate) {
+            groupPadding = grid.config.groups.length * 125;
+        }
+
         if (!$style) {
             $style = $('#' + gridId);
             if (!$style[0]) {
@@ -274,9 +279,9 @@ ngGridServices.factory('$domUtilityService',['$utilityService', function($utils)
         $style.empty();
         var trw = $scope.totalRowWidth();
         css = "." + gridId + " .ngCanvas { width: " + trw + "px; }" +
-            "." + gridId + " .ngRow { width: " + trw + "px; }" +
+            "." + gridId + " .ngRow { width: " + trw + "px; left: " + groupPadding + "px; }" +
             "." + gridId + " .ngCanvas { width: " + trw + "px; }" +
-            "." + gridId + " .ngHeaderScroller { width: " + (trw + domUtilityService.ScrollH) + "px}";
+            "." + gridId + " .ngHeaderScroller { width: " + (trw + domUtilityService.ScrollH) + "px; left: " + groupPadding + "px; }";
         for (var i = 0; i < cols.length; i++) {
             var col = cols[i];
             if (col.visible !== false) {
@@ -1456,6 +1461,9 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
     }
     self.calcMaxCanvasHeight = function() {
         return (self.config.groups.length > 0) ? (self.rowFactory.parsedData.filter(function(e) {
+            if (self.config.inlineAggregate && e.isAggRow && !e.collapsed) {
+                return false;
+            }
             return !e[NG_HIDDEN];
         }).length * self.config.rowHeight) : (self.filteredRows.length * self.config.rowHeight);
     };
@@ -1622,9 +1630,10 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         if (asterisksArray.length > 0) {
             self.config.maintainColumnRatios === false ? angular.noop() : self.config.maintainColumnRatios = true;
             // get the remaining width
-            var remainigWidth = self.rootDim.outerWidth - totalWidth;
+            var remainingWidth = self.rootDim.outerWidth - totalWidth;
+            remainingWidth -= self.config.groups.length * (self.config.inlineAggregate ? 125 : 25)
             // calculate the weight of each asterisk rounded down
-            var asteriskVal = Math.floor(remainigWidth / asteriskNum);
+            var asteriskVal = Math.floor(remainingWidth / asteriskNum);
             // set the width of each column based on the number of stars
             angular.forEach(asterisksArray, function(col) {
                 var t = col.width.length;
@@ -2186,11 +2195,13 @@ var ngRowFactory = function (grid, $scope, domUtilityService, $templateCache, $u
         self.wasGrouped = true;
         self.parentCache = [];
         var x = 0;
-        var temp = self.parsedData.filter(function (e) {
+        var aggHeader = 0;
+        var visible = self.parsedData.filter(function (e) {
             if (e.isAggRow) {
                 if (e.parent && e.parent.collapsed) {
                     return false;
                 }
+                ++aggHeader;
                 return true;
             }
             if (!e[NG_HIDDEN]) {
@@ -2198,12 +2209,17 @@ var ngRowFactory = function (grid, $scope, domUtilityService, $templateCache, $u
             }
             return !e[NG_HIDDEN];
         });
-        self.totalRows = temp.length;
+        self.totalRows = visible.length;
         var rowArr = [];
+        var inplace = grid.config.inlineAggregate;
+        var aggCount = 0;
         for (var i = self.renderedRange.topRow; i < self.renderedRange.bottomRow; i++) {
-            if (temp[i]) {
-                temp[i].offsetTop = i * grid.config.rowHeight;
-                rowArr.push(temp[i]);
+            if (visible[i]) {
+                visible[i].offsetTop = (i - aggCount) * grid.config.rowHeight;
+                if (inplace && visible[i].isAggRow && !visible[i].collapsed) {
+                    ++aggCount
+                }
+                rowArr.push(visible[i]);
             }
         }
         grid.setRenderedRows(rowArr);
@@ -2325,7 +2341,7 @@ var ngRowFactory = function (grid, $scope, domUtilityService, $templateCache, $u
                 cols.splice(0, 0, new ngColumn({
                     colDef: {
                         field: '',
-                        width: 25,
+                        width: grid.config.inlineAggregate? 0 : 25,
                         sortable: false,
                         resizable: false,
                         headerCellTemplate: '<div class="ngAggHeader"></div>',
