@@ -9,6 +9,14 @@ committees = do
     SWE: \社會福利及衛生環境
     PRO: \程序
 
+renderCommittee = (committee) ->
+    return '院會' unless committee?
+    return '院會' if committee is \null # orz, we got stringified version at filter
+    committee = [committee] unless $.isArray committee
+    res = for c in committee
+        """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
+    res.join ''
+
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
 
@@ -22,14 +30,7 @@ angular.module 'app.controllers' []
     else
       ''
 
-.filter \committee, ->
-    (committee) ->
-        return '院會' unless committee?
-        return '院會' if committee is \null # orz, we got stringified version at filter
-        committee = [committee] unless $.isArray committee
-        res = for c in committee
-            """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
-        res.join ''
+.filter \committee, -> renderCommittee
 
 .controller LYCalendar: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
     # XXX: unused.  use filter instead
@@ -58,13 +59,14 @@ angular.module 'app.controllers' []
             ..setSeconds 0
             ..
         start <= now <= end
-    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel} <<< do
+
+    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel,
+    -groupsCollapsedByDefault, +inlineAggregate, +enableRowSelection} <<< do
         groups: <[committee]>
         rowHeight: 65
         data: \calendar
         i18n: \zh-tw
         aggLabelFilter: "committee"
-        groupsCollapsedByDefault: false
         aggregateTemplate: """
         <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate">
           <span ng-if="row.field == 'committee'" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
@@ -73,27 +75,18 @@ angular.module 'app.controllers' []
         </div>
         """
         columnDefs:
-          * field: 'ad'
-            displayName: \屆
-            width: 24
-          * field: 'session'
-            displayName: \會期
-            width: 24
-          * field: 'type'
-            displayName: \類別
-            width: 56
-          * field: 'chair'
-            displayName: \主席
-            width: 130
-            cellTemplate: """
-            <div ng-bind-html-unsafe="chair(row)"></div>
-            """
           * field: 'committee'
             visible: false
             displayName: \委員會
             width: 130
             cellTemplate: """
             <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            """
+          * field: 'chair'
+            displayName: \主席
+            width: 130
+            cellTemplate: """
+            <div ng-bind-html-unsafe="chair(row)"></div>
             """
           * field: 'date'
             cellFilter: 'date: mediumDate'
@@ -110,7 +103,15 @@ angular.module 'app.controllers' []
             width: '*'
           * field: 'summary'
             displayName: \議程
+            cellClass: \summary
             width: '*'
+
+    $scope.$watch 'height' (->
+        $ '.grid' .height $scope.height - 65
+        options = $scope.gridOptions
+        options.$gridServices.DomUtilityService.RebuildGrid options.$gridScope, options.ngGrid
+    ), false
+
     {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
         params: do
             s: JSON.stringify date: 1, time: 1

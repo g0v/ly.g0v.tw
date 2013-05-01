@@ -18,11 +18,12 @@ html(lang='en')
     script(src='//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/lang/zh-tw.min.js')
     script(src='/js/vendor.js')
     script(src='/js/partials.js')
     script(src='/js/templates.js')
     script(src='/js/app.js')
-  body(ng-controller='AppCtrl',data-spy="scroll")
+  body(ng-controller='AppCtrl',ng-cloak,data-spy="scroll")
     #fb-root
       script
           (function(d, s, id) {

@@ -1,14 +1,10 @@
-# Directive
+angular.module 'app.directives' <[app.services ]>
 
-# Create an object to hold the module.
-mod = {}
-
-mod.appVersion = <[version]> ++ (version) ->
-  (scope, elm, attrs) ->
-    elm.text version
-
-# register the module with Angular
-angular.module 'app.directives' [
-  # require the 'app.service' module
-  'app.services'
-] .directive mod
+.directive \ngxResize <[$window]> ++ ($window) ->
+  (scope) ->
+    scope.width = $window.innerWidth
+    scope.height = $window.innerHeight
+    angular.element $window .bind 'resize' ->
+      scope.$apply ->
+        scope.width = $window.innerWidth
+        scope.height = $window.innerHeight
