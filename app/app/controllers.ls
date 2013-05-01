@@ -112,11 +112,16 @@ angular.module 'app.controllers' []
         options.$gridServices.DomUtilityService.RebuildGrid options.$gridScope, options.ngGrid
     ), false
 
+    now = moment!
+    start = now.add days: - now.days!
+    end = moment start .add days: 7
+    [start, end] = [start, end].map (.format "YYYY-MM-DD")
+    console.log start, end
     {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
         params: do
             s: JSON.stringify date: 1, time: 1
             q: JSON.stringify do
-                date: $gt: \2013-03-18, $lt: \2013-03-25
+                date: $gt: start, $lt: end
     .success
     $scope.calendar = entries
 
