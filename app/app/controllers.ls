@@ -52,21 +52,27 @@ angular.module 'app.controllers' []
         [start, end] = time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it"
         start <= moment! <= end
 
-    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel,
+    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting,
     -groupsCollapsedByDefault, +inlineAggregate, +enableRowSelection} <<< do
-        groups: <[committee]>
+        groups: <[primaryCommittee]>
         rowHeight: 65
         data: \calendar
         i18n: \zh-tw
-        aggLabelFilter: "committee"
         aggregateTemplate: """
-        <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate">
-          <span ng-if="row.field == 'committee'" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
-          <span ng-if="row.field != 'committee'" class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
+        <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate" ng-switch on="row.field">
+          <span ng-switch-when="primaryCommittee" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
+          <span ng-switch-default class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
           <div class="{{row.aggClass()}}"></div>
         </div>
         """
         columnDefs:
+          * field: 'primaryCommittee'
+            visible: false
+            displayName: \委員會
+            width: 130
+            cellTemplate: """
+            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            """
           * field: 'committee'
             visible: false
             displayName: \委員會
@@ -114,7 +120,7 @@ angular.module 'app.controllers' []
             q: JSON.stringify do
                 date: $gt: start, $lt: end
     .success
-    $scope.calendar = entries
+    $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
 
 .controller LYBill: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
     $routeParams.billId ?= '1011130070300200'
