@@ -45,20 +45,12 @@ angular.module 'app.controllers' []
         party = LYService.resolveParty chair
         avatar = CryptoJS.MD5 "MLY/#{chair}" .toString!
         chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
-    ymd = (d) -> <[getFullYear getMonth getDate]>.map -> d[it]!
-    now = new Date!
-    today = ymd now
 
     $scope.onair = ({{date,time}:entity}) ->
-        return false unless today === ymd new Date date
-        [start, end] = time.split \~ .map ->
-          [hour,minute] = it.split \: .map -> +it
-          new Date!
-            ..setHours hour
-            ..setMinutes minute
-            ..setSeconds 0
-            ..
-        start <= now <= end
+        d = moment date .startOf \day
+        return false unless +today is +d
+        [start, end] = time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it"
+        start <= moment! <= end
 
     $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel,
     -groupsCollapsedByDefault, +inlineAggregate, +enableRowSelection} <<< do
@@ -112,11 +104,10 @@ angular.module 'app.controllers' []
         options.$gridServices.DomUtilityService.RebuildGrid options.$gridScope, options.ngGrid
     ), false
 
-    now = moment!
-    start = now.add days: - now.days!
+    today = moment!startOf('day')
+    start = moment today .add days: - today.days!
     end = moment start .add days: 7
     [start, end] = [start, end].map (.format "YYYY-MM-DD")
-    console.log start, end
     {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
         params: do
             s: JSON.stringify date: 1, time: 1
