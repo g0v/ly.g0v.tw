@@ -21,14 +21,17 @@ img.avatar
     &.list .chart
         opacity: 0.2
     .chart
-        float: left
+        width: auto
     .list
-        position: absolute
-        width: 80%
-        float: left
-        left: 10%
+        li.row
+            width: 80%
+            border: 1px solid rgba(0, 0, 0, 0.07)
+            margin-top: -1px
+            border-color: #AAA
+            padding: 9px
         input.filter
             margin: 20px
+            float: right
         ul
             list-style: none
             &.type li, &.status li
@@ -37,7 +40,7 @@ img.avatar
                 padding-right: 6px
                 padding-left: 6px
                 border-right: 1px solid #DCDCDC
-                float: left
+                float: right
                 width: auto
                 &:hover
                     text-decoration: underline
@@ -49,11 +52,10 @@ img.avatar
                 div.avatars
                     float: left
                 .motion
-                    width: 60%
+                    width: 80%
                     float: left
                     margin: 20px
                 .resolution
                     padding-left: 80px
-                    border-left: 3px solid purple // XXX match color
                     margin: 5px
                     clear: both

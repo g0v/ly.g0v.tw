@@ -1,10 +1,10 @@
 .motions(ng-controller="LYMotions",ng-class="{list: list}")
   h1 第八屆第二會期
   .chart
-  .list(ng-show="list", style="background-color:#EEE")
-      .head(class="", style="position:fixed; right:10%; width:20%;")
+  .list(ng-show="list")
+      .head
           span.close(ng-click="list=false", style="background-color: #222; color:#FFF;") Close
-          h2 第 {{ sitting}} 次院會
+          h2 第 {{sitting}} 次院會
           ul.type
               li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
           ul.status
@@ -12,7 +12,7 @@
           .clearfix
           input.filter(ng-model="filter",placeholder="Search")
       ul.motions(ng-class="{{type}}", style="width:100%;")
-          li(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+          li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
               .avatars
                   span(ng-repeat="avatar in e.avatars")
                       img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
