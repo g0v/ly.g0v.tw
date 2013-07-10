@@ -22,8 +22,13 @@ window.loadMotions = -> $ ->
 stacked-bars = (data, $scope) ->
     margin = top: 20 right: 20 bottom: 100 left: 40
 
-    width = 960 - margin.left - margin.right
-    height = 500 - margin.top - margin.bottom
+    const minWidth = 720, minHeight = 380
+    width = document.width - 200
+    height = document.height - 400
+    width  = if width > minWidth then width else minWidth
+    height = if height > minHeight then height else minHeight
+    width = width - margin.left - margin.right
+    height = height - margin.top - margin.bottom
 
     x = d3.scale.ordinal!.rangeRoundBands [0, width], 0.1
     y = d3.scale.linear!.rangeRound [height, 0]
