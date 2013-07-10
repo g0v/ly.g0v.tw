@@ -4,20 +4,22 @@
   .list(ng-show="list")
       .head
           h2 第 {{sitting}} 次院會
-          ul.type
-              li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
-          ul.status
-              li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
-          .clearfix
-          input.filter(ng-model="filter",placeholder="Search")
-      ul.motions(ng-class="{{type}}", style="width:100%;")
-          li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
-              .avatars
-                  span(ng-repeat="avatar in e.avatars")
-                      img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
-              .motion
-                  span.item {{ e.item }}
-                  span.proposer {{ e.proposer }}
-                  a(ng-href="/bill/{{ e.id }}")
-                      span.summary {{ e.summary }}
-              .resolution {{ e.resolution }}
+          .span10.content
+              ul.motions(ng-class="{{type}}")
+                  li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+                      .avatars
+                          span(ng-repeat="avatar in e.avatars")
+                              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
+                      .motion
+                          span.item {{ e.item }}
+                          span.proposer {{ e.proposer }}
+                          a(ng-href="/bill/{{ e.id }}")
+                              span.summary {{ e.summary }}
+                      .resolution {{ e.resolution }}
+          .span2.sidebar
+              ul.type
+                  li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+              ul.status
+                  li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
+              input.filter(ng-model="filter",placeholder="Search")
+
