@@ -3,7 +3,6 @@
   .chart
   .list(ng-show="list")
       .head
-          span.close(ng-click="list=false", style="background-color: #222; color:#FFF;") Close
           h2 第 {{sitting}} 次院會
           ul.type
               li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
