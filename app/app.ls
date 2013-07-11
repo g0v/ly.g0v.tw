@@ -24,6 +24,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
     .state 'sitting' do
       url: '/sitting'
       templateUrl: '/partials/sitting.html'
+      controller: \LYSitting
     .state 'about' do
       url: '/about'
       templateUrl: '/partials/about.html'

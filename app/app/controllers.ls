@@ -253,3 +253,62 @@ angular.module 'app.controllers' []
                 accepted: \查照
             names[s] ? s
     window.loadMotions!
+
+.controller LYSitting: <[$scope $http]> ++ ($scope, $http) ->
+    data <- $http.get '/data/yslog/ly-4004.json'
+        .success
+    $scope.json = data
+    $scope.meta = data.meta
+    $scope.annoucement = []
+    $scope.interpellation = {answers: [], questions: [], interpellations: []}
+    $scope.interp = []
+    parse = (type, content) ->
+        switch type
+        | \Announcement =>
+            $scope.Announcement = content
+            debugger
+            for idx,entry of content
+                section = {
+                    subject: entry.subject,
+                    conversation: []
+                }
+
+                for [speaker, words] in entry.conversation
+                    section.conversation.push {speaker, words}
+                $scope.annoucement.push section
+
+        | \Interpellation =>
+            $scope.Interpellation = content
+            for idx,array of content.answers
+                $scope.interpellation.answers.push {receiver:array[0], content:array[1]}
+            for idx,array of content.questions
+                $scope.interpellation.questions.push {asker:array[0], content:array[1]}
+            for [type,entries] in content.interpellation when type is \interp
+                $scope.interp.push entries
+            for [type,entries] in content.interpellation
+                if type is \interp or type is \interpdoc or type is \exmotion
+                    section = {
+                        questioner: entries.0.0,
+                        conversation: []
+                    }
+
+                    for [speaker, content] in entries
+                        section.conversation.push {speaker, content}
+                else
+                    debugger
+                    section = {
+                        questioner: null,
+                        conversation:[{
+                            speaker: type
+                            content: entries
+                        }]
+                    }
+
+                $scope.interpellation.interpellations.push section
+
+        | otherwise =>
+            $scope.otherwise = content
+
+    for entry in data.log
+        parse ...entry
+
