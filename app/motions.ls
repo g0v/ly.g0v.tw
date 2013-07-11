@@ -43,6 +43,13 @@ stacked-bars = (data, $scope) ->
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    legendW = 200
+    legendH = 800
+    legends = d3.select(".legends").append('svg')
+        .attr("width", "100%")
+        .attr("height", "80%")
+        .attr('viewbox', '0 0 ' + legendW + ' ' + legendH)
+
     ann_color = d3.scale.ordinal!.range <[ #cccccc #8a89a6 #7b6888 #6b486b #ff8c00 #ff1c00 #000000 #23ff8c #6b486b #dddddd #dddddd]> .domain <[ retrected rejected accepted committee prioritized unhandled consultation passed ey other unknown]>
     color.domain <[ann dis]>
     data.forEach (d) ->
@@ -135,23 +142,22 @@ stacked-bars = (data, $scope) ->
         .attr "height", (d) -> y(d.y0) - y(d.y1)
         .style "fill", (d) -> ann_color d.name
 
-    legend = svg.selectAll(".legend")
+    legend = legends.selectAll(".legend")
         .data ann_color.domain!slice!reverse!
         .enter!append \g
         .attr "class" "legend"
         .attr "transform" (d, i) ->"translate(0," + i * 20 + ")"
 
     legend.append("rect")
-        .attr("x", width - 18)
+        .attr("x", 0)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", ann_color);
 
     legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", 20)
         .attr("y", 9)
         .attr("dy", ".35em")
-        .style("text-anchor", "end")
         .text -> $scope.statusName it
 
     svg.append("g")

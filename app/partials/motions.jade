@@ -2,6 +2,7 @@
   h1 第八屆第二會期
   .row-fluid(ng-hide="sitting")
     .span10.chart
+    .span2.legends
   button(id="btnTop", ng-controller="topBtnCtrl", ng-show="showBtn", ng-click="jumpToTop()", class="btn") Jump to Top
   .list(ng-show="sitting")
       h2 第 {{sitting}} 次院會
