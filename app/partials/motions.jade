@@ -6,12 +6,13 @@
       h2 第 {{sitting}} 次院會
       .row-fluid
           .span2.sidebar
-              ul.type
-                  li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
               ul.status
                   li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
               input.filter(ng-model="filter",class="search-query",placeholder="Search")
           .span10.content
+              ul(class="nav nav-tabs")
+                li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
+                  a(href="#") {{s.value}}
               ul.motions(ng-class="{{type}}")
                   li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
                       .avatars
