@@ -18,16 +18,12 @@ img.avatar
         height: 100px
 
 .motions
-    .chart
-        width: auto
     .list
         li.row
             border: 1px solid rgba(0, 0, 0, 0.07)
             margin-top: -1px
             border-color: #AAA
             padding: 9px
-        input.filter
-            margin: 20px
         ul
             list-style: none
             &.type li, &.status li
@@ -35,7 +31,6 @@ img.avatar
                 display: block
                 padding-right: 6px
                 padding-left: 6px
-                border-right: 1px solid #DCDCDC
                 width: auto
                 &:hover
                     text-decoration: underline
@@ -62,3 +57,7 @@ rect.dis
 
 rect.exm
     @extend rect.ann
+
+input.filter
+    width: 100%
+    padding: 5px

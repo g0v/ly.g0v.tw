@@ -2,8 +2,14 @@
   h1 第八屆第二會期
   .chart
   .list(ng-show="list")
-      .head
-          h2 第 {{sitting}} 次院會
+      h2 第 {{sitting}} 次院會
+      .row-fluid
+          .span2.sidebar
+              ul.type
+                  li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+              ul.status
+                  li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
+              input.filter(ng-model="filter",class="search-query",placeholder="Search")
           .span10.content
               ul.motions(ng-class="{{type}}")
                   li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
@@ -16,10 +22,4 @@
                           a(ng-href="/bill/{{ e.id }}")
                               span.summary {{ e.summary }}
                       .resolution {{ e.resolution }}
-          .span2.sidebar
-              ul.type
-                  li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
-              ul.status
-                  li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
-              input.filter(ng-model="filter",placeholder="Search")
 
