@@ -6,8 +6,9 @@
       h2 第 {{sitting}} 次院會
       .row-fluid
           .span2.sidebar
-              ul.status
-                  li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}") {{s.value}}
+              ul(class="nav nav-list")
+                  li(ng-repeat="s in allStatus",ng-click="setStatus(s.key)",ng-class="{active: s.key == status}")
+                      a(href="#") {{s.value}}
               input.filter(ng-model="filter",class="search-query",placeholder="Search")
           .span10.content
               ul(class="nav nav-tabs")
