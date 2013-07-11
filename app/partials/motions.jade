@@ -1,6 +1,7 @@
 .motions(ng-controller="LYMotions",ng-class="{list: list}")
   h1 第八屆第二會期
   .chart
+  button(id="btnTop", ng-controller="topBtnCtrl", ng-show="showBtn", ng-click="jumpToTop()", class="btn") Jump to Top
   .list(ng-show="list")
       h2 第 {{sitting}} 次院會
       .row-fluid
