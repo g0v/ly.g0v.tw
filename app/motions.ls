@@ -73,6 +73,7 @@ stacked-bars = (data, $scope) ->
         .enter!append "g"
         .attr "class", "g"
         .attr "transform" -> "translate(#{ x it.sitting },0)"
+        .on \click (d) -> show \announcement, d.name, cur_desc
 
     desc = svg.append("g").selectAll('.desc')
         .data <[報告事項 討論事項 臨時提案]>
@@ -116,7 +117,6 @@ stacked-bars = (data, $scope) ->
         .attr "y" -> y it.y1
         .attr "height", (d) -> y(d.y0) - y(d.y1)
         .style "fill", (d) -> ann_color d.name
-        .on \click (d) -> show \announcement, d.name, cur_desc
 
     state.selectAll("rect.dis")
         .data (.dis_cum)
@@ -126,7 +126,6 @@ stacked-bars = (data, $scope) ->
         .attr "y" -> y it.y1
         .attr "height", (d) -> y(d.y0) - y(d.y1)
         .style "fill", (d) -> ann_color d.name
-        .on \click (d) -> show \discussion, d.name, cur_desc
 
     state.selectAll("rect.exm")
         .data (.exm_cum)
@@ -136,7 +135,6 @@ stacked-bars = (data, $scope) ->
         .attr "y" -> y it.y1
         .attr "height", (d) -> y(d.y0) - y(d.y1)
         .style "fill", (d) -> ann_color d.name
-        .on \click (d) -> show \exmotion, d.name, cur_desc
 
     legend = svg.selectAll(".legend")
         .data ann_color.domain!slice!reverse!
