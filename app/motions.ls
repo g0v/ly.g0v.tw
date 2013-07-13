@@ -19,15 +19,10 @@ window.loadMotions = -> $ ->
     stacked-bars data, $scope
 
 stacked-bars = (data, $scope) ->
-    margin = top: 20 right: 20 bottom: 100 left: 40
+    margin = top: 10 right: 20 bottom: 10 left: 60
 
-    const minWidth = 720, minHeight = 380
-    width = document.width - 200
-    height = document.height - 400
-    width  = if width > minWidth then width else minWidth
-    height = if height > minHeight then height else minHeight
-    width = width - margin.left - margin.right
-    height = height - margin.top - margin.bottom
+    width = 1600
+    height = 600
 
     x = d3.scale.ordinal!.rangeRoundBands [0, width], 0.1
     y = d3.scale.linear!.rangeRound [height, 0]
@@ -37,9 +32,14 @@ stacked-bars = (data, $scope) ->
     xAxis = (d3.svg.axis!.scale x).orient 'bottom'
     yAxis = ((d3.svg.axis!.scale y).orient 'left').tickFormat d3.format '.2s'
 
+    totalW = width + margin.left + margin.right
+    totalH = height + margin.top + margin.bottom
+    vb = "0 0 " + totalW + " " + totalH
+
     svg = d3.select(".chart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", "100%")
+        .attr("height", "80%")
+        .attr("viewBox", vb)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
