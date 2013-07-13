@@ -197,12 +197,21 @@ angular.module 'app.controllers' []
                     .0
 
 .controller LYMotions: <[$scope $state LYService]> ++ ($scope, $state, LYService) ->
-    $scope.$on \data (_, d)->
-        $scope.data = d
-    $scope.$watch '$state.params.billId' ->
-      {billId} = $state.params
+    var has-data
+    $scope.$on \data (_, d) -> $scope.$apply ->
+      $scope.data = d
+    $scope.$watch '$state.params.sitting' ->
+      unless sitting = $state.params.sitting
+        $scope.sitting = null
+        return
+      $scope.$watch \data ->
+        return unless it
+        $scope.sitting = +sitting
+        $scope.setType \announcement
+        $scope.setStatus null
     $scope.$on \show (_, sitting, type, status) -> $scope.$apply ->
-        $scope <<< {sitting, status, +list}
+        $state.transitionTo 'motions.sitting', { session: '8-2', sitting }
+        $scope <<< {sitting, status}
         $scope.setType type
         $scope.setStatus status
     $scope <<< do

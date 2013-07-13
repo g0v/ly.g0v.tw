@@ -1,6 +1,5 @@
 window.loadMotions = -> $ ->
     $scope = angular.element 'div.motions' .scope!
-    console.log $scope
 
     motions <- d3.json '/data/8-2.json'
     data = motions.map ({meeting, announcement, discussion}) ->

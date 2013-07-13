@@ -10,8 +10,8 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
       url: '/motions'
       templateUrl: '/partials/motions.html'
       controller: \LYMotions
-    .state 'motions.detail' do
-      url: 'YS/{ys}'
+    .state 'motions.sitting' do
+      url: '/{session}/{sitting}'
 
     .state 'bill' do
       url: '/bill/{billId}'
@@ -33,3 +33,8 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
 
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
+
+.run <[$rootScope $state $stateParams $location]> ++ ($rootScope, $state, $stateParams, $location) ->
+  $rootScope.$state = $state
+  $rootScope.$stateParam = $stateParams
+  $rootScope.go = -> $location.path it
