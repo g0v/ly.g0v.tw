@@ -198,6 +198,7 @@ angular.module 'app.controllers' []
 
 .controller LYMotions: <[$scope $state LYService]> ++ ($scope, $state, LYService) ->
     var has-data
+    $scope.session = '8-2'
     $scope.$on \data (_, d) -> $scope.$apply ->
       $scope.data = d
     $scope.$watch '$state.params.sitting' ->
@@ -210,7 +211,7 @@ angular.module 'app.controllers' []
         $scope.setType \announcement
         $scope.setStatus null
     $scope.$on \show (_, sitting, type, status) -> $scope.$apply ->
-        $state.transitionTo 'motions.sitting', { session: '8-2', sitting }
+        $state.transitionTo 'motions.sitting', { session: $scope.session, sitting }
         $scope <<< {sitting, status}
         $scope.setType type
         $scope.setStatus status
