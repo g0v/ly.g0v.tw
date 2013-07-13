@@ -32,7 +32,7 @@ angular.module 'app.controllers' []
 
 .filter \committee, -> renderCommittee
 
-.controller LYCalendar: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
+.controller LYCalendar: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
     # XXX: unused.  use filter instead
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
@@ -122,21 +122,22 @@ angular.module 'app.controllers' []
     .success
     $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
 
-.controller LYBill: <[$scope $http $routeParams LYService]> ++ ($scope, $http, $routeParams, LYService) ->
-    $routeParams.billId ?= '1011130070300200'
-    {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/v0/collections/bills' do
-        params: {+fo, q: JSON.stringify bill_id: $routeParams.billId}
-    .success
-    #
-    # XXX should be in data already
-    if committee
-        committee = committee.map -> { abbr: it, name: committees[it] }
+.controller LYBill: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+    $scope.$watch '$state.params.billId' ->
+      {billId} = $state.params
+      {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/v0/collections/bills' do
+          params: {+fo, q: JSON.stringify bill_id: billId}
+      .success
+      #
+      # XXX should be in data already
+      if committee
+          committee = committee.map -> { abbr: it, name: committees[it] }
 
-#    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
-#    console.log content
-#    console.log history
-#    window.bill-history history, $scope
-    $scope <<< bill{summary,abstract} <<< do
+  #    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
+  #    console.log content
+  #    console.log history
+  #    window.bill-history history, $scope
+      $scope <<< bill{summary,abstract} <<< do
         committee: committee,
         related: if bill.committee
             data?related?map ([id, summary]) ->
@@ -195,9 +196,11 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-.controller LYMotions: <[$scope LYService]> ++ ($scope, LYService) ->
+.controller LYMotions: <[$scope $state LYService]> ++ ($scope, $state, LYService) ->
     $scope.$on \data (_, d)->
         $scope.data = d
+    $scope.$watch '$state.params.billId' ->
+      {billId} = $state.params
     $scope.$on \show (_, sitting, type, status) -> $scope.$apply ->
         $scope <<< {sitting, status, +list}
         $scope.setType type

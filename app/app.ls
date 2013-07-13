@@ -2,20 +2,34 @@
 
 angular.module('scroll', []).value('$anchorScroll', angular.noop)
 
-App = angular.module \app <[ngGrid app.controllers app.directives app.filters app.services scroll partials]>
+angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters app.services scroll partials ui.state utils]>
 
-App.config <[$routeProvider $locationProvider]> ++ ($routeProvider, $locationProvider, config) ->
-  $routeProvider
-    .when \/motions templateUrl: \/partials/motions.html
-    .when \/bill templateUrl: \/partials/bill.html
-    .when \/calendar templateUrl: \/partials/calendar.html
-    .when \/bill/:billId templateUrl: \/partials/bill.html
-    .when \/sitting templateUrl: \/partials/sitting.html
-    .when \/about templateUrl: \/partials/about.html
+.config <[$stateProvider $urlRouterProvider $locationProvider]> ++ ($stateProvider, $urlRouterProvider, $locationProvider) ->
+  $stateProvider
+    .state 'motions' do
+      url: '/motions'
+      templateUrl: '/partials/motions.html'
+      controller: \LYMotions
+    .state 'motions.detail' do
+      url: 'YS/{ys}'
+
+    .state 'bill' do
+      url: '/bill/{billId}'
+      templateUrl: '/partials/bill.html'
+      controller: \LYBill
+
+    .state 'calendar' do
+      url: '/calendar'
+      templateUrl: '/partials/calendar.html'
+    .state 'sitting' do
+      url: '/sitting'
+      templateUrl: '/partials/sitting.html'
+    .state 'about' do
+      url: '/about'
+      templateUrl: '/partials/about.html'
     # Catch all
-    .otherwise redirectTo: \/motions
+  $urlRouterProvider
+    .otherwise('/motions')
 
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
-
-window.App = App
