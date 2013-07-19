@@ -266,7 +266,6 @@ angular.module 'app.controllers' []
         switch type
         | \Announcement =>
             $scope.Announcement = content
-            debugger
             for idx,entry of content
                 section = {
                     subject: entry.subject,
@@ -295,7 +294,6 @@ angular.module 'app.controllers' []
                     for [speaker, content] in entries
                         section.conversation.push {speaker, content}
                 else
-                    debugger
                     section = {
                         questioner: null,
                         conversation:[{
