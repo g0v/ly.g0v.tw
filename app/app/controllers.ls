@@ -252,7 +252,7 @@ angular.module 'app.controllers' []
                 rejected: \退回
                 accepted: \查照
             names[s] ? s
-    window.loadMotions!
+    window.loadMotions $scope
 
 .controller LYSitting: <[$scope $http]> ++ ($scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'

@@ -1,5 +1,4 @@
-window.loadMotions = -> $ ->
-    $scope = angular.element 'div.motions' .scope!
+window.loadMotions = ($scope) -> $ ->
 
     motions <- d3.json '/data/8-2.json'
     data = motions.map ({meeting, announcement, discussion}) ->
