@@ -111,8 +111,10 @@ angular.module 'app.controllers' []
     ), false
 
     today = moment!startOf('day')
-    start = moment today .add days: - today.days!
-    end = moment start .add days: 7
+    start = moment today .day 0
+    end = moment today .day 7
+    $scope.start = start .format "YYYY-MM-DD"
+    $scope.end = end .format "YYYY-MM-DD"
     [start, end] = [start, end].map (.format "YYYY-MM-DD")
     {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
         params: do
