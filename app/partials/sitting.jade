@@ -30,14 +30,14 @@
               hr
               section(id="interp-answers", class="collapse")
                   div.well(ng-repeat="answer in interpellation.answers")
-                     {{answer.receiver}} {{answer.content}}
+                     {{answer.receiver}} {{answer.words}}
 
               <a data-toggle="collapse" data-target="#interp-questions" class="btn pull-right">+</a>
               h2 質詢
               hr
               section(id="interp-questions", class="collapse")
                   div.well(ng-repeat="question in interpellation.questions")
-                     {{question.asker}} {{question.content}}
+                     {{question.asker}} {{question.words}}
 
               h2 個人質詢
               section(id="interp-interp")
@@ -46,4 +46,4 @@
                      h4 {{interp.questioner}}
                      div.well(ng-repeat="conv in interp.conversation")
                          span.speaker.label {{conv.speaker}}
-                         div.content {{conv.content}}
+                         div.content {{conv.words}}

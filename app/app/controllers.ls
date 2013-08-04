@@ -289,11 +289,10 @@ angular.module 'app.controllers' []
                 $scope.annoucement.push section
 
         | \Interpellation =>
-            $scope.Interpellation = content
-            for idx,array of content.answers
-                $scope.interpellation.answers.push {receiver:array[0], content:array[1]}
-            for idx,array of content.questions
-                $scope.interpellation.questions.push {asker:array[0], content:array[1]}
+            for _,[receiver, words] of content.answers
+                $scope.interpellation.answers.push {receiver, words}
+            for _,[asker, words] of content.questions
+                $scope.interpellation.questions.push {asker, words}
             for [type,entries] in content.interpellation when type is \interp
                 $scope.interp.push entries
             for [type,entries] in content.interpellation
@@ -303,14 +302,14 @@ angular.module 'app.controllers' []
                         conversation: []
                     }
 
-                    for [speaker, content] in entries
-                        section.conversation.push {speaker, content}
+                    for [speaker, words] in entries
+                        section.conversation.push {speaker, words}
                 else
                     section = {
                         questioner: null,
                         conversation:[{
                             speaker: type
-                            content: entries
+                            words: entries
                         }]
                     }
 
