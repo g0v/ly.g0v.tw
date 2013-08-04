@@ -1,3 +1,4 @@
 .calendar(ng-controller="LYCalendar",ngx-resize)
-  .time 立法院行程：{{start}} 至 {{end}}
+  .time 立法院行程：
+    select(ng-model="weeks", ng-options="o.label for o in weeksOpts", ng-change="update()")
   .grid(ng-app="ngGrid", ng-grid="gridOptions")

@@ -111,18 +111,28 @@ angular.module 'app.controllers' []
     ), false
 
     today = moment!startOf('day')
-    start = moment today .day 0
-    end = moment today .day 7
-    $scope.start = start .format "YYYY-MM-DD"
-    $scope.end = end .format "YYYY-MM-DD"
-    [start, end] = [start, end].map (.format "YYYY-MM-DD")
-    {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
-        params: do
-            s: JSON.stringify date: 1, time: 1
-            q: JSON.stringify do
-                date: $gt: start, $lt: end
-    .success
-    $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
+    $scope.weeksOpts = []
+    # well, 49 is 7 weeks. I just pick the number for no reaseon.
+    for i from 0 to 49 by 7
+      do ->
+        opt = {
+          start: moment today .day 0 - i
+          end: moment today .day 0 - i + 7
+        }
+        opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
+      |> $scope.weeksOpts.push
+    $scope.weeks = $scope.weeksOpts[0]
+    $scope.$watch 'weeks', ->
+      [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
+      $scope.start = $scope.weeks.start .format "YYYY-MM-DD"
+      $scope.end = $scope.weeks.end .format "YYYY-MM-DD"
+      {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
+          params: do
+              s: JSON.stringify date: 1, time: 1
+              q: JSON.stringify do
+                  date: $gt: start, $lt: end
+      .success
+      $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
 
 .controller LYBill: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.$watch '$state.params.billId' ->
