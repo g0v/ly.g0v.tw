@@ -170,7 +170,7 @@ stacked-bars = (data, $scope) ->
         .text("議案數")
 
 angular.module 'utils', []
-.controller 'topBtnCtrl' ($scope, $window) ->
+.controller 'topBtnCtrl' <[$scope $window]> ++ ($scope, $window) ->
     $scope.showBtn = false
     angular.element($window).bind 'scroll' ->
         console.log window.pageYOffset
