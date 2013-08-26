@@ -12,12 +12,16 @@ angular.module('partials', [])
 '<div ng-controller="LYCalendar" ngx-resize="ngx-resize" class="calendar"><div class="time">立法院行程：<select ng-model="weeks" ng-options="o.label for o in weeksOpts" ng-change="update()"></select></div><div ng-app="ngGrid" ng-grid="gridOptions" class="grid"></div></div>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
+  return $templateCache.put('/partials/debates.html', [
+'<div ng-controller="LYDebates" ngx-resize="ngx-resize" class="debates"><div ng-grid="gridOptions" class="grid"></div></div>',''].join("\n"));
+}])
+.run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/motions.html', [
 '<div ng-class="{list: sitting}" class="motions"><h1><a href="/motions/{{session}}">第八屆第二會期</a></h1><div ng-hide="sitting" class="row-fluid"><div class="span10 chart"></div><div class="span2 legends"></div></div><button id="btnTop" ng-controller="topBtnCtrl" ng-show="showBtn" ng-click="jumpToTop()" class="btn">Jump to Top</button><div ng-show="sitting" class="list"><h2>第 {{sitting}} 次院會</h2><div class="row-fluid"><div class="span2 sidebar"><ul class="nav nav-list"><li ng-repeat="s in allStatus" ng-click="setStatus(s.key)" ng-class="{active: s.key == status}"><a href="#">{{s.value}}</a></li></ul><input ng-model="filter" placeholder="Search" class="filter search-query"/></div><div class="span10 content"><ul class="nav nav-tabs"><li ng-repeat="s in allTypes" ng-click="setType(s.key)" ng-class="{active: s.key == type}"><a href="#">{{s.value}}</a></li></ul><ul ng-class="{{type}}" class="motions"><li ng-repeat="e in entries | filter:{status: status} | filter:filter" class="row"><div class="avatars"><span ng-repeat="avatar in e.avatars"><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small" ng-alt="{{avatar.name}}" ng-class="avatar.party" class="avatar"/></span></div><div class="motion"><span class="item">{{ e.item }}</span><span class="proposer">{{ e.proposer }}</span><a ng-href="/bill/{{ e.id }}"><span class="summary">{{ e.summary }}</span></a></div><div class="resolution">{{ e.resolution }}</div></li></ul></div></div></div></div>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/nav.html', [
-'<ul class="nav"><li ng-class="getClass(\'/motions\')"><a ng-href="/motions">議案</a></li><li ng-class="getClass(\'/calendar\')"><a ng-href="/calendar">預報</a></li><li ng-class="getClass(\'/sitting\')"><a ng-href="/sitting">院會紀錄</a></li></ul><ul class="nav pull-right"><li ng-class="getClass(\'/about\')"><a ng-href="/about">關於</a></li><li><a><div data-send="false" data-href="https://facebook.com/g0v.tw" data-width="120" data-layout="button_count" data-show-faces="false" data-font="verdana" class="fb-like"></div></a></li></ul>',''].join("\n"));
+'<ul class="nav"><li ng-class="getClass(\'/motions\')"><a ng-href="/motions">議案</a></li><li ng-class="getClass(\'/calendar\')"><a ng-href="/calendar">預報</a></li><li ng-class="getClass(\'/sitting\')"><a ng-href="/sitting">院會紀錄</a></li><li ng-class="getClass(\'/debates\')"><a ng-href="/debates">質詢</a></li></ul><ul class="nav pull-right"><li ng-class="getClass(\'/about\')"><a ng-href="/about">關於</a></li><li><a><div data-send="false" data-href="https://facebook.com/g0v.tw" data-width="120" data-layout="button_count" data-show-faces="false" data-font="verdana" class="fb-like"></div></a></li></ul>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/sitting.html', [
