@@ -332,9 +332,19 @@ angular.module 'app.controllers' []
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
         mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
 
-    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting, +enableRowSelection} <<< do
+    $scope.pagingOptions = {
+        pageSizes: [10 20 30]
+        pageSize: 30
+        currentPage: 1
+    }
+    $scope.$watch 'pagingOptions', !(newVal, oldVal)->
+        if (newVal.pageSize !== oldVal.pageSize || newVal.currentPage !== oldVal.currentPage)
+            $scope.getData newVal
+    , true
+    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting, +enableRowSelection, +enablePaging, +showFooter} <<< do
         rowHeight: 80
         data: \debates
+        pagingOptions: $scope.pagingOptions,
         i18n: \zh-tw
         columnDefs:
           * field: 'tts_id'
@@ -388,10 +398,13 @@ angular.module 'app.controllers' []
             displayName: \質詢性質
             width: '*'
 
-    data <- $http.get 'http://api.ly.g0v.tw/v0/collections/debates' 
+    $scope.getData = ({currentPage, pageSize})->
+        {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/debates' do
+            params: do
+                sk: (currentPage-1)*pageSize, l: pageSize
         .success
-    angular.forEach data.entries, !(value, key)->
-        tmp = []
-        value.date_asked = new Date value.date_asked
-        value.source = JSON.parse value.source
-    $scope.debates = data.entries    
+        angular.forEach entries, !(value, key)->
+            value.date_asked = new Date value.date_asked
+            value.source = JSON.parse value.source
+        $scope.debates = entries  
+    $scope.getData $scope.pagingOptions
