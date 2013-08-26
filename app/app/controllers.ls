@@ -326,12 +326,30 @@ angular.module 'app.controllers' []
             return '已答'
         else
             return '未答'
-    $scope.mly = ({{mly}:entity}, col) ->
+    $scope.mly = ({{mly}:entity}) ->
         return '' unless mly[0]
         party = LYService.resolveParty mly[0]
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
         mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
+    padLeft = (str, length) ->
+        if( str.length >= length)
+            return str
+        else
+            return padLeft '0'+str, length
+    $scope.source = ({{{link}:source}:entity}) ->
+        return '' unless link
+        str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
+        href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
+        """<a href="#{href}">原始連結</a>"""
 
+    $scope.answers = ({{answers}:entity}) ->
+        tmp = ''
+        angular.forEach answers, !(value) ->
+            link = value.source.link
+            str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
+            href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
+            tmp += """<div><a href="#{href}">原始連結</a></div>"""
+        tmp
     $scope.pagingOptions = {
         pageSizes: [10 20 30]
         pageSize: 30
@@ -357,8 +375,17 @@ angular.module 'app.controllers' []
             <div ng-bind-html-unsafe="mly(row)"></div>
             """
           * field: 'source'
-            visible: false
+            displayName: \質詢公報
+            cellTemplate: """
+            <div ng-bind-html-unsafe="source(row)"></div>
+            """
+          * field: 'answers'
+            displayName: \答復公報
+            cellTemplate: """
+            <div ng-bind-html-unsafe="answers(row)"></div>
+            """
           * field: 'summary'
+            displayName: \案由
             visible: false
           * field: 'answered'
             displayName: \答復
@@ -374,25 +401,25 @@ angular.module 'app.controllers' []
             width: 100px
             displayName: \類別
             cellTemplate: """
-            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """            
           * field: 'topic'
             displayName: \主題
             width: '*'
             cellTemplate: """
-            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """   
           * field: 'keywords'
             displayName: \關鍵詞
             width: '*'
             cellTemplate: """
-            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """               
           * field: 'answered_by'
             displayName: \答復人
             width: '*'
             cellTemplate: """
-            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """   
           * field: 'debate_type'
             displayName: \質詢性質
