@@ -320,4 +320,78 @@ angular.module 'app.controllers' []
 
     for entry in data.log
         parse ...entry
+.controller LYDebates: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
+    $scope.answer = (answer) ->
+        if answer
+            return '已答'
+        else
+            return '未答'
+    $scope.mly = ({{mly}:entity}, col) ->
+        return '' unless mly[0]
+        party = LYService.resolveParty mly[0]
+        avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
+        mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
 
+    $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting, +enableRowSelection} <<< do
+        rowHeight: 80
+        data: \debates
+        i18n: \zh-tw
+        columnDefs:
+          * field: 'tts_id'
+            displayName: \系統號
+            width: 100
+          * field: 'mly'
+            displayName: \質詢人
+            width: 130
+            cellTemplate: """
+            <div ng-bind-html-unsafe="mly(row)"></div>
+            """
+          * field: 'source'
+            visible: false
+          * field: 'summary'
+            visible: false
+          * field: 'answered'
+            displayName: \答復
+            width: 130
+            cellTemplate: """
+            <div ng-bind-html-unsafe="answer(row)"></div>
+            """            
+          * field: 'date_asked'
+            cellFilter: 'date: mediumDate'
+            width: 100px
+            displayName: \質詢日期
+          * field: 'category'
+            width: 100px
+            displayName: \類別
+            cellTemplate: """
+            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            """            
+          * field: 'topic'
+            displayName: \主題
+            width: '*'
+            cellTemplate: """
+            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            """   
+          * field: 'keywords'
+            displayName: \關鍵詞
+            width: '*'
+            cellTemplate: """
+            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            """               
+          * field: 'answered_by'
+            displayName: \答復人
+            width: '*'
+            cellTemplate: """
+            <div ng-repeat="c in row.getProperty(col.field)"><span class="label">{{c}}</span></div>
+            """   
+          * field: 'debate_type'
+            displayName: \質詢性質
+            width: '*'
+
+    data <- $http.get 'http://api.ly.g0v.tw/v0/collections/debates' 
+        .success
+    angular.forEach data.entries, !(value, key)->
+        tmp = []
+        value.date_asked = new Date value.date_asked
+        value.source = JSON.parse value.source
+    $scope.debates = data.entries    
