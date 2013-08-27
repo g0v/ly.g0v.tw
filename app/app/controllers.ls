@@ -330,13 +330,14 @@ angular.module 'app.controllers' []
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
         mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
     padLeft = (str, length) ->
-        | str.length < length => padLeft '0'+str, length
-        | otherwise           => str
+        if str.length >= length 
+            return str
+        padLeft '0'+str, length
     $scope.source = ({{{link}:source}:entity}) ->
         return '' unless link
         str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
         href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
-        """<a href="#{href}">質詢公報</a>"""
+        """<a href="#{href}" target="_blank">質詢公報</a>"""
 
     $scope.answers = ({{answers}:entity}) ->
         tmp = ''
