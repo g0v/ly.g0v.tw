@@ -322,33 +322,32 @@ angular.module 'app.controllers' []
         parse ...entry
 .controller LYDebates: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
     $scope.answer = (answer) ->
-        if answer
-            return '已答'
-        else
-            return '未答'
+        | answer         => '已答'
+        | otherwise      => '未答'
     $scope.mly = ({{mly}:entity}) ->
         return '' unless mly[0]
         party = LYService.resolveParty mly[0]
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
         mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
     padLeft = (str, length) ->
-        if( str.length >= length)
-            return str
-        else
-            return padLeft '0'+str, length
+        | str.length < length => padLeft '0'+str, length
+        | otherwise           => str
     $scope.source = ({{{link}:source}:entity}) ->
         return '' unless link
         str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
         href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
-        """<a href="#{href}">原始連結</a>"""
+        """<a href="#{href}">質詢公報</a>"""
 
     $scope.answers = ({{answers}:entity}) ->
         tmp = ''
         angular.forEach answers, !(value) ->
-            link = value.source.link
-            str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
-            href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
-            tmp += """<div><a href="#{href}">原始連結</a></div>"""
+            if(!value.source.text.match /口頭答復/)
+                link = value.source.link
+                str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
+                href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
+                tmp += """<div><a href="#{href}" target="_blank">書面答復</a></div>"""
+        if tmp === ''
+            tmp += """口頭(見質詢公報)"""
         tmp
     $scope.pagingOptions = {
         pageSizes: [10 20 30]
@@ -367,7 +366,7 @@ angular.module 'app.controllers' []
         columnDefs:
           * field: 'tts_id'
             displayName: \系統號
-            width: 100
+            width: 80
           * field: 'mly'
             displayName: \質詢人
             width: 130
@@ -376,6 +375,7 @@ angular.module 'app.controllers' []
             """
           * field: 'source'
             displayName: \質詢公報
+            width: 80
             cellTemplate: """
             <div ng-bind-html-unsafe="source(row)"></div>
             """
@@ -389,7 +389,7 @@ angular.module 'app.controllers' []
             visible: false
           * field: 'answered'
             displayName: \答復
-            width: 130
+            width: '50'
             cellTemplate: """
             <div ng-bind-html-unsafe="answer(row)"></div>
             """            
@@ -411,15 +411,15 @@ angular.module 'app.controllers' []
             """   
           * field: 'keywords'
             displayName: \關鍵詞
-            width: '*'
+            width: '200'
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """               
           * field: 'answered_by'
             displayName: \答復人
-            width: '*'
+            width: '80'
             cellTemplate: """
-            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
+            <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span >{{c}}</span></div>
             """   
           * field: 'debate_type'
             displayName: \質詢性質
