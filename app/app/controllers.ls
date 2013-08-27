@@ -382,6 +382,7 @@ angular.module 'app.controllers' []
             """
           * field: 'answers'
             displayName: \答復公報
+            width: 100
             cellTemplate: """
             <div ng-bind-html-unsafe="answers(row)"></div>
             """
@@ -396,10 +397,10 @@ angular.module 'app.controllers' []
             """            
           * field: 'date_asked'
             cellFilter: 'date: mediumDate'
-            width: 100px
+            width: '100'
             displayName: \質詢日期
           * field: 'category'
-            width: 100px
+            width: '*'
             displayName: \類別
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
@@ -412,7 +413,7 @@ angular.module 'app.controllers' []
             """   
           * field: 'keywords'
             displayName: \關鍵詞
-            width: '200'
+            width: '*'
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
             """               
