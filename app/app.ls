@@ -21,13 +21,23 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
     .state 'calendar' do
       url: '/calendar'
       templateUrl: '/partials/calendar.html'
+
+    .state 'sittings' do
+      url: '/sittings'
+      templateUrl: '/partials/sittings.html'
+      controller: \LYSittings
+    .state 'sittings.detail' do
+      url: '/{sitting}'
+
+    .state 'debates' do
+      url: '/debates'
+      templateUrl: '/partials/debates.html'
+
     .state 'sitting' do
       url: '/sitting'
       templateUrl: '/partials/sitting.html'
       controller: \LYSitting
-    .state 'debates' do
-      url: '/debates'
-      templateUrl: '/partials/debates.html'
+
     .state 'about' do
       url: '/about'
       templateUrl: '/partials/about.html'

@@ -126,7 +126,7 @@ angular.module 'app.controllers' []
       [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
       $scope.start = $scope.weeks.start .format "YYYY-MM-DD"
       $scope.end = $scope.weeks.end .format "YYYY-MM-DD"
-      {paging, entries} <- $http.get 'http://api.ly.g0v.tw/v0/collections/calendar' do
+      {paging, entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/calendar' do
           params: do
               s: JSON.stringify date: 1, time: 1
               q: JSON.stringify do
@@ -265,6 +265,14 @@ angular.module 'app.controllers' []
                 accepted: \查照
             names[s] ? s
     window.loadMotions $scope
+
+.controller LYSittings: <[$scope $http $state]> ++ ($scope, $http, $state) ->
+  $scope.$watch '$state.params.sitting' ->
+    {sitting} = $state.params
+    sitting <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
+      params: {+fo, q: JSON.stringify id: sitting}
+    .success
+    $scope <<< sitting
 
 .controller LYSitting: <[$scope $http]> ++ ($scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
