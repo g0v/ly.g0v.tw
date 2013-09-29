@@ -34,6 +34,8 @@ angular.module 'app.controllers' []
 
 .controller LYCalendar: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
     # XXX: unused.  use filter instead
+    $scope.type = 'hearing'
+
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
         res = for c in committee
@@ -97,8 +99,7 @@ angular.module 'app.controllers' []
             """
           * field: 'name'
             displayName: \名稱
-            visible: false
-            width: '*'
+            width: 320px
           * field: 'summary'
             displayName: \議程
             cellClass: \summary
@@ -122,7 +123,7 @@ angular.module 'app.controllers' []
         opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
       |> $scope.weeksOpts.push
     $scope.weeks = $scope.weeksOpts[0]
-    $scope.$watch 'weeks', ->
+    getData = ->
       [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
       $scope.start = $scope.weeks.start .format "YYYY-MM-DD"
       $scope.end = $scope.weeks.end .format "YYYY-MM-DD"
@@ -131,8 +132,13 @@ angular.module 'app.controllers' []
               s: JSON.stringify date: 1, time: 1
               q: JSON.stringify do
                   date: $gt: start, $lt: end
+                  type: $scope.type
       .success
       $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
+    $scope.$watch 'weeks', getData!
+    $scope.change = !(type) ->
+        $scope.type = type
+        getData!
 
 .controller LYBill: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.$watch '$state.params.billId' ->
