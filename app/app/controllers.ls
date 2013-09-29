@@ -135,7 +135,7 @@ angular.module 'app.controllers' []
                   type: $scope.type
       .success
       $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
-    $scope.$watch 'weeks', getData!
+    $scope.$watch 'weeks', getData
     $scope.change = !(type) ->
         $scope.type = type
         getData!
