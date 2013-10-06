@@ -3,6 +3,16 @@ ly.g0v.tw
 
 WARNING: this is work in progress and the file format is likely to change!
 
+# Usage
+
+to install needed packages
+
+    $ npm install
+
+to run app locally,
+
+    $ npm start    # then open http://localhost:3333/
+
 ## License
 The MIT license.
 
