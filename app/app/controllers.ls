@@ -326,6 +326,7 @@ angular.module 'app.controllers' []
 
     for entry in data.log
         parse ...entry
+
 .controller LYDebates: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
     $scope.answer = (answer) ->
         | answer         => '已答'
@@ -336,7 +337,7 @@ angular.module 'app.controllers' []
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
         mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
     padLeft = (str, length) ->
-        if str.length >= length 
+        if str.length >= length
             return str
         padLeft '0'+str, length
     $scope.source = ({{{link}:source}:entity}) ->
@@ -400,7 +401,7 @@ angular.module 'app.controllers' []
             width: '50'
             cellTemplate: """
             <div ng-bind-html-unsafe="answer(row)"></div>
-            """            
+            """
           * field: 'date_asked'
             cellFilter: 'date: mediumDate'
             width: '100'
@@ -410,25 +411,25 @@ angular.module 'app.controllers' []
             displayName: \類別
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
-            """            
+            """
           * field: 'topic'
             displayName: \主題
             width: '*'
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
-            """   
+            """
           * field: 'keywords'
             displayName: \關鍵詞
             width: '*'
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span class="label">{{c}}</span></div>
-            """               
+            """
           * field: 'answered_by'
             displayName: \答復人
             width: '80'
             cellTemplate: """
             <div ng-repeat="c in row.getProperty(col.field) track by $id($index)"><span >{{c}}</span></div>
-            """   
+            """
           * field: 'debate_type'
             displayName: \質詢性質
             width: '*'
@@ -441,5 +442,6 @@ angular.module 'app.controllers' []
         angular.forEach entries, !(value, key)->
             value.date_asked = new Date value.date_asked
             value.source = JSON.parse value.source
-        $scope.debates = entries  
+        $scope.debates = entries
     $scope.getData $scope.pagingOptions
+
