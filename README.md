@@ -13,7 +13,14 @@ to run app locally,
 
     $ npm start    # then open http://localhost:3333/
 
-## License
+# Terminologies
+
+List some terminologies which will be used in source code
+
+* annoucement - 報告
+* interpellation - 質詢事項
+
+# License
 The MIT license.
 
 Copyright (c) 2012 Chia-liang Kao
