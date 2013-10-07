@@ -39,6 +39,10 @@ html(lang='en',ng-app='ly.g0v.tw')
       .navbar.navbar-inverse.navbar-fixed-top
         .navbar-inner
           .container
+            button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
             a.brand(href='/') 零時政府立院報你知
             .nav-collapse.collapse(ng-include="'/partials/nav.html'")
       .container-fluid.main-content
