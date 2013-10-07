@@ -32,10 +32,10 @@ angular.module 'app.controllers' []
 
 .filter \committee, -> renderCommittee
 
-.controller LYCalendar: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
+.controller LYCalendar: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
     # XXX: unused.  use filter instead
     $scope.type = 'hearing'
-
+    $rootScope.activeTab = \calendar
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
         res = for c in committee
@@ -214,7 +214,11 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-.controller LYMotions: <[$scope $state LYService]> ++ ($scope, $state, LYService) ->
+.controller About: <[$rootScope]> ++ ($rootScope) ->
+    $rootScope.activeTab = \about
+
+.controller LYMotions: <[$rootScope $scope $state LYService]> ++ ($rootScope, $scope, $state, LYService) ->
+    $rootScope.activeTab = \motions
     var has-data
     $scope.session = '8-2'
     $scope.$on \data (_, d) -> $scope.$apply ->
@@ -272,9 +276,10 @@ angular.module 'app.controllers' []
             names[s] ? s
     window.loadMotions $scope
 
-.controller LYSitting: <[$scope $http]> ++ ($scope, $http) ->
+.controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
         .success
+    $rootScope.activeTab = \sitting
     $scope.json = data
     $scope.meta = data.meta
     $scope.annoucement = []
@@ -327,7 +332,8 @@ angular.module 'app.controllers' []
     for entry in data.log
         parse ...entry
 
-.controller LYDebates: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
+.controller LYDebates: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
+    $rootScope.activeTab = \debates
     $scope.answer = (answer) ->
         | answer         => '已答'
         | otherwise      => '未答'
