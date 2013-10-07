@@ -282,6 +282,25 @@ angular.module 'app.controllers' []
     $rootScope.activeTab = \sitting
     $scope.json = data
     $scope.meta = data.meta
+    $scope.meta.map = []
+
+    patterns = {
+        "立法院公報": /^立法院公報　/,
+        "主席": /^主　+席　/,
+        "時間": /^時　+間　/,
+        "地點": /^地　+點　/
+    }
+
+    data.meta.raw.forEach (v, i, a) ->
+        for type,pattern of patterns
+            if v.match pattern
+                v = v.replace pattern,""
+                key = type
+                break
+            else
+                key = ""
+        data.meta.map.push {key, value: v}
+
     $scope.annoucement = []
     $scope.interpellation = {answers: [], questions: [], interpellations: []}
     $scope.interp = []
