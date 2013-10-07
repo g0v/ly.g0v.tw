@@ -1091,6 +1091,7 @@
     float: none;
     padding-left: 5px;
     padding-right: 5px;
+  }
 }
 @media (min-width: 980px) {
   .nav-collapse.collapse {
