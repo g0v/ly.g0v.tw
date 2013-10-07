@@ -36,13 +36,11 @@ html(lang='en',ng-app='ly.g0v.tw')
               fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
     .wrapper
-      .navbar.navbar-fixed-top
+      .navbar.navbar-inverse.navbar-fixed-top
         .navbar-inner
           .container
-            .brand
-              a(href='/') ly.g0v.tw 台灣零時政府立法院
-            .nav-collapse
-              div(ng-include="'/partials/nav.html'")
+            a.brand(href='/') 零時政府立院報你知
+            .nav-collapse.collapse(ng-include="'/partials/nav.html'")
       .container-fluid.main-content
         div(ui-view)
       .push
