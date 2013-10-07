@@ -1,16 +1,25 @@
-div.row-fluid.sittings(ng-controller="LYSitting")
-    .span2.sidebar
-        ul.nav.nav-list.sidebarnav()
-            li
-                a(href="#announcement") 報告事項
-            li
-                a(href="#interpellation") 質詢事項
-            li(ng-repeat="item in interp")
-                a(href="#interpellation-{{item[0][0]}}") {{item[0][0]}}
-    .span10.content
+div.row-fluid(ng-controller="LYSitting")
+    .span2
+        .well.sidebar-nav
+            ul.nav.nav-list
+                ul.nav.nav-link
+                    li
+                        a(href="#announcement")
+                            i.icon-bookmark
+                            報告事項
+                    li
+                        a(href="#interpellation")
+                            i.icon-bookmark
+                            質詢事項
+                .ly-scroll
+                    li(ng-repeat="item in interp")
+                        a(href="#interpellation-{{item[0][0]}}") {{item[0][0]}}
+    .span10
         h1 立法院第 {{meta.ad}} 屆第 {{meta.session}} 會期 第 {{meta.sitting}} 次會議記錄
-        .meta
-            p(ng-repeat="row in meta.raw") {{row}}
+        .hero-unit
+            .row(ng-repeat="entry in meta.map")
+                .span3.td-title {{entry.key}}
+                .span9 {{entry.value}}
         .annoucement
             <a data-toggle="collapse" data-target="#annoucement" class="btn pull-right">+</a>
             h1 報告事項
