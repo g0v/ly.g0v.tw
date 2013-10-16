@@ -8,13 +8,9 @@
     <meta name="author" content="">
     <title ng-bind-template="{{pageTitle}}"></title>
     <link rel="stylesheet" href="/css/app.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-    <!--[if lte IE 7]>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-    <![endif]-->
-    <!--[if lte IE 8]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script><!--[if lte IE 7]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script><![endif]--><!--[if lte IE 8]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
@@ -26,6 +22,7 @@
     <script src="/js/partials.js"></script>
     <script src="/js/templates.js"></script>
     <script src="/js/app.js"></script>
+    <base href="/">
   </head>
   <body ng-controller="AppCtrl" ng-cloak data-spy="scroll">
     <div id="fb-root">
@@ -39,21 +36,14 @@
         }(document, 'script', 'facebook-jssdk'));
       </script>
     </div>
-    <div class="wrapper">
-      <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <div class="brand"><a href="/">ly.g0v.tw 台灣零時政府立法院</a></div>
-            <div class="nav-collapse">
-              <div ng-include="'/partials/nav.html'"></div>
-            </div>
-          </div>
-        </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="brand">零時政府立院報你知</a>
+        <div ng-include="'/partials/nav.html'" class="nav-collapse collapse"></div>
       </div>
-      <div class="container-fluid main-content">
-        <div ui-view></div>
-      </div>
-      <div class="push"></div>
+    </div>
+    <div class="container">
+      <div ui-view></div>
     </div>
   </body>
 </html>
