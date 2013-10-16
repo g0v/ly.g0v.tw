@@ -3,7 +3,24 @@ ly.g0v.tw
 
 WARNING: this is work in progress and the file format is likely to change!
 
-## License
+# Usage
+
+to install needed packages
+
+    $ npm install
+
+to run app locally,
+
+    $ npm start    # then open http://localhost:3333/
+
+# Terminologies
+
+List some terminologies which will be used in source code
+
+* annoucement - 報告
+* interpellation - 質詢事項
+
+# License
 The MIT license.
 
 Copyright (c) 2012 Chia-liang Kao

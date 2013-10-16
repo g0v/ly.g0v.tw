@@ -1,16 +1,16 @@
 ul.nav
-  li(ng-class="getClass('/motions')")
+  li(ng-class="getClass('/motions')", ng-class="{active:activeTab=='motions'}")
     a(ng-href='/motions') 議案
-  li(ng-class="getClass('/calendar')")
+  li(ng-class="getClass('/calendar')", ng-class="{active:activeTab=='calendar'}")
     a(ng-href='/calendar') 預報
-  li(ng-class="getClass('/sitting')")
+  li(ng-class="getClass('/sitting')", ng-class="{active:activeTab=='sitting'}")
     a(ng-href='/sitting') 院會紀錄
-  li(ng-class="getClass('/debates')")
+  li(ng-class="getClass('/debates')", ng-class="{active:activeTab=='debates'}")
     a(ng-href="/debates") 質詢
 
 ul.nav.pull-right
-  li(ng-class="getClass('/about')")
+  li(ng-class="getClass('/about')", ng-class="{active:activeTab=='about'}")
     a(ng-href='/about') 關於
-  li
+  li.fb-like
     a
       .fb-like(data-send="false",data-href="https://facebook.com/g0v.tw",data-width="120",data-layout="button_count",data-show-faces="false",data-font="verdana")

@@ -41,6 +41,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
     .state 'about' do
       url: '/about'
       templateUrl: '/partials/about.html'
+      controller: \About
     # Catch all
   $urlRouterProvider
     .otherwise('/motions')

@@ -32,8 +32,10 @@ angular.module 'app.controllers' []
 
 .filter \committee, -> renderCommittee
 
-.controller LYCalendar: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
+.controller LYCalendar: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
     # XXX: unused.  use filter instead
+    $scope.type = 'hearing'
+    $rootScope.activeTab = \calendar
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
         res = for c in committee
@@ -97,8 +99,7 @@ angular.module 'app.controllers' []
             """
           * field: 'name'
             displayName: \名稱
-            visible: false
-            width: '*'
+            width: 320px
           * field: 'summary'
             displayName: \議程
             cellClass: \summary
@@ -122,7 +123,7 @@ angular.module 'app.controllers' []
         opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
       |> $scope.weeksOpts.push
     $scope.weeks = $scope.weeksOpts[0]
-    $scope.$watch 'weeks', ->
+    getData = ->
       [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
       $scope.start = $scope.weeks.start .format "YYYY-MM-DD"
       $scope.end = $scope.weeks.end .format "YYYY-MM-DD"
@@ -131,8 +132,13 @@ angular.module 'app.controllers' []
               s: JSON.stringify date: 1, time: 1
               q: JSON.stringify do
                   date: $gt: start, $lt: end
+                  type: $scope.type
       .success
       $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
+    $scope.$watch 'weeks', getData
+    $scope.change = !(type) ->
+        $scope.type = type
+        getData!
 
 .controller LYBill: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.$watch '$state.params.billId' ->
@@ -208,7 +214,11 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-.controller LYMotions: <[$scope $state LYService]> ++ ($scope, $state, LYService) ->
+.controller About: <[$rootScope]> ++ ($rootScope) ->
+    $rootScope.activeTab = \about
+
+.controller LYMotions: <[$rootScope $scope $state LYService]> ++ ($rootScope, $scope, $state, LYService) ->
+    $rootScope.activeTab = \motions
     var has-data
     $scope.session = '8-2'
     $scope.$on \data (_, d) -> $scope.$apply ->
@@ -274,11 +284,31 @@ angular.module 'app.controllers' []
     .success
     $scope <<< sitting
 
-.controller LYSitting: <[$scope $http]> ++ ($scope, $http) ->
+.controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
         .success
+    $rootScope.activeTab = \sitting
     $scope.json = data
     $scope.meta = data.meta
+    $scope.meta.map = []
+
+    patterns = {
+        "立法院公報": /^立法院公報　/,
+        "主席": /^主　+席　/,
+        "時間": /^時　+間　/,
+        "地點": /^地　+點　/
+    }
+
+    data.meta.raw.forEach (v, i, a) ->
+        for type,pattern of patterns
+            if v.match pattern
+                v = v.replace pattern,""
+                key = type
+                break
+            else
+                key = ""
+        data.meta.map.push {key, value: v}
+
     $scope.annoucement = []
     $scope.interpellation = {answers: [], questions: [], interpellations: []}
     $scope.interp = []
@@ -328,7 +358,9 @@ angular.module 'app.controllers' []
 
     for entry in data.log
         parse ...entry
-.controller LYDebates: <[$scope $http LYService]> ++ ($scope, $http, LYService) ->
+
+.controller LYDebates: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
+    $rootScope.activeTab = \debates
     $scope.answer = (answer) ->
         | answer         => '已答'
         | otherwise      => '未答'
