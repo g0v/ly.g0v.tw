@@ -36,21 +36,14 @@
         }(document, 'script', 'facebook-jssdk'));
       </script>
     </div>
-    <div class="wrapper">
-      <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <div class="brand"><a href="/">立院報你知</a></div>
-            <div class="nav-collapse">
-              <div ng-include="'/partials/nav.html'"></div>
-            </div>
-          </div>
-        </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="brand">零時政府立院報你知</a>
+        <div ng-include="'/partials/nav.html'" class="nav-collapse collapse"></div>
       </div>
-      <div class="container-fluid main-content">
-        <div ui-view></div>
-      </div>
-      <div class="push"></div>
+    </div>
+    <div class="container">
+      <div ui-view></div>
     </div>
   </body>
 </html>
