@@ -2,10 +2,10 @@
 
 原文: http://www.openingparliament.org/declaration 
 
-正體中文翻譯授權: CC0 by g0v contributors
+正體中文翻譯授權: CC0 by g0v.tw contributors
 貢獻者：
 * 主力翻譯: Peilan, RSChiang, jbytw, Shirley Huang, ballII, 洪偉, joewang, James Huang, Iressa, 雨蒼, Ivan Fong, Anthony Liu
-* 協力翻譯: Johan Zhou, Shu-Ren Cheng, Whiski Tajfun, Jason Chen, Chia-Kai Liu, FourDollars, Yen-Ming Lee, Michael_Li
+* 協力翻譯: Johan Zhou, Shu-Ren Cheng, Whiski Tajfun, Jason Chen, Chia-Kai Liu, FourDollars, Yen-Ming Lee, Michael_Li, ipa
 
 > 《議會開放宣言》為公眾領域著作。請標示 OpeningParliament.org 為著作人
 
