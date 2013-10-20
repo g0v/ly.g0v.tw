@@ -4,7 +4,11 @@
   .row-fluid
     .span10.content
       h2(ng-show="loading") Loading
-      h1 {{ name }}
+      h1 第{{ ad }}屆第{{ session }}會期
+      h2(ng-show="extra")第 {{extra}} 次臨時會
+      h2 第{{ sitting }}次會議
+      .sitting-options
+        select(ng-model="chosenSitting", ng-options="sitting.name for sitting in sittingsSummary")
       .role.committee(ng-show="committee")
         ul
           li(ng-repeat="c in committee")
@@ -12,10 +16,17 @@
               img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
               span.name {{c.name}}委員會
       // XXX use mly filter to set styles
-      .chair 主席 {{ dates[0].chair }}
-      .dates(ng-repeat="entry in dates")
-        .date {{ entry.date }} {{ entry.time }}
-      .summary {{ summary }}
+      .meta
+        .chair(ng-show="dates[0].chair") 主席 {{ dates[0].chair }}
+        .dates
+          時間
+          .date(ng-show="dates", ng-repeat="entry in dates")
+            span.date {{entry.date}} :
+            span.time-start {{entry.time_start}} - 
+            span.time-end {{entry.time_end}}
+        .summary(ng-show="summary")
+          概要
+          p {{ summary }}
       // XXX: show onair and upcoming ivod link
       // XXX: search archived ivod clips for past sittings
       // XXX: show agenda from misq, annotated with info from npl

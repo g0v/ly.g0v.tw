@@ -340,24 +340,31 @@ angular.module 'app.controllers' []
             names[s] ? s
     window.loadMotions $scope
 .controller LYSittings: <[$scope $http $state]> ++ ($scope, $http, $state) ->
-  if !$state.params.sitting
-    if $scope.sitting
-      console.log 'has sitting'
+  if !$scope.sittingsSummary
+    console.log 'Has no list of sittings, fetch it'
+    $scope.loading = true
+    {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings?q={"ad":8,"committee":null}&f={"motions":0}'
+    .success
+    $scope.sittingsSummary = entries
+    if !$state.params.sitting
+      console.log 'Not specify any sitting in url, try to forward to the last one:', $scope.chosenSitting.id
+      $scope.loading = true
+      $scope.chosenSitting = $scope.sittingsSummary[$scope.sittingsSummary.length - 1]
+      $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
     else
-      $scope.loading = true
-      {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings?q={"ad":8,"committee":null}&f={"motions":0}'
-      .success
-      last = entries[entries.length - 1]
-      $state.transitionTo 'sittings.detail', { sitting: last.id }
-      console.log 'Not specify any sitting, try to find out the lastest one:', last.id
-      $scope.loading = true
-  $scope.$watch '$state.params.sitting' ->
-    {sitting} = $state.params
-    sitting <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
-      params: {+fo, q: JSON.stringify id: sitting}
+      console.log 'Specified a sitting to read. To make the model sittingSummary matches url'
+      $scope.sittingsSummary.forEach (s) ->
+        $scope.chosenSitting = s if s.id === $state.params.sitting
+  $scope.$watch 'chosenSitting' ->
+    return unless $scope.chosenSitting
+    {id} = $scope.chosenSitting
+    console.log 'User chose a sitting to read, transit to it and fetch corresponding data', id
+    $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
+    result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
+      params: {+fo, q: JSON.stringify id: id}
     .success
     $scope.loading = false
-    $scope <<< sitting
+    $scope <<< result
   $scope.playFrom = (seconds) ->
     $scope.player.playVideo!
     $scope.player.seekTo seconds
@@ -365,6 +372,7 @@ angular.module 'app.controllers' []
     if $state.current.name is \sittings.detail.video
       return if $scope.loaded
       $scope.loaded = true
+      console.log 'Loading sitting data of', $state.params.sitting
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
       whole = [v for v in videos when v.firm is \whole]
