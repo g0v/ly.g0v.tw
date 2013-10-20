@@ -1,20 +1,28 @@
 .sittings(ng-cloak)
-.row-fluid
-  .span10.content
-    h2(ng-show="loading") Loading
-    h1 {{ name }}
-    .role.committee(ng-show="committee")
-      ul
-        li(ng-repeat="c in committee")
-          span
-            img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-            span.name {{c.name}}委員會
-    // XXX use mly filter to set styles
-    .chair 主席 {{ dates[0].chair }}
-    .dates(ng-repeat="entry in dates")
-      .date {{ entry.date }} {{ entry.time }}
-    .summary {{ summary }}
-    // XXX: show onair and upcoming ivod link
-    // XXX: search archived ivod clips for past sittings
-    // XXX: show agenda from misq, annotated with info from npl
-    // XXX: show debates, wrans if YS
+  script(src="https://www.youtube.com/iframe_api")
+  script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
+  .row-fluid
+    .span10.content
+      h2(ng-show="loading") Loading
+      h1 {{ name }}
+      .role.committee(ng-show="committee")
+        ul
+          li(ng-repeat="c in committee")
+            span
+              img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+              span.name {{c.name}}委員會
+      // XXX use mly filter to set styles
+      .chair 主席 {{ dates[0].chair }}
+      .dates(ng-repeat="entry in dates")
+        .date {{ entry.date }} {{ entry.time }}
+      .summary {{ summary }}
+      // XXX: show onair and upcoming ivod link
+      // XXX: search archived ivod clips for past sittings
+      // XXX: show agenda from misq, annotated with info from npl
+      // XXX: show debates, wrans if YS
+  .row-fluid
+    #player
+    .control
+        input(ng-model="start")
+        a.btn.primary(ng-click="playFrom(start)") Play
+    svg.waveform

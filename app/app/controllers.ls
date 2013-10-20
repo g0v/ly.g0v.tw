@@ -17,6 +17,53 @@ renderCommittee = (committee) ->
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
+dowave = (wave) ->
+  margin = top:10, left: 70, right: 30, bottom: 50
+  w = 960 - margin.left - margin.right
+  h = 100 - margin.top - margin.bottom
+
+  parseDate = d3.time.format "%YM%m" .parse;
+
+  svg = d3.select("svg.waveform")
+    .attr "width", w + margin.left + margin.right
+    .attr "height", h + margin.top + margin.bottom
+    .append "g"
+    .attr "transform", "translate(#{margin.left},#{margin.top})"
+
+  chapter = [
+  ]
+
+  chapter.forEach -> it.date = parseDate it.date
+
+  x = d3.scale.linear!range [0, w]
+    .domain [0, wave.length]
+  y = d3.scale.linear!range [h, 0]
+    .domain [0, d3.max wave]
+
+  xAxis = d3.svg.axis!scale x .orient "bottom"
+  yAxis = d3.svg.axis!scale y .orient "left" .tickValues 3
+
+  area = d3.svg.area!
+    .interpolate "basic"
+    .x (d,i) -> x i
+    .y0 h
+    .y -> y it
+
+  svg.append "g"
+    .attr "class", "y axis"
+    .call yAxis
+
+  svg.append "g"
+    .attr "class", "x axis"
+    .attr "transform", "translate(0,#h)"
+    .call xAxis
+
+  svg.append "path"
+    .datum wave
+    .attr "d" area
+    .style \stroke \black
+    .style \fill \steelblue
+
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
 
@@ -275,7 +322,6 @@ angular.module 'app.controllers' []
                 accepted: \查照
             names[s] ? s
     window.loadMotions $scope
-
 .controller LYSittings: <[$scope $http $state]> ++ ($scope, $http, $state) ->
   if !$state.params.sitting
     if $scope.sitting
@@ -296,6 +342,46 @@ angular.module 'app.controllers' []
     .success
     $scope.loading = false
     $scope <<< sitting
+  $scope.playFrom = (seconds) ->
+    $scope.player.playVideo!
+    $scope.player.seekTo seconds
+  $scope.$watch '$state.current.name' ->
+    if $state.current.name is \sittings.detail.video
+      return if $scope.loaded
+      $scope.loaded = true
+      videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos" do
+        params: {q: JSON.stringify firm: \whole}
+      .success
+      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{videos.0.wmvid}.json" .success
+      dowave wave
+      var player
+      done = false
+      onPlayerReady = (event) ->
+        $scope.player = event.target
+        event.target.playVideo!
+
+      onPlayerStateChange = (event) ->
+        if event.data is YT.PlayerState.PLAYING and not done
+          event.target.seekTo 7200
+          <- setTimeout _, 6000
+          event.target.stopVideo!
+          done := true
+
+      do
+        <- setTimeout _, 3000ms
+        p = new YT.Player 'player' do
+          height: '390'
+          width: '640'
+          videoId: videos.0.youtube_id
+          startSeconds: 3600
+          endSeconds: 7200
+          events:
+            onReady: onPlayerReady
+            onStateChange: onPlayerStateChange
+
+
+    else
+      # disabled
 
 .controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'

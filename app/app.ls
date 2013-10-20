@@ -28,6 +28,8 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
       controller: \LYSittings
     .state 'sittings.detail' do
       url: '/{sitting}'
+    .state 'sittings.detail.video' do
+      url: '/video'
 
     .state 'debates' do
       url: '/debates'
