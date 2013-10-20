@@ -17,7 +17,7 @@ renderCommittee = (committee) ->
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
-dowave = (wave) ->
+dowave = (wave, cb) ->
   margin = top:10, left: 70, right: 30, bottom: 50
   w = 960 - margin.left - margin.right
   h = 100 - margin.top - margin.bottom
@@ -27,6 +27,10 @@ dowave = (wave) ->
   svg = d3.select("svg.waveform")
     .attr "width", w + margin.left + margin.right
     .attr "height", h + margin.top + margin.bottom
+    .on \click ->
+      x0 = x.invert d3.mouse(@).0
+      cb x0
+
     .append "g"
     .attr "transform", "translate(#{margin.left},#{margin.top})"
 
@@ -41,17 +45,12 @@ dowave = (wave) ->
     .domain [0, d3.max wave]
 
   xAxis = d3.svg.axis!scale x .orient "bottom"
-  yAxis = d3.svg.axis!scale y .orient "left" .tickValues 3
 
   area = d3.svg.area!
     .interpolate "basic"
     .x (d,i) -> x i
     .y0 h
     .y -> y it
-
-  svg.append "g"
-    .attr "class", "y axis"
-    .call yAxis
 
   svg.append "g"
     .attr "class", "x axis"
@@ -361,14 +360,15 @@ angular.module 'app.controllers' []
       wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{videos.0.wmvid}.json" .success
       if duration > wave.length
         wave ++= [1 to duration-(wave.length)].map -> 0
-      dowave wave
+      dowave wave, -> $scope.playFrom it
       var player
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
-        event.target.playVideo!
 
       onPlayerStateChange = (event) ->
+        return
+        # XXX demo
         if event.data is YT.PlayerState.PLAYING and not done
           event.target.seekTo 7200
           <- setTimeout _, 6000
