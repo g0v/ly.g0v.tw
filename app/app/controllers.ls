@@ -17,7 +17,7 @@ renderCommittee = (committee) ->
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
-dowave = (wave, cb) ->
+dowave = (wave, clips, cb) ->
   margin = top:10, left: 70, right: 30, bottom: 50
   w = 960 - margin.left - margin.right
   h = 100 - margin.top - margin.bottom
@@ -62,6 +62,20 @@ dowave = (wave, cb) ->
     .attr "d" area
     .style \stroke \black
     .style \fill \steelblue
+
+#  svg.append "g" .addClass \clips
+  svg.selectAll \rect
+      .data clips .enter!
+      .append \rect
+      .attr \x -> x(it.offset / 1000)
+      .attr \y -> 0
+      .attr \width -> 10
+      .attr \height -> 10
+      .style \stroke \steelblue
+      .style \fill \none
+      .each ->
+        avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
+        $ @ .append """<svg:image class="avatar small" x=10 y=10 width=10 height=10 xlink:href="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{it.speaker}">"""
 
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
@@ -348,19 +362,20 @@ angular.module 'app.controllers' []
     if $state.current.name is \sittings.detail.video
       return if $scope.loaded
       $scope.loaded = true
-      videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos" do
-        params: {q: JSON.stringify firm: \whole}
+      videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
+      whole = [v for v in videos when v.firm is \whole]
+      start = new Date whole.0.time
+      clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
-      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{videos.0.youtube_id}&key=#{YOUTUBE_APIKEY}
+      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
      &part=snippet,contentDetails,statistics,status" .success
       [_, h, m, s] = details.items.0.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
       duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
-      console.log details, duration
-      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{videos.0.wmvid}.json" .success
+      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{whole.0.wmvid}.json" .success
       if duration > wave.length
         wave ++= [1 to duration-(wave.length)].map -> 0
-      dowave wave, -> $scope.playFrom it
+      dowave wave, clips, -> $scope.playFrom it
       var player
       done = false
       onPlayerReady = (event) ->
@@ -380,7 +395,7 @@ angular.module 'app.controllers' []
         p = new YT.Player 'player' do
           height: '390'
           width: '640'
-          videoId: videos.0.youtube_id
+          videoId: whole.0.youtube_id
           startSeconds: 3600
           endSeconds: 7200
           events:
