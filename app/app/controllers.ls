@@ -352,7 +352,15 @@ angular.module 'app.controllers' []
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos" do
         params: {q: JSON.stringify firm: \whole}
       .success
+      YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
+      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{videos.0.youtube_id}&key=#{YOUTUBE_APIKEY}
+     &part=snippet,contentDetails,statistics,status" .success
+      [_, h, m, s] = details.items.0.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
+      duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
+      console.log details, duration
       wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{videos.0.wmvid}.json" .success
+      if duration > wave.length
+        wave ++= [1 to duration-(wave.length)].map -> 0
       dowave wave
       var player
       done = false
