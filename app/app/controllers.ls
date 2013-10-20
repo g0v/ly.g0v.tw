@@ -343,7 +343,6 @@ angular.module 'app.controllers' []
   if !$state.params.sitting
     if $scope.sitting
       console.log 'has sitting'
-      debugger
     else
       $scope.loading = true
       {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings?q={"ad":8,"committee":null}&f={"motions":0}'
