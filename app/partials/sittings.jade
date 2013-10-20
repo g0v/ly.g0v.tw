@@ -1,6 +1,7 @@
 .sittings(ng-cloak)
 .row-fluid
   .span10.content
+    h2(ng-show="loading") Loading
     h1 {{ name }}
     .role.committee(ng-show="committee")
       ul

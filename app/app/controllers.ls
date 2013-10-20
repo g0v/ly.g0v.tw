@@ -277,11 +277,24 @@ angular.module 'app.controllers' []
     window.loadMotions $scope
 
 .controller LYSittings: <[$scope $http $state]> ++ ($scope, $http, $state) ->
+  if !$state.params.sitting
+    if $scope.sitting
+      console.log 'has sitting'
+      debugger
+    else
+      $scope.loading = true
+      {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings?q={"ad":8,"committee":null}&f={"motions":0}'
+      .success
+      last = entries[entries.length - 1]
+      $state.transitionTo 'sittings.detail', { sitting: last.id }
+      console.log 'Not specify any sitting, try to find out the lastest one:', last.id
+      $scope.loading = true
   $scope.$watch '$state.params.sitting' ->
     {sitting} = $state.params
     sitting <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
       params: {+fo, q: JSON.stringify id: sitting}
     .success
+    $scope.loading = false
     $scope <<< sitting
 
 .controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
