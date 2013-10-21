@@ -351,31 +351,74 @@ angular.module 'app.controllers' []
                 accepted: \查照
             names[s] ? s
     window.loadMotions $scope
+
 .controller LYSittings: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
-  if !$scope.sittingsSummary
-    console.log 'Has no list of sittings, fetch it'
-    $scope.loading = true
-    {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings?q={"ad":8,"committee":null}&f={"motions":0}'
-    .success
-    $scope.sittingsSummary = entries
-    if !$state.params.sitting
-      $scope.loading = true
-      $scope.chosenSitting = $scope.sittingsSummary[0]
-      console.log 'Not specify any sitting in url, try to forward to the last one:', $scope.chosenSitting.id
-      $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
+  $scope.committees = committees
+  $scope <<< lists:{}
+
+  $scope.setContext = (ctx) ->
+    $scope.context = ctx
+    $state.params.sitting = null
+
+  $scope.$watch '$state.params.sitting' ->
+    if $state.params.sitting
+      console.log 'specified sitting, get context from id of sitting'
+      $scope.context = $state.params.sitting.replace /[\d-]/g,''
     else
-      console.log 'Specified a sitting to read. To make the model sittingSummary matches url'
-      $scope.chosenSitting = [s for {id}:s in $scope.sittingsSummary when id is $state.params.sitting]?0
-  $scope.$watch 'chosenSitting' ->
-    return unless $scope.chosenSitting
+      console.log 'no specified sitting, use YS as default context if necessary'
+      $scope.context = 'YS' if !$scope.context
+
+  $scope.$watch 'context' (newV, oldV)->
+    return unless (newV or oldV)
+    console.log 'current context is ', $scope.context
+    if $scope.lists.hasOwnProperty $scope.context
+      $scope.currentList = $scope.lists[$scope.context]
+    else
+      console.log 'using context that we do not have yet. fetch it '
+      loadList!
+
+  loadList = (length) ->
+    if committees[$scope.context]
+      type = "{\"" + $scope.context + "\"}"
+    else
+      type = null
+
+    length = 40 if !length
+    $scope.loadingList = true
+    {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings' do
+      params: {q:{"ad":8,"committee": type},l:length, f:{"motions":0}}
+    .success
+    $scope.loadingList = false
+    $scope.lists[$scope.context] = entries
+    $scope.currentList = $scope.lists[$scope.context]
+
+  $scope.$watch 'currentList' (newV, oldV)->
+    return unless $scope.currentList
+    matched = [s for {id}:s in $scope.currentList when id is $state.params.sitting]?0
+    if matched
+      $scope.chosenSitting = matched
+    else
+      specified = $state.params.sitting
+      if specified
+        console.log 'user specified a id out of fetched list, use the i and keep drop-down list blank'
+        loadSitting specified
+      else
+        console.log 'user move to a new context, use the lastest sitting by default'
+        $scope.chosenSitting = $scope.currentList[0]
+
+  $scope.$watch 'chosenSitting' (newV, oldV)->
+    return unless newV
     {id} = $scope.chosenSitting
-    console.log 'User chose a sitting to read, transit to it and fetch corresponding data', id
+    loadSitting $scope.chosenSitting.id
+
+  loadSitting = (id) ->
     state = if $state.current.name is /^sittings.detail/ => $state.current.name else 'sittings.detail'
-    $state.transitionTo state, { sitting: $scope.chosenSitting.id }
+    $state.transitionTo 'sittings.detail', { sitting: id }
+    $scope.loadingSitting = true
     result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
       params: {+fo, q: JSON.stringify id: id}
     .success
-    $scope.loading = false
+    $scope.loadingSitting = false
     $scope <<< result
     $scope.data = []
     $scope.data[\announcement] = getMotionsInType result.motions, \announcement
