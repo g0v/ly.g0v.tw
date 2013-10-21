@@ -359,7 +359,8 @@ angular.module 'app.controllers' []
     return unless $scope.chosenSitting
     {id} = $scope.chosenSitting
     console.log 'User chose a sitting to read, transit to it and fetch corresponding data', id
-    $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
+    $state.params.sitting = $scope.chosenSitting
+    $state.transitionTo 'sittings.detail' unless $state.current.name is /^sittings.detail/
     result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
       params: {+fo, q: JSON.stringify id: id}
     .success
@@ -383,10 +384,6 @@ angular.module 'app.controllers' []
      &part=snippet,contentDetails,statistics,status" .success
       [_, h, m, s] = details.items.0.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
       duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
-      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{whole.0.wmvid}.json" .success
-      if duration > wave.length
-        wave ++= [1 to duration-(wave.length)].map -> 0
-      dowave wave, clips, -> $scope.playFrom it
       var player
       done = false
       onPlayerReady = (event) ->
@@ -412,6 +409,14 @@ angular.module 'app.controllers' []
           events:
             onReady: onPlayerReady
             onStateChange: onPlayerStateChange
+      mkwave = (wave) ->
+        if duration > wave.length
+          wave ++= [1 to duration-(wave.length)].map -> 0
+        dowave wave, clips, -> $scope.playFrom it
+      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{whole.0.wmvid}.json"
+      .error -> mkwave []
+      .success
+      mkwave wave
 
 
     else
