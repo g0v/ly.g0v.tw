@@ -339,7 +339,7 @@ angular.module 'app.controllers' []
                 accepted: \查照
             names[s] ? s
     window.loadMotions $scope
-.controller LYSittings: <[$scope $http $state]> ++ ($scope, $http, $state) ->
+.controller LYSittings: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
   if !$scope.sittingsSummary
     console.log 'Has no list of sittings, fetch it'
     $scope.loading = true
@@ -365,6 +365,50 @@ angular.module 'app.controllers' []
     .success
     $scope.loading = false
     $scope <<< result
+    $scope.data = []
+    $scope.data[\announcement] = getMotionsInType result.motions, \announcement
+    $scope.data[\discussion] = getMotionsInType result.motions, \discussion
+    $scope.data[\exmotion] = getMotionsInType result.motions, \exmotion
+    $scope.setType \announcement
+  getMotionsInType = (motions, type) ->
+    return [m for m in motions when m.motion_class is type]
+  $scope <<< do
+      allTypes:
+          * key: \announcement
+            value: \報告事項
+          * key: \discussion
+            value: \討論事項
+          * key: \exmotion
+            value: \臨時提案
+      setType: (type) ->
+          entries = $scope.data[type]
+          allStatus = [key: \all, value: \全部] ++ [{key: a, value: $scope.statusName a} for a of {[e.status ? \unknown, true] for e in entries}]
+          $scope.status = '' unless $scope.status in allStatus.map (.key)
+          for e in entries when !e.avatars?
+              if e.proposed_by?match /委員(.*?)(、|等)/
+                  party = LYService.resolveParty that.1
+                  e.avatars = [party: party, name: that.1, avatar: CryptoJS.MD5 "MLY/#{that.1}" .toString!]
+          $scope <<< {type, entries, allStatus}
+
+      setStatus: (s) ->
+          s = '' if s is \all
+          s = '' if s is \unknown
+          $scope.status = s
+      statusName: (s) ->
+          names = do
+              unknown: \未知
+              other: \其他
+              passed: \通過
+              consultation: \協商
+              retrected: \撤回
+              unhandled: \未處理
+              ey: \請行政院研處
+              prioritized: \逕付二讀
+              committee: \交委員會
+              rejected: \退回
+              accepted: \查照
+          names[s] ? s
+
   $scope.playFrom = (seconds) ->
     $scope.player.playVideo!
     $scope.player.seekTo seconds

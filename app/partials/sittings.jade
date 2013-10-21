@@ -1,14 +1,15 @@
 .sittings(ng-cloak)
   script(src="https://www.youtube.com/iframe_api")
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
+  h2(ng-show="loading") Loading
+  h1
+    span 第 {{ ad }} 屆第 {{ session }} 會期
+    span(ng-show="extra") 第 {{extra}} 次臨時會
+    span 第 {{ sitting }} 次會議
+    .sitting-options
+        select(ng-model="chosenSitting", ng-options="sitting.name for sitting in sittingsSummary")
   .row-fluid
     .span10.content
-      h2(ng-show="loading") Loading
-      h1 第{{ ad }}屆第{{ session }}會期
-      h2(ng-show="extra")第 {{extra}} 次臨時會
-      h2 第{{ sitting }}次會議
-      .sitting-options
-        select(ng-model="chosenSitting", ng-options="sitting.name for sitting in sittingsSummary")
       .role.committee(ng-show="committee")
         ul
           li(ng-repeat="c in committee")
@@ -27,6 +28,22 @@
         .summary(ng-show="summary")
           概要
           p {{ summary }}
+      .entries.motions
+          ul(class="nav nav-tabs")
+            li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
+              a(href="") {{s.value}}
+          .list
+            ul.motions(ng-class="{{type}}")
+                li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+                    .avatars
+                        span(ng-repeat="avatar in e.avatars")
+                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
+                    .motion
+                        span.item {{ e.item }}
+                        span.proposer {{ e.proposed_by }}
+                        a(ng-href="/bill/{{ e.bill_id }}")
+                            span.summary {{ e.summary }}
+                    .resolution {{ e.resolution }}
       // XXX: show onair and upcoming ivod link
       // XXX: search archived ivod clips for past sittings
       // XXX: show agenda from misq, annotated with info from npl
