@@ -348,9 +348,9 @@ angular.module 'app.controllers' []
     .success
     $scope.sittingsSummary = entries
     if !$state.params.sitting
-      console.log 'Not specify any sitting in url, try to forward to the last one:', $scope.chosenSitting.id
       $scope.loading = true
       $scope.chosenSitting = $scope.sittingsSummary[$scope.sittingsSummary.length - 1]
+      console.log 'Not specify any sitting in url, try to forward to the last one:', $scope.chosenSitting.id
       $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
     else
       console.log 'Specified a sitting to read. To make the model sittingSummary matches url'
