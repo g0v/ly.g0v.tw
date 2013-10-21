@@ -353,14 +353,13 @@ angular.module 'app.controllers' []
       $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
     else
       console.log 'Specified a sitting to read. To make the model sittingSummary matches url'
-      $scope.sittingsSummary.forEach (s) ->
-        $scope.chosenSitting = s if s.id === $state.params.sitting
+      $scope.chosenSitting = [s for {id}:s in $scope.sittingsSummary when id is $state.params.sitting]?0
   $scope.$watch 'chosenSitting' ->
     return unless $scope.chosenSitting
     {id} = $scope.chosenSitting
     console.log 'User chose a sitting to read, transit to it and fetch corresponding data', id
-    $state.params.sitting = $scope.chosenSitting
-    $state.transitionTo 'sittings.detail' unless $state.current.name is /^sittings.detail/
+    state = if $state.current.name is /^sittings.detail/ => $state.current.name else 'sittings.detail'
+    $state.transitionTo state, { sitting: $scope.chosenSitting.id }
     result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
       params: {+fo, q: JSON.stringify id: id}
     .success
@@ -369,11 +368,10 @@ angular.module 'app.controllers' []
   $scope.playFrom = (seconds) ->
     $scope.player.playVideo!
     $scope.player.seekTo seconds
-  $scope.$watch '$state.current.name' ->
+  $scope.$watch '$state.current.name + $state.params.sitting' ->
     if $state.current.name is \sittings.detail.video
-      return if $scope.loaded
-      $scope.loaded = true
-      console.log 'Loading sitting data of', $state.params.sitting
+      return if $scope.loaded is $state.params.sitting
+      $scope.loaded = $state.params.sitting
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
       whole = [v for v in videos when v.firm is \whole]
