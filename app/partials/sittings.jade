@@ -28,7 +28,7 @@
         .summary(ng-show="summary")
           概要
           p {{ summary }}
-  .row-fluid
+  .row-fluid(ng-show="loaded")
     #player
     svg.waveform
   .row-fluid

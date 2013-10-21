@@ -460,10 +460,9 @@ angular.module 'app.controllers' []
       .error -> mkwave []
       .success
       mkwave wave
-
-
     else
       # disabled
+      $scope.loaded = null
 
 .controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
