@@ -23,11 +23,16 @@
           時間
           .date(ng-show="dates", ng-repeat="entry in dates")
             span.date {{entry.date}} :
-            span.time-start {{entry.time_start}} - 
+            span.time-start {{entry.time_start}} -
             span.time-end {{entry.time_end}}
         .summary(ng-show="summary")
           概要
           p {{ summary }}
+  .row-fluid
+    #player
+    svg.waveform
+  .row-fluid
+    .span10.content
       .entries.motions
           ul(class="nav nav-tabs")
             li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
@@ -48,6 +53,3 @@
       // XXX: search archived ivod clips for past sittings
       // XXX: show agenda from misq, annotated with info from npl
       // XXX: show debates, wrans if YS
-  .row-fluid
-    #player
-    svg.waveform
