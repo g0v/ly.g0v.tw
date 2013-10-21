@@ -17,23 +17,25 @@
               img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
               span.name {{c.name}}委員會
       // XXX use mly filter to set styles
-      .meta
-        .chair(ng-show="dates[0].chair") 主席 {{ dates[0].chair }}
-        .dates
-          時間
-          .date(ng-show="dates", ng-repeat="entry in dates")
-            span.date {{entry.date}} :
-            span.time-start {{entry.time_start}} -
-            span.time-end {{entry.time_end}}
-        .summary(ng-show="summary")
-          概要
-          p {{ summary }}
-  .row-fluid(ng-show="loaded")
-    #player
-    svg.waveform
-  .row-fluid
-    .span10.content
+      .hero-unit
+        .row(ng-show="dates[0].chair")
+          .span3.td-title 主席
+          .span9 {{ dates[0].chair }}
+        .row(ng-show="dates", ng-repeat="entry in dates")
+          .span3.td-title
+            span(ng-show="$index==0") 時間
+          .span9
+            {{entry.date}} : {{entry.time_start}} -  {{entry.time_end}}
+        .row(ng-show="summary")
+          .span3.td-title 概要
+          .span9 {{ summary }}
+      .row-fluid(ng-show="loaded")
+        #player
+        svg.waveform
+      .row-fluid
+        .span10.content
       .entries.motions
+          input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
           ul(class="nav nav-tabs")
             li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
               a(href="") {{s.value}}
