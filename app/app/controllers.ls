@@ -63,19 +63,23 @@ dowave = (wave, clips, cb) ->
     .style \stroke \black
     .style \fill \steelblue
 
-#  svg.append "g" .addClass \clips
-  svg.selectAll \rect
-      .data clips .enter!
-      .append \rect
-      .attr \x -> x(it.offset / 1000)
-      .attr \y -> 0
-      .attr \width -> 10
-      .attr \height -> 10
-      .style \stroke \steelblue
-      .style \fill \none
-      .each ->
-        avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
-        $ @ .append """<svg:image class="avatar small" x=10 y=10 width=10 height=10 xlink:href="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{it.speaker}">"""
+  svg.selectAll \g.avatar .data clips .enter!append \g
+      ..attr \class \avatar
+      ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
+      ..append \image
+        .attr \class "avatar small"
+        .attr \width 10
+        .attr \height 10
+        .attr \xlink:href ->
+          avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
+          "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small"
+        .attr \alt -> it.speaker
+      ..append \rect
+        .attr \width 10
+        .attr \height 10
+        .style \stroke \steelblue
+        .style \stroke-width \1px
+        .style \fill \none
 
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
