@@ -9,7 +9,7 @@ angular.module('partials', [])
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/calendar.html', [
-'<div ng-controller="LYCalendar" ngx-resize="ngx-resize" class="calendar"><ul class="nav nav-tabs"><li ng-class="{active: type == \'hearing\'}"><a ng-click="change(\'hearing\')">公聽會</a></li><li ng-class="{active: type == \'sitting\'}"><a ng-click="change(\'sitting\')">一般議程</a></li></ul><div class="time">立法院行程：<select ng-model="weeks" ng-options="o.label for o in weeksOpts" ng-change="update()"></select></div><div ng-app="ngGrid" ng-grid="gridOptions" class="grid"></div></div>',''].join("\n"));
+'<div ng-controller="LYCalendar" ngx-resize="ngx-resize" class="calendar"><ul class="nav nav-tabs"><li ng-class="{active: type == \'sitting\'}"><a ng-click="change(\'sitting\')">一般議程</a></li><li ng-class="{active: type == \'hearing\'}"><a ng-click="change(\'hearing\')">公聽會</a></li></ul><div class="time">立法院行程：<select ng-model="weeks" ng-options="o.label for o in weeksOpts" ng-change="update()"></select></div><div ng-app="ngGrid" ng-grid="gridOptions" class="grid"></div></div>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/debates.html', [

@@ -38,8 +38,12 @@
     </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="brand">零時政府立院報你知</a>
-        <div ng-include="'/partials/nav.html'" class="nav-collapse collapse"></div>
+        <div class="container">
+          <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://github.com/g0v/ly.g0v.tw" target="_blank" class="pull-right">
+            <div class="small badge badge-inverse pull-right build-id">{{ _build }}</div></a><a href="http://g0v.tw" target="_blank" class="pull-right">
+            <div class="brand g0v"><img src="http://hack.g0v.tw/img/g0v-icon-invert.png"></div></a><a href="/" class="brand">零時政府立院報你知</a>
+          <div ng-include="'/partials/nav.html'" class="nav-collapse collapse"></div>
+        </div>
       </div>
     </div>
     <div class="container">
