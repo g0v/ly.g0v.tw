@@ -349,7 +349,7 @@ angular.module 'app.controllers' []
     $scope.sittingsSummary = entries
     if !$state.params.sitting
       $scope.loading = true
-      $scope.chosenSitting = $scope.sittingsSummary[$scope.sittingsSummary.length - 1]
+      $scope.chosenSitting = $scope.sittingsSummary[0]
       console.log 'Not specify any sitting in url, try to forward to the last one:', $scope.chosenSitting.id
       $state.transitionTo 'sittings.detail', { sitting: $scope.chosenSitting.id }
     else
