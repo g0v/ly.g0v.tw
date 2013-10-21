@@ -3436,7 +3436,7 @@ input[type="submit"].btn.btn-mini {
 
 .nav-link li a:hover{
   color: #ffcc00;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .nav-tabs,
@@ -3822,12 +3822,20 @@ input[type="submit"].btn.btn-mini {
   background: url("/img/logo.png") left no-repeat;
 }
 
+.navbar .brand.g0v {
+  background: none;
+}
+
 .navbar .brand:hover,
 .navbar .brand:focus {
   text-decoration: none;
   background: url("/img/logow.png") left no-repeat;
 }
 
+.navbar .brand.g0v:hover,
+.navbar .brand.g0v:focus {
+  background: none;
+}
 .navbar-text {
   margin-bottom: 0;
   line-height: 50px;
@@ -5604,13 +5612,13 @@ a.badge:focus {
   border: 5px solid #ff6c3c;
 }
 .coffeeParty{
-  border: 5px solid #c8770b;  
+  border: 5px solid #c8770b;
 }
 .pinkParty{
-  border: 5px solid #ff0099;    
+  border: 5px solid #ff0099;
 }
 .otherParty{
-  border: 5px solid #999999;  
+  border: 5px solid #999999;
 }
 .media-heading {
   float: left;
@@ -5631,7 +5639,7 @@ a.badge:focus {
   padding: 3px 8px;
   background-color: #ffcc00;
   -webkit-border-radius: 4px;
-          border-radius: 4px;  
+          border-radius: 4px;
 }
 .comit{
   font-weight: bold;
