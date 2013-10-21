@@ -98,7 +98,7 @@ angular.module 'app.controllers' []
 
 .controller LYCalendar: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
     # XXX: unused.  use filter instead
-    $scope.type = 'hearing'
+    $scope.type = 'sitting'
     $rootScope.activeTab = \calendar
     $scope.committee = ({{committee}:entity}, col) ->
         return '院會' unless committee
