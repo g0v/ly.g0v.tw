@@ -46,7 +46,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
       controller: \About
     # Catch all
   $urlRouterProvider
-    .otherwise('/motions')
+    .otherwise('/calendar')
 
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
