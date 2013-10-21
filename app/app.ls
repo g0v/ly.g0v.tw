@@ -13,10 +13,10 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
     .state 'motions.sitting' do
       url: '/{session}/{sitting}'
 
-    .state 'bill' do
-      url: '/bill/{billId}'
-      templateUrl: '/partials/bill.html'
-      controller: \LYBill
+    .state 'bills' do
+      url: '/bills/{billId}'
+      templateUrl: '/partials/bills.html'
+      controller: \LYBills
 
     .state 'calendar' do
       url: '/calendar'

@@ -6,20 +6,20 @@
               span
                   img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
                   span.name {{c.name}}委員會
-  .role.proposal(ng-show="proposal")
+  .role.sponsors(ng-show="sponsors")
       h2 提案人
       ul
-          li(ng-repeat="e in proposal")
+          li(ng-repeat="e in sponsors")
               span
                   img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
                   span.name {{e.name}}
   .description
       p {{abstract}}
 
-  .role.petition(ng-show="petition")
+  .role.cosponsors(ng-show="cosponsors")
       h2 連署人
       ul
-          li(ng-repeat="e in petition")
+          li(ng-repeat="e in cosponsors")
               span
                   img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
                   span.name {{e.name}}

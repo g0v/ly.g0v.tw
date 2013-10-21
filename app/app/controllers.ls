@@ -204,11 +204,12 @@ angular.module 'app.controllers' []
         $scope.type = type
         getData!
 
-.controller LYBill: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+.controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
-      {data, committee}:bill <- $http.get 'http://api.ly.g0v.tw/v0/collections/bills' do
-          params: {+fo, q: JSON.stringify bill_id: billId}
+      {committee}:bill <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}"
+      .success
+      data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
       #
       # XXX should be in data already
@@ -231,10 +232,10 @@ angular.module 'app.controllers' []
                 else
                     {}
 
-        proposal: bill.proposal?map ->
+        sponsors: bill.sponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
-        petition: bill.petition?map ->
+        cosponsors: bill.cosponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
         setDiff: (diff, version) ->
