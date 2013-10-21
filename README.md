@@ -21,7 +21,9 @@ List some terminologies which will be used in source code
 * debate - 質詢
 * motions - 議案
 * committee - 委員會
-* annoucement - 報告
+* annoucement - 報告事項
+* discussion - 討論事項
+* exmotion - 臨時提案
 * interpellation - 質詢事項
 
 # License
