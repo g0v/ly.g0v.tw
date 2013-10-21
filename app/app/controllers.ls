@@ -24,7 +24,7 @@ dowave = (wave, clips, cb) ->
 
   parseDate = d3.time.format "%YM%m" .parse;
 
-  svg = d3.select("svg.waveform")
+  svg = d3.select("svg.waveform").text('')
     .attr "width", w + margin.left + margin.right
     .attr "height", h + margin.top + margin.bottom
     .on \click ->
@@ -382,7 +382,6 @@ angular.module 'app.controllers' []
      &part=snippet,contentDetails,statistics,status" .success
       [_, h, m, s] = details.items.0.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
       duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
-      var player
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
@@ -396,14 +395,15 @@ angular.module 'app.controllers' []
           event.target.stopVideo!
           done := true
 
-      do
+      if $scope.player
+        $scope.player.loadVideoById do
+          videoId: whole.0.youtube_id
+      else
         <- setTimeout _, 3000ms
         p = new YT.Player 'player' do
           height: '390'
           width: '640'
           videoId: whole.0.youtube_id
-          startSeconds: 3600
-          endSeconds: 7200
           events:
             onReady: onPlayerReady
             onStateChange: onPlayerStateChange
