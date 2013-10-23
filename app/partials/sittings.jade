@@ -3,20 +3,22 @@
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
   h1
     span {{ name }}
-    .sitting-options
-      select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-      img(ng-show="loadingSitting", src="/img/loading.gif")
-    div
-      span.btn-group
-        button.btn.dropdown-toggle(data-toggle="dropdown")
-          選擇其他
-          span.caret
-        ul.dropdown-menu
-          li
-            a(ng-click="setContext('YS')") 院會
-          li(ng-repeat="(type, name) in committees")
-            a(ng-click="setContext(type)") {{name}}
-      img(ng-show="loadingList", src="/img/loading.gif")
+  span(ng-show="videos.length > 0")
+    a.pull-right.btn.btn-info(ng-href="sittings/{{id}}/video", target="_blank") 觀看影片
+  .sitting-options
+    select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
+    img(ng-show="loadingSitting", src="/img/loading.gif")
+  div
+    span.btn-group
+      button.btn.dropdown-toggle(data-toggle="dropdown")
+        選擇其他
+        span.caret
+      ul.dropdown-menu
+        li
+          a(ng-click="setContext('YS')") 院會
+        li(ng-repeat="(type, name) in committees")
+          a(ng-click="setContext(type)") {{name}}
+    img(ng-show="loadingList", src="/img/loading.gif")
 
   .row-fluid
     .span10.content
