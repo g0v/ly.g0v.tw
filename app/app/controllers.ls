@@ -17,6 +17,11 @@ renderCommittee = (committee) ->
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
+# for safari. new Date "some-date-string" failed in safari, so do it manually
+date-parse = (v) ->
+  v = v.replace(/[-:]/g, " ")split " "
+  new Date(v.0, v.1 - 1, v.2, v.3, v.4, v.5 )
+
 dowave = (wave, clips, cb) ->
   margin = top:10, left: 70, right: 30, bottom: 50
   w = 960 - margin.left - margin.right
@@ -45,7 +50,6 @@ dowave = (wave, clips, cb) ->
     .domain [0, d3.max wave]
 
   dowave.set-loc = (v) ->
-    console.log v, x(v)
     d3.select \#location-marker .attr \transform -> "translate(#{x v} 0)"
 
   xAxis = d3.svg.axis!scale x .orient "bottom"
@@ -476,8 +480,10 @@ angular.module 'app.controllers' []
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
       whole = [v for v in videos when v.firm is \whole]
-      start = new Date whole.0.time
-      clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
+      #start = new Date whole.0.time
+      #clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
+      start = date-parse whole.0.time
+      clips = [{offset: date-parse(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
      &part=snippet,contentDetails,statistics,status" .success
