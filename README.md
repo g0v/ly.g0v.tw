@@ -18,6 +18,7 @@ to run app locally,
 List some terminologies which will be used in source code
 
 * sitting - 會議(maybe 院會)
+* bill - 提案
 * debate - 質詢
 * motions - 議案
 * committee - 委員會
