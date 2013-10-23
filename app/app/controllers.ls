@@ -48,6 +48,9 @@ dowave = (wave, clips, cb) ->
     d3.select \#location-marker .attr \transform -> "translate(#{x v} 0)"
 
   xAxis = d3.svg.axis!scale x .orient "bottom"
+    .tickFormat ->
+      [h,m,s] = [parseInt(it / 3600) % 60, parseInt(it / 60) % 60, it % 60]map -> (it>9 and "#{it}") or  "0#{it}"
+      "#h:#m:#s"
 
   area = d3.svg.area!
     .interpolate "basic"
