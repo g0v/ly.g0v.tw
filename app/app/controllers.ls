@@ -45,6 +45,7 @@ dowave = (wave, clips, cb) ->
     .domain [0, d3.max wave]
 
   dowave.set-loc = (v) ->
+    console.log v, x(v)
     d3.select \#location-marker .attr \transform -> "translate(#{x v} 0)"
 
   xAxis = d3.svg.axis!scale x .orient "bottom"
@@ -445,13 +446,19 @@ angular.module 'app.controllers' []
       onPlayerStateChange = (event) ->
         # set waveform location indicator
         if event.data is YT.PlayerState.PLAYING and not done
-          handler = setInterval ->
-            t = $scope.player.getCurrentTime!
-            dowave.set-loc t
-          , 1000
+          if handler => clearInterval handler
+          timer = {}
+            ..sec = $scope.player.getCurrentTime!
+            ..start = new Date!getTime! / 1000
+            ..rate = $scope.player.getPlaybackRate!
+            ..now = 0
+          handler := setInterval ->
+            timer.now = new Date!getTime! / 1000
+            dowave.set-loc timer.sec + (timer.now - timer.start) * timer.rate
+          , 10000
         else
           if handler => clearInterval handler
-          handler = null
+          handler := null
         return
         # XXX demo
         if event.data is YT.PlayerState.PLAYING and not done
