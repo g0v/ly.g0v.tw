@@ -481,23 +481,26 @@ angular.module 'app.controllers' []
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
-      handler = null
+      timer-id = null
       onPlayerStateChange = (event) ->
         # set waveform location indicator
         if event.data is YT.PlayerState.PLAYING and not done
-          if handler => clearInterval handler
+          if timer-id => clearInterval timer-id
           timer = {}
             ..sec = $scope.player.getCurrentTime!
             ..start = new Date!getTime! / 1000
             ..rate = $scope.player.getPlaybackRate!
             ..now = 0
-          handler := setInterval ->
+          handler = ->
             timer.now = new Date!getTime! / 1000
             dowave.set-loc timer.sec + (timer.now - timer.start) * timer.rate
+          timer-id := setInterval ->
+            handler!
           , 10000
+          handler!
         else
-          if handler => clearInterval handler
-          handler := null
+          if timer-id => clearInterval timer-id
+          timer-id := null
         return
         # XXX demo
         if event.data is YT.PlayerState.PLAYING and not done
