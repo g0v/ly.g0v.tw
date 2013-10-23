@@ -22,7 +22,7 @@ date-parse = (v) ->
   v = v.replace(/[-:]/g, " ")split " "
   new Date(v.0, v.1 - 1, v.2, v.3, v.4, v.5 )
 
-dowave = (wave, clips, cb) ->
+dowave = (wave, clips, cb, start = 0) ->
   margin = top: 0, left:  30, right:  0, bottom:  50
 
   w = 960 - margin.left - margin.right
@@ -55,6 +55,9 @@ dowave = (wave, clips, cb) ->
 
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
+      if start =>
+        # UTC+8
+        it = ( (8 * 3600) +  it + start.getTime! / 1000 ) % 86400
       [h,m,s] = [parseInt(it / 3600) % 60, parseInt(it / 60) % 60, it % 60]map -> (it>9 and "#{it}") or  "0#{it}"
       "#h:#m:#s"
 
@@ -468,6 +471,7 @@ angular.module 'app.controllers' []
       $scope.loaded = $state.params.sitting
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
+      first-timestamp = if videos.0 and videos.0.first_frame_timestamp => date-parse that else null
       whole = [v for v in videos when v.firm is \whole]
       #start = new Date whole.0.time
       #clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
@@ -529,7 +533,7 @@ angular.module 'app.controllers' []
         waveform = new Waveform container: element, data: newwave, width: 960, height: 100
         if duration > wave.length
           wave ++= [1 to duration-(wave.length)].map -> 0
-        dowave wave, clips, -> $scope.playFrom it
+        dowave wave, clips, (-> $scope.playFrom it), first-timestamp
       wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{whole.0.wmvid}.json"
       .error -> mkwave []
       .success
