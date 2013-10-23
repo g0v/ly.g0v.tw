@@ -5,10 +5,10 @@
     span {{ name }}
   span(ng-show="videos.length > 0")
     a.pull-right.btn.btn-info(ng-href="sittings/{{id}}/video", target="_blank") 觀看影片
-  .sitting-options
+  .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
     img(ng-show="loadingSitting", src="/img/loading.gif")
-  div
+  div(ng-hide="video")
     span.btn-group
       button.btn.dropdown-toggle(data-toggle="dropdown")
         選擇其他
@@ -21,7 +21,12 @@
     img(ng-show="loadingList", src="/img/loading.gif")
 
   .row-fluid
-    .span10.content
+    .span10(ng-show="loaded", ng-show="video")
+      #player
+      .wav-group(ng-repeat="waveform in waveforms")
+        svg.waveform
+        .canvas(ng-waveform="waveform")
+    .span10.content(ng-hide="video")
       .role.committee(ng-show="committee")
         ul
           li(ng-repeat="c in committee")
@@ -41,11 +46,6 @@
         .row(ng-show="summary")
           .span3.td-title 概要
           .span9 {{ summary }}
-      .row-fluid(ng-show="loaded")
-        #player
-        .wav-group(ng-repeat="waveform in waveforms")
-          svg.waveform
-          .canvas(ng-waveform="waveform")
       .row-fluid
         .span10.content
       .entries.motions

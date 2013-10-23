@@ -359,6 +359,9 @@ angular.module 'app.controllers' []
     $state.params.sitting = null
 
   $scope.$watch '$state.params.sitting' ->
+    if $state.current.name is \sittings.detail.video
+      console.log 'viewing video, do not fetch anything'
+      return
     if $state.params.sitting
       console.log 'specified sitting, get context from id of sitting'
       $scope.context = $state.params.sitting.replace /[\d-]/g,''
@@ -468,6 +471,7 @@ angular.module 'app.controllers' []
     $scope.player.seekTo seconds
   $scope.$watch '$state.current.name + $state.params.sitting' ->
     if $state.current.name is \sittings.detail.video
+      $scope.video = true
       return if $scope.loaded is $state.params.sitting
       $scope.loaded = $state.params.sitting
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
