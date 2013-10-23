@@ -1,23 +1,13 @@
 .sittings(ng-cloak)
   script(src="https://www.youtube.com/iframe_api")
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
+  h2(ng-show="loading") Loading
   h1
-    span {{ name }}
+    span 第 {{ ad }} 屆第 {{ session }} 會期
+    span(ng-show="extra") 第 {{extra}} 次臨時會
+    span 第 {{ sitting }} 次會議
     .sitting-options
-      select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-      img(ng-show="loadingSitting", src="/img/loading.gif")
-    div
-      span.btn-group
-        button.btn.dropdown-toggle(data-toggle="dropdown")
-          選擇其他
-          span.caret
-        ul.dropdown-menu
-          li
-            a(ng-click="setContext('YS')") 院會
-          li(ng-repeat="(type, name) in committees")
-            a(ng-click="setContext(type)") {{name}}
-      img(ng-show="loadingList", src="/img/loading.gif")
-
+        select(ng-model="chosenSitting", ng-options="sitting.name for sitting in sittingsSummary")
   .row-fluid
     .span10.content
       .role.committee(ng-show="committee")
