@@ -43,9 +43,9 @@
           .span9 {{ summary }}
       .row-fluid(ng-show="loaded")
         #player
-        .wav-group
+        .wav-group(ng-repeat="waveform in waveforms")
           svg.waveform
-          #waveform2
+          .canvas(ng-waveform="waveform")
       .row-fluid
         .span10.content
       .entries.motions

@@ -525,19 +525,20 @@ angular.module 'app.controllers' []
           events:
             onReady: onPlayerReady
             onStateChange: onPlayerStateChange
+      $scope.waveforms = []
       mkwave = (wave) ->
-        newwave = []
-        element = document .getElementById 'waveform2'
+        waveclips = []
         wave.forEach (value, key) ->
-          newwave.push value/255
-        waveform = new Waveform container: element, data: newwave, width: 960, height: 100
+          waveclips.push value/255
+        $scope.waveforms.push waveclips
         if duration > wave.length
           wave ++= [1 to duration-(wave.length)].map -> 0
         dowave wave, clips, (-> $scope.playFrom it), first-timestamp
-      wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{whole.0.wmvid}.json"
-      .error -> mkwave []
-      .success
-      mkwave wave
+      whole.forEach !(waveform) ->
+        wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
+        .error -> mkwave []
+        .success
+        mkwave wave
     else
       # disabled
       $scope.loaded = null
