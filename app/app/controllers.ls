@@ -23,7 +23,9 @@ date-parse = (v) ->
   new Date(v.0, v.1 - 1, v.2, v.3, v.4, v.5 )
 
 dowave = (wave, clips, cb) ->
-  margin = top:10, left: 70, right: 30, bottom: 50
+  #margin = top:10, left: 70, right: 30, bottom: 50
+  margin = top: 0, left:  0, right:  0, bottom:  50
+
   w = 960 - margin.left - margin.right
   h = 100 - margin.top - margin.bottom
 
@@ -68,12 +70,12 @@ dowave = (wave, clips, cb) ->
     .attr "transform", "translate(0,#h)"
     .call xAxis
 
-  svg.append "path"
+  /*svg.append "path"
     .datum wave
     .attr "d" area
     .style \stroke \black
     .style \fill \steelblue
-
+  */
   svg.append \path
     .attr \id \location-marker
     .attr \d, "M0 0L0,40"
