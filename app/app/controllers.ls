@@ -349,7 +349,8 @@ angular.module 'app.controllers' []
             names[s] ? s
     window.loadMotions $scope
 
-.controller LYSittings: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+.controller LYSittings: <[$rootScope $scope $http $state LYService]> ++ ($rootScope, $scope, $http, $state, LYService) ->
+  $rootScope.activeTab = \sittings
   $scope.committees = committees
   $scope <<< lists:{}
 
