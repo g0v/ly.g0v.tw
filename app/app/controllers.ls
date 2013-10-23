@@ -295,7 +295,7 @@ angular.module 'app.controllers' []
                         #inline: true
                     .0
 
-.controller About: <[$rootScope]> ++ ($rootScope) ->
+.controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
 
 .controller LYMotions: <[$rootScope $scope $state LYService]> ++ ($rootScope, $scope, $state, LYService) ->
@@ -530,6 +530,11 @@ angular.module 'app.controllers' []
             onReady: onPlayerReady
             onStateChange: onPlayerStateChange
       mkwave = (wave) ->
+        newwave = []
+        element = document .getElementById 'waveform2'
+        wave.forEach (value, key) ->
+          newwave.push value/255
+        waveform = new Waveform container: element, data: newwave, width: 960, height: 100
         if duration > wave.length
           wave ++= [1 to duration-(wave.length)].map -> 0
         dowave wave, clips, -> $scope.playFrom it
