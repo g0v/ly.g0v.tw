@@ -23,8 +23,7 @@ date-parse = (v) ->
   new Date(v.0, v.1 - 1, v.2, v.3, v.4, v.5 )
 
 dowave = (wave, clips, cb) ->
-  #margin = top:10, left: 70, right: 30, bottom: 50
-  margin = top: 0, left:  0, right:  0, bottom:  50
+  margin = top: 0, left:  30, right:  0, bottom:  50
 
   w = 960 - margin.left - margin.right
   h = 100 - margin.top - margin.bottom
@@ -59,23 +58,11 @@ dowave = (wave, clips, cb) ->
       [h,m,s] = [parseInt(it / 3600) % 60, parseInt(it / 60) % 60, it % 60]map -> (it>9 and "#{it}") or  "0#{it}"
       "#h:#m:#s"
 
-  area = d3.svg.area!
-    .interpolate "basic"
-    .x (d,i) -> x i
-    .y0 h
-    .y -> y it
-
   svg.append "g"
     .attr "class", "x axis"
     .attr "transform", "translate(0,#h)"
     .call xAxis
 
-  /*svg.append "path"
-    .datum wave
-    .attr "d" area
-    .style \stroke \black
-    .style \fill \steelblue
-  */
   svg.append \path
     .attr \id \location-marker
     .attr \d, "M0 0L0,40"
