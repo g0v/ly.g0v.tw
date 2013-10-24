@@ -244,9 +244,9 @@ angular.module 'app.controllers' []
           tsize: 0
           #inline: true
         .0
-        diffhtml = $(diffhtml)
+        diffhtml = with $ '<div />' .html diffhtml
           ..find 'table tr' .each ->
-            left = $ @ .find \tr .get 0
+            left = $ @ .find \td .get 0
             if left => $ left .addClass \left
           ..html!
         return {comment,diff:diffhtml}
