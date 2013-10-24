@@ -527,19 +527,19 @@ angular.module 'app.controllers' []
             onReady: onPlayerReady
             onStateChange: onPlayerStateChange
       $scope.waveforms = []
-      mkwave = (wave) ->
+      mkwave = (wave, index) ->
         waveclips = []
         wave.forEach (value, key) ->
           waveclips.push value/255
-        $scope.waveforms.push waveclips
+        $scope.waveforms[index] = waveclips
         if duration > wave.length
           wave ++= [1 to duration-(wave.length)].map -> 0
         dowave wave, clips, (-> $scope.playFrom it), first-timestamp
-      whole.forEach !(waveform) ->
+      whole.forEach !(waveform, index) ->
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
-        .error -> mkwave []
+        .error -> mkwave [], index
         .success
-        mkwave wave
+        mkwave wave, index
     else
       # disabled
       $scope.loaded = null
