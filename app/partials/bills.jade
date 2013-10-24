@@ -21,6 +21,14 @@
       .item(ng-show="doc.doc")
         i.file.icon
         a(ng-href="{{doc.doc}}",target="_blank") Word
+      .item(ng-show="bill_ref") Related bills
+        .menu
+          .item
+            i.url.icon
+            a(ng-href="",target="_blank") 民法親屬編、繼承編部分條文修正草案
+          .item
+              i.url.icon
+              a(ng-href="",target="_blank") 民法親屬編、繼承編部分條文修正草案
     p {{abstract}}
 
   .role
