@@ -1,0 +1,25 @@
+
+<div ng-controller="LYMotions" ng-class="{list: list}" class="motions">
+  <h1>第八屆第二會期</h1>
+  <div class="chart"></div>
+  <div ng-show="list" class="list">
+    <div data-spy="affix" data-offset-top="30" class="head">
+      <h2>第 {{ sitting}} 次院會</h2><span ng-click="list=false" style="opacity: 1" class="close">Close</span>
+      <ul class="type">
+        <li ng-repeat="s in allTypes" ng-click="setType(s.key)" ng-class="{active: s.key == type}">{{s.value}}</li>
+      </ul>
+      <ul class="status">
+        <li ng-repeat="s in allStatus" ng-click="setStatus(s.key)" ng-class="{active: s.key == status}">{{s.value}}</li>
+      </ul>
+      <div class="clearfix"></div>
+      <input ng-model="filter" placeholder="Search" class="filter"/>
+    </div>
+    <ul ng-class="{{type}}" class="motions">
+      <li ng-repeat="e in entries | filter:{status: status} | filter:filter">
+        <div class="avatars"><span ng-repeat="avatar in e.avatars"><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small" ng-alt="{{avatar.name}}" ng-class="avatar.party" class="avatar"/></span></div>
+        <div class="motion"><span class="item">{{ e.item }}</span><span class="proposer">{{ e.proposer }}</span><a ng-href="/bill/{{ e.id }}"><span class="summary">{{ e.summary }}</span></a></div>
+        <div class="resolution">{{ e.resolution }}</div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -21,7 +21,7 @@ angular.module('partials', [])
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/nav.html', [
-'<ul class="nav"><li ng-class="{active:activeTab==\'motions\'}"><a ng-href="/motions">議案</a></li><li ng-class="{active:activeTab==\'calendar\'}"><a ng-href="/calendar">預報</a></li><li ng-class="{active:activeTab==\'debates\'}"><a ng-href="/debates">質詢</a></li></ul><ul class="nav pull-right"><li ng-class="{active:activeTab==\'about\'}"><a ng-href="/about">關於</a></li><li class="fb-like"><a><div data-send="false" data-href="https://facebook.com/g0v.tw" data-width="120" data-layout="button_count" data-show-faces="false" data-font="verdana" class="fb-like"></div></a></li></ul>',''].join("\n"));
+'<ul class="nav"><li ng-class="{active:activeTab==\'calendar\'}"><a ng-href="/calendar">預報</a></li><li ng-class="{active:activeTab==\'sittings\'}"><a ng-href="/sittings">會議</a></li><li ng-class="{active:activeTab==\'debates\'}"><a ng-href="/debates">質詢</a></li></ul><ul class="nav pull-right"><li ng-class="{active:activeTab==\'about\'}"><a ng-href="/about">關於</a></li><li class="fb-like"><a><div data-send="false" data-href="https://facebook.com/g0v.tw" data-width="120" data-layout="button_count" data-show-faces="false" data-font="verdana" class="fb-like"></div></a></li></ul>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
   return $templateCache.put('/partials/sitting.html', [

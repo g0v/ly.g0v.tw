@@ -1,0 +1,49 @@
+
+<div ng-controller="LYBill" class="bill">
+  <h1 title="{{summary}}">{{summary}}</h1>
+  <div ng-show="committee" class="role committee">
+    <ul>
+      <li ng-repeat="c in committee"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium" ng-alt="{{c.name}}" ng-class="{{c.abbr}}" class="avatar medium"/><span class="name">{{c.name}}委員會</span></span></li>
+    </ul>
+  </div>
+  <div ng-show="proposal" class="role proposal">
+    <h2>提案人</h2>
+    <ul>
+      <li ng-repeat="e in proposal"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium" ng-alt="{{e.name}}" ng-class="e.party" class="avatar medium"/><span class="name">{{e.name}}</span></span></li>
+    </ul>
+  </div>
+  <div class="description">
+    <p>{{abstract}}</p>
+  </div>
+  <div ng-show="petition" class="role petition">
+    <h2>連署人</h2>
+    <ul>
+      <li ng-repeat="e in petition"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small" ng-alt="{{e.name}}" ng-class="e.party" class="avatar"/><span class="name">{{e.name}}</span></span></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+  <div class="history"></div>
+  <div class="clearfix"></div>
+  <div ng-show="related" class="related">
+    <ul>
+      <li ng-repeat="r in related"><span><img ng-show="r.avatar" ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small" ng-alt="{{r.name}}" ng-class="r.party" class="avatar"/><span class="summary">{{r.summary}}</span></span></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+  <div ng-repeat="(i, d) in diff" class="content default">
+    <h2>{{d.name}}</h2>
+    <table class="diff legend">
+      <th>
+        <td class="delete">{{d.diffbase}}</td>
+        <td>vs</td>
+        <td ng-repeat="v in d.versions" ng-class="{insert: v == d.diffnew}" ng-bind="v" ng-click="setDiff(d, v)" class="version"></td>
+      </th>
+    </table>
+    <ul class="lawdiff">
+      <li ng-repeat="e in d.diffcontent">
+        <div ng-bind-html-unsafe="e.diff" class="diff"></div>
+        <div ng-bind-html-unsafe="e.comment" class="comment"></div>
+      </li>
+    </ul>
+  </div>
+</div>
