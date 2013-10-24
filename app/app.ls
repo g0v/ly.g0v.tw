@@ -56,3 +56,5 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters ap
   $rootScope.$stateParam = $stateParams
   $rootScope.go = -> $location.path it
   $rootScope._build = window.global.config.BUILD
+  window.onYouTubeIframeAPIReady = ->
+    $rootScope.$broadcast \youtube-ready

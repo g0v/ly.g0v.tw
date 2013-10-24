@@ -353,6 +353,8 @@ angular.module 'app.controllers' []
   $rootScope.activeTab = \sittings
   $scope.committees = committees
   $scope <<< lists:{}
+  if window.YT
+    $scope.youtube-ready = true
 
   $scope.setContext = (ctx) ->
     $scope.context = ctx
@@ -522,14 +524,21 @@ angular.module 'app.controllers' []
         $scope.player.loadVideoById do
           videoId: whole.0.youtube_id
       else
-        <- setTimeout _, 3000ms
-        p = new YT.Player 'player' do
-          height: '390'
-          width: '640'
-          videoId: whole.0.youtube_id
-          events:
-            onReady: onPlayerReady
-            onStateChange: onPlayerStateChange
+        player-init = ->
+          new YT.Player 'player' do
+            height: '390'
+            width: '640'
+            videoId: whole.0.youtube_id
+            events:
+              onReady: onPlayerReady
+              onStateChange: onPlayerStateChange
+        if $scope.youtube_ready
+          player-init!
+        else
+          $scope.$on \youtube-ready ->
+            $scope.youtube-ready = true
+            player-init!
+
       $scope.waveforms = []
       mkwave = (wave, index) ->
         waveclips = []
