@@ -4,8 +4,11 @@
   .peek.clearfix
     .ui.vertical.menu.right.floated
       .item
-        i.code.icon
+        i.copy.icon
         | 提案編號 {{ bill_ref }}
+      .item
+        i.code.icon
+        a(ng-href="http://api-beta.ly.g0v.tw/v0/collections/bills/{{bill_ref}}",target="_blank") JSON
       .item(ng-show="doc.pdf")
         i.file.icon
         a(ng-href="{{doc.pdf}}",target="_blank") PDF
