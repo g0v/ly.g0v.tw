@@ -355,6 +355,9 @@ angular.module 'app.controllers' []
   $scope <<< lists:{}
   if window.YT
     $scope.youtube-ready = true
+  else
+    $scope.$on \youtube-ready ->
+      $scope.youtube-ready = true
 
   $scope.setContext = (ctx) ->
     $scope.context = ctx
@@ -532,11 +535,10 @@ angular.module 'app.controllers' []
             events:
               onReady: onPlayerReady
               onStateChange: onPlayerStateChange
-        if $scope.youtube_ready
+        if $scope.youtube-ready
           player-init!
         else
           $scope.$on \youtube-ready ->
-            $scope.youtube-ready = true
             player-init!
 
       $scope.waveforms = []
@@ -556,6 +558,7 @@ angular.module 'app.controllers' []
     else
       # disabled
       $scope.loaded = null
+      $scope.video = null
 
 .controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
