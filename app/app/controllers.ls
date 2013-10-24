@@ -222,21 +222,17 @@ angular.module 'app.controllers' []
         return $state.transitionTo 'bills', { billId: bill.bill_ref }
       data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
-      #
-      # XXX should be in data already
+
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
-  #    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
-  #    console.log ontent
-  #    console.log history
-  #    window.bill-history history, $scope
       diffentry = (diff, idx, c, base-index) -> (entry) ->
         h = diff.header
+        console.log entry, c, idx
         comment = if \string is typeof entry[c]
           entry[c]
         else
-          entry[h.0.replace /審查會通過條文/, \審查會]
+          entry[c][h[idx].replace /審查會通過條文/, \審查會]
 
         if comment
           console.log comment
@@ -245,9 +241,9 @@ angular.module 'app.controllers' []
           comment
           diff: diffview do
               baseTextLines: entry[base-index] or ' '
-              newTextLines: entry[idx] ? entry[base-index]
+              newTextLines: entry[idx] || entry[base-index]
               baseTextName: h[base-index] ? ''
-              newTextName: h[idx]
+              newTextName: h[idx] ? ''
               tchar: ""
               tsize: 0
               #inline: true
@@ -271,7 +267,7 @@ angular.module 'app.controllers' []
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
         setDiff: (diff, version) ->
-            idx = [i for n, i in diff.header when n is version]
+            [idx] = [i for n, i in diff.header when n is version]
             base-index = diff.base-index
             c = diff.comment-index
             diff <<< do
