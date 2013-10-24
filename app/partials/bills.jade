@@ -1,6 +1,12 @@
 .bill
   h1.bill(title="{{summary}}") {{summary}}
 
+  .ui.four.steps
+    .ui.active.step 提案 - 2013.10.10
+    .ui.disabled.step 退回
+    .ui.disabled.step 付委員會
+    .ui.disabled.step 付協商
+
   .summary
     .ui.vertical.menu.right.floated
       .item(ng-show="bill_ref")
