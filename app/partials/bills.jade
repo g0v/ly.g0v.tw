@@ -1,5 +1,18 @@
 .bill
   h1(title="{{summary}}") {{summary}}
+
+  .peek.clearfix
+    .ui.vertical.menu.right.floated
+      .item
+        i.code.icon
+        | 提案編號 {{ bill_ref }}
+      .item(ng-show="doc.pdf")
+        i.file.icon
+        a(ng-href="{{doc.pdf}}",target="_blank") PDF
+      .item(ng-show="doc.doc")
+        i.file.icon
+        a(ng-href="{{doc.doc}}",target="_blank") Word
+
   .role.committee(ng-show="committee")
       ul
           li(ng-repeat="c in committee")
@@ -11,7 +24,7 @@
       ul
           li(ng-repeat="e in sponsors")
               span
-                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
+                  img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
                   span.name {{e.name}}
   .description
       p {{abstract}}

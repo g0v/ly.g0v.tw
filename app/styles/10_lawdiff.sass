@@ -1,11 +1,12 @@
+
+@import "app/styles/mixins"
+
 .bill
   margin-left: 10%
   h1
     margin: 1em
-    white-space: nowrap
-    overflow: hidden
-    width: 100%
     text-overflow: ellipsis
+    +word-break-sane
   width: 80%
   .role
     float: left
@@ -18,8 +19,14 @@
       margin-left: 3em
       width: 25%
       li
-        width: 135px
+        width: 60px
         float: left
+        &:first-child
+          width: 180px
+          clear: both
+          .avatar
+            width: 100px
+            height: 100px
     &.committee
       .avatar
         margin: 8px

@@ -217,6 +217,9 @@ angular.module 'app.controllers' []
       {billId} = $state.params
       {committee}:bill <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}"
       .success
+      if bill.bill_ref and bill.bill_ref isnt billId
+        # make bill_ref the permalink
+        return $state.transitionTo 'bills', { billId: bill.bill_ref }
       data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
       #
@@ -228,7 +231,7 @@ angular.module 'app.controllers' []
   #    console.log content
   #    console.log history
   #    window.bill-history history, $scope
-      $scope <<< bill{summary,abstract} <<< do
+      $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
             data?related?map ([id, summary]) ->
