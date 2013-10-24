@@ -276,7 +276,12 @@ angular.module 'app.controllers' []
                 diffbase: h[base-index]
                 diffnew: h.0
                 diffcontent: diff.content.map (entry) ->
-                    comment: entry[c][h.0.replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
+                  comment = if \string is typeof entry[c]
+                    entry[c]
+                  else
+                    [h.0.replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
+                  return {
+                    comment
                     diff: diffview do
                         baseTextLines: entry[base-index] or ' '
                         newTextLines: entry.0 || entry[base-index]
@@ -285,7 +290,7 @@ angular.module 'app.controllers' []
                         tchar: ""
                         tsize: 0
                         #inline: true
-                    .0
+                    .0}
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
