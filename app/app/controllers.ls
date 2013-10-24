@@ -467,8 +467,11 @@ angular.module 'app.controllers' []
           names[s] ? s
 
   $scope.playFrom = (seconds) ->
-    $scope.player.playVideo!
-    $scope.player.seekTo seconds
+    if $scope.player.getPlayerState! is -1 # unstarted
+      $scope.player.playVideo!
+      $scope.player.nextStart = seconds
+    else
+      $scope.player.seekTo seconds
   $scope.$watch '$state.current.name + $state.params.sitting' ->
     if $state.current.name is \sittings.detail.video
       $scope.video = true
@@ -494,6 +497,9 @@ angular.module 'app.controllers' []
       onPlayerStateChange = (event) ->
         # set waveform location indicator
         if event.data is YT.PlayerState.PLAYING and not done
+          if $scope.player.nextStart
+            $scope.player.seekTo that
+            $scope.player.nextStart = null
           if timer-id => clearInterval timer-id
           timer = {}
             ..sec = $scope.player.getCurrentTime!
@@ -511,12 +517,6 @@ angular.module 'app.controllers' []
           if timer-id => clearInterval timer-id
           timer-id := null
         return
-        # XXX demo
-        if event.data is YT.PlayerState.PLAYING and not done
-          event.target.seekTo 7200
-          <- setTimeout _, 6000
-          event.target.stopVideo!
-          done := true
 
       if $scope.player
         $scope.player.loadVideoById do
