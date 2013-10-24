@@ -228,26 +228,28 @@ angular.module 'app.controllers' []
 
       diffentry = (diff, idx, c, base-index) -> (entry) ->
         h = diff.header
-        console.log entry, c, idx
         comment = if \string is typeof entry[c]
           entry[c]
         else
           entry[c][h[idx].replace /審查會通過條文/, \審查會]
 
         if comment
-          console.log comment
           comment.=replace /\n/g "<br><br>\n"
-        return {
-          comment
-          diff: diffview do
-              baseTextLines: entry[base-index] or ' '
-              newTextLines: entry[idx] || entry[base-index]
-              baseTextName: h[base-index] ? ''
-              newTextName: h[idx] ? ''
-              tchar: ""
-              tsize: 0
-              #inline: true
-          .0}
+        diffhtml = diffview do
+          baseTextLines: entry[base-index] or ' '
+          newTextLines: entry[idx] || entry[base-index]
+          baseTextName: h[base-index] ? ''
+          newTextName: h[idx] ? ''
+          tchar: ""
+          tsize: 0
+          #inline: true
+        .0
+        diffhtml = $(diffhtml)
+          ..find 'table tr' .each ->
+            left = $ @ .find \tr .get 0
+            if left => $ left .addClass \left
+          ..html!
+        return {comment,diff:diffhtml}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
