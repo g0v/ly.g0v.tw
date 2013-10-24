@@ -34,7 +34,7 @@ dowave = (wave, clips, cb, start = 0) ->
     .attr "width", w + margin.left + margin.right
     .attr "height", h + margin.top + margin.bottom
     .on \click ->
-      x0 = x.invert d3.mouse(@).0
+      x0 = x.invert d3.mouse(@).0 - margin.left
       cb x0
 
     .append "g"
@@ -471,11 +471,11 @@ angular.module 'app.controllers' []
       $scope.loaded = $state.params.sitting
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
-      first-timestamp = if videos.0 and videos.0.first_frame_timestamp => date-parse that else null
       whole = [v for v in videos when v.firm is \whole]
+      first-timestamp = if whole.0 and whole.0.first_frame_timestamp => date-parse that else null
       #start = new Date whole.0.time
       #clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
-      start = date-parse whole.0.time
+      start = first-timestamp ? date-parse whole.0.time
       clips = [{offset: date-parse(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
