@@ -228,9 +228,30 @@ angular.module 'app.controllers' []
           committee = committee.map -> { abbr: it, name: committees[it] }
 
   #    history <- $http.get "/data/#{$routeParams.billId}-history.json" .success
-  #    console.log content
+  #    console.log ontent
   #    console.log history
   #    window.bill-history history, $scope
+      diffentry = (diff, idx, c, base-index) -> (entry) ->
+        h = diff.header
+        comment = if \string is typeof entry[c]
+          entry[c]
+        else
+          entry[h.0.replace /審查會通過條文/, \審查會]
+
+        if comment
+          console.log comment
+          comment.=replace /\n/g "<br><br>\n"
+        return {
+          comment
+          diff: diffview do
+              baseTextLines: entry[base-index] or ' '
+              newTextLines: entry[idx] ? entry[base-index]
+              baseTextName: h[base-index] ? ''
+              newTextName: h[idx]
+              tchar: ""
+              tsize: 0
+              #inline: true
+          .0}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
@@ -255,18 +276,7 @@ angular.module 'app.controllers' []
             c = diff.comment-index
             diff <<< do
                 diffnew: version
-                diffcontent: diff.content.map (entry) ->
-                    comment: entry[c][diff.header[idx].replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
-                    diff: diffview do
-                        baseTextLines: entry[base-index] or ' '
-                        newTextLines: entry[idx] || entry[base-index]
-                        baseTextName: diff.header[base-index]
-                        newTextName: diff.header[idx]
-                        tchar: ""
-                        tsize: 0
-                        #inline: true
-                    .0
-
+                diffcontent: diff.content.map diffentry diff, idx, c, base-index
         diff: data?content?map (diff) ->
             h = diff.header
             [base-index] = [i for n, i in h when n is /^現行/]
@@ -278,22 +288,7 @@ angular.module 'app.controllers' []
                 comment-index: c
                 diffbase: h[base-index]
                 diffnew: h.0
-                diffcontent: diff.content.map (entry) ->
-                  comment = if \string is typeof entry[c]
-                    entry[c]
-                  else
-                    [h.0.replace /審查會通過條文/, \審查會]?replace /\n/g "<br>\n"
-                  return {
-                    comment
-                    diff: diffview do
-                        baseTextLines: entry[base-index] or ' '
-                        newTextLines: entry.0 || entry[base-index]
-                        baseTextName: h[base-index] ? ''
-                        newTextName: h.0
-                        tchar: ""
-                        tsize: 0
-                        #inline: true
-                    .0}
+                diffcontent: diff.content.map diffentry diff, 0, c, base-index
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
