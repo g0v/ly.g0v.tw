@@ -235,9 +235,13 @@ angular.module 'app.controllers' []
 
         if comment
           comment.=replace /\n/g "<br><br>\n"
-        diffhtml = diffview do
-          baseTextLines: entry[base-index] or ' '
-          newTextLines: entry[idx] || entry[base-index]
+        baseTextLines = entry[base-index] or ''
+        newTextLines = entry[idx] || entry[base-index]
+        baseTextLines -= /^第(.*?)條\s*/
+        left-item = RegExp.lastMatch - /\s+$/
+        newTextLines -= /^第(.*?)條\s*/
+        right-item = RegExp.lastMatch - /\s+$/
+        diffhtml = diffview {baseTextLines, newTextLines} <<< do
           baseTextName: h[base-index] ? ''
           newTextName: h[idx] ? ''
           tchar: ""
@@ -249,7 +253,16 @@ angular.module 'app.controllers' []
             left = $ @ .find \td .get 0
             if left => $ left .addClass \left
           ..html!
-        return {comment,diff:diffhtml}
+        difflines = []
+        $ '<div />' .html diffhtml
+        .find 'table tr' .each ->
+          tds = $ @ .find \td
+          if tds.length
+            [left, right] = [0, 1].map -> $ tds.get it
+            [left-class, right-class] = [left, right].map -> it.attr \class
+            difflines.push {left: left.html!, left-class, right: right.html!, right-class}
+        #console.log {difflines,left-item,right-item}
+        return {comment,diff:diffhtml,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
