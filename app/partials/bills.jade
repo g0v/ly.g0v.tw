@@ -68,12 +68,48 @@
   .clearfix
   .content.default(ng-repeat="(i, d) in diff")
       h2.ui.horizontal.divider {{d.name}}
+
       p.sample
         span.delete {{d.diffbase}}
         | vs
         span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
 
+      .two.column.stackable.ui.grid
+        .column.replace.left
+          .ui.segment
+            .ui.right.corner.label.red 現行
+            .ui.left.corner.label 1
+            .diff.text
+              | 第一千條　
+              em 夫妻
+              | 各保有其本姓。但得書面約定以其本姓冠以
+              em 配偶
+              | 之姓，並向戶政機關登記。
+        .column.replace.right
+          .ui.segment
+            .ui.right.corner.label.green 修正
+            .ui.left.corner.label 1
+            .diff.text
+              | 第一千條　
+              em 配偶
+              | 各保有其本姓。但得書面約定以其本姓冠以
+              em 他方
+              | 之姓，並向戶政機關登記。
+        .column.equal.left
+          .ui.segment
+            .ui.right.corner.label 現行
+            .ui.left.corner.label 2
+            .diff.text
+              | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
+        .column.equal.right
+          .ui.segment
+            .ui.right.corner.label 修正
+            .ui.left.corner.label 2
+            .diff.text
+              | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
+
       ul.lawdiff
           li(ng-repeat="e in d.diffcontent")
               .diff(ng-bind-html-unsafe="e.diff")
               .comment(ng-bind-html-unsafe="e.comment")
+
