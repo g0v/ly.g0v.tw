@@ -52,3 +52,9 @@
   .replace.right
     .diff.text em
       background-color: #9f9
+  @media only screen and (max-width: 768px)
+    .mobile-hide
+      display: none
+    .ui.two.column.grid > .column.right,
+    .ui.stackable.grid > .column.right
+      margin-top: -3rem

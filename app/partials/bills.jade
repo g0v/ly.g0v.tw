@@ -73,10 +73,10 @@
         | vs
         span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
 
-      a.ui.label.black(href="",target="blank") 第一千條
       .two.column.stackable.ui.grid
         .column.replace.left
           .ui.segment
+            a.ui.ribbon.label(href="",target="blank") 第一千條
             .ui.right.corner.label.red 現行
             a.diff.text(href="",target="blank")
               em 夫妻
@@ -85,6 +85,7 @@
               | 之姓，並向戶政機關登記。
         .column.replace.right
           .ui.segment
+            a.ui.ribbon.label(href="",target="blank") 第一千條
             .ui.right.corner.label.green 修正
             a.diff.text(href="",target="blank")
               em 配偶
@@ -93,10 +94,12 @@
               | 之姓，並向戶政機關登記。
         .column.equal.left
           .ui.segment
+            .ui.right.corner.label 相同
             a.diff.text(href="",target="blank")
               | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
         .column.equal.right
-          .ui.segment
+          .ui.segment.mobile-hide
+            .ui.right.corner.label 相同
             a.diff.text(href="",target="blank")
               | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
 
