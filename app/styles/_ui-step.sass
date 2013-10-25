@@ -1,0 +1,29 @@
+.ui.state
+  i
+    margin: 0
+  display: inline-block
+  z-index: 10
+  position: absolute
+  background: #f00
+  padding: 5px
+  border-radius: 30px
+  font-size: 12px
+  font-weight: 900
+  background: #444
+  border: 3px solid #eee
+  color: #fff
+  margin: 10px 20px 0 0
+
+@mixin ui-state-color($n, $b, $c)
+  .ui.state.#{$n}
+    background: $b
+    i
+      color: $c
+
+@include ui-state-color(black, #5c6166, #ffffff)
+@include ui-state-color(green, #5bbd72, #ffffff)
+@include ui-state-color(red, #d95c5c, #ffffff)
+@include ui-state-color(blue, #6ecff5, #ffffff)
+@include ui-state-color(purple, #564f8a, #ffffff)
+@include ui-state-color(teal, #00b5ad, #ffffff)
+@include ui-state-color(orange, #e96633, #ffffff)
