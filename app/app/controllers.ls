@@ -167,11 +167,12 @@ angular.module 'app.controllers' []
           * field: 'time'
             width: 100px
             displayName: \時間
-            cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty('time_start')}}-<br/>{{row.getProperty('time_end')}}</div></div>'}]
+            cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty('time_start')}}-<br/>{{row.getProperty('time_end')}}</div></div>
             """
           * field: 'name'
             displayName: \名稱
             width: 320px
+            cellTemplate: """<div class="ngCellText"><a ng-href="/sittings/{{row.getProperty('sitting_id')}}">{{row.getProperty(col.field)}}</a></div>"""
           * field: 'summary'
             displayName: \議程
             cellClass: \summary
