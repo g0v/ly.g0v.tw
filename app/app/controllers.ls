@@ -366,15 +366,13 @@ angular.module 'app.controllers' []
     $state.params.sitting = null
 
   $scope.$watch '$state.params.sitting' ->
-    if $state.current.name is \sittings.detail.video
-      console.log 'viewing video, do not fetch anything'
-      return
     if $state.params.sitting
       console.log 'specified sitting, get context from id of sitting'
-      $scope.context = $state.params.sitting.replace /[\d-]/g,''
+      $scope.context = that - /[\d-]/g
+      loadSitting that
     else
       console.log 'no specified sitting, use YS as default context if necessary'
-      $scope.context = 'YS' if !$scope.context
+      $scope.context ||= 'YS'
 
   $scope.$watch 'context' (newV, oldV)->
     return unless (newV or oldV)
@@ -420,12 +418,10 @@ angular.module 'app.controllers' []
     loadSitting $scope.chosenSitting.id
 
   loadSitting = (id) ->
-    return if $state.current.name is \sittings.detail.video
     state = if $state.current.name is /^sittings.detail/ => $state.current.name else 'sittings.detail'
-    $state.transitionTo 'sittings.detail', { sitting: id }
+    $state.transitionTo state, { sitting: id }
     $scope.loadingSitting = true
-    result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings" do
-      params: {+fo, q: JSON.stringify id: id}
+    result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{id}"
     .success
     $scope.loadingSitting = false
     $scope <<< result

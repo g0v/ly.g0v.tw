@@ -21,12 +21,7 @@
     img(ng-show="loadingList", src="/img/loading.gif")
 
   .row-fluid
-    .span10(ng-show="loaded", ng-show="video")
-      #player
-      .wav-group(ng-repeat="waveform in waveforms")
-        svg.waveform
-        .canvas(ng-waveform="waveform")
-    .span10.content(ng-hide="video")
+    .span10.content
       .role.committee(ng-show="committee")
         ul
           li(ng-repeat="c in committee")
@@ -48,6 +43,13 @@
           .span9 {{ summary }}
       .row-fluid
         .span10.content
+  .row-fluid(ng-show="loaded", ng-show="video")
+    .span10
+      #player
+      .wav-group(ng-repeat="waveform in waveforms")
+        svg.waveform
+        .canvas(ng-waveform="waveform")
+  .row-fluid(ng-hide="video")
       .entries.motions
           input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
           ul(class="nav nav-tabs")
