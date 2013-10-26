@@ -78,10 +78,10 @@
         .column(class="{{diffline.leftClass}}")
           .ui.segment
             a.ui.ribbon.label(href="",target="blank") {{diff.rightItem}}
-            .ui.right.corner.label(ng-class="diffstate('{{diffline.leftClass}}')") {{difftext(diffline.leftClass)}}
+            .ui.right.corner.label(ng-class="diffstate('{{diffline.leftClass}}', '')") {{diffstate(diffline.leftClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.left")
         .column.right(class="{{diffline.rightClass}}")
           .ui.segment.mobile-hide
             a.ui.ribbon.label(href="",target="blank") {{diff.leftItem}}
-            .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', $index)") {{difftext(diffline.rightClass)}}
+            .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', '')") {{diffstate(diffline.rightClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.right")

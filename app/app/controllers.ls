@@ -215,14 +215,23 @@ angular.module 'app.controllers' []
 
 .controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.diffs = []
-    $scope.diffstate = (diffclass) ->
-      | diffclass === 'replace left' || diffclass === 'empty left' || diffclass === 'delete left' => 'red'
-      | diffclass === 'replace' || diffclass === 'insert' || diffclass === 'empty'=> 'green'
-      | otherwise => ''
-    $scope.difftext = (diffclass) ->
-      | diffclass === 'replace left' || diffclass === 'empty left' || diffclass === 'delete left' => '現行'
-      | diffclass === 'replace' || diffclass === 'insert' || diffclass === 'empty' => '修正'
-      | otherwise => '相同'      
+    $scope.diffstate = (diffclass, text) ->
+      switch diffclass
+      case 'replace left' || 'empty left' || 'delete left'
+        if text === '' 
+          'red'
+        else
+          '現行'
+      case 'replace' || 'insert' || 'empty' 
+        if text === '' 
+          'green'
+        else
+          '修正'
+      default
+        if text === '' 
+          ''
+        else
+          '相同'
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}"
