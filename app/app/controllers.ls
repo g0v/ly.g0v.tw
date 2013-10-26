@@ -167,7 +167,7 @@ angular.module 'app.controllers' []
           * field: 'time'
             width: 100px
             displayName: \時間
-            cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'}]
+            cellTemplate: """<div ng-class="{onair: onair(row)}"><div class="ngCellText">{{row.getProperty('time_start')}}-<br/>{{row.getProperty('time_end')}}</div></div>'}]
             """
           * field: 'name'
             displayName: \名稱
