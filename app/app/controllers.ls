@@ -214,6 +214,15 @@ angular.module 'app.controllers' []
         getData!
 
 .controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+    $scope.diffs = []
+    $scope.diffstate = (diffclass) ->
+      | diffclass === 'replace left' || diffclass === 'empty left' || diffclass === 'delete left' => 'red'
+      | diffclass === 'replace' || diffclass === 'insert' || diffclass === 'empty'=> 'green'
+      | otherwise => ''
+    $scope.difftext = (diffclass) ->
+      | diffclass === 'replace left' || diffclass === 'empty left' || diffclass === 'delete left' => '現行'
+      | diffclass === 'replace' || diffclass === 'insert' || diffclass === 'empty' => '修正'
+      | otherwise => '相同'      
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}"
@@ -262,7 +271,8 @@ angular.module 'app.controllers' []
             [left, right] = [0, 1].map -> $ tds.get it
             [left-class, right-class] = [left, right].map -> it.attr \class
             difflines.push {left: left.html!, left-class, right: right.html!, right-class}
-        #console.log {difflines,left-item,right-item}
+        $scope.diffs.push {difflines,left-item,right-item} 
+        #console.log $scope.diffs
         return {comment,diff:diffhtml,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,

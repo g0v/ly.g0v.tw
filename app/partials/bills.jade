@@ -1,7 +1,7 @@
 .bill
   h1.bill(title="{{summary}}") {{summary}}
 
-  .ui.four.steps
+  .ui.four.steps(ng-show="false")
     .ui.active.step 提案 - 2013.10.10
     .ui.state.green: i.icon.check
     .ui.disabled.step 退回
@@ -67,45 +67,21 @@
 
   .clearfix
   .content.default(ng-repeat="(i, d) in diff")
-      h2.ui.horizontal.divider {{d.name}}
+    h2.ui.horizontal.divider {{d.name}}
 
-      p.sample
-        span.delete {{d.diffbase}}
-        | vs
-        span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-
-      .two.column.stackable.ui.grid
-        .column.replace.left
+    p.sample
+      span.delete {{d.diffbase}}
+      | vs
+      span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
+    .diff(ng-repeat="diff in diffs track by $index")
+      .two.column.stackable.ui.grid(ng-repeat="diffline in diff.difflines")
+        .column(class="{{diffline.leftClass}}")
           .ui.segment
-            a.ui.ribbon.label(href="",target="blank") 第一千條
-            .ui.right.corner.label.red 現行
-            a.diff.text(href="",target="blank")
-              em 夫妻
-              | 各保有其本姓。但得書面約定以其本姓冠以
-              em 配偶
-              | 之姓，並向戶政機關登記。
-        .column.replace.right
-          .ui.segment
-            a.ui.ribbon.label(href="",target="blank") 第一千條
-            .ui.right.corner.label.green 修正
-            a.diff.text(href="",target="blank")
-              em 配偶
-              | 各保有其本姓。但得書面約定以其本姓冠以
-              em 他方
-              | 之姓，並向戶政機關登記。
-        .two.column.equal.left
-          .ui.segment
-            .ui.right.corner.label 相同
-            a.diff.text(href="",target="blank")
-              | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
-        .column.equal.right
+            a.ui.ribbon.label(href="",target="blank") {{diff.rightItem}}
+            .ui.right.corner.label(ng-class="diffstate('{{diffline.leftClass}}')") {{difftext(diffline.leftClass)}}
+            a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.left")
+        .column.right(class="{{diffline.rightClass}}")
           .ui.segment.mobile-hide
-            .ui.right.corner.label 相同
-            a.diff.text(href="",target="blank")
-              | 冠姓之一方得隨時回復其本姓。但於同一婚姻關係存續中以一次為限。
-
-      ul.lawdiff
-          li(ng-repeat="e in d.diffcontent")
-              .diff(ng-bind-html-unsafe="e.diff")
-              .comment(ng-bind-html-unsafe="e.comment")
-
+            a.ui.ribbon.label(href="",target="blank") {{diff.leftItem}}
+            .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', $index)") {{difftext(diffline.rightClass)}}
+            a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.right")
