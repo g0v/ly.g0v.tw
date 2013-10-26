@@ -218,17 +218,17 @@ angular.module 'app.controllers' []
     $scope.diffstate = (diffclass, text) ->
       switch diffclass
       case 'replace left' || 'empty left' || 'delete left'
-        if text === '' 
+        if text === ''
           'red'
         else
           '現行'
-      case 'replace' || 'insert' || 'empty' 
-        if text === '' 
+      case 'replace' || 'insert' || 'empty'
+        if text === ''
           'green'
         else
           '修正'
       default
-        if text === '' 
+        if text === ''
           ''
         else
           '相同'
@@ -280,9 +280,7 @@ angular.module 'app.controllers' []
             [left, right] = [0, 1].map -> $ tds.get it
             [left-class, right-class] = [left, right].map -> it.attr \class
             difflines.push {left: left.html!, left-class, right: right.html!, right-class}
-        $scope.diffs.push {difflines,left-item,right-item} 
-        #console.log $scope.diffs
-        return {comment,diff:diffhtml,difflines,left-item,right-item}
+        return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee

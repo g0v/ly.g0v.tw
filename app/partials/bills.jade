@@ -73,15 +73,17 @@
       span.delete {{d.diffbase}}
       | vs
       span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-    .diff(ng-repeat="diff in diffs track by $index")
-      .two.column.stackable.ui.grid(ng-repeat="diffline in diff.difflines")
+    .diff(ng-repeat="diffs in d.diffcontent")
+      .two.column.stackable.ui.grid(ng-repeat="diffline in diffs.difflines")
         .column(class="{{diffline.leftClass}}")
           .ui.segment
-            a.ui.ribbon.label(href="",target="blank") {{diff.rightItem}}
+            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('{{diffline.leftClass}}', '')") {{diffstate(diffline.leftClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.left")
         .column.right(class="{{diffline.rightClass}}")
-          .ui.segment.mobile-hide
-            a.ui.ribbon.label(href="",target="blank") {{diff.leftItem}}
+          .ui.segment(ng-class="{'mobile-hide': !diffline.rightClass}")
+            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.leftItem}}
             .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', '')") {{diffstate(diffline.rightClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.right")
+      .ui.segment {{diffs.comment}}
+      .ui.horizontal.divider
