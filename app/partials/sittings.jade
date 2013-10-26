@@ -3,7 +3,7 @@
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
   h1
     span {{ name }}
-  span(ng-show="videos.length > 0")
+  span(ng-show="videos.length > 0 && !loaded")
     a.pull-right.btn.btn-info(ng-href="sittings/{{id}}/video") 觀看影片
   .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
