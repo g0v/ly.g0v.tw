@@ -85,5 +85,5 @@
             a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', '')") {{diffstate(diffline.rightClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.right")
-      .ui.segment.green {{diffs.comment}}
+      .ui.segment.green(ng-bind-html-unsafe="diffs.comment")
       .ui.horizontal.divider
