@@ -13,6 +13,10 @@ to run app locally,
 
     $ npm start    # then open http://localhost:3333/
 
+# API Endpoint
+
+By default the frontend uses api-beta.ly.g0v.tw.  The code is at http://github.com/g0v/api.ly
+
 # Terminologies
 
 List some terminologies which will be used in source code
