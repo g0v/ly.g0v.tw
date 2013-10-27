@@ -259,19 +259,14 @@ angular.module 'app.controllers' []
           tsize: 0
           #inline: true
         .0
-        diffhtml = with $ '<div />' .html diffhtml
-          ..find 'table tr' .each ->
-            left = $ @ .find \td .get 0
-            if left => $ left .addClass \left
-          ..html!
         difflines = []
         $ '<div />' .html diffhtml
-        .find 'table tr' .each ->
-          tds = $ @ .find \td
-          if tds.length
-            [left, right] = [0, 1].map -> $ tds.get it
-            [left-class, right-class] = [left, right].map -> it.attr \class
-            difflines.push {left: left.html!, left-class, right: right.html!, right-class}
+        .find 'ol[class="data"]' .each (content_index) ->
+          $ @ .find \li .each (index) ->
+            if content_index == 0
+              difflines.push {left: $ @ .html!, left-class: 'left ' + $ @ .attr \class}
+            else
+              difflines[index] <<< {right: $ @ .html!, right-class: $ @ .attr \class}
         return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
