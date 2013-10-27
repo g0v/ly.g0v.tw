@@ -89,6 +89,65 @@ dowave = (wave, clips, cb, start = 0) ->
         .style \stroke-width \1px
         .style \fill \none
 
+line-based-diff = (text1, text2) ->
+  # https://code.google.com/p/google-diff-match-patch/wiki/API
+  dmp = new diff_match_patch
+  dmp.Diff_Timeout = 1  # sec
+  dmp.Diff_EditCost = 4
+  ds = dmp.diff_main text1, text2
+
+  move-state = (state, target) ->
+    switch state
+    | \delete =>
+      if target is \right
+        return \replace
+    | \insert =>
+      if target is \left
+        return \replace
+    | \empty =>
+      if target is \right
+        return \insert
+      else if target is \left
+        return \delete
+      else
+        return \equal
+    | \equal =>
+      if target isnt \both
+        return \replace
+    return state
+
+  make-line-object = ->
+    {left: '', left-class: 'left empty', right: '', right-class: 'empty'}
+
+  append-text = (line-obj, line, target, state) ->
+    if target == \both
+      line-obj
+        ..left += line
+        ..right += line
+    else  # left or right
+      line-obj[target] += "<em>#line</em>"
+
+    line-obj
+      ..left-class = 'left ' + state
+      ..right-class = state
+
+  difflines = [ make-line-object! ]
+  state = \empty
+  for [target, text] in ds
+    target = switch target
+             | 0  => \both
+             | 1  => \right
+             | -1 => \left
+
+    lines = text / '\n'
+    for line, i in lines
+      state = if line == '' then \empty else move-state state, target
+      append-text difflines[*-1], line, target, state
+      if i != lines.length - 1
+        difflines.push make-line-object!
+        state = \empty
+  return difflines
+
 angular.module 'app.controllers' []
 .controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
 
@@ -216,11 +275,11 @@ angular.module 'app.controllers' []
 .controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
-      | diffclass === 'left replace' || diffclass === 'left delete' || diffclass === 'left empty'=> 'red'
+      | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
       | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' => 'green'
       | otherwise => ''
     $scope.difftxt = (diffclass) ->
-      | diffclass === 'left replace' || diffclass === 'left delete' || diffclass === 'left empty' => '現行'
+      | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => '現行'
       | diffclass === 'replace' || diffclass === 'empty' => '修正'
       | diffclass === 'insert' => '新增'
       | otherwise => '相同'
@@ -252,21 +311,7 @@ angular.module 'app.controllers' []
         left-item = RegExp.lastMatch - /\s+$/
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = RegExp.lastMatch - /\s+$/
-        diffhtml = diffview {baseTextLines, newTextLines} <<< do
-          baseTextName: h[base-index] ? ''
-          newTextName: h[idx] ? ''
-          tchar: ""
-          tsize: 0
-          #inline: true
-        .0
-        difflines = []
-        $ '<div />' .html diffhtml
-        .find 'ol[class="data"]' .each (content_index) ->
-          $ @ .find \li .each (index) ->
-            if content_index == 0
-              difflines.push {left: $ @ .html!, left-class: 'left ' + $ @ .attr \class}
-            else
-              difflines[index] <<< {right: $ @ .html!, right-class: $ @ .attr \class}
+        difflines = line-based-diff baseTextLines, newTextLines
         return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
