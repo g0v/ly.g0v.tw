@@ -216,11 +216,11 @@ angular.module 'app.controllers' []
 .controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
-      | diffclass === 'replace left' || diffclass === 'delete left' || diffclass === 'empty left' || diffclass === 'left replace' => 'red'
+      | diffclass === 'left replace' || diffclass === 'left delete' || diffclass === 'left empty'=> 'red'
       | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' => 'green'
       | otherwise => ''
     $scope.difftxt = (diffclass) ->
-      | diffclass === 'replace left' || diffclass === 'delete left' || diffclass === 'empty left' => '現行'
+      | diffclass === 'left replace' || diffclass === 'left delete' || diffclass === 'left empty' => '現行'
       | diffclass === 'replace' || diffclass === 'empty' => '修正'
       | diffclass === 'insert' => '新增'
       | otherwise => '相同'

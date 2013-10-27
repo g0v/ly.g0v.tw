@@ -1,3 +1,4 @@
+@import "app/styles/mixins"
 @import "app/styles/ui-step"
 
 .history
@@ -8,6 +9,7 @@
 
 .bill
   width: 100%
+  font-family: "宋體-繁"
   .ui.segment.article-text
     padding-top: 0.5em
     padding-bottom: 0.5em
@@ -46,21 +48,23 @@
       margin: 1rem
       border: 1px #fff solid
     .delete
-      background-color: #D95C5C
+      background-color: #f99
     .version
-      background-color: #A1CF64
+      background-color: #A1CF88
 
   .diff.text
     color: #333
   .replace.left
     .diff.text em
-      background-color: #D95C5C
+      background-color: #f99
+      +vendor-prefix(text-emphasis, dot)
   .replace.right
     .diff.text em
-      background-color: #A1CF64
+      background-color: #A1CF88
+      +vendor-prefix(text-emphasis, dot)
   .insert.right
     .diff.text
-      background-color: #A1CF64      
+      background-color: #A1CF88
   @media only screen and (max-width: 768px)
     .mobile-hide
       display: none
