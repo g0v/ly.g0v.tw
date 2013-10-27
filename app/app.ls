@@ -2,7 +2,7 @@
 
 angular.module('scroll', []).value('$anchorScroll', angular.noop)
 
-angular.module \ly.g0v.tw <[ngGrid app.controllers app.directives app.filters app.services scroll partials ui.state utils]>
+angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services scroll partials ui.state utils]>
 
 .config <[$stateProvider $urlRouterProvider $locationProvider]> ++ ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
