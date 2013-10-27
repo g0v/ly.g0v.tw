@@ -254,11 +254,11 @@ angular.module 'app.controllers' []
 
         if comment
           comment.=replace /\n/g "<br><br>\n"
-        baseTextLines = entry[base-index] or ''
+        baseTextLines = entry[base-index] or ' '
         newTextLines = entry[idx] || entry[base-index]
-        baseTextLines -= /^第(.*?)條\s*/
+        baseTextLines -= /^第(.*?)條(之.*?)?\s+/
         left-item = RegExp.lastMatch - /\s+$/
-        newTextLines -= /^第(.*?)條\s*/
+        newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = RegExp.lastMatch - /\s+$/
         diffhtml = diffview {baseTextLines, newTextLines} <<< do
           baseTextName: h[base-index] ? ''

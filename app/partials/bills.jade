@@ -76,13 +76,13 @@
     .diff(ng-repeat="diffs in d.diffcontent")
       .two.column.stackable.ui.grid(ng-repeat="diffline in diffs.difflines")
         .column(class="{{diffline.leftClass}}")
-          .ui.segment
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
+          .ui.segment.article-text
+            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.leftItem}}
             .ui.right.corner.label(ng-class="diffstate('{{diffline.leftClass}}', '')") {{diffstate(diffline.leftClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.left")
         .column.right(class="{{diffline.rightClass}}")
-          .ui.segment(ng-class="{'mobile-hide': !diffline.rightClass}")
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.leftItem}}
+          .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.rightClass}")
+            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('{{diffline.rightClass}}', '')") {{diffstate(diffline.rightClass, 'text')}}
             a.diff.text(href="",target="blank", ng-bind-html-unsafe="diffline.right")
       .ui.segment.green {{diffs.comment}}
