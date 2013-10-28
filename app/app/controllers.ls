@@ -17,78 +17,6 @@ renderCommittee = (committee) ->
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
-# for safari. new Date "some-date-string" failed in safari, so do it manually
-date-parse = (v) ->
-  v = v.replace(/[-:]/g, " ")split " "
-  new Date(v.0, v.1 - 1, v.2, v.3, v.4, v.5 )
-
-dowave = (wave, clips, cb, start = 0) ->
-  margin = top: 0, left:  30, right:  0, bottom:  50
-
-  w = 960 - margin.left - margin.right
-  h = 100 - margin.top - margin.bottom
-
-  parseDate = d3.time.format "%YM%m" .parse;
-
-  svg = d3.select("svg.waveform").text('')
-    .attr "width", w + margin.left + margin.right
-    .attr "height", h + margin.top + margin.bottom
-    .on \click ->
-      x0 = x.invert d3.mouse(@).0 - margin.left
-      cb x0
-
-    .append "g"
-    .attr "transform", "translate(#{margin.left},#{margin.top})"
-
-  chapter = [
-  ]
-
-  chapter.forEach -> it.date = parseDate it.date
-
-  x = d3.scale.linear!range [0, w]
-    .domain [0, wave.length]
-  y = d3.scale.linear!range [h, 0]
-    .domain [0, d3.max wave]
-
-  dowave.set-loc = (v) ->
-    d3.select \#location-marker .attr \transform -> "translate(#{x v} 0)"
-
-  xAxis = d3.svg.axis!scale x .orient "bottom"
-    .tickFormat ->
-      if start =>
-        # UTC+8
-        it = ( (8 * 3600) +  it + start.getTime! / 1000 ) % 86400
-      [h,m,s] = [parseInt(it / 3600) % 60, parseInt(it / 60) % 60, it % 60]map -> (it>9 and "#{it}") or  "0#{it}"
-      "#h:#m:#s"
-
-  svg.append "g"
-    .attr "class", "x axis"
-    .attr "transform", "translate(0,#h)"
-    .call xAxis
-
-  svg.append \path
-    .attr \id \location-marker
-    .attr \d, "M0 0L0,40"
-    .attr \stroke, \#f00
-    .attr \stroke-width, \2px
-  svg.selectAll \g.avatar .data clips .enter!append \g
-      ..attr \class \avatar
-      ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
-      ..append \image
-        .attr \class "avatar small"
-        .attr \width 10
-        .attr \height 10
-        .attr \xlink:href ->
-          avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
-          "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small"
-        .attr \alt -> it.speaker
-      ..append \rect
-        .attr \width 10
-        .attr \height 10
-        .style \stroke \steelblue
-        .style \stroke-width \1px
-        .style \fill \none
-
 line-based-diff = (text1, text2) ->
   # https://code.google.com/p/google-diff-match-patch/wiki/API
   dmp = new diff_match_patch
@@ -546,11 +474,11 @@ angular.module 'app.controllers' []
       videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
       .success
       whole = [v for v in videos when v.firm is \whole]
-      first-timestamp = if whole.0 and whole.0.first_frame_timestamp => date-parse that else null
-      #start = new Date whole.0.time
-      #clips = [{offset: new Date(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
-      start = first-timestamp ? date-parse whole.0.time
-      clips = [{offset: date-parse(v.time) - start, mly: v.speaker - /\s*委員/, v.length} for v in videos when v.firm isnt \whole]
+      first-timestamp = if whole.0 and whole.0.first_frame_timestamp => moment that else null
+      start = first-timestamp ? moment whole.0.time
+      clips = for v in videos when v.firm isnt \whole
+        { start, offset: moment(v.time) - start, mly: v.speaker - /\s*委員/, v.length, v.thumb }
+
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
      &part=snippet,contentDetails,statistics,status" .success
@@ -574,7 +502,7 @@ angular.module 'app.controllers' []
             ..now = 0
           handler = ->
             timer.now = new Date!getTime! / 1000
-            dowave.set-loc timer.sec + (timer.now - timer.start) * timer.rate
+            $scope.$apply -> $scope.waveforms.0.current = timer.sec + (timer.now - timer.start) * timer.rate
           timer-id := setInterval ->
             handler!
           , 10000
@@ -603,19 +531,17 @@ angular.module 'app.controllers' []
             player-init!
 
       $scope.waveforms = []
-      mkwave = (wave, index) ->
+      mkwave = (wave, speakers, index) ->
         waveclips = []
-        wave.forEach (value, key) ->
-          waveclips.push value/255
-        $scope.waveforms[index] = waveclips
-        if duration > wave.length
-          wave ++= [1 to duration-(wave.length)].map -> 0
-        dowave wave, clips, (-> $scope.playFrom it), first-timestamp
+        for d,i in wave =>  wave[i] = d/255
+        $scope.waveforms[index] = {wave, speakers, current: 0, start: first-timestamp, cb: -> $scope.playFrom it }
+        #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
       whole.forEach !(waveform, index) ->
+        speakers = clips.filter -> +it.start.startOf(\day) is +moment(waveform.time)startOf(\day)
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
         .error -> mkwave [], index
         .success
-        mkwave wave, index
+        mkwave wave, speakers, index
     else
       # disabled
       $scope.loaded = null

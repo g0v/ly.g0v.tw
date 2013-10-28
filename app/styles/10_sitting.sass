@@ -1,16 +1,48 @@
 li a i
   padding-right: 3px
+.wave-root
+  height: 150px
 .wav-group
   position: relative
   height: 100px
-  .waveform
-    position: absolute
-    top: 30px
-    left: 0px
-    z-index: 10
-  .canvas
+  margin-top: 50px
+  svg
     position: absolute
     top: 0
-    left: 30px
+    left: 0
+    z-index: 10
+    font-size: 10px
+  canvas
+    position: absolute
+    top: 0
+    left: 0
     z-index: 1
     opacity: 0.5
+
+#avatar-tooltip.ui.label.pointing.below
+  position: absolute
+  z-index: 2
+  text-align: center
+  /* semantic-ui styling start */
+  display: none 
+  background: #e8e8e8
+  padding: 7px 10px
+  border-radius: 5px
+  /* semantic-ui styling end */
+  &:before
+    content: " "
+    position: absolute
+    width: 0.6em
+    height: 0.6em
+    background: #e8e8e8
+    transition: rotate(45deg)
+    -webkit-transition: rotate(45deg)
+    z-index: 2
+  img
+    display: block
+    width: 64px
+    height: 64px
+    background: rgba(255,255,255,0.5)
+    border-radius: 2px
+  .name
+    margin-top: 8px

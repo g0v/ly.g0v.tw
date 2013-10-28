@@ -47,8 +47,10 @@
     .span10
       #player
       .wav-group(ng-repeat="waveform in waveforms")
-        svg.waveform
-        .canvas(ng-waveform="waveform")
+        ng-waveform(ng-model="waveform")
+    #avatar-tooltip.ui.label.pointing.below
+      img(src="http://avatars.io/50a65bb26e293122b0000073/e7c2780646fc1f4a828e13acd5ea88a0?size=medium")
+      .name 楊瓊櫻
   .row-fluid(ng-hide="video")
       .entries.motions
           input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
