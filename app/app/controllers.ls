@@ -23,6 +23,7 @@ line-based-diff = (text1, text2) ->
   dmp.Diff_Timeout = 1  # sec
   dmp.Diff_EditCost = 4
   ds = dmp.diff_main text1, text2
+  dmp.diff_cleanupSemantic ds
 
   move-state = (state, target) ->
     switch state
@@ -47,7 +48,7 @@ line-based-diff = (text1, text2) ->
   make-line-object = ->
     {left: '', left-class: 'left empty', right: '', right-class: 'empty'}
 
-  append-text = (line-obj, line, target, state) ->
+  append-text = (line-obj, line, target) ->
     if target == \both
       line-obj
         ..left += line
@@ -55,6 +56,7 @@ line-based-diff = (text1, text2) ->
     else  # left or right
       line-obj[target] += "<em>#line</em>"
 
+  set-line-state = (line-obj, state) ->
     line-obj
       ..left-class = 'left ' + state
       ..right-class = state
@@ -69,8 +71,13 @@ line-based-diff = (text1, text2) ->
 
     lines = text / '\n'
     for line, i in lines
-      state = if line == '' then \empty else move-state state, target
-      append-text difflines[*-1], line, target, state
+      if line == ''
+        set-line-state difflines[*-1], state
+        state = \empty
+      else
+        state = move-state state, target
+        append-text difflines[*-1], line, target
+        set-line-state difflines[*-1], state
       if i != lines.length - 1
         difflines.push make-line-object!
         state = \empty
