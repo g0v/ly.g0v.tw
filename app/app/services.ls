@@ -18,36 +18,32 @@ angular.module 'app.services' [] .factory mod
       deferred = $q.defer!
       promise = deferred.promise
       promise.success = (fn) ->
-        promise.then (rsp) ->
-          fn rsp
+        promise.then fn
       promise.error = (fn) ->
-        promise.then (rsp) ->
-          fn rsp
+        promise.then fn
       $timeout ->
         console.log \useLocalCache
         deferred.resolve _model[key]
       return promise
 
     wrapHttpGet = (key, url, params) ->
-      req = $http.get url, params
-      [_success, _error] = [req.success, req.error]
+      {success, error}:req = $http.get url, params
       req.success = (fn) ->
-        rsp <- _success
+        rsp <- success
         console.log 'save response to local model'
         _model[key] = rsp
         fn rsp
       req.error = (fn) ->
-        rsp <- _error
+        rsp <- error
         fn rsp
       return req
 
     return do
       get: (path, params) ->
         url = base + path
-        if params => key = url + JSON.stringify params else key = url
-        key = key - /\"/g
-        if _model.hasOwnProperty key
-          return localGet key
+        key = if params => url + JSON.stringify params else url
+        key -= /\"/g
+        return if _model.hasOwnProperty key
+          localGet key
         else
-          return wrapHttpGet key, url, params
-
+          wrapHttpGet key, url, params
