@@ -1,7 +1,9 @@
 build-avatar = (root, d, {w,h,x,y,margin}) ->
+  start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
-      moment ((( it + (if d.start => that.getTime! else - 28800000) / 1000 ) % 86400) * 1000) .format \HH:mm:ss  # UTC + 8
+      moment ((( it + start / 1000 ) % 86400) * 1000) .format \HH:mm:ss  # UTC + 8
+      #moment ((( it + (if d.time => momenthat.getTime! else - 28800000) / 1000 ) % 86400) * 1000) .format \HH:mm:ss  # UTC + 8
 
   svg = d3.select root.children!0
     .attr \width, w
@@ -15,6 +17,13 @@ build-avatar = (root, d, {w,h,x,y,margin}) ->
     .attr \class "x axis"
     .attr \transform "translate(0,#{h - margin.bottom})"
     .call xAxis
+  svg.append \text .attr \class \x-legend
+    .text -> moment d.time .format "YYYY/MM/DD"
+    .attr \x -> ( w + margin.left - margin.right ) / 2
+    .attr \y -> h - margin.bottom
+    .attr \dy 30
+    .attr \stroke \black
+    .attr \text-anchor "middle"
 
   svg.append \path
     .attr \class \location-marker

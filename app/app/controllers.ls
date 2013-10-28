@@ -532,17 +532,23 @@ angular.module 'app.controllers' []
             player-init!
 
       $scope.waveforms = []
-      mkwave = (wave, speakers, index) ->
+      mkwave = (wave, speakers, time, index) ->
         waveclips = []
         for d,i in wave =>  wave[i] = d/255
-        $scope.waveforms[index] = {wave, speakers, current: 0, start: first-timestamp, cb: -> $scope.playFrom it }
+        $scope.waveforms[index] = do
+          wave: wave,
+          speakers: speakers,
+          current: 0,
+          start: first-timestamp,
+          time: time,
+          cb: -> $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
       whole.forEach !(waveform, index) ->
         speakers = clips.filter -> +it.start.startOf(\day) is +moment(waveform.time)startOf(\day)
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
         .error -> mkwave [], index
         .success
-        mkwave wave, speakers, index
+        mkwave wave, speakers, waveform.time, index
     else
       # disabled
       $scope.loaded = null
