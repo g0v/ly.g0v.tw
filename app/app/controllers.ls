@@ -242,7 +242,7 @@ angular.module 'app.controllers' []
 
         if comment
           comment.=replace /\n/g "<br><br>\n"
-        baseTextLines = entry[base-index] or ' '
+        baseTextLines = entry[base-index] or ''
         newTextLines = entry[idx] || entry[base-index]
         baseTextLines -= /^第(.*?)條(之.*?)?\s+/
         left-item = RegExp.lastMatch - /\s+$/
