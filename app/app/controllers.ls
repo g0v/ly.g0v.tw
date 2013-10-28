@@ -182,7 +182,8 @@ angular.module 'app.controllers' []
     $scope.onair = ({{date,time}:entity}) ->
         d = moment date .startOf \day
         return false unless +today is +d
-        [start, end] = time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it"
+        [start,end] = if time => (time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it")
+        else [entity.time_start,entity.time_end]map -> moment "#{d.format 'YYYY-MM-DD'} #it"
         start <= moment! <= end
 
     $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting,
