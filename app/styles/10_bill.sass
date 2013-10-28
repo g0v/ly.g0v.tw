@@ -58,13 +58,18 @@
     .diff.text em
       background-color: #f99
       +vendor-prefix(text-emphasis, dot)
+  .delete.left
+    .diff.text em
+      background-color: #f99
+      +vendor-prefix(text-emphasis, dot)    
   .replace.right
     .diff.text em
       background-color: #A1CF88
       +vendor-prefix(text-emphasis, dot)
   .insert.right
-    .diff.text
+    .diff.text em
       background-color: #A1CF88
+      +vendor-prefix(text-emphasis, dot)
   @media only screen and (max-width: 768px)
     .mobile-hide
       display: none

@@ -205,11 +205,12 @@ angular.module 'app.controllers' []
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
-      | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' => 'green'
+      | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' || diffclass === 'delete'=> 'green'
       | otherwise => ''
     $scope.difftxt = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => '現行'
       | diffclass === 'replace' || diffclass === 'empty' => '修正'
+      | diffclass === 'delete' => '刪除'
       | diffclass === 'insert' => '新增'
       | otherwise => '相同'
     $scope.$watch '$state.params.billId' ->
@@ -342,7 +343,7 @@ angular.module 'app.controllers' []
             names[s] ? s
     window.loadMotions $scope
 
-.controller LYSittings: <[$rootScope $scope $http $state LYService]> ++ ($rootScope, $scope, $http, $state, LYService) ->
+.controller LYSittings: <[$rootScope $scope $http $state LYService LYModel]> ++ ($rootScope, $scope, $http, $state, LYService, LYModel) ->
   $rootScope.activeTab = \sittings
   $scope.committees = committees
   $scope <<< lists:{}
@@ -382,7 +383,7 @@ angular.module 'app.controllers' []
 
     length = 40 if !length
     $scope.loadingList = true
-    {entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/sittings' do
+    {entries} <- LYModel.get 'sittings' do
       params: {q:{"ad":8,"committee": type},l:length, f:{"motions":0}}
     .success
     $scope.loadingList = false
@@ -412,7 +413,7 @@ angular.module 'app.controllers' []
     state = if $state.current.name is /^sittings.detail/ => $state.current.name else 'sittings.detail'
     $state.transitionTo state, { sitting: id }
     $scope.loadingSitting = true
-    result <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{id}"
+    result <- LYModel.get "sittings/#{id}"
     .success
     $scope.loadingSitting = false
     $scope <<< result
@@ -471,7 +472,7 @@ angular.module 'app.controllers' []
       $scope.video = true
       return if $scope.loaded is $state.params.sitting
       $scope.loaded = $state.params.sitting
-      videos <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/sittings/#{$state.params.sitting}/videos"
+      videos <- LYModel.get "sittings/#{$state.params.sitting}/videos"
       .success
       whole = [v for v in videos when v.firm is \whole]
       first-timestamp = if whole.0 and whole.0.first_frame_timestamp => moment that else null
