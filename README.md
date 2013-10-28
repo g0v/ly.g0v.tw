@@ -31,6 +31,14 @@ List some terminologies which will be used in source code
 * exmotion - 臨時提案
 * interpellation - 質詢事項
 
+# Note
+
+While running deploy if following message is shown:
+
+    " fatal: Not a valid object name: '-m' "
+
+It is a bug of git fixed after 1.7.11.4. Check you git version (`git --version`) and upgrade if < 1.7.11.4.
+
 # License
 
 The MIT license: http://g0v.mit-license.org/
