@@ -277,11 +277,12 @@ angular.module 'app.controllers' []
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
-      | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' => 'green'
+      | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' || diffclass === 'delete'=> 'green'
       | otherwise => ''
     $scope.difftxt = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => '現行'
       | diffclass === 'replace' || diffclass === 'empty' => '修正'
+      | diffclass === 'delete' => '刪除'
       | diffclass === 'insert' => '新增'
       | otherwise => '相同'
     $scope.$watch '$state.params.billId' ->
