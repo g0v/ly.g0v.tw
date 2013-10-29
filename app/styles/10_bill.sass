@@ -1,6 +1,12 @@
 @import "app/styles/mixins"
 @import "app/styles/ui-step"
 
+@media print
+  .hide-print
+    display: none !important
+  #qrlink
+    display: block !important
+
 .history
   path.link, .node rect
     fill: none
@@ -13,6 +19,8 @@
   .ui.segment.article-text
     padding-top: 0.5em
     padding-bottom: 0.5em
+  #qrlink
+    display: none
 
   a,a:link,a:hover,a:active
     text-decoration: none
