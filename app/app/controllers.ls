@@ -9,12 +9,13 @@ committees = do
     SWE: \社會福利及衛生環境
     PRO: \程序
 
-renderCommittee = (committee) ->
+renderCommittee = (committee, $sce) ->
     return '院會' unless committee?
     return '院會' if committee is \null # orz, we got stringified version at filter
     committee = [committee] unless $.isArray committee
     res = for c in committee
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
+    console.log(res.join '')
     res.join ''
 
 line-based-diff = (text1, text2) ->
@@ -83,9 +84,10 @@ line-based-diff = (text1, text2) ->
         state = \empty
   return difflines
 
-angular.module 'app.controllers' []
-.controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
+angular.module 'app.controllers' <[ng]>
+.controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->
 
+  console.log($sce);
   s <<< {$location}
   s.$watch '$location.path()' (activeNavId or '/') ->
     s <<< {activeNavId}
@@ -96,23 +98,25 @@ angular.module 'app.controllers' []
     else
       ''
 
-.filter \committee, -> renderCommittee
+.filter \committee,($sce) -> (value) -> $sce.trustAsHtml(renderCommittee(value,$sce));
 
-.controller LYCalendar: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
+
+.controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
     # XXX: unused.  use filter instead
     $scope.type = 'sitting'
     $rootScope.activeTab = \calendar
     $scope.committee = ({{committee}:entity}, col) ->
+        console.log($sce);
         return '院會' unless committee
         res = for c in committee
             """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
-        res.join ''
+        $sce.trustAsHtml(res.join '')
 
     $scope.chair = ({{chair}:entity}, col) ->
         return '' unless chair
         party = LYService.resolveParty chair
         avatar = CryptoJS.MD5 "MLY/#{chair}" .toString!
-        chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
+        $sce.trustAsHtml(chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">""")
 
     $scope.onair = ({{date,time}:entity}) ->
         d = moment date .startOf \day
@@ -129,7 +133,7 @@ angular.module 'app.controllers' []
         i18n: \zh-tw
         aggregateTemplate: """
         <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate" ng-switch on="row.field">
-          <span ng-switch-when="primaryCommittee" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
+          <span ng-switch-when="primaryCommittee" class="ngAggregateText" ng-bind-html="row.label | committee"></span>
           <span ng-switch-default class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
           <div class="{{row.aggClass()}}"></div>
         </div>
@@ -140,20 +144,20 @@ angular.module 'app.controllers' []
             displayName: \委員會
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            <div ng-bind-html="row.getProperty(col.field) | committee"></div>
             """
           * field: 'committee'
             visible: false
             displayName: \委員會
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            <div ng-bind-html="row.getProperty(col.field) | committee"></div>
             """
           * field: 'chair'
             displayName: \主席
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="chair(row)"></div>
+            <div ng-bind-html="chair(row)"></div>
             """
           * field: 'date'
             cellFilter: 'date: mediumDate'
