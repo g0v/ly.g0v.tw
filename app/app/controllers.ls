@@ -233,6 +233,11 @@ angular.module 'app.controllers' []
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
+      parse-article-heading = (text) ->
+        [_, ..._items]? = text.match /第(.+)條(?:之(.+))?/
+        return unless _items
+        require! zhutil
+        \§ + _items.map zhutil.parseZHNumber .join \-
       diffentry = (diff, idx, c, base-index) -> (entry) ->
         h = diff.header
         comment = if \string is typeof entry[c]
@@ -243,11 +248,12 @@ angular.module 'app.controllers' []
         if comment
           comment.=replace /\n/g "<br><br>\n"
         baseTextLines = entry[base-index] or ''
+        if baseTextLines
+          baseTextLines -= /^第(.*?)條(之.*?)?\s+/
+          left-item = parse-article-heading RegExp.lastMatch - /\s+$/
         newTextLines = entry[idx] || entry[base-index]
-        baseTextLines -= /^第(.*?)條(之.*?)?\s+/
-        left-item = RegExp.lastMatch - /\s+$/
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
-        right-item = RegExp.lastMatch - /\s+$/
+        right-item = parse-article-heading RegExp.lastMatch - /\s+$/
         difflines = line-based-diff baseTextLines, newTextLines
         return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
