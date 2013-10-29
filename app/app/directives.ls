@@ -34,7 +34,6 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
   svg.selectAll \g.avatar .data d.speakers .enter!append \g
       ..attr \class \avatar
       ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
-      #..on \mouseout -> $ \#avatar-tooltip .hide!
       ..on \mouseover ->
         tooltip = $ \#avatar-tooltip
         tooltip.show!
