@@ -490,8 +490,9 @@ angular.module 'app.controllers' []
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
      &part=snippet,contentDetails,statistics,status" .success
-      [_, h, m, s] = details.items.0.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
-      duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
+      if details.items?0
+        [_, h, m, s] = that.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
+        duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
