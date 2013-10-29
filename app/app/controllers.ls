@@ -489,9 +489,10 @@ angular.module 'app.controllers' []
       .success
       whole = [v for v in videos when v.firm is \whole]
       first-timestamp = if whole.0 and whole.0.first_frame_timestamp => moment that else null
+      $scope.current-video = whole.0
       start = first-timestamp ? moment whole.0.time
       clips = for v in videos when v.firm isnt \whole
-        { start, offset: moment(v.time) - start, mly: v.speaker - /\s*委員/, v.length, v.thumb }
+        { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
 
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
@@ -550,6 +551,7 @@ angular.module 'app.controllers' []
         waveclips = []
         for d,i in wave =>  wave[i] = d/255
         $scope.waveforms[index] = do
+          id: whole[index].youtube_id
           wave: wave,
           speakers: speakers,
           current: 0,
@@ -557,8 +559,14 @@ angular.module 'app.controllers' []
           time: time,
           cb: -> $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
+      $scope.current-video = whole.0
       whole.forEach !(waveform, index) ->
-        speakers = clips.filter -> +it.start.startOf(\day) is +moment(waveform.time)startOf(\day)
+        # XXX whole clips for committee can be just AM/PM of the same day
+        start = waveform.first_frame_timestamp ? waveform.time
+        day_start = +moment(start)startOf(\day)
+        speakers = clips.filter -> +moment(it.time).startOf(\day) is day_start
+        for clip in speakers
+          clip.offset = moment(clip.time) - moment(start)
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
         .error -> mkwave [], index
         .success
