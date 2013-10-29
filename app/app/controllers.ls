@@ -227,6 +227,7 @@ angular.module 'app.controllers' []
       if bill.bill_ref and bill.bill_ref isnt billId
         # make bill_ref the permalink
         return $state.transitionTo 'bills', { billId: bill.bill_ref }
+      $state.current.title = "ly.g0v.tw - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
       data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
 

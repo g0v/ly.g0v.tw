@@ -6,7 +6,7 @@ html.no-han-init(lang='zh-Hant', ng-app='ly.g0v.tw')
     meta(name='viewport', content='width=device-width')
     meta(name='description', content='')
     meta(name='author', content='')
-    title(ng-bind-template='{{pageTitle}}')
+    title(ng-bind-template='{{$state.current.title}}')
     link(rel='stylesheet', href='/css/app.css')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js')
     //if lte IE 7
