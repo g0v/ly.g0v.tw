@@ -237,7 +237,8 @@ angular.module 'app.controllers' []
         [_, ..._items]? = text.match /第(.+)條(?:之(.+))?/
         return unless _items
         require! zhutil
-        \§ + _items.map zhutil.parseZHNumber .join \-
+        \§ + _items.filter -> it
+        .map zhutil.parseZHNumber .join \-
       diffentry = (diff, idx, c, base-index) -> (entry) ->
         h = diff.header
         comment = if \string is typeof entry[c]
