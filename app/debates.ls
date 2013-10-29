@@ -1,5 +1,5 @@
-angular.module 'ly.g0v.tw.controllers' []
-.controller LYDebates: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
+angular.module 'ly.g0v.tw.controllers' <[ng]>
+.controller LYDebates: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
     $rootScope.activeTab = \debates
     $scope.answer = (answer) ->
         | answer         => '已答'
@@ -8,7 +8,7 @@ angular.module 'ly.g0v.tw.controllers' []
         return '' unless mly[0]
         party = LYService.resolveParty mly[0]
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
-        mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">"""
+        $sce.trustAsHtml(mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">""")
     padLeft = (str, length) ->
         if str.length >= length
             return str
@@ -17,7 +17,7 @@ angular.module 'ly.g0v.tw.controllers' []
         return '' unless link
         str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
         href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
-        """<a href="#{href}" target="_blank">質詢公報</a>"""
+        $sce.trustAsHtml("""<a href="#{href}" target="_blank">質詢公報</a>""");
 
     $scope.answers = ({{answers}:entity}) ->
         tmp = ''
@@ -29,7 +29,7 @@ angular.module 'ly.g0v.tw.controllers' []
                 tmp += """<div><a href="#{href}" target="_blank">書面答復</a></div>"""
         if tmp === ''
             tmp += """口頭(見質詢公報)"""
-        tmp
+        $sce.trustAsHtml(tmp)
     $scope.pagingOptions = {
         pageSizes: [10 20 30]
         pageSize: 30
@@ -52,19 +52,19 @@ angular.module 'ly.g0v.tw.controllers' []
             displayName: \質詢人
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="mly(row)"></div>
+            <div ng-bind-html="mly(row)"></div>
             """
           * field: 'source'
             displayName: \質詢公報
             width: 80
             cellTemplate: """
-            <div ng-bind-html-unsafe="source(row)"></div>
+            <div ng-bind-html="source(row)"></div>
             """
           * field: 'answers'
             displayName: \答復公報
             width: 100
             cellTemplate: """
-            <div ng-bind-html-unsafe="answers(row)"></div>
+            <div ng-bind-html="answers(row)"></div>
             """
           * field: 'summary'
             displayName: \案由
@@ -73,7 +73,7 @@ angular.module 'ly.g0v.tw.controllers' []
             displayName: \答復
             width: '50'
             cellTemplate: """
-            <div ng-bind-html-unsafe="answer(row)"></div>
+            <div ng-bind-html="answer(row)"></div>
             """
           * field: 'date_asked'
             cellFilter: 'date: mediumDate'

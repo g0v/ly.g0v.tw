@@ -15,7 +15,6 @@ renderCommittee = (committee, $sce) ->
     committee = [committee] unless $.isArray committee
     res = for c in committee
         """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
-    console.log(res.join '')
     res.join ''
 
 line-based-diff = (text1, text2) ->
@@ -143,7 +142,7 @@ angular.module 'app.controllers' <[ng]>
             visible: false
             displayName: \委員會
             width: 130
-            cellTemplate: """
+            cellTemplate: """ 
             <div ng-bind-html="row.getProperty(col.field) | committee"></div>
             """
           * field: 'committee'
