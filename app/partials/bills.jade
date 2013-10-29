@@ -44,7 +44,7 @@
     h2.ui.horizontal.divider 提案人
     .sponsors(ng-show="sponsors")
       .item(ng-repeat="e in sponsors")
-        .image.ui.rounded.corner
+        .image.ui.rounded.corner.hide-print
          img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
         .content
           .name {{e.name}}
