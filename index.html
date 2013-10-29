@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title ng-bind-template="{{pageTitle}}"></title>
+    <title ng-bind-template="{{$state.current.title}}"></title>
     <link rel="stylesheet" href="/css/app.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script><!--[if lte IE 7]>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script><![endif]--><!--[if lte IE 8]>
@@ -38,7 +38,7 @@
     </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container hide-print">
           <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://github.com/g0v/ly.g0v.tw" target="_blank" class="pull-right">
             <div class="small badge badge-inverse pull-right build-id">{{ _build }}</div></a><a href="http://g0v.tw" target="_blank" class="pull-right">
             <div class="brand g0v"><img src="http://hack.g0v.tw/img/g0v-icon-invert.png"></div></a><a href="/" class="brand">零時政府立院報你知</a>
