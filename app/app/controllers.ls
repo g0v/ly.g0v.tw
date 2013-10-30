@@ -442,6 +442,12 @@ angular.module 'app.controllers' <[ng]>
     $scope.data[\discussion] = getMotionsInType result.motions, \discussion
     $scope.data[\exmotion] = getMotionsInType result.motions, \exmotion
     $scope.setType \announcement
+
+    # XXX: this GET request should be removed if we have vidoes counts in previous request
+    videos <- LYModel.get "sittings/#{id}/videos"
+    .success
+    $scope.videos = videos
+
   getMotionsInType = (motions, type) ->
     return [m for m in motions when m.motion_class is type]
   $scope <<< do
