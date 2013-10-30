@@ -2,13 +2,13 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
 .controller LYDebates: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
     $rootScope.activeTab = \debates
     $scope.answer = (answer) ->
-        | answer         => '已答'
-        | otherwise      => '未答'
+        | answer         => $sce.trustAsHtml '已答'
+        | otherwise      => $sce.trustAsHtml '未答'
     $scope.mly = ({{mly}:entity}) ->
         return '' unless mly[0]
         party = LYService.resolveParty mly[0]
         avatar = CryptoJS.MD5 "MLY/#{mly[0]}" .toString!
-        $sce.trustAsHtml(mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">""")
+        $sce.trustAsHtml mly[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{mly[0]}">""" 
     padLeft = (str, length) ->
         if str.length >= length
             return str
@@ -17,7 +17,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
         return '' unless link
         str = link[1].toString!.concat padLeft link[2],3 .concat padLeft link[3],2
         href = 'http://lis.ly.gov.tw/lgcgi/lypdftxt?'+str+';'.concat padLeft link[4],4 .concat ';'+padLeft link[5],4
-        $sce.trustAsHtml("""<a href="#{href}" target="_blank">質詢公報</a>""");
+        $sce.trustAsHtml """<a href="#{href}" target="_blank">質詢公報</a>"""
 
     $scope.answers = ({{answers}:entity}) ->
         tmp = ''
@@ -29,7 +29,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
                 tmp += """<div><a href="#{href}" target="_blank">書面答復</a></div>"""
         if tmp === ''
             tmp += """口頭(見質詢公報)"""
-        $sce.trustAsHtml(tmp)
+        $sce.trustAsHtml tmp
     $scope.pagingOptions = {
         pageSizes: [10 20 30]
         pageSize: 30
