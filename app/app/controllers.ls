@@ -96,7 +96,7 @@ angular.module 'app.controllers' <[ng]>
     else
       ''
 
-.filter \committee,($sce) -> (value) -> $sce.trustAsHtml renderCommittee value
+.filter \committee, <[$sce]> ++ ($sce) -> (value) -> $sce.trustAsHtml renderCommittee value
 
 
 .controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
