@@ -16,6 +16,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
     .state 'bills' do
       url: '/bills/{billId}'
       templateUrl: '/partials/bills.html'
+      resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBills
 
     .state 'calendar' do
