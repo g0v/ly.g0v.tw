@@ -1,15 +1,13 @@
-# Services
+angular.module 'app.services' []
+.factory LYService: <[$http]> ++ ($http) ->
+  mly = []
+  do
+    init: ->
+      $http.get '/data/mly-8.json' .success -> mly := it
+    resolveParty: (n) ->
+      [party] = [party for {party,name} in mly when name is n]
+      party
 
-# Create an object to hold the module.
-mod = LYService: <[$http]> ++ ($http) ->
-    mly = []
-    $http.get '/data/mly-8.json' .success -> mly := it
-    do
-        resolveParty: (n) ->
-            [party] = [party for {party,name} in mly when name is n]
-            party
-
-angular.module 'app.services' [] .factory mod
 .service 'LYModel': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
     base = 'http://api-beta.ly.g0v.tw/v0/collections/'
     _model = {}

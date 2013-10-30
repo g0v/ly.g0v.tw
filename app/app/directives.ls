@@ -1,4 +1,4 @@
-build-avatar = (root, d, {w,h,x,y,margin}) ->
+build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
   start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
@@ -34,7 +34,6 @@ build-avatar = (root, d, {w,h,x,y,margin}) ->
   svg.selectAll \g.avatar .data d.speakers .enter!append \g
       ..attr \class \avatar
       ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
-      ..on \mouseout -> $ \#avatar-tooltip .hide!
       ..on \mouseover ->
         tooltip = $ \#avatar-tooltip
         tooltip.show!
@@ -48,6 +47,9 @@ build-avatar = (root, d, {w,h,x,y,margin}) ->
           tooltip.find \img .attr \src, "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=medium"
         ,0
         tooltip.find \.name .text it.mly
+        tooltip.find \a.btn .on 'click' (event) ->
+          scope.model.cb it.offset / 1000
+          $ \#avatar-tooltip .hide!
       ..append \image
         .attr \class "avatar small"
         .attr \width 10
@@ -94,5 +96,5 @@ angular.module 'app.directives' <[app.services ]>
       scope .$watch 'model', !(wave) ->
         x := d3.scale.linear!range [0, w - margin.left - margin.right] .domain [0, wave.wave.length]
         y := d3.scale.linear!range [h, 0] .domain [0, d3.max wave.wave]
-        build-avatar element, wave, {w,h,x,y,margin}
+        build-avatar element, wave, {w,h,x,y,margin}, scope
         if wave => waveform .update data: wave.wave

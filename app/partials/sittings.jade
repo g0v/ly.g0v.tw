@@ -50,6 +50,8 @@
     #avatar-tooltip.ui.label.pointing.below
       img
       .name
+      a.btn
+        i.icon.play
   .row-fluid(ng-hide="video")
       .entries.motions
           input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
@@ -58,7 +60,7 @@
               a(href="") {{s.value}}
           .list
             ul.motions(ng-class="{{type}}")
-                li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+                li.row(ng-repeat="e in entries | filter:filter")
                     .avatars
                         span(ng-repeat="avatar in e.avatars")
                             img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
