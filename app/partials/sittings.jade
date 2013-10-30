@@ -59,7 +59,7 @@
               a(href="") {{s.value}}
           .list
             ul.motions(ng-class="{{type}}")
-                li.row(ng-repeat="e in entries | filter:{status: status} | filter:filter")
+                li.row(ng-repeat="e in entries | filter:filter")
                     .avatars
                         span(ng-repeat="avatar in e.avatars")
                             img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")

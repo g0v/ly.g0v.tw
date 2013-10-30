@@ -209,7 +209,7 @@ angular.module 'app.controllers' <[ng]>
         $scope.type = type
         getData!
 
-.controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+.controller LYBills: <[$scope $http $state LYService $sce]> ++ ($scope, $http, $state, LYService, $sce) ->
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
@@ -242,7 +242,7 @@ angular.module 'app.controllers' <[ng]>
           entry[c][h[idx].replace /審查會通過條文/, \審查會]
 
         if comment
-          comment.=replace /\n/g "<br><br>\n"
+          comment.= replace /\n/g "<br><br>\n"
         baseTextLines = entry[base-index] or ' '
         newTextLines = entry[idx] || entry[base-index]
         baseTextLines -= /^第(.*?)條(之.*?)?\s+/
@@ -250,6 +250,10 @@ angular.module 'app.controllers' <[ng]>
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = RegExp.lastMatch - /\s+$/
         difflines = line-based-diff baseTextLines, newTextLines
+        angular.forEach difflines, (value, key)->
+          value.left = $sce.trustAsHtml value.left
+          value.right = $sce.trustAsHtml value.right
+        comment = $sce.trustAsHtml comment
         return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
