@@ -83,8 +83,8 @@ line-based-diff = (text1, text2) ->
         state = \empty
   return difflines
 
-angular.module 'app.controllers' []
-.controller AppCtrl: <[$scope $location $rootScope]> ++ (s, $location, $rootScope) ->
+angular.module 'app.controllers' <[ng]>
+.controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->
 
   s <<< {$location}
   s.$watch '$location.path()' (activeNavId or '/') ->
@@ -96,9 +96,10 @@ angular.module 'app.controllers' []
     else
       ''
 
-.filter \committee, -> renderCommittee
+.filter \committee,($sce) -> (value) -> $sce.trustAsHtml renderCommittee value
 
-.controller LYCalendar: <[$rootScope $scope $http LYService]> ++ ($rootScope, $scope, $http, LYService) ->
+
+.controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
     # XXX: unused.  use filter instead
     $scope.type = 'sitting'
     $rootScope.activeTab = \calendar
@@ -106,13 +107,13 @@ angular.module 'app.controllers' []
         return '院會' unless committee
         res = for c in committee
             """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
-        res.join ''
+        $sce.trustAsHtml res.join ''
 
     $scope.chair = ({{chair}:entity}, col) ->
         return '' unless chair
         party = LYService.resolveParty chair
         avatar = CryptoJS.MD5 "MLY/#{chair}" .toString!
-        chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
+        $sce.trustAsHtml chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
 
     $scope.onair = ({{date,time}:entity}) ->
         d = moment date .startOf \day
@@ -129,7 +130,7 @@ angular.module 'app.controllers' []
         i18n: \zh-tw
         aggregateTemplate: """
         <div ng-click="row.toggleExpand()" ng-style="rowStyle(row)" class="ngAggregate" ng-switch on="row.field">
-          <span ng-switch-when="primaryCommittee" class="ngAggregateText" ng-bind-html-unsafe="row.label | committee"></span>
+          <span ng-switch-when="primaryCommittee" class="ngAggregateText" ng-bind-html="row.label | committee"></span>
           <span ng-switch-default class="ngAggregateText">{{row.label CUSTOM_FILTERS}} ({{row.totalChildren()}} {{AggItemsLabel}})</span>
           <div class="{{row.aggClass()}}"></div>
         </div>
@@ -140,20 +141,20 @@ angular.module 'app.controllers' []
             displayName: \委員會
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            <div ng-bind-html="row.getProperty(col.field) | committee"></div>
             """
           * field: 'committee'
             visible: false
             displayName: \委員會
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="row.getProperty(col.field) | committee"></div>
+            <div ng-bind-html="row.getProperty(col.field) | committee"></div>
             """
           * field: 'chair'
             displayName: \主席
             width: 130
             cellTemplate: """
-            <div ng-bind-html-unsafe="chair(row)"></div>
+            <div ng-bind-html="chair(row)"></div>
             """
           * field: 'date'
             cellFilter: 'date: mediumDate'
@@ -208,7 +209,7 @@ angular.module 'app.controllers' []
         $scope.type = type
         getData!
 
-.controller LYBills: <[$scope $http $state LYService]> ++ ($scope, $http, $state, LYService) ->
+.controller LYBills: <[$scope $http $state LYService $sce]> ++ ($scope, $http, $state, LYService, $sce) ->
     $scope.diffs = []
     $scope.diffstate = (diffclass) ->
       | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
@@ -257,6 +258,10 @@ angular.module 'app.controllers' []
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = parse-article-heading RegExp.lastMatch - /\s+$/
         difflines = line-based-diff baseTextLines, newTextLines
+        angular.forEach difflines, (value, key)->
+          value.left = $sce.trustAsHtml value.left
+          value.right = $sce.trustAsHtml value.right
+        comment = $sce.trustAsHtml comment
         return {comment,difflines,left-item,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
