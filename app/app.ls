@@ -22,11 +22,13 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
     .state 'calendar' do
       url: '/calendar'
       templateUrl: '/partials/calendar.html'
+      resolve: _init: <[LYService]> ++ (.init!)
 
     .state 'sittings' do
       url: '/sittings'
       templateUrl: '/partials/sittings.html'
       controller: \LYSittings
+      resolve: _init: <[LYService]> ++ (.init!)
     .state 'sittings.detail' do
       url: '/{sitting}'
     .state 'sittings.detail.video' do
@@ -35,6 +37,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
     .state 'debates' do
       url: '/debates'
       templateUrl: '/partials/debates.html'
+      resolve: _init: <[LYService]> ++ (.init!)
 
     .state 'sitting' do
       url: '/sitting'
