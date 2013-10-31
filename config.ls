@@ -31,6 +31,8 @@ exports.config =
           'vendor/scripts/angular/angular.js'
           'vendor/scripts/angular/angular-resource.js'
           'vendor/scripts/angular/angular-cookies.js'
+        after:
+          'app/app/controllers.ls'
 
     stylesheets:
       joinTo:
