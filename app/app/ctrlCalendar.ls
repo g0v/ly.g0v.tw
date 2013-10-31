@@ -102,6 +102,8 @@ setCalendarCtrl = (ctrls, committees) ->
                 q: JSON.stringify do
                     date: $gt: start, $lt: end
                     type: $scope.type
+                # XXX  shame on me
+                l: 1000
         .success
         $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
       $scope.$watch 'weeks', getData
