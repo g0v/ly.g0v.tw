@@ -52,7 +52,7 @@
     h2.ui.horizontal.divider 連署人
     .cosponsors(ng-show="cosponsors")
       .item(ng-repeat="e in cosponsors")
-        .image.ui.rounded.corner
+        .image.ui.rounded.corner.hide-print
           img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
         .content
           .name {{e.name}}
