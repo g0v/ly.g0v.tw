@@ -83,11 +83,10 @@ line-based-diff = (text1, text2) ->
         state = \empty
   return difflines
 
-ctrls = angular.module 'app.controllers' <[ng]>
-
-setCalendarCtrl ctrls, committees
-
-ctrls.controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->
+angular.module 'app.controllers' <[app.controllers.calendar ng]>
+.run <[$rootScope]> ++ ($rootScope) ->
+  $rootScope.committees = committees
+.controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->
 
   s <<< {$location}
   s.$watch '$location.path()' (activeNavId or '/') ->

@@ -1,5 +1,6 @@
-setCalendarCtrl = (ctrls, committees) ->
-  ctrls.controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
+angular.module 'app.controllers.calendar' []
+.controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
+      committees = $rootScope.committees
       # XXX: unused.  use filter instead
       $scope.type = 'sitting'
       $rootScope.activeTab = \calendar
