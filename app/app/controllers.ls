@@ -25,44 +25,13 @@ line-based-diff = (text1, text2) ->
   ds = dmp.diff_main text1, text2
   dmp.diff_cleanupSemantic ds
 
-  move-state = (state, target) ->
-    switch state
-    | \delete =>
-      if target is \right
-        return \replace
-    | \insert =>
-      if target is \left
-        return \replace
-    | \empty =>
-      if target is \right
-        return \insert
-      else if target is \left
-        return \delete
-      else
-        return \equal
-    | \equal =>
-      if target isnt \both
-        return \replace
-    return state
+  make-line-object = -> {left: '', right: ''}
 
-  make-line-object = ->
-    {left: '', left-class: 'left empty', right: '', right-class: 'empty'}
-
-  append-text = (line-obj, line, target) ->
-    if target == \both
-      line-obj
-        ..left += line
-        ..right += line
-    else  # left or right
-      line-obj[target] += "<em>#line</em>"
-
-  set-line-state = (line-obj, state) ->
-    line-obj
-      ..left-class = 'left ' + state
-      ..right-class = state
+  is-left = (target) -> target isnt \right
+  is-right = (target) -> target isnt \left
 
   difflines = [ make-line-object! ]
-  state = \empty
+  last_left = last_right = 0
   for [target, text] in ds
     target = switch target
              | 0  => \both
@@ -71,16 +40,35 @@ line-based-diff = (text1, text2) ->
 
     lines = text / '\n'
     for line, i in lines
-      if line == ''
-        set-line-state difflines[*-1], state
-        state = \empty
-      else
-        state = move-state state, target
-        append-text difflines[*-1], line, target
-        set-line-state difflines[*-1], state
+      if line != ''
+        line = "<em>#line</em>" if target isnt \both
+        if is-left target
+          difflines[last_left].left += line
+        if is-right target
+          difflines[last_right].right += line
+
       if i != lines.length - 1
         difflines.push make-line-object!
-        state = \empty
+        if is-left target
+          last_left = difflines.length - 1
+        if is-right target
+          last_right = difflines.length - 1
+
+  for line in difflines
+    if line.left == '' and line.right != ''
+      line.left-class = 'left insert'
+      line.right-class = 'insert'
+    else if line.left != '' and line.right == ''
+      line.left-class = 'left delete'
+      line.right-class = 'delete'
+    else if line.left != '' and line.right != ''
+      state = if line.left == line.right then 'equal' else 'replace'
+      line.left-class = "left #state"
+      line.right-class = state
+    else
+      line.left-class = 'left empty'
+      line.right-class = 'empty'
+
   return difflines
 
 angular.module 'app.controllers' <[app.controllers.calendar ng]>
