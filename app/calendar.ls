@@ -1,9 +1,10 @@
 angular.module 'app.controllers.calendar' []
-.controller LYCalendar: <[$rootScope $scope $http LYService $sce]> ++ ($rootScope, $scope, $http, LYService, $sce) ->
+.controller LYCalendar: <[$rootScope $scope $http LYService LYModel $sce]> ++ ($rootScope, $scope, $http, LYService, LYModel, $sce) ->
       committees = $rootScope.committees
       # XXX: unused.  use filter instead
       $scope.type = 'sitting'
       $rootScope.activeTab = \calendar
+
       $scope.committee = ({{committee}:entity}, col) ->
           return '院會' unless committee
           res = for c in committee
@@ -16,6 +17,7 @@ angular.module 'app.controllers.calendar' []
           avatar = CryptoJS.MD5 "MLY/#{chair}" .toString!
           $sce.trustAsHtml chair + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{chair}">"""
 
+      /* comment out this block since we are not using ng-grid.
       $scope.onair = ({{date,time}:entity}) ->
           d = moment date .startOf \day
           return false unless +today is +d
@@ -80,6 +82,7 @@ angular.module 'app.controllers.calendar' []
           options = $scope.gridOptions
           options.$gridServices.DomUtilityService.RebuildGrid options.$gridScope, options.ngGrid
       ), false
+      */
 
       today = moment!startOf('day')
       $scope.weeksOpts = []
@@ -97,7 +100,7 @@ angular.module 'app.controllers.calendar' []
         [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
         $scope.start = $scope.weeks.start .format "YYYY-MM-DD"
         $scope.end = $scope.weeks.end .format "YYYY-MM-DD"
-        {paging, entries} <- $http.get 'http://api-beta.ly.g0v.tw/v0/collections/calendar' do
+        {paging, entries} <- LYModel.get 'calendar' do
             params: do
                 s: JSON.stringify date: 1, time: 1
                 q: JSON.stringify do
@@ -106,7 +109,20 @@ angular.module 'app.controllers.calendar' []
                 # XXX  shame on me
                 l: 1000
         .success
-        $scope.calendar = entries.map -> it <<< primaryCommittee: it.committee?0
+        group = {}
+        $scope.calendar = entries.map ->
+          # XXX: why should we remove the timezone postfix 'Z' to let the statement works?
+          # +(moment('2013-11-03T03:48:00.000Z')).startOf('day') === +(moment('2013-11-03T23:48:00.000Z')).startOf('day')
+          it.date -= /Z/
+          it <<< formatDate: moment(it.date).format('MMM Do, YYYY')
+          it <<< primaryCommittee: it.committee?0 or 'YS'
+          d = moment it.date .startOf \day
+          [start, end] = if it.time => (it.time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it")
+          else [it.time_start, it.time_end]map -> moment "#{d.format 'YYYY-MM-DD'} #it"
+          it <<< onair: +today is +d and start <= moment! <=end
+          group[it.primaryCommittee] ?= []
+          group[it.primaryCommittee].push it
+        $scope.group = group
       $scope.$watch 'weeks', getData
       $scope.change = !(type) ->
           $scope.type = type

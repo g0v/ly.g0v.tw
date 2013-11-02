@@ -6,4 +6,43 @@
       a(ng-click="change('hearing')") 公聽會
   .time 立法院行程：
     select(ng-model="weeks", ng-options="o.label for o in weeksOpts", ng-change="update()")
-  .grid(ng-app="ngGrid", ng-grid="gridOptions")
+
+  .sitting
+    .group
+      // YS is not in committee mapping object, this is the customized block for it
+      .title(ng-show="group.YS")
+        .time 院會
+        table.ui.table.segment
+          thread
+            tr
+              th.two.wide 日期
+              th.two.wide 時間
+              th.three.wide 名稱
+              th.nine.wide 議程
+          tbody
+            tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group.YS")
+              td {{entry.formatDate}}
+              td {{entry.time_start}} 至 {{entry.time_end}}
+              td {{entry.name}}
+              td {{entry.summary}}
+    .group(ng-repeat="(k, v) in group")
+      .title(ng-show="committees[k]")
+        .time
+          img.avatar.small(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{k}}?size=small")
+          span {{committees[k]}}
+        table.ui.table.segment
+          thread
+            tr
+              th.two.wide 日期
+              th.two.wide 時間
+              th.three.wide 名稱
+              th.one.wide 主席
+              th.eight.wide 議程
+          tbody
+            tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
+              td {{entry.formatDate}}
+              td {{entry.time_start}} 至 {{entry.time_end}}
+              td {{entry.name}}
+              td {{entry.chair}}
+              td {{entry.summary}}
+
