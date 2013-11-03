@@ -56,18 +56,13 @@ line-based-diff = (text1, text2) ->
 
   for line in difflines
     if line.left == '' and line.right != ''
-      line.left-class = 'left insert'
-      line.right-class = 'insert'
+      line.state = \insert
     else if line.left != '' and line.right == ''
-      line.left-class = 'left delete'
-      line.right-class = 'delete'
+      line.state = \delete
     else if line.left != '' and line.right != ''
-      state = if line.left == line.right then 'equal' else 'replace'
-      line.left-class = "left #state"
-      line.right-class = state
+      line.state = if line.left == line.right then \equal else \replace
     else
-      line.left-class = 'left empty'
-      line.right-class = 'empty'
+      line.state = \empty
 
   return difflines
 
@@ -90,15 +85,15 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
 
 .controller LYBills: <[$scope $http $state LYService $sce]> ++ ($scope, $http, $state, LYService, $sce) ->
     $scope.diffs = []
-    $scope.diffstate = (diffclass) ->
-      | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => 'red'
-      | diffclass === 'replace' || diffclass === 'empty' || diffclass === 'insert' || diffclass === 'delete'=> 'green'
+    $scope.diffstate = (left_right, state) ->
+      | left_right is 'left' and state isnt 'equal' => 'red'
+      | state === 'replace' || state === 'empty' || state === 'insert' || state === 'delete' => 'green'
       | otherwise => ''
-    $scope.difftxt = (diffclass) ->
-      | diffclass.indexOf('left') >= 0 and diffclass.indexOf('equal') < 0 => '現行'
-      | diffclass === 'replace' || diffclass === 'empty' => '修正'
-      | diffclass === 'delete' => '刪除'
-      | diffclass === 'insert' => '新增'
+    $scope.difftxt = (left_right, state) ->
+      | left_right is 'left' and state isnt 'equal' => '現行'
+      | state === 'replace' || state === 'empty' => '修正'
+      | state === 'delete' => '刪除'
+      | state === 'insert' => '新增'
       | otherwise => '相同'
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
