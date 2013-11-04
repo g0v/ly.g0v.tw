@@ -20,20 +20,20 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         id        = "io.cordova.helloCordova"
         version   = "2.0.0">
-    <name>Hello Cordova</name>
+    <name>ly.g0v.tw</name>
 
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        ly.g0v.tw - Congress Website
     </description>
 
-    <author href="http://cordova.io" email="dev@cordova.apache.org">
-        Apache Cordova Team
+    <author href="http://g0v.tw" >
+        g0v.tw
     </author>
 
     <access origin="*"/>
 
-    <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
-    <content src="index.html" />
+    <content src="http://localhost:3333" />
+    <!-- <content src="index.html" /> -->
 
     <!-- Preferences for iOS -->
     <preference name="AllowInlineMediaPlayback" value="false" />
