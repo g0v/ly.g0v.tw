@@ -53,7 +53,7 @@ After downloading cordova-3.1.0 unzip `cordova-ios.zip`, go to `cordova-ios/bin`
 
 `./create [--shared] [--arc] <path_to_new_project> <package_name> <project_name>`
 
-And it will magically generate a app for you :D
+And it will magically generate an app for you :D
 
 ##Setting in cordova :
 
