@@ -47,6 +47,28 @@ Download the latest Cordova version 3.1.0 (We're using)
 
 After download and unzip the file, unzip `cordova-ios.zip`, and go to `bin/` enter `./update_cordova_subproject ~/Documents/<your path to the repo>/contrib/ly_ios/ly_g0v.xcodeproj` and open up Xcode to run `ly_g0v.xcodeproj`, before you build start your server. And you can see the simulator on your mac :).
 
+Setting in cordova :
+
+Setting in cordova is really easy, all the settings are in `contrib/ly_ios/ly_g0v/config.xml`
+
+```
+    <name>ly.g0v.tw</name>
+
+    <description>
+        ly.g0v.tw - Congress Website
+    </description>
+
+    <author href="http://g0v.tw" >
+        g0v.tw
+    </author>
+
+    <access origin="*"/>
+
+    <content src="http://localhost:3333" />  <!-- which url you want to direct to -->
+    <!-- <content src="index.html" /> -->
+
+```
+
 # License
 
 The MIT license: http://g0v.mit-license.org/
