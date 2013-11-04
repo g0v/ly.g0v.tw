@@ -39,6 +39,14 @@ While running deploy if following message is shown:
 
 It is a bug of git fixed after 1.7.11.4. Check you git version (`git --version`) and upgrade if < 1.7.11.4.
 
+# Cordova - mobile
+
+Using Cordova as a platform for building mobile apps
+
+download the latest Cordova version 3.1.0 (We're using)
+
+after download and unzip the file, unzip `cordova-ios.zip`, and go to `bin/` enter `./update_cordova_subproject ~/Documents/<your path to the repo>/contrib/ly_ios/ly_g0v.xcodeproj` and open up Xcode to run `ly_g0v.xcodeproj`, before you build start your server. And you can see the simulator on your mac :).
+
 # License
 
 The MIT license: http://g0v.mit-license.org/
