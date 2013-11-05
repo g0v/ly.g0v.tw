@@ -56,6 +56,13 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
         .style \stroke \steelblue
         .style \stroke-width \1px
         .style \fill "rgba(255,255,255,0.9)"
+      ..append \rect
+        .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
+        .attr \height -> h - 12 - margin.bottom
+        .attr \transform "translate(0 12)"
+        .style \stroke "rgba(128,192,255,0.8)"
+        .style \stroke-width \1px
+        .style \fill "rgba(192,224,255,0.3)"
       ..append \image
         .attr \class "avatar small"
         .attr \transform "translate(1 1)"
