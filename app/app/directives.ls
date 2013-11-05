@@ -1,5 +1,4 @@
 build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
-  console.log d
   start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
