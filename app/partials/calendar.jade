@@ -23,7 +23,8 @@
             tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group.YS")
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
-              td {{entry.name}}
+              td
+                a(ng-href="sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.summary}}
     .group(ng-repeat="(k, v) in group")
       .title(ng-show="committees[k]")
@@ -42,7 +43,8 @@
             tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
-              td {{entry.name}}
+              td
+                a(ng-href="sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.chair}}
               td {{entry.summary}}
 
