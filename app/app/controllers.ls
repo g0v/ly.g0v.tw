@@ -367,22 +367,32 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       $scope.player.nextStart = seconds
     else
       $scope.player.seekTo seconds
+  var hash-watch
   $scope.$watch '$state.current.name + $state.params.sitting' ->
     if $state.current.name is \sittings.detail.video
       $scope.video = true
       return if $scope.loaded is $state.params.sitting
       $scope.loaded = $state.params.sitting
+      var play-time
+      hash-watch := $scope.$watch '$location.hash()' ->
+        return unless it
+        play-time := moment it + '+08:00'
       videos <- LYModel.get "sittings/#{$state.params.sitting}/videos"
       .success
-      whole = [v for v in videos when v.firm is \whole]
-      first-timestamp = if whole.0 and whole.0.first_frame_timestamp => moment that else null
-      $scope.current-video = whole.0
-      start = first-timestamp ? moment whole.0.time
+      whole = [v <<< {first_frame: moment v.first_frame_timestamp ? v.time} for v in videos when v.firm is \whole]
+      if play-time
+        for v in whole
+          if play-time.format("YYYY-MM-DD") is v.first_frame.format("YYYY-MM-DD")
+            $scope.current-video = v
+      else
+        $scope.current-video = whole.0
+
+      first-timestamp = $scope.current-video.first_frame
       clips = for v in videos when v.firm isnt \whole
         { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
 
       YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
-      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{whole.0.youtube_id}&key=#{YOUTUBE_APIKEY}
+      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{$scope.current-video.youtube_id}&key=#{YOUTUBE_APIKEY}
      &part=snippet,contentDetails,statistics,status" .success
       if details.items?0
         [_, h, m, s] = that.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
@@ -390,6 +400,11 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
+        if play-time
+          $scope.player.nextStart = (play-time - first-timestamp) / 1000
+          $scope.player.playVideo!
+          $ '#player' .get 0 .scrollIntoView!
+
       timer-id = null
       onPlayerStateChange = (event) ->
         # set waveform location indicator
@@ -417,13 +432,13 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
 
       if $scope.player
         $scope.player.loadVideoById do
-          videoId: whole.0.youtube_id
+          videoId: $scope.current-video.youtube_id
       else
         player-init = ->
           new YT.Player 'player' do
             height: '390'
             width: '640'
-            videoId: whole.0.youtube_id
+            videoId: $scope.current-video.youtube_id
             events:
               onReady: onPlayerReady
               onStateChange: onPlayerStateChange
@@ -446,7 +461,6 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           time: time,
           cb: -> $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
-      $scope.current-video = whole.0
       whole.forEach !(waveform, index) ->
         # XXX whole clips for committee can be just AM/PM of the same day
         start = waveform.first_frame_timestamp ? waveform.time
@@ -462,6 +476,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       # disabled
       $scope.loaded = null
       $scope.video = null
+      hash-watch?!
 
 .controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
     data <- $http.get '/data/yslog/ly-4004.json'
