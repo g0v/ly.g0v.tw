@@ -1,4 +1,5 @@
 build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
+  console.log d
   start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
@@ -50,20 +51,21 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
         tooltip.find \a.btn .on 'click' (event) ->
           scope.model.cb it.offset / 1000
           $ \#avatar-tooltip .hide!
+      ..append \rect
+        .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
+        .attr \height 12
+        .style \stroke \steelblue
+        .style \stroke-width \1px
+        .style \fill "rgba(255,255,255,0.9)"
       ..append \image
         .attr \class "avatar small"
+        .attr \transform "translate(1 1)"
         .attr \width 10
         .attr \height 10
         .attr \xlink:href ->
           avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
           "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small"
         .attr \alt -> it.speaker
-      ..append \rect
-        .attr \width 10
-        .attr \height 10
-        .style \stroke \steelblue
-        .style \stroke-width \1px
-        .style \fill \none
 
 angular.module 'app.directives' <[app.services ]>
 
