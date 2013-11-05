@@ -1,4 +1,4 @@
-build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
+build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
   start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
@@ -32,6 +32,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
     .attr \stroke-width, \2px
     .attr \transform -> "translate(#{x d.current} 0)"
   svg.selectAll \g.avatar .data d.speakers .enter!append \g
+      ..each -> it.color = LYService.resolve-party-color it.mly
       ..attr \class \avatar
       ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
       ..on \mouseover ->
@@ -53,16 +54,18 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
       ..append \rect
         .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
         .attr \height 12
-        .style \stroke \steelblue
         .style \stroke-width \1px
-        .style \fill "rgba(255,255,255,0.9)"
+        .style \stroke -> it.color
+        .style \fill -> it.color
+        .style \fill-opacity \0.5
       ..append \rect
         .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
         .attr \height -> h - 12 - margin.bottom
         .attr \transform "translate(0 12)"
-        .style \stroke "rgba(128,192,255,0.8)"
         .style \stroke-width \1px
-        .style \fill "rgba(192,224,255,0.3)"
+        .style \stroke -> it.color
+        .style \fill -> it.color
+        .style \fill-opacity \0.2
       ..append \image
         .attr \class "avatar small"
         .attr \transform "translate(1 1)"
@@ -83,7 +86,7 @@ angular.module 'app.directives' <[app.services ]>
       scope.$apply ->
         scope.width = $window.innerWidth
         scope.height = $window.innerHeight
-.directive \ngWaveform ($compile) ->
+.directive \ngWaveform ($compile, LYService) ->
   return
     restrict: 'E',
     replace: true,
@@ -104,5 +107,5 @@ angular.module 'app.directives' <[app.services ]>
       scope .$watch 'model', !(wave) ->
         x := d3.scale.linear!range [0, w - margin.left - margin.right] .domain [0, wave.wave.length]
         y := d3.scale.linear!range [h, 0] .domain [0, d3.max wave.wave]
-        build-avatar element, wave, {w,h,x,y,margin}, scope
+        build-avatar element, wave, {w,h,x,y,margin}, scope, LYService
         if wave => waveform .update data: wave.wave

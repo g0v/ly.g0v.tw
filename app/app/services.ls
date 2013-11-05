@@ -7,6 +7,7 @@ angular.module 'app.services' []
     resolveParty: (n) ->
       [party] = [party for {party,name} in mly when name is n]
       party
+    resolve-party-color: (n) -> {KMT: \#000095 DPP: \#009a00 PFP: \#fe6407}[@resolve-party n] or \#999
 
 .service 'LYModel': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
     base = 'http://api-beta.ly.g0v.tw/v0/collections/'
