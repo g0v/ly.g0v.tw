@@ -95,6 +95,11 @@ angular.module 'app.controllers.calendar' []
           }
           opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
         |> $scope.weeksOpts.push
+      $scope.weeksOpts.unshift {
+        start: moment today .add 'days', -1 # why not 0?
+        end: moment today .add 'days', 1
+        label: \今日
+      }
       $scope.weeks = $scope.weeksOpts[0]
       getData = ->
         [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
