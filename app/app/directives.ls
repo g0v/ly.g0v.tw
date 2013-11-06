@@ -87,8 +87,8 @@ angular.module 'app.directives' <[app.services ]>
       scope.$apply ->
         scope.width = $window.innerWidth
         scope.height = $window.innerHeight
-.directive \ngWaveform <[$compile, LYService]> ++ ($compile, LYService) ->
-  return
+
+.directive \ngWaveform <[$compile LYService]> ++ ($compile, LYService) ->
     restrict: 'E',
     replace: true,
     template: "<div class='wav-group'><svg></svg></div>"
