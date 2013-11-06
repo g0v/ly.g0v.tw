@@ -449,6 +449,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
             player-init!
 
       $scope.waveforms = []
+      $scope.current-id = $scope.current-video.youtube_id
       mkwave = (wave, speakers, time, index) ->
         waveclips = []
         for d,i in wave =>  wave[i] = d/255
@@ -459,7 +460,11 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           current: 0,
           start: first-timestamp,
           time: time,
-          cb: -> $scope.playFrom it
+          cb: ->
+            if $scope.current-id!=@id =>
+              $scope.player.loadVideoById @id
+              $scope.current-id = @id
+            $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
       whole.forEach !(waveform, index) ->
         # XXX whole clips for committee can be just AM/PM of the same day
