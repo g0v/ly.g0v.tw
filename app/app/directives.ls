@@ -87,7 +87,7 @@ angular.module 'app.directives' <[app.services ]>
       scope.$apply ->
         scope.width = $window.innerWidth
         scope.height = $window.innerHeight
-.directive \ngWaveform ($compile, LYService) ->
+.directive \ngWaveform <[$compile, LYService]> ++ ($compile, LYService) ->
   return
     restrict: 'E',
     replace: true,
