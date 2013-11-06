@@ -420,6 +420,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
             ..now = 0
           handler = ->
             timer.now = new Date!getTime! / 1000
+            # XXX: record actual current waveform
             $scope.$apply -> $scope.waveforms.0.current = timer.sec + (timer.now - timer.start) * timer.rate
           timer-id := setInterval ->
             handler!
