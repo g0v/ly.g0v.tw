@@ -387,7 +387,6 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       else
         $scope.current-video = whole.0
 
-      first-timestamp = $scope.current-video.first_frame
       clips = for v in videos when v.firm isnt \whole
         { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
 
@@ -401,6 +400,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       onPlayerReady = (event) ->
         $scope.player = event.target
         if play-time
+          first-timestamp = $scope.current-video.first_frame
           $scope.player.nextStart = (play-time - first-timestamp) / 1000
           $scope.player.playVideo!
           $ '#player' .get 0 .scrollIntoView!
@@ -450,7 +450,8 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
 
       $scope.waveforms = []
       $scope.current-id = $scope.current-video.youtube_id
-      mkwave = (wave, speakers, time, index) ->
+      mkwave = (wave, speakers, first_frame, time, index) ->
+        # XXX: empty special case when wave is not ready
         waveclips = []
         for d,i in wave =>  wave[i] = d/255
         $scope.waveforms[index] = do
@@ -458,7 +459,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           wave: wave,
           speakers: speakers,
           current: 0,
-          start: first-timestamp,
+          start: first_frame
           time: time,
           cb: ->
             if $scope.current-id!=@id =>
@@ -474,9 +475,9 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
         for clip in speakers
           clip.offset = moment(clip.time) - moment(start)
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
-        .error -> mkwave [], index
+        .error -> mkwave [], speakers, waveform.first_frame, waveform.time, index
         .success
-        mkwave wave, speakers, waveform.time, index
+        mkwave wave, speakers, waveform.first_frame, waveform.time, index
     else
       # disabled
       $scope.loaded = null
