@@ -10,6 +10,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
     .attr \height, h
     .on \click ->
       x0 = x.invert d3.mouse(@).0 - margin.left
+      $(svg)find \.location-marker .attr \transform, "translate(#{x0} #{margin.top})"
       d.cb x0
     .append \g .attr \transform "translate(#{margin.left} #{margin.top})"
 
