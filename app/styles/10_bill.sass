@@ -38,6 +38,9 @@
     .item
       float: left
       text-align: center
+      display: block
+      .infocard a
+        display: block
     .image.ui.rounded.corner
       background-color: #fff
     .committee, .sponsors, .cosponsors
@@ -93,3 +96,72 @@
       margin-top: -1.5rem !important
     .ui.stackable.grid > .column.left
       margin-top: 0 !important
+div.item
+  outline: none
+  text-decoration: none
+  strong
+    line-height: 30px
+  > span
+    width: 200px
+    padding: 10px 20px
+    margin-top: 20px
+    margin-left: -85px
+    opacity: 0
+    visibility: hidden
+    z-index: 10
+    position: absolute
+    font-family: Arial
+    font-size: 12px
+    font-style: normal
+    -webkit-border-radius: 3px
+    -moz-border-radius: 3px
+    -o-border-radius: 3px
+    border-radius: 3px
+    -webkit-box-shadow: 2px 2px 2px #999
+    -moz-box-shadow: 2px 2px 2px #999
+    box-shadow: 2px 2px 2px #999
+    -webkit-transition-property: opacity, margin-top, visibility, margin-left
+    -webkit-transition-duration: 0.4s, 0.3s, 0.4s, 0.3s
+    -webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out
+    -moz-transition-property: opacity, margin-top, visibility, margin-left
+    -moz-transition-duration: 0.4s, 0.3s, 0.4s, 0.3s
+    -moz-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out
+    -o-transition-property: opacity, margin-top, visibility, margin-left
+    -o-transition-duration: 0.4s, 0.3s, 0.4s, 0.3s
+    -o-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out
+    transition-property: opacity, margin-top, visibility, margin-left
+    transition-duration: 0.4s, 0.3s, 0.4s, 0.3s
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out
+  &:hover > span
+    opacity: 1
+    text-decoration: none
+    visibility: visible
+    overflow: visible
+    margin-top: 20px
+    display: inline
+    margin-left: -60px
+  span b
+    width: 15px
+    height: 15px
+    margin-left: 20px
+    margin-top: -19px
+    display: block
+    position: absolute
+    -webkit-transform: rotate(-45deg)
+    -moz-transform: rotate(-45deg)
+    -o-transform: rotate(-45deg)
+    transform: rotate(-45deg)
+    -webkit-box-shadow: inset -1px 1px 0 white
+    -moz-box-shadow: inset 0 1px 0 #fff
+    -o-box-shadow: inset 0 1px 0 #fff
+    box-shadow: inset 0 1px 0 #fff
+    background: #FBF5E6
+    border-top: 1px solid #CFB57C
+    border-right: 1px solid #CFB57C
+  > span
+    color: #000000
+    background: #FBF5E6
+    background: -moz-linear-gradient(top, #fbf5e6 0%, white 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbf5e6), color-stop(100%, white))
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBF5E6', endColorstr='#FFFFFF',GradientType=0 )
+    border: 1px solid #CFB57C

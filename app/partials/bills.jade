@@ -48,6 +48,10 @@
          img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
         .content
           .name {{e.name}}
+        span.infocard
+          b
+          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
     .clearfix
     h2.ui.horizontal.divider 連署人
     .cosponsors(ng-show="cosponsors")
@@ -56,6 +60,10 @@
           img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
         .content
           .name {{e.name}}
+        span.infocard
+          b
+          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
 
   .clearfix
   .history
