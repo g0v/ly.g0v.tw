@@ -382,7 +382,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       whole = [v <<< {first_frame: moment v.first_frame_timestamp ? v.time} for v in videos when v.firm is \whole]
       if play-time
         for v in whole
-          if play-time.format("YYYY-MM-DD") is v.first_frame.format("YYYY-MM-DD")
+          if v.first_frame <= play-time <= v.first_frame + v.length * 1000
             $scope.current-video = v
       else
         $scope.current-video = whole.0
@@ -390,12 +390,11 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       clips = for v in videos when v.firm isnt \whole
         { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
 
-      YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
-      details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{$scope.current-video.youtube_id}&key=#{YOUTUBE_APIKEY}
-     &part=snippet,contentDetails,statistics,status" .success
-      if details.items?0
-        [_, h, m, s] = that.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
-        duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
+      #YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
+      #details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{$scope.current-video.youtube_id}&key=#{YOUTUBE_APIKEY}&part=snippet,contentDetails,statistics,status" .success
+      #if details.items?0
+      #  [_, h, m, s] = that.contentDetails.duration.match /^PT(\d+H)?(\d+M)?(\d+S)/
+      #  duration = (parseInt(h) * 60 + parseInt m) * 60 + parseInt s
       done = false
       onPlayerReady = (event) ->
         $scope.player = event.target
@@ -403,6 +402,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           first-timestamp = $scope.current-video.first_frame
           $scope.player.nextStart = (play-time - first-timestamp) / 1000
           $scope.player.playVideo!
+          play-time := null
           $ '#player' .get 0 .scrollIntoView!
 
       timer-id = null
@@ -410,7 +410,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
         # set waveform location indicator
         if event.data is YT.PlayerState.PLAYING and not done
           if $scope.player.nextStart
-            $scope.player.seekTo that
+            setTimeout (-> $scope.player.seekTo that), 50ms
             $scope.player.nextStart = null
           if timer-id => clearInterval timer-id
           timer = {}
@@ -453,7 +453,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
       mkwave = (wave, speakers, first_frame, time, index) ->
         # XXX: empty special case when wave is not ready
         waveclips = []
-        for d,i in wave =>  wave[i] = d/255
+        for d,i in wave => wave[i] = d/255
         $scope.waveforms[index] = do
           id: whole[index].youtube_id
           wave: wave,
@@ -462,18 +462,21 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           start: first_frame
           time: time,
           cb: ->
-            if $scope.current-id!=@id =>
+            if $scope.current-id isnt @id =>
               $scope.player.loadVideoById @id
+              play-time := null
               $scope.current-id = @id
+              [$scope.current-video] = [v for v in whole when v.youtube_id is @id]
+            $scope.player?nextStart = it
             $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
       whole.forEach !(waveform, index) ->
         # XXX whole clips for committee can be just AM/PM of the same day
-        start = waveform.first_frame_timestamp ? waveform.time
-        day_start = +moment(start)startOf(\day)
-        speakers = clips.filter -> +moment(it.time).startOf(\day) is day_start
+        start = waveform.first_frame
+        end = start + waveform.length * 1000
+        speakers = clips.filter -> start < +moment(it.time) <= end
         for clip in speakers
-          clip.offset = moment(clip.time) - moment(start)
+          clip.offset = moment(clip.time) - start
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
         .error -> mkwave [], speakers, waveform.first_frame, waveform.time, index
         .success

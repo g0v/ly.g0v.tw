@@ -45,7 +45,7 @@
         .span10.content
   .row-fluid(ng-show="loaded", ng-show="video")
     #player
-    .wav-group(ng-repeat="waveform in waveforms")
+    .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below
       img
