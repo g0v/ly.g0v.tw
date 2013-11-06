@@ -384,8 +384,7 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
         for v in whole
           if v.first_frame <= play-time <= v.first_frame + v.length * 1000
             $scope.current-video = v
-      else
-        $scope.current-video = whole.0
+      $scope.current-video ?= whole.0
 
       clips = for v in videos when v.firm isnt \whole
         { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
@@ -436,10 +435,14 @@ angular.module 'app.controllers' <[app.controllers.calendar ng]>
           videoId: $scope.current-video.youtube_id
       else
         player-init = ->
+          if play-time
+            first-timestamp = $scope.current-video.first_frame
+            start = (play-time - first-timestamp) / 1000
           new YT.Player 'player' do
             height: '390'
             width: '640'
             videoId: $scope.current-video.youtube_id
+            playerVars: rel: 0, start: start ? 0, modestbranding: 1
             events:
               onReady: onPlayerReady
               onStateChange: onPlayerStateChange
