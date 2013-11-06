@@ -131,7 +131,12 @@ angular.module 'app.controllers.calendar' []
           cmmt[uk] ?= it
           # use revised entry
           cmmt[uk] = if it.id > cmmt[uk].id => it else cmmt[uk]
-        $scope.group = group
+        sorted = {}
+        for name, entries of group
+          keys = Object.keys group[name] .sort!
+          sorted[name] = for k in keys when group[name][k]
+            group[name][k]
+        $scope.group = sorted
       $scope.$watch 'weeks', getData
       $scope.change = !(type) ->
           $scope.type = type

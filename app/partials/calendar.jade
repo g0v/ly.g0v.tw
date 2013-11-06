@@ -40,7 +40,7 @@
               th.one.wide 主席
               th.eight.wide 議程
           tbody
-            tr(ng-class="{negative:entry.onair}" ,ng-repeat="(k, entry) in group[k]")
+            tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
               td
