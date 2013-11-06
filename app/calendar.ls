@@ -125,8 +125,12 @@ angular.module 'app.controllers.calendar' []
           [start, end] = if it.time => (it.time.split \~ .map -> moment "#{d.format 'YYYY-MM-DD'} #it")
           else [it.time_start, it.time_end]map -> moment "#{d.format 'YYYY-MM-DD'} #it"
           it <<< onair: +today is +d and start <= moment! <=end
-          group[it.primaryCommittee] ?= []
-          group[it.primaryCommittee].push it
+          cmmt = group[it.primaryCommittee] ?= {}
+          # same sitting id but different time, regards as different entry
+          uk = it.date + it.time_start + it.time_end + it.sitting_id
+          cmmt[uk] ?= it
+          # use revised entry
+          cmmt[uk] = if it.id > cmmt[uk].id => it else cmmt[uk]
         $scope.group = group
       $scope.$watch 'weeks', getData
       $scope.change = !(type) ->
