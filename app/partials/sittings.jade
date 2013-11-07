@@ -7,7 +7,7 @@
     a.pull-right.btn.btn-info(ng-href="/sittings/{{id}}/video") 觀看影片
   .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-    img(ng-show="loadingSitting", src="/img/loading.gif")
+    span.spinner.small(ng-show="loadingSitting")
   div(ng-hide="video")
     span.btn-group
       button.btn.dropdown-toggle(data-toggle="dropdown")
@@ -18,7 +18,7 @@
           a(ng-click="setContext('YS')") 院會
         li(ng-repeat="(type, name) in committees")
           a(ng-click="setContext(type)") {{name}}
-    img(ng-show="loadingList", src="/img/loading.gif")
+    span.spinner.small(ng-show="loadingSitting")
 
   .row-fluid
     .span10.content
