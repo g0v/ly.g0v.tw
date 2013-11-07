@@ -23,6 +23,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       url: '/calendar'
       templateUrl: '/partials/calendar.html'
       resolve: _init: <[LYService]> ++ (.init!)
+      controller: \LYCalendar
 
     .state 'sittings' do
       url: '/sittings'
