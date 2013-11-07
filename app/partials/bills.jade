@@ -89,11 +89,11 @@
           .ui.segment.article-text
             a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.leftItem}}
             .ui.right.corner.label(ng-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
-            a.diff.text(href="",target="blank", ng-bind-html="diffline.left")
+            .diff.text(href="",target="blank", ng-bind-html="diffline.left")
         .column.right(class="right {{diffline.state}}")
           .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
             a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
-            a.diff.text(href="",target="blank", ng-bind-html="diffline.right")
+            .diff.text(href="",target="blank", ng-bind-html="diffline.right")
       .ui.segment.green(ng-bind-html="diffs.comment")
       .ui.horizontal.divider
