@@ -24,6 +24,8 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       templateUrl: '/partials/calendar.html'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYCalendar
+    .state 'calendar.period' do
+      url: '/{period}'
 
     .state 'sittings' do
       url: '/sittings'

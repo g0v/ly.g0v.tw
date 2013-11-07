@@ -1,5 +1,5 @@
 angular.module 'app.controllers.calendar' []
-.controller LYCalendar: <[$rootScope $scope $http LYService LYModel $sce]> ++ ($rootScope, $scope, $http, LYService, LYModel, $sce) ->
+.controller LYCalendar: <[$rootScope $scope $state $http LYService LYModel $sce]> ++ ($rootScope, $scope, $state, $http, LYService, LYModel, $sce) ->
       today = moment!startOf('day')
       committees = $rootScope.committees
 
@@ -16,12 +16,16 @@ angular.module 'app.controllers.calendar' []
 
       $scope.$watch 'weeks' ->
         [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
-        getData $scope.type, start, end
+        $state.transitionTo 'calendar.period', {period: start + "_" + end}
 
       $scope.change = !(type) ->
-          $scope.type = type
-          [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
-          getData $scope.type, start, end
+        $scope.type = type
+        [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
+        $state.transitionTo 'calendar.period', {period: start + "_" + end}
+        updatePage!
+
+      $scope.$watch '$state.params.period' ->
+        updatePage!
 
       function buildWeeks(first)
         weeks = for i from 0 to first by 7
@@ -32,6 +36,17 @@ angular.module 'app.controllers.calendar' []
             }
             opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
         return weeks
+
+      updatePage = ->
+        [start, end] = if $state.current.name is /^calendar.period/ =>  parseState $state.params.period
+        if not start.isValid! or not end.isValid! or start > end
+          [start, end] = [$scope.weeksOpts[0].start, $scope.weeksOpts[0].end]
+        f = start.format "YYYY-MM-DD" + "_" + end.format "YYYY-MM-DD"
+        $state.transitionTo 'calendar.period', {period: f}
+        getData $scope.type, start, end
+
+      parseState = (str) ->
+        str.split \_ .map (s)-> moment s,'YYYY-MM-DD'
 
       insert = (group, entry) ->
         # same sitting id but different time, regards as different entry
