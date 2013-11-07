@@ -1,5 +1,8 @@
 @import "app/styles/mixins"
 @import "app/styles/ui-step"
+@import "compass/css3/box-shadow"
+@import "compass/css3/transform"
+@import "compass/css3/transition"
 
 @media print
   .hide-print
@@ -38,6 +41,9 @@
     .item
       float: left
       text-align: center
+      display: block
+      .infocard a
+        display: block
     .image.ui.rounded.corner
       background-color: #fff
     .committee, .sponsors, .cosponsors
@@ -93,3 +99,48 @@
       margin-top: -1.5rem !important
     .ui.stackable.grid > .column.left
       margin-top: 0 !important
+div.item
+  outline: none
+  text-decoration: none
+  strong
+    line-height: 30px
+  > span
+    width: 200px
+    padding: 10px 20px
+    margin-top: 20px
+    margin-left: -85px
+    opacity: 0
+    visibility: hidden
+    z-index: 10
+    position: absolute
+    font-family: Arial
+    font-size: 12px
+    font-style: normal
+    @include single-box-shadow(#999, 2px, 2px, 2px)
+    @include single-transition(all, 0.3s, ease-in-out)
+  &:hover > span
+    opacity: 1
+    text-decoration: none
+    visibility: visible
+    overflow: visible
+    margin-top: 20px
+    display: inline
+    margin-left: -60px
+  span b
+    width: 15px
+    height: 15px
+    margin-left: 20px
+    margin-top: -19px
+    display: block
+    position: absolute
+    background: #FBF5E6
+    border-top: 1px solid #CFB57C
+    border-right: 1px solid #CFB57C
+    @include rotate(-45deg)
+  > span
+    color: #000000
+    background: #FBF5E6
+    background: -moz-linear-gradient(top, #fbf5e6 0%, white 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbf5e6), color-stop(100%, white))
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBF5E6', endColorstr='#FFFFFF',GradientType=0 )
+    border: 1px solid #CFB57C
