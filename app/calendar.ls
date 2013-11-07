@@ -8,9 +8,9 @@ angular.module 'app.controllers.calendar' []
       $rootScope.activeTab = \calendar
       $scope.weeksOpts = buildWeeks 49 # 49 is 7 weeks, just a random number
       $scope.weeksOpts.unshift {
-        start: moment today .add 'days', -1 # why not 0?
-        end: moment today .add 'days', 1
-        label: \今日
+        start: moment today .startOf \day .add 'days' -1
+        end: moment today .startOf \day .add 'days', 1
+        label: \今日  # if today is 8th, we request query by date > 7 and date < 9
       }
       $scope.weeks = $scope.weeksOpts[0]
 
@@ -41,9 +41,9 @@ angular.module 'app.controllers.calendar' []
         [start, end] = if $state.current.name is /^calendar.period/ =>  parseState $state.params.period
         if not start.isValid! or not end.isValid! or start > end
           [start, end] = [$scope.weeksOpts[0].start, $scope.weeksOpts[0].end]
-        f = start.format "YYYY-MM-DD" + "_" + end.format "YYYY-MM-DD"
-        $state.transitionTo 'calendar.period', {period: f}
-        getData $scope.type, start, end
+        [strS, strE] = [start, end].map (.format 'YYYY-MM-DD')
+        $state.transitionTo 'calendar.period', {period: strS + "_" + strE}
+        getData $scope.type, strS, strE
 
       parseState = (str) ->
         str.split \_ .map (s)-> moment s,'YYYY-MM-DD'
@@ -64,7 +64,7 @@ angular.module 'app.controllers.calendar' []
 
       isOnAir = (date, start, end) ->
         d = moment date .startOf \day
-        [s, e] = [start, end]map -> moment "#{d.format 'YYYY-MM-DD'}"
+        [s, e] = [start, end]map -> moment it, 'HH:mm:ss'
         return +today is +d and s <= moment! <=e
 
       getData = (type, start, end)->
@@ -79,10 +79,7 @@ angular.module 'app.controllers.calendar' []
         .success
         group = {}
         entries.map ->
-          # XXX: why should we remove the timezone postfix 'Z' to let the statement works?
-          # +(moment('2013-11-03T03:48:00.000Z')).startOf('day') === +(moment('2013-11-03T23:48:00.000Z')).startOf('day')
-          it.date -= /Z/
-          it <<< formatDate: moment(it.date).format('MMM Do, YYYY')
+          it <<< formatDate: moment(it.date).zone('+00:00').format('MMM Do, YYYY')
           it <<< primaryCommittee: it.committee?0 or 'YS'
           it <<< onair: isOnAir it.date, it.time_start, it.time_end
           group[it.primaryCommittee] ?= {}
