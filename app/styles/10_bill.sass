@@ -1,5 +1,8 @@
 @import "app/styles/mixins"
 @import "app/styles/ui-step"
+@import "compass/css3/box-shadow"
+@import "compass/css3/transform"
+@import "compass/css3/transition"
 
 @media print
   .hide-print
@@ -113,13 +116,7 @@ div.item
     font-family: Arial
     font-size: 12px
     font-style: normal
-    -webkit-border-radius: 3px
-    -moz-border-radius: 3px
-    -o-border-radius: 3px
-    border-radius: 3px
-    -webkit-box-shadow: 2px 2px 2px #999
-    -moz-box-shadow: 2px 2px 2px #999
-    box-shadow: 2px 2px 2px #999
+    @include single-box-shadow(#999, 2px, 2px, 2px)
     @include transition(all, 0.3s, ease-in-out)
   &:hover > span
     opacity: 1
@@ -136,17 +133,10 @@ div.item
     margin-top: -19px
     display: block
     position: absolute
-    -webkit-transform: rotate(-45deg)
-    -moz-transform: rotate(-45deg)
-    -o-transform: rotate(-45deg)
-    transform: rotate(-45deg)
-    -webkit-box-shadow: inset -1px 1px 0 white
-    -moz-box-shadow: inset 0 1px 0 #fff
-    -o-box-shadow: inset 0 1px 0 #fff
-    box-shadow: inset 0 1px 0 #fff
     background: #FBF5E6
     border-top: 1px solid #CFB57C
     border-right: 1px solid #CFB57C
+    @include rotate(-45deg)
   > span
     color: #000000
     background: #FBF5E6
