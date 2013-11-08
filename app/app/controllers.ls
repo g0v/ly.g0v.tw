@@ -83,7 +83,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
 
 .filter \committee, <[$sce]> ++ ($sce) -> (value) -> $sce.trustAsHtml renderCommittee value
 
-.controller LYBills: <[$scope $http $state LYService $sce]> ++ ($scope, $http, $state, LYService, $sce) ->
+.controller LYBills: <[$scope $http $state $timeout LYService $sce $anchorScroll]> ++ ($scope, $http, $state, $timeout, LYService, $sce, $anchorScroll) ->
     $scope.diffs = []
     $scope.diffstate = (left_right, state) ->
       | left_right is 'left' and state isnt 'equal' => 'red'
@@ -106,6 +106,8 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
       data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
 
+      $timeout ->
+        $anchorScroll!
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
@@ -113,7 +115,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
         [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
         return unless _items
         require! zhutil
-        \§ + _items.filter -> it
+        _items.filter -> it
         .map zhutil.parseZHNumber .join \-
       diffentry = (diff, idx, c, base-index) -> (entry) ->
         h = diff.header
@@ -127,7 +129,9 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
         baseTextLines = entry[base-index] or ''
         if baseTextLines
           baseTextLines -= /^第(.*?)條(之.*?)?\s+/
-          left-item = parse-article-heading RegExp.lastMatch - /\s+$/
+          if parse-article-heading RegExp.lastMatch - /\s+$/
+            left-item = \§ + that
+            left-item-anchor = that
         newTextLines = entry[idx] || entry[base-index]
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = parse-article-heading RegExp.lastMatch - /\s+$/
@@ -136,7 +140,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
           value.left = $sce.trustAsHtml value.left
           value.right = $sce.trustAsHtml value.right
         comment = $sce.trustAsHtml comment
-        return {comment,difflines,left-item,right-item}
+        return {comment,difflines,left-item,left-item-anchor,right-item}
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee

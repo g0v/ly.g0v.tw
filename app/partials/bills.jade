@@ -87,7 +87,7 @@
       .two.column.stackable.ui.grid(ng-repeat="diffline in diffs.difflines")
         .column(class="left {{diffline.state}}")
           .ui.segment.article-text
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.leftItem}}
+            a.ui.ribbon.label(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0") {{diffs.leftItem}}
             .ui.right.corner.label(ng-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.left")
         .column.right(class="right {{diffline.state}}")
