@@ -1,8 +1,6 @@
 # Declare app level module which depends on filters, and services
 
-angular.module('scroll', []).value('$anchorScroll', angular.noop)
-
-angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services scroll partials ui.state utils monospaced.qrcode]>
+angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services partials ui.state utils monospaced.qrcode]>
 
 .config <[$stateProvider $urlRouterProvider $locationProvider]> ++ ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
@@ -58,7 +56,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
 
-.run <[$rootScope $state $stateParams $location]> ++ ($rootScope, $state, $stateParams, $location) ->
+.run <[$rootScope $state $stateParams $location $anchorScroll]> ++ ($rootScope, $state, $stateParams, $location, $anchorScroll) ->
   $rootScope.$state = $state
   $rootScope.$stateParam = $stateParams
   $rootScope.go = -> $location.path it

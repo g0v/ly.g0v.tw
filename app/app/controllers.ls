@@ -106,8 +106,6 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
       data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
       .success
 
-      $timeout ->
-        $anchorScroll!
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
@@ -178,6 +176,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffbase: h[base-index]
                 diffnew: h.0
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
+      $timeout -> $anchorScroll!
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
