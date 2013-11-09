@@ -176,6 +176,8 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffbase: h[base-index]
                 diffnew: h.0
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
+      total-entries = $scope.diff.map (.content.length) .reduce (+)
+      $scope.showSidebar = total-entries > 3
       $timeout -> $anchorScroll!
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->

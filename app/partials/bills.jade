@@ -100,11 +100,11 @@
       .ui.segment.green(ng-bind-html="diffs.comment")
       .ui.horizontal.divider
 
-  .content.navigation(ng-repeat="(i, d) in diff")
+  .content.navigation(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu
-        a.item(href="#"+"{{d.name}}") 民法親屬編、繼承編
-        .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-          .law-unit(ng-repeat="diffline in diffs.difflines")
-            a.item(href="#"+"original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+        .item-section(ng-repeat="(i, d) in diff track by $index")
+          a.item(href="#"+"{{d.name}}") {{d.name}}
+          .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
+            .law-unit: a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 
