@@ -4,7 +4,7 @@
   h1
     span {{ name }}
   span(ng-show="videos.length > 0 && !loaded")
-    a.pull-right.btn.btn-info(ng-href="sittings/{{id}}/video") 觀看影片
+    a.pull-right.btn.btn-info(ng-href="/sittings/{{id}}/video") 觀看影片
   .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
     img(ng-show="loadingSitting", src="/img/loading.gif")
