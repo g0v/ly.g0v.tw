@@ -1,3 +1,18 @@
+function get-videos-by-cut(LYModel, sitting, cb)
+  videos <- LYModel.get "sittings/#{sitting}/videos"
+  .success
+  whole = [v <<< {first_frame: moment v.first_frame_timestamp ? v.time} for v in videos when v.firm is \whole]
+  clips = for v in videos when v.firm isnt \whole
+    { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
+  for cut in whole
+    start = cut.first_frame
+    end = start + cut.length * 1000
+    speakers = clips.filter -> +start < +moment(it.time) <= end
+    for clip in speakers
+      clip.offset = moment(clip.time) - start
+    cut.speakers = speakers
+  cb whole
+
 angular.module 'app.controllers.sittings' []
 .controller LYSittings: <[$rootScope $scope $http $state LYService LYModel]> ++ ($rootScope, $scope, $http, $state, LYService, LYModel) ->
   $rootScope.activeTab = \sittings
@@ -140,17 +155,13 @@ angular.module 'app.controllers.sittings' []
       hash-watch := $scope.$watch '$location.hash()' ->
         return unless it
         play-time := moment it + '+08:00'
-      videos <- LYModel.get "sittings/#{$state.params.sitting}/videos"
-      .success
-      whole = [v <<< {first_frame: moment v.first_frame_timestamp ? v.time} for v in videos when v.firm is \whole]
+      cuts <- get-videos-by-cut LYModel, $state.params.sitting
+
       if play-time
-        for v in whole
+        for v in cuts
           if v.first_frame <= play-time <= v.first_frame + v.length * 1000
             $scope.current-video = v
-      $scope.current-video ?= whole.0
-
-      clips = for v in videos when v.firm isnt \whole
-        { v.time, mly: v.speaker - /\s*委員/, v.length, v.thumb }
+      $scope.current-video ?= cuts.0
 
       #YOUTUBE_APIKEY = 'AIzaSyDT6AVKwNjyWRWtVAdn86Q9I7HXJHG11iI'
       #details <- $http.get "https://www.googleapis.com/youtube/v3/videos?id=#{$scope.current-video.youtube_id}&key=#{YOUTUBE_APIKEY}&part=snippet,contentDetails,statistics,status" .success
@@ -222,7 +233,7 @@ angular.module 'app.controllers.sittings' []
         waveclips = []
         for d,i in wave => wave[i] = d/255
         $scope.waveforms[index] = do
-          id: whole[index].youtube_id
+          id: cuts[index].youtube_id
           wave: wave,
           speakers: speakers,
           current: 0,
@@ -233,21 +244,17 @@ angular.module 'app.controllers.sittings' []
               $scope.player.loadVideoById @id
               play-time := null
               $scope.current-id = @id
-              [$scope.current-video] = [v for v in whole when v.youtube_id is @id]
+              [$scope.current-video] = [v for v in cuts when v.youtube_id is @id]
             $scope.player?nextStart = it
             $scope.playFrom it
         #dowave wave, clips, (-> $scope.playFrom it), first-timestamp
-      whole.forEach !(waveform, index) ->
+
+      cuts.forEach !(waveform, index) ->
         # XXX whole clips for committee can be just AM/PM of the same day
-        start = waveform.first_frame
-        end = start + waveform.length * 1000
-        speakers = clips.filter -> start < +moment(it.time) <= end
-        for clip in speakers
-          clip.offset = moment(clip.time) - start
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
         .error -> mkwave [], speakers, waveform.first_frame, waveform.time, index
         .success
-        mkwave wave, speakers, waveform.first_frame, waveform.time, index
+        mkwave wave, waveform.speakers, waveform.first_frame, waveform.time, index
     else
       # disabled
       $scope.loaded = null
