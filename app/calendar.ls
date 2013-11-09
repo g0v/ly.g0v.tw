@@ -12,16 +12,14 @@ angular.module 'app.controllers.calendar' []
         end: moment today .startOf \day .add 'days', 1
         label: \今日  # if today is 8th, we request query by date > 7 and date < 9
       }
-      $scope.weeks = $scope.weeksOpts[0]
 
       $scope.$watch 'weeks' ->
+        return unless $scope.weeks
         [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
         $state.transitionTo 'calendar.period', {period: start + "_" + end}
 
       $scope.change = !(type) ->
         $scope.type = type
-        [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
-        $state.transitionTo 'calendar.period', {period: start + "_" + end}
         updatePage!
 
       $scope.$watch '$state.params.period' ->
@@ -44,6 +42,12 @@ angular.module 'app.controllers.calendar' []
         [strS, strE] = [start, end].map (.format 'YYYY-MM-DD')
         $state.transitionTo 'calendar.period', {period: strS + "_" + strE}
         getData $scope.type, strS, strE
+        updateDropdownOptions start, end
+
+      updateDropdownOptions = (start, end) ->
+        [first] = for opt in $scope.weeksOpts when +opt.start is +start and +opt.end is +end
+          opt
+        $scope.weeks = first
 
       parseState = (str) ->
         str.split \_ .map (s)-> moment s,'YYYY-MM-DD'
