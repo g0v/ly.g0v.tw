@@ -88,6 +88,7 @@ angular.module 'app.controllers.calendar' []
         for name, entries of group
           sorted[name] = getSortedValue group[name]
         $scope.group = sorted
+        $scope.groupNum = Object.keys $scope.group .length
 
       /* comment out this block since we are not using ng-grid.
       $scope.committee = ({{committee}:entity}, col) ->

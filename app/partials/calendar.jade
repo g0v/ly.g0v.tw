@@ -7,7 +7,9 @@
   .time 立法院行程：
     select(ng-model="weeks", ng-options="o.label for o in weeksOpts", ng-change="update()")
 
+
   .sitting
+    h3(ng-hide="groupNum > 0") 本日無行程
     .group
       // YS is not in committee mapping object, this is the customized block for it
       .title(ng-show="group.YS")
