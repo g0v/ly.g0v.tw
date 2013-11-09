@@ -77,6 +77,7 @@
 
   .clearfix
   .content.default(ng-repeat="(i, d) in diff")
+    a(name="{{d.name}}")
     h2.ui.horizontal.divider {{d.name}}
 
     p.sample
@@ -98,3 +99,12 @@
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
       .ui.segment.green(ng-bind-html="diffs.comment")
       .ui.horizontal.divider
+
+  .content.navigation(ng-repeat="(i, d) in diff")
+    .ui.very.thin.sidebar
+      .ui.vertical.menu
+        a.item(href="#"+"{{d.name}}") 民法親屬編、繼承編
+        .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
+          .law-unit(ng-repeat="diffline in diffs.difflines")
+            a.item(href="#"+"original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+
