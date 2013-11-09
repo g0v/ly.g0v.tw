@@ -103,9 +103,10 @@ angular.module 'app.directives' <[app.services ]>
 
       waveform = new Waveform container: element[0], width: _width, height: _height, innerColor: _innercolor, outerColor: _outercolor
         ..canvas.style.marginLeft = "#{margin.left}px"
-      scope .$watch 'model.current', (v) ->
+      scope.$watch 'model.current', (v) ->
         element.find \.location-marker .attr \transform, "translate(#{x? v} #{margin.top})"
-      scope .$watch 'model', !(wave) ->
+      scope.$watch 'model', !(wave) ->
+        return unless wave
         x := d3.scale.linear!range [0, w - margin.left - margin.right] .domain [0, wave.wave.length]
         y := d3.scale.linear!range [h, 0] .domain [0, d3.max wave.wave]
         build-avatar element, wave, {w,h,x,y,margin}, scope, LYService
