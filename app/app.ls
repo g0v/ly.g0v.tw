@@ -45,6 +45,13 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       templateUrl: '/partials/sitting.html'
       controller: \LYSitting
 
+    .state 'search' do
+      url: '/search'
+      templateUrl: '/partials/search.html'
+      controller: \LYSearch
+    .state 'search.target' do
+      url: '/{keyword}'
+
     .state 'about' do
       url: '/about'
       templateUrl: '/partials/about.html'

@@ -1,0 +1,6 @@
+.search
+    h2 搜尋： {{keyword}}
+    .results(ng-show="results.length > 0")
+      .row(ng-repeat="r in results")
+        {{r}}
+

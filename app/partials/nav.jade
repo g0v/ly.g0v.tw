@@ -7,6 +7,9 @@ ul.nav
     a(ng-href="/debates") 質詢
 
 ul.nav.pull-right
+  li
+      form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
+        input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword")
   li(ng-class="getClass('/about')", ng-class="{active:activeTab=='about'}")
     a(ng-href='/about') 關於
   li.fb-like

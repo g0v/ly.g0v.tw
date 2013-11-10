@@ -66,11 +66,10 @@ line-based-diff = (text1, text2) ->
 
   return difflines
 
-angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sittings ng]>
+angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sittings app.controllers.search ng]>
 .run <[$rootScope]> ++ ($rootScope) ->
   $rootScope.committees = committees
 .controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->
-
   s <<< {$location}
   s.$watch '$location.path()' (activeNavId or '/') ->
     s <<< {activeNavId}
@@ -82,6 +81,12 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
       ''
 
 .filter \committee, <[$sce]> ++ ($sce) -> (value) -> $sce.trustAsHtml renderCommittee value
+
+.controller SearchFormCtrl: <[$scope $state]> ++ ($scope, $state) ->
+  $scope.submitSearch = ->
+    $state.transitionTo 'search.target', { keyword: $scope.searchKeyword}
+    $scope.searchKeyword = ''
+
 
 .controller LYBills: <[$scope $http $state $timeout LYService $sce $anchorScroll]> ++ ($scope, $http, $state, $timeout, LYService, $sce, $anchorScroll) ->
     $scope.diffs = []
