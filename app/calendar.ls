@@ -11,18 +11,21 @@ angular.module 'app.controllers.calendar' []
         start: moment today .startOf \day .add 'days' -1
         end: moment today .startOf \day .add 'days', 1
         label: \今日  # if today is 8th, we request query by date > 7 and date < 9
+        name: \today
       }
 
-      $scope.$watch 'weeks' ->
+      $scope.$watch 'weeks' (newV, oldV)->
         return unless $scope.weeks
-        [start, end] = [$scope.weeks.start, $scope.weeks.end].map (.format "YYYY-MM-DD")
-        $state.transitionTo 'calendar.period', {period: start + "_" + end}
+        $state.transitionTo 'calendar.period', {period: $scope.weeks.name} if newV and oldV and newV.label!==oldV.label
 
       $scope.change = !(type) ->
         $scope.type = type
         updatePage!
 
       $scope.$watch '$state.params.period' ->
+        if not $state.params.period
+          $state.transitionTo 'calendar.period', {period: $scope.weeksOpts[0].name}
+          return
         updatePage!
 
       function buildWeeks(first)
@@ -33,14 +36,17 @@ angular.module 'app.controllers.calendar' []
               end: moment today .day 0 - i + 7
             }
             opt <<< label: opt.start.format "YYYY:  MM-DD" + ' to ' + opt.end.format "MM-DD"
+            opt <<< name: opt.start.format "YYYY-MM-DD" + '_' + opt.end.format "YYYY-MM-DD"
         return weeks
 
       updatePage = ->
-        [start, end] = if $state.current.name is /^calendar.period/ =>  parseState $state.params.period
+        parseState $state.params.period
+        [start, end, name] = if $state.current.name is /^calendar.period/ =>  parseState $state.params.period
         if not start.isValid! or not end.isValid! or start > end
-          [start, end] = [$scope.weeksOpts[0].start, $scope.weeksOpts[0].end]
+          [start, end, name] = [$scope.weeksOpts[0].start, $scope.weeksOpts[0].end, \today]
         [strS, strE] = [start, end].map (.format 'YYYY-MM-DD')
-        $state.transitionTo 'calendar.period', {period: strS + "_" + strE}
+        name ?= strS + "_" + strE
+        $state.transitionTo 'calendar.period', {period: name} if $state.current.name!==name
         getData $scope.type, strS, strE
         updateDropdownOptions start, end
 
@@ -50,7 +56,11 @@ angular.module 'app.controllers.calendar' []
         $scope.weeks = first
 
       parseState = (str) ->
-        str.split \_ .map (s)-> moment s,'YYYY-MM-DD'
+        if str is /today/ or !str
+          return [$scope.weeksOpts[0].start, $scope.weeksOpts[0].end, $scope.weeksOpts[0].name]
+        r = str.split \_ .map (s)-> moment s,'YYYY-MM-DD'
+        r.push str
+        return r
 
       insert = (group, entry) ->
         # same sitting id but different time, regards as different entry
