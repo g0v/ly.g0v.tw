@@ -31,12 +31,137 @@
     margin: 1em 0
     height: auto
     width: 100%
-  .ui.four.steps
-    margin-bottom: 2rem
-  p
-    font-size: 22px
-    line-height: 2rem
-    text-align: justify
+
+  .ui.label.light.gray
+    background-color: #eee
+    color: #666
+
+  .bill-progress
+
+    .advanced
+      display: none
+
+    .ui.label.light.gray
+      background-color: #eee
+      color: #666
+
+    .ui.steps
+      margin-top: 2rem
+
+    .ui.pointing.label
+      position: absolute
+      left: 0
+
+    .ui.steps .ui.step .ui.pointing.below.label
+      top: -2rem
+
+    .ui.steps .no-hover.step,
+    .ui.no-hover.step
+      cursor: auto
+
+    @mixin ui-step-color($n, $b, $c, $s, $h)
+      .ui.step.#{$n},
+      .ui.steps .step.#{$n} 
+        display: inline-block
+        position: relative
+        padding: 1em 2em 1em 3em
+        vertical-align: top
+        background-color: $b
+        color: $c
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        -ms-box-sizing: border-box
+        box-sizing: border-box
+
+      .ui.step.#{$n}:hover,
+      .ui.step.#{$n}.hover
+        background-color: $h
+        color: $c
+      
+      .ui.steps .step.#{$n}.hover:after,
+      .ui.steps .step.#{$n}:hover:after,
+      .ui.step.#{$n}:hover,
+      .ui.step.#{$n}.hover::after
+        background-color: $h
+        border-left-color: $h
+      
+      .ui.step.no-hover.#{$n}:hover,
+      .ui.step.no-hover.#{$n}.hover
+        background-color: $b
+        color: $c
+      
+      .ui.steps .step.no-hover.#{$n}.hover:after,
+      .ui.steps .step.no-hover.#{$n}:hover:after,
+      .ui.step.no-hover.#{$n}:hover,
+      .ui.step.no-hover.#{$n}.hover::after
+        background-color: $b
+        border-left-color: $b
+
+      .ui.step.#{$n}:after
+        border: none
+        background-color: $b
+        top: 0.42em
+        right: -1em
+        width: 2.15em
+        height: 2.15em
+        -webkit-transform: rotate(-45deg)
+        -moz-transform: rotate(-45deg)
+        -o-transform: rotate(-45deg)
+        -ms-transform: rotate(-45deg)
+        transform: rotate(-45deg)
+        -webkit-box-shadow: -1px -1px 0px 0px $s inset
+        -moz-box-shadow: -1px -1px 0px 0px $s inset
+        box-shadow: -1px -1px 0px 0px $s inset
+
+    @include ui-step-color(black,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
+    @include ui-step-color(green,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
+    @include ui-step-color(red,    #d95c5c, #ffffff, #ffffff, darken(#d95c5c, 10%))
+    @include ui-step-color(blue,   #6ecff5, #ffffff, #ffffff, darken(#6ecff5, 10%))
+    @include ui-step-color(purple, #564f8a, #ffffff, #ffffff, darken(#564f8a, 10%))
+    @include ui-step-color(teal,   #00b5ad, #ffffff, #ffffff, darken(#00b5ad, 10%))
+    @include ui-step-color(orange, #e96633, #ffffff, #ffffff, darken(#e96633, 10%))
+    @include ui-step-color(white,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
+    @include ui-step-color(gray,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
+
+    .ui.state
+      i
+        margin: 0
+      display: inline-block
+      z-index: 10
+      position: absolute
+      background: #f00
+      padding: 0.3em
+      border-radius: 2em
+      font-size: 0.8rem
+      font-weight: 900
+      background: #444
+      border: 3px solid #eee
+      color: #fff
+      margin: 0.8em 1em 0 0
+
+    .ui.small.state,
+    .ui.small.steps .state
+      font-size: 0.65rem
+
+    .ui.large.state,
+    .ui.large.steps .state
+      font-size: 1rem
+
+    @mixin ui-state-color($n, $b, $c)
+      .ui.state.#{$n}
+        background: $b
+        i
+          color: $c
+
+    @include ui-state-color(black,  #5c6166, #ffffff)
+    @include ui-state-color(green,  #5bbd72, #ffffff)
+    @include ui-state-color(red,    #d95c5c, #ffffff)
+    @include ui-state-color(blue,   #6ecff5, #ffffff)
+    @include ui-state-color(purple, #564f8a, #ffffff)
+    @include ui-state-color(teal,   #00b5ad, #ffffff)
+    @include ui-state-color(orange, #e96633, #ffffff)
+    @include ui-state-color(white,  #ffffff, #ffffff)
+
   .role
     .item
       float: left

@@ -1,12 +1,60 @@
 .bill
   h1.bill(title="{{summary}}") {{summary}}
 
-  .ui.four.steps(ng-show="false")
-    .ui.active.step 提案 - 2013.10.10
-    .ui.state.green: i.icon.check
-    .ui.disabled.step 退回
-    .ui.disabled.step 付委員會
-    .ui.disabled.step 付協商
+  .bill-progress
+    .ui.seven.steps
+      a.ui.step.green(ng-click="mode='step-1'")
+        .ui.pointing.below.label.green 2013.10.10
+        | 提案
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-2'") 一讀
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-3'") 付委
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-4'") 二讀
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-5'") 三讀
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-6'") 頒佈
+      .ui.state.white: i.icon.check
+      a.ui.step.white(ng-click="mode='step-7'") 生效
+    .ui.small.steps(ng-show="mode=='step-1'")
+      .ui.step.green.no-hover
+        .ui.pointing.below.label date
+        | 經ＯＯ立委送至ＯＯ單位
+      .ui.state.green: i.icon.check
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 經程序委員會排入全院院會一讀議程
+      .ui.state.white: i.icon.check
+    .ui.small.steps(ng-show="mode=='step-2'")
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 於院會一讀通過
+      .ui.state.white: i.icon.check
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 經程序委員會排入委員會議程
+      .ui.state.white: i.icon.check
+    .ui.small.steps(ng-show="mode=='step-3'")
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 於委員會審查通過
+      .ui.state.white: i.icon.check
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 經程序委員會排入全院院會二讀議程
+      .ui.state.white: i.icon.check
+    .ui.small.steps(ng-show="mode=='step-4'")
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 於院會二讀通過
+      .ui.state.white: i.icon.check
+      .ui.step.white.no-hover
+        .ui.pointing.below.label date
+        | 經程序委員會排入全院院會三讀議程
+      .ui.state.white: i.icon.check
+
 
   .summary
     .ui.vertical.menu.right.floated
@@ -23,7 +71,7 @@
       .item.hide-print(ng-show="doc.doc")
         i.file.icon
         a(ng-href="{{doc.doc}}",target="_blank") Word
-      //.item(ng-show="bill_ref") Related bills
+      //-.item(ng-show="bill_ref") Related bills
         .menu
           .item
             a(ng-href="",target="_blank")
