@@ -26,7 +26,7 @@
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
               td
-                a(ng-href="sittings/{{entry.sitting_id}}") {{entry.name}}
+                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.summary}}
     .group(ng-repeat="(k, v) in group")
       .title(ng-show="committees[k]")
@@ -46,7 +46,7 @@
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
               td
-                a(ng-href="sittings/{{entry.sitting_id}}") {{entry.name}}
+                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.chair}}
               td {{entry.summary}}
 
