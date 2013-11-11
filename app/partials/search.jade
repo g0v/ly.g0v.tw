@@ -5,7 +5,7 @@
         .content
           .meta {{r.proposed_by}}
           .name
-            a(ng-href="/bills/{{r.bill_ref}}") {{r.summary}}
+            a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
           .description {{r.abstract}}
     h4 目前設定之搜尋上限為 {{limit}} 筆
       span(ng-cloak, ng-show="results.length > 0") ，搜尋結果顯示 {{results.length}} 筆
