@@ -1,4 +1,4 @@
-.search(style="height: 600px; max-height: 600px; overflow: auto",when-scrolled="moreResults()")
+.search
     h2 搜尋： {{keyword}}
     h4 目前設定之搜尋上限為 {{limit}} 筆
       span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
@@ -9,3 +9,4 @@
           .name
             a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
           p.description {{r.abstract}}
+    h4(detect-visible="moreResults()") 目前找到：{{results.length}} 筆

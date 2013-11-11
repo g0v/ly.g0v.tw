@@ -118,3 +118,13 @@ angular.module 'app.directives' <[app.services ]>
     <- elm.bind 'scroll'
     if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight)
       scope.$apply attr.whenScrolled
+
+.directive 'detectVisible' <[$window $document]> ++ ($window, $document) ->
+  (scope, elm, attrs) ->
+    raw = elm[0]
+    angular.element $window .bind 'scroll', ->
+      return unless attrs.detectVisible or scope.stopDetect
+      # to see whether the element is in viewport by checking TOP value
+      if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
+        scope.$apply(attrs.detectVisible)
+
