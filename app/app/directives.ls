@@ -111,3 +111,10 @@ angular.module 'app.directives' <[app.services ]>
         y := d3.scale.linear!range [h, 0] .domain [0, d3.max wave.wave]
         build-avatar element, wave, {w,h,x,y,margin}, scope, LYService
         if wave => waveform .update data: wave.wave
+
+.directive 'whenScrolled' ->
+  (scope, elm, attr) ->
+    raw = elm[0];
+    <- elm.bind 'scroll'
+    if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight)
+      scope.$apply attr.whenScrolled

@@ -1,12 +1,11 @@
-.search
+.search(style="height: 600px; max-height: 600px; overflow: auto",when-scrolled="moreResults()")
     h2 搜尋： {{keyword}}
-    .results.ui.items(ng-show="results.length > 0")
+    h4 目前設定之搜尋上限為 {{limit}} 筆
+      span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
+    .results.ui.stackable.items(ng-show="results.length > 0")
       .item(ng-repeat="r in results")
         .content
           .meta {{r.proposed_by}}
           .name
             a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
-          .description {{r.abstract}}
-    h4 目前設定之搜尋上限為 {{limit}} 筆
-      span(ng-cloak, ng-show="results.length > 0") ，搜尋結果顯示 {{results.length}} 筆
-      span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
+          p.description {{r.abstract}}

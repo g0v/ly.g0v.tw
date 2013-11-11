@@ -1,16 +1,24 @@
 angular.module 'app.controllers.search' []
 .controller LYSearch: <[$rootScope $scope $state LYModel]> ++ ($rootScope, $scope, $state, LYModel) ->
-  $scope.limit = 42
+  $scope.limit = 12
+  $scope.sk = 0
+  $scope.results = []
   $scope.$watch '$state.params.keyword' ->
     $scope.keyword = $state.params.keyword
     return unless $state.params.keyword
-    doSearch $scope.keyword
-  doSearch = (keyword)->
+    $scope.moreResults!
+
+  $scope.moreResults = ->
+    res <- doSearch $scope.keyword
+    $scope.results ++= res
+  doSearch = (keyword, cb)->
     {paging, entries} <- LYModel.get 'bills' do
       params: do
         q: JSON.stringify do
           summary: $matches: keyword
-        l: 42
+        l: $scope.limit
+        sk: $scope.sk
     .success
-    $scope.results = entries
+    $scope.sk += $scope.limit
+    cb entries
 
