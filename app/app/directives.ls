@@ -121,9 +121,10 @@ angular.module 'app.directives' <[app.services ]>
 
 .directive 'detectVisible' <[$window $document]> ++ ($window, $document) ->
   (scope, elm, attrs) ->
+    return unless attrs.detectVisible
     raw = elm[0]
     angular.element $window .bind 'scroll', ->
-      return unless attrs.detectVisible or scope.stopDetect
+      return if scope.stopDetect # we could disable detection by enabling this flag
       # to see whether the element is in viewport by checking TOP value
       if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
         scope.$apply(attrs.detectVisible)
