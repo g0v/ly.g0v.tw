@@ -178,6 +178,60 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
+      $scope.steps =
+        * name: "proposal"
+          description: "提案"
+          status:
+            step: "passed"
+            state: "passed"
+            icon: "check"
+          date: "2013-10-1"
+          detail:
+            step:
+              name: ""
+        * name: "first-reading"
+          description: "一讀"
+          status:
+            step: "issued"
+            state: "not-yet"
+            icon: ""
+          date: "2013-10-2"
+        * name: "committee"
+          description: "委員會"
+          status:
+            step: "issued"
+            state: "returned"
+            icon: "exclamation"
+          date: "2013-10-3"
+        * name: "second-reading"
+          description: "二讀"
+          status:
+            step: "scheduled"
+            state: "not-yet"
+            icon: ""
+          date: "2013-10-4"
+        * name: "third-reading"
+          description: "三讀"
+          status:
+            step: "not-yet"
+            state: "not-yet"
+            icon: "check"
+          date: ""
+        * name: "announced"
+          description: "頒佈"
+          status:
+            step: "not-yet"
+            state: "not-yet"
+            icon: "check"
+          date: ""
+        * name: "implemented"
+          description: "生效"
+          status:
+            step: "not-yet"
+            state: "hidden"
+            icon: ""
+          date: ""
+
       $timeout -> $anchorScroll!
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
