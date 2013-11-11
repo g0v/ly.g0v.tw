@@ -1,7 +1,7 @@
 .bill
   h1.bill(title="{{summary}}") {{summary}}
 
-  .bill-progress
+  //.bill-progress
     .ui.seven.steps
       span.stage(ng-repeat="step in steps")
         a.ui.step(ng-click="mode='{{step.name}}'",ng-class="'{{step.status.step}}'") {{step.description}}
