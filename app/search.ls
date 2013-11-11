@@ -12,6 +12,7 @@ angular.module 'app.controllers.search' []
     $scope.busy = true
     res <- doSearch $scope.keyword
     $scope.results ++= res
+    $scope.stopDetect = true if res.length is 0
     $scope.busy = false
   doSearch = (keyword, cb)->
     {paging, entries} <- LYModel.get 'bills' do
