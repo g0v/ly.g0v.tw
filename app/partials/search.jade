@@ -1,12 +1,12 @@
 .search
-    h2 搜尋： {{keyword}}
-    h4 目前設定之搜尋上限為 {{limit}} 筆
+    .ui.floating.message 
+      span.keyword 搜尋 {{keyword}}
+      span 目前設定之搜尋上限為 {{limit}} 筆
       span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
-    .results.ui.stackable.items(ng-show="results.length > 0")
-      .item(ng-repeat="r in results")
-        .content
-          .meta {{r.proposed_by}}
-          .name
-            a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
-          p.description {{r.abstract}}
+    .results(ng-show="results.length > 0")
+      .content.ui.segment(ng-repeat="r in results")
+        span.meta.ui.label {{r.proposed_by}}
+        span.name
+          a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
+        p.description {{r.abstract}}
     h4(detect-visible="moreResults()") 目前找到：{{results.length}} 筆
