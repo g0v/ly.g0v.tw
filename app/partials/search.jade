@@ -9,4 +9,6 @@
           span.name
             a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
           p.description {{r.abstract}}
+        .ui.bottom.attached.label
+          span(ng-repeat="s in r.sponsors", class="sponsor") {{s}}
     h4(detect-visible="moreResults()") 目前找到：{{results.length}} 筆
