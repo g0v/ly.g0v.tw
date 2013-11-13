@@ -1,23 +1,18 @@
 .bill
   h1.bill(title="{{summary}}") {{summary}}
 
-  //.bill-progress
-    .ui.seven.steps
+  .bill-progress
+    .common.ui.seven.steps
       span.stage(ng-repeat="step in steps")
         a.ui.step(ng-click="mode='{{step.name}}'",ng-class="'{{step.status.step}}'") {{step.description}}
           .ui.pointing.below.label(ng-class="'{{step.status.step}}'") {{step.date}}
         .ui.state(ng-class="'{{step.status.state}}'"): i.icon(ng-class="'{{step.status.icon}}'")
 
-    //-.ui.small.steps(ng-repeat="step in steps")
-      span.stage(ng-show="mode=='proposal'")
-        .ui.step.green.no-hover
-          .ui.pointing.below.label date
-          | 經ＯＯ立委送至ＯＯ單位
-        .ui.state.green: i.icon.check
-        .ui.step.white.no-hover
-          .ui.pointing.below.label date
-          | 經程序委員會排入全院院會一讀議程
-        .ui.state.white: i.icon.check
+    .ui.small.steps(ng-repeat="step in steps")
+      span.stage(ng-show="mode=='{{step.name}}'",ng-repeat="substep in step.detail")
+        .ui.step(ng-class="'{{substep.status.step}}'") {{substep.description}}
+          .ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
+        .ui.state(ng-class="'{{substep.status.state}}'"): i.icon(ng-class="'{{substep.status.icon}}'")
 
     //-.ui.seven.steps
       a.ui.step.white(ng-click="mode='proposal'") 一讀
@@ -34,7 +29,7 @@
       a.ui.step.white(ng-click="mode='step-6'") 頒佈
       .ui.state.white: i.icon.check
       a.ui.step.white(ng-click="mode='step-7'") 生效
-    .ui.small.steps(ng-show="mode=='proposal'")
+    //-.ui.small.steps(ng-show="mode=='proposal'")
       .ui.step.green.no-hover
         .ui.pointing.below.label date
         | 經ＯＯ立委送至ＯＯ單位
@@ -43,7 +38,7 @@
         .ui.pointing.below.label date
         | 經程序委員會排入全院院會一讀議程
       .ui.state.white: i.icon.check
-    .ui.small.steps(ng-show="mode=='first-reading'")
+    //-.ui.small.steps(ng-show="mode=='first-reading'")
       .ui.step.white.no-hover
         .ui.pointing.below.label date
         | 於院會一讀通過
@@ -52,7 +47,7 @@
         .ui.pointing.below.label date
         | 經程序委員會排入委員會議程
       .ui.state.white: i.icon.check
-    .ui.small.steps(ng-show="mode=='step-3'")
+    //-.ui.small.steps(ng-show="mode=='step-3'")
       .ui.step.white.no-hover
         .ui.pointing.below.label date
         | 於委員會審查通過
@@ -61,7 +56,7 @@
         .ui.pointing.below.label date
         | 經程序委員會排入全院院會二讀議程
       .ui.state.white: i.icon.check
-    .ui.small.steps(ng-show="mode=='step-4'")
+    //-.ui.small.steps(ng-show="mode=='step-4'")
       .ui.step.white.no-hover
         .ui.pointing.below.label date
         | 於院會二讀通過

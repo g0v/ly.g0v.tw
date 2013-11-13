@@ -192,8 +192,20 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             icon: "check"
           date: "2013-10-1"
           detail:
-            step:
-              name: ""
+            * name: "proposal"
+              description: "經ＯＯ立委送至ＯＯ單位"
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "check"
+              date: "2013-10-1"
+            * name: "schedule"
+              description: "經程序委員會排入全院院會一讀議程"
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "check"
+              date: "2013-10-1"
         * name: "first-reading"
           description: "一讀"
           status:
