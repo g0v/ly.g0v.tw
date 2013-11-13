@@ -1,6 +1,7 @@
 .search
     .ui.floating.message
       span.keyword 搜尋 {{keyword}}
+      img(ng-show="busy", src="/img/loading.gif")
       span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
     .results(ng-show="results.length > 0")
       .content.ui.segment(ng-repeat="r in results")
