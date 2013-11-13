@@ -1,5 +1,4 @@
 .bill
-  #sidebarCtrl.ui.button(ng-show="ctrlSidebar", ng-click="showSidebar=!showSidebar") 展開Sidebar
   h1.bill(title="{{summary}}") {{summary}}
 
   .bill-progress
@@ -160,7 +159,7 @@
       .ui.segment.green(ng-bind-html="diffs.comment")
       .ui.horizontal.divider
 
-  .content.navigation(ng-show="showSidebar")
+  .content.navigation.mobile-hide(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu
         .item-section(ng-repeat="(i, d) in diff track by $index")
