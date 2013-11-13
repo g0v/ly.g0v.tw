@@ -182,7 +182,8 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffnew: h.0
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
       total-entries = $scope.diff.map (.content.length) .reduce (+)
-      $scope.showSidebar = total-entries > 3
+      $scope.ctrlSidebar = total-entries > 3
+      $scope.showSidebar = false
       $scope.steps =
         * name: "proposal"
           description: "提案"
