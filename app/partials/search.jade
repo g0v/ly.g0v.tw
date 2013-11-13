@@ -1,6 +1,7 @@
 .search
     .ui.floating.message
       span.keyword 搜尋 {{keyword}}
+      img(ng-show="busy", src="/img/loading.gif")
       span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
     .results(ng-show="results.length > 0")
       .content.ui.segment(ng-repeat="r in results")
@@ -12,3 +13,4 @@
         .ui.bottom.attached.label
           span(ng-repeat="s in r.sponsors", class="sponsor") {{s}}
     h4(detect-visible="moreResults()") 目前找到：{{results.length}} 筆
+    img(ng-show="busy", src="/img/loading.gif")

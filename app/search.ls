@@ -9,8 +9,10 @@ angular.module 'app.controllers.search' []
     $scope.moreResults!
 
   $scope.moreResults = ->
+    $scope.busy = true
     res <- doSearch $scope.keyword
     $scope.results ++= res
+    $scope.busy = false
   doSearch = (keyword, cb)->
     {paging, entries} <- LYModel.get 'bills' do
       params: do
