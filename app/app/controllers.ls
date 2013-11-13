@@ -183,9 +183,14 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
-      $scope.mode = ''
+      $scope.showSub = (index) ->
+        angular.forEach $scope.steps, (v, i) ->
+          if index == i 
+            v.sub = true
+          else v.sub = false
       $scope.steps =
         * name: "proposal"
+          sub: false
           description: "提案"
           status:
             step: "passed"
@@ -208,13 +213,30 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 icon: "check"
               date: "2013-10-1"
         * name: "first-reading"
+          sub: false
           description: "一讀"
           status:
             step: "issued"
             state: "not-yet"
             icon: ""
           date: "2013-10-2"
+          detail:
+            * name: "proposal"
+              description: "tesst"
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "check"
+              date: "2013-10-1"
+            * name: "schedule"
+              description: "經程序委員會排入全院院會一讀議程"
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "check"
+              date: "2013-10-1"         
         * name: "committee"
+          sub: false
           description: "委員會"
           status:
             step: "issued"
@@ -222,6 +244,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             icon: "exclamation"
           date: "2013-10-3"
         * name: "second-reading"
+          sub: false
           description: "二讀"
           status:
             step: "scheduled"
@@ -229,6 +252,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             icon: ""
           date: "2013-10-4"
         * name: "third-reading"
+          sub: false
           description: "三讀"
           status:
             step: "not-yet"
@@ -236,6 +260,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             icon: "check"
           date: ""
         * name: "announced"
+          sub: false
           description: "頒佈"
           status:
             step: "not-yet"
@@ -243,6 +268,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             icon: "check"
           date: ""
         * name: "implemented"
+          sub: false
           description: "生效"
           status:
             step: "not-yet"
