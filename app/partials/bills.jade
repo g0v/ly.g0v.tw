@@ -4,12 +4,12 @@
   .bill-progress
     .common.ui.seven.steps
       span.stage(ng-repeat="step in steps")
-        a.ui.step(ng-click="mode='{{step.name}}'",ng-class="'{{step.status.step}}'") {{step.description}}
+        a.ui.step(ng-click="$parent.mode = step.name",ng-class="'{{step.status.step}}'") {{step.description}}
           .ui.pointing.below.label(ng-class="'{{step.status.step}}'") {{step.date}}
         .ui.state(ng-class="'{{step.status.state}}'"): i.icon(ng-class="'{{step.status.icon}}'")
 
     .ui.small.steps(ng-repeat="step in steps")
-      span.stage(ng-show="mode=='{{step.name}}'",ng-repeat="substep in step.detail")
+      span.stage(ng-show="$parent.mode == step.name",ng-repeat="substep in step.detail")
         .ui.step(ng-class="'{{substep.status.step}}'") {{substep.description}}
           .ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
         .ui.state(ng-class="'{{substep.status.state}}'"): i.icon(ng-class="'{{substep.status.icon}}'")
