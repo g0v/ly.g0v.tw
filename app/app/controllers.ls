@@ -186,7 +186,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
           if index == i 
-            v.sub = true
+            v.sub = !v.sub
           else v.sub = false
       $scope.steps =
         * name: "proposal"
