@@ -144,6 +144,75 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
           value.right = $sce.trustAsHtml value.right
         comment = $sce.trustAsHtml comment
         return {comment,difflines,left-item,left-item-anchor,right-item}
+      $scope.steps =
+        * name: "proposal"
+          sub: false
+          description: "提案"
+          status:
+            step: "passed"
+            state: "passed"
+            icon: "check"
+          #detail:
+            #* name: "proposal"
+            #  description: "經ＯＯ立委送至ＯＯ單位"
+            #  status:
+            #    step: "passed"
+            #    state: "passed"
+            #    icon: "check"
+            #  date: "2013-10-1"
+            #* name: "schedule"
+            #  description: "經程序委員會排入全院院會一讀議程"
+            #  status:
+            #    step: "passed"
+            #    state: "passed"
+            #    icon: "check"
+            #  date: "2013-10-1"
+        * name: "first-reading"
+          sub: false
+          description: "一讀"
+          status:
+            step: "issued"
+            state: "not-yet"
+            icon: ""
+          detail: []
+        * name: "committee"
+          sub: false
+          description: "委員會"
+          status:
+            step: "issued"
+            state: "returned"
+            icon: "exclamation"
+        * name: "second-reading"
+          sub: false
+          description: "二讀"
+          status:
+            step: "scheduled"
+            state: "not-yet"
+            icon: ""
+        * name: "third-reading"
+          sub: false
+          description: "三讀"
+          status:
+            step: "not-yet"
+            state: "not-yet"
+            icon: "check"
+          date: ""
+        * name: "announced"
+          sub: false
+          description: "頒佈"
+          status:
+            step: "not-yet"
+            state: "not-yet"
+            icon: "check"
+          date: ""
+        * name: "implemented"
+          sub: false
+          description: "生效"
+          status:
+            step: "not-yet"
+            state: "hidden"
+            icon: ""
+          date: ""        
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
@@ -181,6 +250,21 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffbase: h[base-index]
                 diffnew: h.0
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
+        motions: bill.motions?map (motion, i) ->
+          if motion.resolution.match /^決定：交\S+審查。$/
+            detail =
+              name: "scheduled"
+              description: motion.resolution
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "check"
+              date: motion.dates[1].date
+          if i == 0
+            $scope.steps[0].date = motion.dates[0].date
+            $scope.steps[1].date = motion.dates[1].date
+            $scope.steps[1].status = detail.status
+            $scope.steps[1].detail.push detail
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
       $scope.showSub = (index) ->
@@ -188,94 +272,6 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
           if index == i 
             v.sub = !v.sub
           else v.sub = false
-      $scope.steps =
-        * name: "proposal"
-          sub: false
-          description: "提案"
-          status:
-            step: "passed"
-            state: "passed"
-            icon: "check"
-          date: "2013-10-1"
-          detail:
-            * name: "proposal"
-              description: "經ＯＯ立委送至ＯＯ單位"
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "check"
-              date: "2013-10-1"
-            * name: "schedule"
-              description: "經程序委員會排入全院院會一讀議程"
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "check"
-              date: "2013-10-1"
-        * name: "first-reading"
-          sub: false
-          description: "一讀"
-          status:
-            step: "issued"
-            state: "not-yet"
-            icon: ""
-          date: "2013-10-2"
-          detail:
-            * name: "proposal"
-              description: "tesst"
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "check"
-              date: "2013-10-1"
-            * name: "schedule"
-              description: "經程序委員會排入全院院會一讀議程"
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "check"
-              date: "2013-10-1"         
-        * name: "committee"
-          sub: false
-          description: "委員會"
-          status:
-            step: "issued"
-            state: "returned"
-            icon: "exclamation"
-          date: "2013-10-3"
-        * name: "second-reading"
-          sub: false
-          description: "二讀"
-          status:
-            step: "scheduled"
-            state: "not-yet"
-            icon: ""
-          date: "2013-10-4"
-        * name: "third-reading"
-          sub: false
-          description: "三讀"
-          status:
-            step: "not-yet"
-            state: "not-yet"
-            icon: "check"
-          date: ""
-        * name: "announced"
-          sub: false
-          description: "頒佈"
-          status:
-            step: "not-yet"
-            state: "not-yet"
-            icon: "check"
-          date: ""
-        * name: "implemented"
-          sub: false
-          description: "生效"
-          status:
-            step: "not-yet"
-            state: "hidden"
-            icon: ""
-          date: ""
-
       $timeout -> $anchorScroll!
 
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
