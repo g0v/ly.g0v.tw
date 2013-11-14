@@ -41,6 +41,9 @@
         .row(ng-show="summary")
           .span3.td-title 概要
           .span9 {{ summary }}
+        .row(ng-show="proceeding_url")
+          .span3.td-title 議事錄
+          .span9: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
       .row-fluid
         .span10.content
   .row-fluid(ng-show="loaded", ng-show="video")
