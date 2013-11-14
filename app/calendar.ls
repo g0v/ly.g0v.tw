@@ -84,7 +84,7 @@ angular.module 'app.controllers.calendar' []
       getData = (type, start, end)->
         {paging, entries} <- LYModel.get 'calendar' do
             params: do
-                s: JSON.stringify date: 1
+                s: JSON.stringify date: 1, time_start: 1
                 q: JSON.stringify do
                     date: $gt: start, $lt: end
                     type: type
