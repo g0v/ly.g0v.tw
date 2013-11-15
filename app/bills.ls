@@ -206,10 +206,6 @@ angular.module 'app.controllers.bills' []
         motions: bill.motions?map (motion, i) ->
           if i is 0
             $scope.steps[0].date = motion.dates[0].date
-            if motion.status is \rejected
-              $scope.steps[0].status
-                ..icon = \exclamation
-                ..state = \returned
           match motion.status
           | \prioritized # example 1618L14627
             detail =
@@ -237,6 +233,9 @@ angular.module 'app.controllers.bills' []
                 icon: "exclamation"
               date: motion.dates[0].date
             $scope.steps[0].detail.push detail
+            $scope.steps[0].status
+              ..icon = \exclamation
+              ..state = \returned
           | \committee
             detail =
               name: "scheduled"
