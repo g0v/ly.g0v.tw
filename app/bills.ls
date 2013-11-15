@@ -220,6 +220,8 @@ angular.module 'app.controllers.bills' []
                 state: "passed"
                 icon: "star"
               date: motion.dates[0].date
+            $scope.steps[0].status.state = "passed" if $scope.steps[0].status.state is "not-yet"
+            $scope.steps[0].status.icon ||= "check"
             $scope.steps[1].status = detail.status
             $scope.steps[1].detail.push detail
             $scope.steps[2].status =
