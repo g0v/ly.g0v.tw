@@ -204,7 +204,21 @@ angular.module 'app.controllers.bills' []
                 ..icon = \exclamation
                 ..state = \returned
           match motion.status
-          | \rejected
+          | \prioritized # example 1618L14627
+            detail =
+              name: "proposal"
+              description: motion.resolution
+              status:
+                step: "passed"
+                state: "passed"
+                icon: "star"
+              date: motion.dates[0].date
+            $scope.steps[1].status = detail.status
+            $scope.steps[1].detail.push detail
+            $scope.steps[2].status =
+              icon: "star"
+              state: "passed"
+          | \rejected # example: 335L15406
             detail =
               name: "proposal"
               description: motion.resolution
