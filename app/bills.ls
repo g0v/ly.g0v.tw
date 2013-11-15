@@ -95,16 +95,16 @@ angular.module 'app.controllers.bills' []
           if parse-article-heading RegExp.lastMatch - /\s+$/
             left-item = \§ + that
             left-item-anchor = that
-        newTextLines = entry[idx] || entry[base-index]
+        newTextLines = entry[idx] || entry[base-index] || ''
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = parse-article-heading RegExp.lastMatch - /\s+$/
         if !left-item
           if newTextLines.match /^第\S+章/ || newTextLines.match /^第\S+編/
             left-item = newTextLines.split '　' .0
             left-item-anchor = left-item
-          else 
+          else
             left-item = \§ + ( right-item || '')
-            left-item-anchor = right-item 
+            left-item-anchor = right-item
         difflines = line-based-diff baseTextLines, newTextLines
         angular.forEach difflines, (value, key)->
           value.left = $sce.trustAsHtml value.left
