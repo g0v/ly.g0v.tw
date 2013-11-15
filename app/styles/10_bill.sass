@@ -52,7 +52,7 @@
     .ui.no-hover.step
       cursor: auto
 
-    .ui.steps 
+    .ui.steps
       margin: 1rem 0
 
       .ui.step .ui.pointing.below.label
@@ -64,14 +64,14 @@
 
       &.common
 
-        .stage:first-child 
+        .stage:first-child
           .step,
           .step:first-child,
           .step:last-child
             +border-corner-radius(top,left,0.315em)
             +border-corner-radius(bottom,left,0.315em)
 
-        .stage:last-child 
+        .stage:last-child
           .step,
           .step:first-child,
           .step:last-child
@@ -89,7 +89,7 @@
 
     @mixin ui-step-color($n, $b, $c, $s, $h)
       .ui.step.#{$n},
-      .ui.steps .step.#{$n} 
+      .ui.steps .step.#{$n}
         display: inline-block
         position: relative
         padding: 1em 2em 1em 3em
@@ -105,19 +105,19 @@
       .ui.step.#{$n}.hover
         background-color: $h
         color: $c
-      
+
       .ui.steps .step.#{$n}.hover:after,
       .ui.steps .step.#{$n}:hover:after,
       .ui.step.#{$n}:hover,
       .ui.step.#{$n}.hover::after
         background-color: $h
         border-left-color: $h
-      
+
       .ui.step.no-hover.#{$n}:hover,
       .ui.step.no-hover.#{$n}.hover
         background-color: $b
         color: $c
-      
+
       .ui.steps .step.no-hover.#{$n}.hover:after,
       .ui.steps .step.no-hover.#{$n}:hover:after,
       .ui.step.no-hover.#{$n}:hover,
@@ -151,6 +151,8 @@
     @include ui-step-color(not-yet,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
     @include ui-step-color(issued,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
 
+    .ui.step.not-implemented
+      opacity: 0.5
     .ui.state
       i
         margin: 0
@@ -248,7 +250,7 @@
   .delete.left
     .diff.text em
       background-color: #f99
-      +vendor-prefix(text-emphasis, dot)    
+      +vendor-prefix(text-emphasis, dot)
   .replace.right
     .diff.text em
       background-color: #A1CF88

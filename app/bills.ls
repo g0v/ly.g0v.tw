@@ -132,14 +132,14 @@ angular.module 'app.controllers.bills' []
           sub: false
           description: "二讀"
           status:
-            step: "not-yet"
+            step: "not-yet not-implemented no-hover"
             state: "not-yet"
             icon: ""
         * name: "third-reading"
           sub: false
           description: "三讀"
           status:
-            step: "not-yet"
+            step: "not-yet not-implemented no-hover"
             state: "not-yet"
             icon: "check"
           date: ""
@@ -147,7 +147,7 @@ angular.module 'app.controllers.bills' []
           sub: false
           description: "頒佈"
           status:
-            step: "not-yet"
+            step: "not-yet not-implemented no-hover"
             state: "not-yet"
             icon: "check"
           date: ""
@@ -155,7 +155,7 @@ angular.module 'app.controllers.bills' []
           sub: false
           description: "生效"
           status:
-            step: "not-yet"
+            step: "not-yet not-implemented no-hover"
             state: "hidden"
             icon: ""
           date: ""
@@ -226,6 +226,7 @@ angular.module 'app.controllers.bills' []
             $scope.steps[1].date = motion.dates[0].date
             $scope.steps[1].status = detail.status
             $scope.steps[1].detail.push detail
+            $scope.steps[0].detail.push detail
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
       $scope.showSub = (index) ->
