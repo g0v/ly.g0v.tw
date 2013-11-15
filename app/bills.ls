@@ -110,8 +110,8 @@ angular.module 'app.controllers.bills' []
           description: "提案"
           status:
             step: "passed"
-            state: "passed"
-            icon: "check"
+            state: "not-yet"
+            icon: ""
           detail: []
         * name: "first-reading"
           sub: false
@@ -240,6 +240,8 @@ angular.module 'app.controllers.bills' []
             $scope.steps[1].date = motion.dates[0].date
             $scope.steps[1].status = detail.status
             $scope.steps[1].detail.push detail
+            $scope.steps[0].status.state = "passed" if $scope.steps[0].status.state is "not-yet"
+            $scope.steps[0].status.icon ||= "check"
             $scope.steps[0].detail.push detail
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
