@@ -98,6 +98,9 @@ angular.module 'app.controllers.bills' []
         newTextLines = entry[idx] || entry[base-index]
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+        if !left-item
+          left-item = \§ + right-item
+          left-item-anchor = right-item 
         difflines = line-based-diff baseTextLines, newTextLines
         angular.forEach difflines, (value, key)->
           value.left = $sce.trustAsHtml value.left
