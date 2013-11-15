@@ -171,7 +171,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
           sub: false
           description: "一讀"
           status:
-            step: "issued"
+            step: "not-yet"
             state: "not-yet"
             icon: ""
           detail: []
@@ -179,14 +179,14 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
           sub: false
           description: "委員會"
           status:
-            step: "issued"
-            state: "returned"
-            icon: "exclamation"
+            step: "not-yet"
+            state: "not-yet"
+            icon: ""
         * name: "second-reading"
           sub: false
           description: "二讀"
           status:
-            step: "scheduled"
+            step: "not-yet"
             state: "not-yet"
             icon: ""
         * name: "third-reading"
@@ -212,7 +212,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
             step: "not-yet"
             state: "hidden"
             icon: ""
-          date: ""        
+          date: ""
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
         committee: committee,
         related: if bill.committee
@@ -251,7 +251,13 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 diffnew: h.0
                 diffcontent: diff.content.map diffentry diff, 0, c, base-index
         motions: bill.motions?map (motion, i) ->
-          if motion.resolution.match /^決定：交\S+審查。$/
+          if i is 0
+            $scope.steps[0].date = motion.dates[0].date
+            if motion.status is \rejected
+              $scope.steps[0].status
+                ..icon = \exclamation
+                ..state = \returned
+          if motion.status is \committee
             detail =
               name: "scheduled"
               description: motion.resolution
@@ -260,16 +266,14 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 state: "passed"
                 icon: "check"
               date: motion.dates[1].date
-          if i == 0
-            $scope.steps[0].date = motion.dates[0].date
-            $scope.steps[1].date = motion.dates[1].date
+            $scope.steps[1].date = motion.dates[0].date
             $scope.steps[1].status = detail.status
             $scope.steps[1].detail.push detail
       total-entries = $scope.diff.map (.content.length) .reduce (+)
       $scope.showSidebar = total-entries > 3
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
-          if index == i 
+          if index == i
             v.sub = !v.sub
           else v.sub = false
       $timeout -> $anchorScroll!
