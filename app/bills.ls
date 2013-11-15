@@ -99,7 +99,9 @@ angular.module 'app.controllers.bills' []
         newTextLines -= /^第(.*?)條(之.*?)?\s+/
         right-item = parse-article-heading RegExp.lastMatch - /\s+$/
         if !left-item
-          left-item = \§ + ( right-item || '')
+          if newTextLines.match /^第\S+章/
+            left-item = newTextLines.split '　' .0
+          else left-item = \§ + ( right-item || '')
           left-item-anchor = right-item 
         difflines = line-based-diff baseTextLines, newTextLines
         angular.forEach difflines, (value, key)->
