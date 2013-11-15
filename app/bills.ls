@@ -112,21 +112,7 @@ angular.module 'app.controllers.bills' []
             step: "passed"
             state: "passed"
             icon: "check"
-          #detail:
-            #* name: "proposal"
-            #  description: "經ＯＯ立委送至ＯＯ單位"
-            #  status:
-            #    step: "passed"
-            #    state: "passed"
-            #    icon: "check"
-            #  date: "2013-10-1"
-            #* name: "schedule"
-            #  description: "經程序委員會排入全院院會一讀議程"
-            #  status:
-            #    step: "passed"
-            #    state: "passed"
-            #    icon: "check"
-            #  date: "2013-10-1"
+          detail: []
         * name: "first-reading"
           sub: false
           description: "一讀"
@@ -217,7 +203,18 @@ angular.module 'app.controllers.bills' []
               $scope.steps[0].status
                 ..icon = \exclamation
                 ..state = \returned
-          if motion.status is \committee
+          match motion.status
+          | \rejected
+            detail =
+              name: "proposal"
+              description: motion.resolution
+              status:
+                step: "returned"
+                state: "returned"
+                icon: "exclamation"
+              date: motion.dates[0].date
+            $scope.steps[0].detail.push detail
+          | \committee
             detail =
               name: "scheduled"
               description: motion.resolution
@@ -225,7 +222,7 @@ angular.module 'app.controllers.bills' []
                 step: "passed"
                 state: "passed"
                 icon: "check"
-              date: motion.dates[1].date
+              date: motion.dates[0].date
             $scope.steps[1].date = motion.dates[0].date
             $scope.steps[1].status = detail.status
             $scope.steps[1].detail.push detail
