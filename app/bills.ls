@@ -109,7 +109,22 @@ angular.module 'app.controllers.bills' []
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
-      data <- LYModel.get "bills/#{billId}/data" .success
+      if bill.bill_ref
+        data <- LYModel.get "bills/#{billId}/data" .success
+        $scope.diff = data?content?map (diff) ->
+          h = diff.header
+          [base-index] = [i for n, i in h when n is /^現行/]
+          [c] = [i for n, i in h when n is \說明]
+
+          diff{header,content,name} <<< do
+            versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
+            base-index: base-index
+            comment-index: c
+            diffbase: h[base-index]
+            diffnew: h.0
+            diffcontent: diff.content.map diffentry diff, 0, c, base-index, $sce
+        total-entries = $scope.diff.map (.content.length) .reduce (+)
+        $scope.showSidebar = total-entries > 3
 
       $scope.steps =
         * name: "proposal"
@@ -166,18 +181,7 @@ angular.module 'app.controllers.bills' []
             state: "hidden"
             icon: ""
           date: ""
-      $scope <<< bill{summary,abstract,bill_ref,doc} <<< do
-        committee: committee,
-        related: if bill.committee
-            data?related?map ([id, summary]) ->
-                # XXX: get meta directly with id when we have endpoint
-                {id, summary} <<< if [_, mly]? = summary.match /本院委員(.*?)等/
-                    party: LYService.resolveParty mly
-                    avatar: CryptoJS.MD5 "MLY/#{mly}" .toString!
-                    name: mly
-                else
-                    {}
-
+      $scope <<< bill{summary,abstract,bill_ref,doc} <<< {committee} <<<
         sponsors: bill.sponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
@@ -191,18 +195,6 @@ angular.module 'app.controllers.bills' []
             diff <<< do
                 diffnew: version
                 diffcontent: diff.content.map diffentry diff, idx, c, base-index, $sce
-        diff: data?content?map (diff) ->
-            h = diff.header
-            [base-index] = [i for n, i in h when n is /^現行/]
-            [c] = [i for n, i in h when n is \說明]
-
-            diff{header,content,name} <<< do
-                versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
-                base-index: base-index
-                comment-index: c
-                diffbase: h[base-index]
-                diffnew: h.0
-                diffcontent: diff.content.map diffentry diff, 0, c, base-index, $sce
         motions: bill.motions?map (motion, i) ->
           if i is 0
             $scope.steps[0].date = motion.dates[0].date
@@ -251,8 +243,6 @@ angular.module 'app.controllers.bills' []
             $scope.steps[0].status.state = "passed" if $scope.steps[0].status.state is "not-yet"
             $scope.steps[0].status.icon ||= "check"
             $scope.steps[0].detail.push detail
-      total-entries = $scope.diff.map (.content.length) .reduce (+)
-      $scope.showSidebar = total-entries > 3
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
           if index == i
