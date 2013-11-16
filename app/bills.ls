@@ -214,7 +214,7 @@ angular.module 'app.controllers.bills' []
       $state.current.title = "ly.g0v.tw - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
 
       if bill.bill_ref #legislative
-        if that isnt billId
+        if that isnt billId and that isnt /;/
           # make bill_ref the permalink
           return $state.transitionTo 'bills', { billId: bill.bill_ref }
         $scope.steps = build-steps bill.motions
