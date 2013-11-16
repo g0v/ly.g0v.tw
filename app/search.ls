@@ -6,6 +6,7 @@ angular.module 'app.controllers.search' []
   $scope.$watch '$state.params.keyword' ->
     $scope.keyword = $state.params.keyword
     return unless $state.params.keyword
+    $scope.results = []
     $scope.moreResults!
 
   $scope.moreResults = ->
