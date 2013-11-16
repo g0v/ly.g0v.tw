@@ -4,6 +4,7 @@
 @import "compass/css3/transform"
 @import "compass/css3/transition"
 @import "compass/css3/border-radius"
+@import "compass/css3/box-sizing"
 
 @media print
   .hide-print
@@ -19,7 +20,7 @@
 
 .bill
   width: 100%
-  font-family: "Songti TC", "Biaodian Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif
+
   #qrlink
     display: none
 
@@ -27,18 +28,16 @@
     text-decoration: none
     display: inline-block
 
-  h1.bill,h2
-    padding: 0
-    margin: 1em 0
-    height: auto
-    width: 100%
+  h1, h2
+    padding: 1rem 0
+    margin: 1em 0 0 0
+    font-size: 1.7rem
 
   .ui.label.light.gray
     background-color: #eee
     color: #666
 
   .bill-progress
-    padding: 1rem 0 0 0
 
     .ui.label.light.gray
       background-color: #eee
@@ -53,14 +52,38 @@
       cursor: auto
 
     .ui.steps
-      margin: 1rem 0
 
       .ui.step .ui.pointing.below.label
         top: -2rem
 
       .step
-        padding-left: 3em
+        display: inline-block
+        position: relative
+        min-height: 3rem
+        text-align: center
+        vertical-align: middle
+        padding: 0.3rem 0 0 1rem
         +border-radius(0)
+        line-height: 1.2em
+        +box-sizing(border-box)
+
+        .step-description,
+        .substep-description,
+        .date
+          margin: 0
+          padding: 0
+          position: relative
+          z-index: 10
+        .step-description
+          font-size: large
+          font-weight: bold
+        .substep-description
+          font-weight: bold
+
+      &.small
+        margin: 1rem 0
+        .step
+          min-height: 2.5rem
 
       &.common
 
@@ -90,16 +113,8 @@
     @mixin ui-step-color($n, $b, $c, $s, $h)
       .ui.step.#{$n},
       .ui.steps .step.#{$n}
-        display: inline-block
-        position: relative
-        padding: 1em 2em 1em 3em
-        vertical-align: top
         background-color: $b
         color: $c
-        -webkit-box-sizing: border-box
-        -moz-box-sizing: border-box
-        -ms-box-sizing: border-box
-        box-sizing: border-box
 
       .ui.step.#{$n}:hover,
       .ui.step.#{$n}.hover
@@ -153,6 +168,7 @@
 
     .ui.step.not-implemented
       opacity: 0.5
+
     .ui.state
       i
         margin: 0
@@ -203,6 +219,14 @@
         background-color: #5c6166
         border-color: #5c6166
         color: #fff
+
+  .summary
+    .links.ui.right.floated.menu
+      margin-left: 2rem
+      margin-bottom: 1rem
+    .description
+      font-size: larger
+      line-height: 1.5em
 
   .role
     .item
@@ -320,12 +344,11 @@ div.item
   white-space: normal
 
 
-@media (max-width: 1024px)
-  .bill .bill-progress .common.ui.seven.steps 
-    width: 800px
-    display: block
+@media (max-width: 640px)
+  .bill .bill-progress .common.ui.seven.steps,
+  .bill .bill-progress .ui.small.steps
     width: 100%
-    text-align: center
+    display: block
     .stage:first-child .step:first-child
       border-radius: 0
     .ui.step
@@ -344,4 +367,7 @@ div.item
         left: 50%
         box-shadow: 1px -1px 0px 0px white inset
     .ui.state
-      margin-left: -50px
+      margin-left: -2.5rem
+  .bill .bill-progress .ui.small.steps
+    .ui.step:after
+      top: 2rem

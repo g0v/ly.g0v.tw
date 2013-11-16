@@ -4,71 +4,22 @@
   .bill-progress(ng-if="bill_ref")
     .common.ui.seven.steps
       span.stage(ng-repeat="step in steps")
-        a.ui.step(ng-click="showSub($index)",ng-class="step.status.step") {{step.description}}
-          .ui.pointing.below.label(ng-class="step.status.step") {{step.date}}
+        a.ui.step(ng-click="showSub($index)",ng-class="step.status.step") 
+          .step-description {{step.description}}
+          .date {{step.date}}
+          //-.ui.pointing.below.label(ng-class="step.status.step") {{step.date}}
         .ui.state(ng-class="step.status.state"): i.icon(ng-class="step.status.icon")
 
     .ui.small.steps(ng-repeat="step in steps")
       span.stage(ng-show="step.sub",ng-repeat="substep in step.detail")
-        .ui.step(ng-class="substep.status.step") {{substep.description}}
-          .ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
+        .ui.step(ng-class="substep.status.step")
+          .substep-description {{substep.description}}
+          .date {{substep.date}}
+          //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
         .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
 
-    //-.ui.seven.steps
-      a.ui.step.white(ng-click="mode='proposal'") 一讀
-        .ui.pointing.below.label.green .....
-      .ui.state.white: i.icon.check
-      a.ui.step.green(ng-click="mode='first-reading'",ng-class="green") 一讀
-      .ui.state.white: i.icon.check
-      a.ui.step.white(ng-click="mode='step-3'") 委員會
-      .ui.state.white: i.icon.check
-      a.ui.step.white(ng-click="mode='step-4'") 二讀
-      .ui.state.white: i.icon.check
-      a.ui.step.white(ng-click="mode='step-5'") 三讀
-      .ui.state.white: i.icon.check
-      a.ui.step.white(ng-click="mode='step-6'") 頒佈
-      .ui.state.white: i.icon.check
-      a.ui.step.white(ng-click="mode='step-7'") 生效
-    //-.ui.small.steps(ng-show="mode=='proposal'")
-      .ui.step.green.no-hover
-        .ui.pointing.below.label date
-        | 經ＯＯ立委送至ＯＯ單位
-      .ui.state.green: i.icon.check
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 經程序委員會排入全院院會一讀議程
-      .ui.state.white: i.icon.check
-    //-.ui.small.steps(ng-show="mode=='first-reading'")
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 於院會一讀通過
-      .ui.state.white: i.icon.check
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 經程序委員會排入委員會議程
-      .ui.state.white: i.icon.check
-    //-.ui.small.steps(ng-show="mode=='step-3'")
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 於委員會審查通過
-      .ui.state.white: i.icon.check
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 經程序委員會排入全院院會二讀議程
-      .ui.state.white: i.icon.check
-    //-.ui.small.steps(ng-show="mode=='step-4'")
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 於院會二讀通過
-      .ui.state.white: i.icon.check
-      .ui.step.white.no-hover
-        .ui.pointing.below.label date
-        | 經程序委員會排入全院院會三讀議程
-      .ui.state.white: i.icon.check
-
-
   .summary
-    .ui.vertical.menu.right.floated
+    .links.ui.vertical.menu.right.floated
       .item(ng-show="bill_ref")
         h4 提案編號 {{ bill_ref }}
       .item.center.right#qrlink
@@ -93,7 +44,7 @@
           .item
             a(ng-href="",target="_blank")
               | 民法親屬編、繼承編部分條文修正草案
-    p {{abstract}}
+    p.description {{abstract}}
 
   .role
     .committee(ng-show="committee")
