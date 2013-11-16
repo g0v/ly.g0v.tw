@@ -6,6 +6,9 @@
 @import "compass/css3/border-radius"
 @import "compass/css3/box-sizing"
 
+@mixin prefer-songti
+  font-family: "Songti TC", "Biaodian Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif
+
 @media print
   .hide-print
     display: none !important
@@ -33,6 +36,10 @@
     padding: 1rem 0
     margin: 1em 0 0 0
     font-size: 1.7rem
+    +prefer-songti
+
+  .summary
+    +prefer-songti
 
   .ui.label.light.gray
     background-color: #eee
@@ -245,6 +252,7 @@
   .content.default
     margin: 3rem 0
     line-height: 1.5rem
+    +prefer-songti
 
   p.sample
     text-align: center
