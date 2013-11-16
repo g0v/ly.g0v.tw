@@ -86,6 +86,113 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
   comment = $sce.trustAsHtml comment
   return {comment,difflines,left-item,left-item-anchor,right-item}
 
+function build-steps(motions)
+  steps =
+    * name: "proposal"
+      sub: false
+      description: "提案"
+      status:
+        step: "passed"
+        state: "not-yet"
+        icon: ""
+      detail: []
+    * name: "first-reading"
+      sub: false
+      description: "一讀"
+      status:
+        step: "not-yet"
+        state: "not-yet"
+        icon: ""
+      detail: []
+    * name: "committee"
+      sub: false
+      description: "委員會"
+      status:
+        step: "not-yet"
+        state: "not-yet"
+        icon: ""
+    * name: "second-reading"
+      sub: false
+      description: "二讀"
+      status:
+        step: "not-yet not-implemented no-hover"
+        state: "not-yet"
+        icon: ""
+    * name: "third-reading"
+      sub: false
+      description: "三讀"
+      status:
+        step: "not-yet not-implemented no-hover"
+        state: "not-yet"
+        icon: "check"
+      date: ""
+    * name: "announced"
+      sub: false
+      description: "頒佈"
+      status:
+        step: "not-yet not-implemented no-hover"
+        state: "not-yet"
+        icon: "check"
+      date: ""
+    * name: "implemented"
+      sub: false
+      description: "生效"
+      status:
+        step: "not-yet not-implemented no-hover"
+        state: "hidden"
+        icon: ""
+      date: ""
+  for motion, i in motions
+    if i is 0 => steps.0.date = motion.dates.0.date
+    match motion.status
+    | \prioritized # example 1618L14627
+      detail =
+        name: "proposal"
+        description: motion.resolution
+        status:
+          step: "passed"
+          state: "passed"
+          icon: "star"
+        date: motion.dates[0].date
+      steps[0].status
+        ..state = "passed" if ..state is "not-yet"
+        ..icon ||= "check"
+      steps[1].status = detail.status
+      steps[1].detail.push detail
+      steps[2].status =
+        icon: "star"
+        state: "passed"
+    | \rejected # example: 335L15406
+      detail =
+        name: "proposal"
+        description: motion.resolution
+        status:
+          step: "returned"
+          state: "returned"
+          icon: "exclamation"
+        date: motion.dates[0].date
+      steps[0].detail.push detail
+      steps[0].status
+        ..icon = \exclamation
+        ..state = \returned
+    | \committee
+      detail =
+        name: "scheduled"
+        description: motion.resolution
+        status:
+          step: "passed"
+          state: "passed"
+          icon: "check"
+        date: motion.dates[0].date
+      steps[1].date = motion.dates[0].date
+      steps[1].status = detail.status
+      steps[1].detail.push detail
+      steps[0].status
+        ..state = "passed" if ..state is "not-yet"
+        ..icon ||= "check"
+      steps[0].detail.push detail
+  steps
+
 angular.module 'app.controllers.bills' []
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll) ->
     $scope.diffs = []
@@ -102,14 +209,13 @@ angular.module 'app.controllers.bills' []
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- LYModel.get "bills/#{billId}" .success
-      if bill.bill_ref and bill.bill_ref isnt billId
-        # make bill_ref the permalink
-        return $state.transitionTo 'bills', { billId: bill.bill_ref }
       $state.current.title = "ly.g0v.tw - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
-      if committee
-          committee = committee.map -> { abbr: it, name: committees[it] }
 
-      if bill.bill_ref
+      if bill.bill_ref #legislative
+        if that isnt billId
+          # make bill_ref the permalink
+          return $state.transitionTo 'bills', { billId: bill.bill_ref }
+        $scope.steps = build-steps bill.motions
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = data?content?map (diff) ->
           h = diff.header
@@ -126,61 +232,7 @@ angular.module 'app.controllers.bills' []
         total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
 
-      $scope.steps =
-        * name: "proposal"
-          sub: false
-          description: "提案"
-          status:
-            step: "passed"
-            state: "not-yet"
-            icon: ""
-          detail: []
-        * name: "first-reading"
-          sub: false
-          description: "一讀"
-          status:
-            step: "not-yet"
-            state: "not-yet"
-            icon: ""
-          detail: []
-        * name: "committee"
-          sub: false
-          description: "委員會"
-          status:
-            step: "not-yet"
-            state: "not-yet"
-            icon: ""
-        * name: "second-reading"
-          sub: false
-          description: "二讀"
-          status:
-            step: "not-yet not-implemented no-hover"
-            state: "not-yet"
-            icon: ""
-        * name: "third-reading"
-          sub: false
-          description: "三讀"
-          status:
-            step: "not-yet not-implemented no-hover"
-            state: "not-yet"
-            icon: "check"
-          date: ""
-        * name: "announced"
-          sub: false
-          description: "頒佈"
-          status:
-            step: "not-yet not-implemented no-hover"
-            state: "not-yet"
-            icon: "check"
-          date: ""
-        * name: "implemented"
-          sub: false
-          description: "生效"
-          status:
-            step: "not-yet not-implemented no-hover"
-            state: "hidden"
-            icon: ""
-          date: ""
+      committee ?.= map -> { abbr: it, name: committees[it] }
       $scope <<< bill{summary,abstract,bill_ref,doc} <<< {committee} <<<
         sponsors: bill.sponsors?map ->
             party = LYService.resolveParty it
@@ -195,54 +247,6 @@ angular.module 'app.controllers.bills' []
             diff <<< do
                 diffnew: version
                 diffcontent: diff.content.map diffentry diff, idx, c, base-index, $sce
-        motions: bill.motions?map (motion, i) ->
-          if i is 0
-            $scope.steps[0].date = motion.dates[0].date
-          match motion.status
-          | \prioritized # example 1618L14627
-            detail =
-              name: "proposal"
-              description: motion.resolution
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "star"
-              date: motion.dates[0].date
-            $scope.steps[0].status.state = "passed" if $scope.steps[0].status.state is "not-yet"
-            $scope.steps[0].status.icon ||= "check"
-            $scope.steps[1].status = detail.status
-            $scope.steps[1].detail.push detail
-            $scope.steps[2].status =
-              icon: "star"
-              state: "passed"
-          | \rejected # example: 335L15406
-            detail =
-              name: "proposal"
-              description: motion.resolution
-              status:
-                step: "returned"
-                state: "returned"
-                icon: "exclamation"
-              date: motion.dates[0].date
-            $scope.steps[0].detail.push detail
-            $scope.steps[0].status
-              ..icon = \exclamation
-              ..state = \returned
-          | \committee
-            detail =
-              name: "scheduled"
-              description: motion.resolution
-              status:
-                step: "passed"
-                state: "passed"
-                icon: "check"
-              date: motion.dates[0].date
-            $scope.steps[1].date = motion.dates[0].date
-            $scope.steps[1].status = detail.status
-            $scope.steps[1].detail.push detail
-            $scope.steps[0].status.state = "passed" if $scope.steps[0].status.state is "not-yet"
-            $scope.steps[0].status.icon ||= "check"
-            $scope.steps[0].detail.push detail
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
           if index == i
