@@ -10,7 +10,7 @@ angular.module 'app.services' []
     resolve-party-color: (n) -> {KMT: \#000095 DPP: \#009a00 PFP: \#fe6407}[@resolve-party n] or \#999
 
 .service 'LYModel': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
-    base = 'http://api-beta.ly.g0v.tw/v0/collections/'
+    base = "#{window.global.config.APIENDPOINT}v0/collections/"
     _model = {}
 
     localGet = (key) ->
