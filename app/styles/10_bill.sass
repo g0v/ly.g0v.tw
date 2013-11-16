@@ -318,3 +318,30 @@ div.item
   margin-left: 0!important
   padding-top: 50px
   white-space: normal
+
+
+@media (max-width: 1024px)
+  .bill .bill-progress .common.ui.seven.steps 
+    width: 800px
+    display: block
+    width: 100%
+    text-align: center
+    .stage:first-child .step:first-child
+      border-radius: 0
+    .ui.step
+      width: 100%
+      margin-bottom: 1px
+      .ui.label.pointing.below
+        margin-left: 10px
+        margin-top: 42px
+        &:before
+          display: none
+      &:after
+        display: block
+        width: 1em
+        height: 1em
+        top: 40px
+        left: 50%
+        box-shadow: 1px -1px 0px 0px white inset
+    .ui.state
+      margin-left: -50px
