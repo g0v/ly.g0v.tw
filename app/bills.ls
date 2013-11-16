@@ -47,8 +47,47 @@ line-based-diff = (text1, text2) ->
 
   return difflines
 
+parse-article-heading = (text) ->
+  [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
+  return unless _items
+  require! zhutil
+  _items.filter -> it
+  .map zhutil.parseZHNumber .join \-
+
+diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
+  h = diff.header
+  comment = if \string is typeof entry[c]
+    entry[c]
+  else
+    entry[c][h[idx].replace /審查會通過條文/, \審查會]
+
+  if comment
+    comment.=replace /\n/g "<br><br>\n"
+  baseTextLines = entry[base-index] or ''
+  if baseTextLines
+    baseTextLines -= /^第(.*?)條(之.*?)?\s+/
+    if parse-article-heading RegExp.lastMatch - /\s+$/
+      left-item = \§ + that
+      left-item-anchor = that
+  newTextLines = entry[idx] || entry[base-index] || ''
+  newTextLines -= /^第(.*?)條(之.*?)?\s+/
+  right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+  if !left-item
+    if newTextLines.match /^第\S+章/ || newTextLines.match /^第\S+編/
+      left-item = newTextLines.split '　' .0
+      left-item-anchor = left-item
+    else
+      left-item = \§ + ( right-item || '')
+      left-item-anchor = right-item
+  difflines = line-based-diff baseTextLines, newTextLines
+  angular.forEach difflines, (value, key)->
+    value.left = $sce.trustAsHtml value.left
+    value.right = $sce.trustAsHtml value.right
+  comment = $sce.trustAsHtml comment
+  return {comment,difflines,left-item,left-item-anchor,right-item}
+
 angular.module 'app.controllers.bills' []
-.controller LYBills: <[$scope $http $state $timeout LYService $sce $anchorScroll]> ++ ($scope, $http, $state, $timeout, LYService, $sce, $anchorScroll) ->
+.controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll) ->
     $scope.diffs = []
     $scope.diffstate = (left_right, state) ->
       | left_right is 'left' and state isnt 'equal' => 'red'
@@ -62,55 +101,16 @@ angular.module 'app.controllers.bills' []
       | otherwise => '相同'
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
-      {committee}:bill <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}"
-      .success
+      {committee}:bill <- LYModel.get "bills/#{billId}" .success
       if bill.bill_ref and bill.bill_ref isnt billId
         # make bill_ref the permalink
         return $state.transitionTo 'bills', { billId: bill.bill_ref }
       $state.current.title = "ly.g0v.tw - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
-      data <- $http.get "http://api-beta.ly.g0v.tw/v0/collections/bills/#{billId}/data"
-      .success
-
       if committee
           committee = committee.map -> { abbr: it, name: committees[it] }
 
-      parse-article-heading = (text) ->
-        [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
-        return unless _items
-        require! zhutil
-        _items.filter -> it
-        .map zhutil.parseZHNumber .join \-
-      diffentry = (diff, idx, c, base-index) -> (entry) ->
-        h = diff.header
-        comment = if \string is typeof entry[c]
-          entry[c]
-        else
-          entry[c][h[idx].replace /審查會通過條文/, \審查會]
+      data <- LYModel.get "bills/#{billId}/data" .success
 
-        if comment
-          comment.=replace /\n/g "<br><br>\n"
-        baseTextLines = entry[base-index] or ''
-        if baseTextLines
-          baseTextLines -= /^第(.*?)條(之.*?)?\s+/
-          if parse-article-heading RegExp.lastMatch - /\s+$/
-            left-item = \§ + that
-            left-item-anchor = that
-        newTextLines = entry[idx] || entry[base-index] || ''
-        newTextLines -= /^第(.*?)條(之.*?)?\s+/
-        right-item = parse-article-heading RegExp.lastMatch - /\s+$/
-        if !left-item
-          if newTextLines.match /^第\S+章/ || newTextLines.match /^第\S+編/
-            left-item = newTextLines.split '　' .0
-            left-item-anchor = left-item
-          else
-            left-item = \§ + ( right-item || '')
-            left-item-anchor = right-item
-        difflines = line-based-diff baseTextLines, newTextLines
-        angular.forEach difflines, (value, key)->
-          value.left = $sce.trustAsHtml value.left
-          value.right = $sce.trustAsHtml value.right
-        comment = $sce.trustAsHtml comment
-        return {comment,difflines,left-item,left-item-anchor,right-item}
       $scope.steps =
         * name: "proposal"
           sub: false
@@ -190,7 +190,7 @@ angular.module 'app.controllers.bills' []
             c = diff.comment-index
             diff <<< do
                 diffnew: version
-                diffcontent: diff.content.map diffentry diff, idx, c, base-index
+                diffcontent: diff.content.map diffentry diff, idx, c, base-index, $sce
         diff: data?content?map (diff) ->
             h = diff.header
             [base-index] = [i for n, i in h when n is /^現行/]
@@ -202,7 +202,7 @@ angular.module 'app.controllers.bills' []
                 comment-index: c
                 diffbase: h[base-index]
                 diffnew: h.0
-                diffcontent: diff.content.map diffentry diff, 0, c, base-index
+                diffcontent: diff.content.map diffentry diff, 0, c, base-index, $sce
         motions: bill.motions?map (motion, i) ->
           if i is 0
             $scope.steps[0].date = motion.dates[0].date
