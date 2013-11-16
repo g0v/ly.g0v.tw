@@ -260,7 +260,7 @@ angular.module 'app.controllers.bills' []
         $scope.showSidebar = total-entries > 3
 
       committee ?.= map -> { abbr: it, name: committees[it] }
-      $scope <<< bill{summary,abstract,bill_ref,doc} <<< {committee} <<<
+      $scope <<< bill{summary,abstract,bill_id,bill_ref,doc} <<< {committee} <<<
         sponsors: bill.sponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
