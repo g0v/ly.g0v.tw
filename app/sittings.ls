@@ -194,7 +194,12 @@ angular.module 'app.controllers.sittings' []
           handler = ->
             timer.now = new Date!getTime! / 1000
             # XXX: record actual current waveform
-            $scope.$apply -> $scope.waveforms.0.current = timer.sec + (timer.now - timer.start) * timer.rate
+            $scope.$apply ->
+              # TODO: we can keep current waveform in $scope
+              # but let's do it later...
+              for w in $scope.waveforms
+                if w.id == $scope.current-id
+                  w.current = timer.sec + (timer.now - timer.start) * timer.rate
           timer-id := setInterval ->
             handler!
           , 10000
@@ -233,6 +238,7 @@ angular.module 'app.controllers.sittings' []
         waveclips = []
         for d,i in wave => wave[i] = d/255
         $scope.waveforms[index] = do
+          index: index,
           id: cuts[index].youtube_id
           wave: wave,
           speakers: speakers,
@@ -241,6 +247,7 @@ angular.module 'app.controllers.sittings' []
           time: time,
           cb: ->
             if $scope.current-id isnt @id =>
+              $scope.current-waveform = @
               $scope.player.loadVideoById @id
               play-time := null
               $scope.current-id = @id
