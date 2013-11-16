@@ -111,6 +111,7 @@ function build-steps(motions)
         step: "not-yet"
         state: "not-yet"
         icon: ""
+      detail: []
     * name: "second-reading"
       sub: false
       description: "二讀"
@@ -118,6 +119,7 @@ function build-steps(motions)
         step: "not-yet not-implemented no-hover"
         state: "not-yet"
         icon: ""
+      detail: []
     * name: "third-reading"
       sub: false
       description: "三讀"
@@ -216,6 +218,27 @@ angular.module 'app.controllers.bills' []
           # make bill_ref the permalink
           return $state.transitionTo 'bills', { billId: bill.bill_ref }
         $scope.steps = build-steps bill.motions
+        if bill.bill_ref isnt /-/ # original proposal
+          report <- LYModel.get "bills" params: do
+            q: JSON.stringify do
+              report_of: $contains: bill.bill_id
+            fo: true
+          .success
+          $scope <<< {report}
+          if report.summary is /審查決議：「不予審議」/
+            $scope.steps.3.date = report.motions.0.dates.0.date
+            $scope.steps.3.status
+              ..step = 'scheduled'
+            detail =
+              name: "committee"
+              description: report.summary
+              status:
+                step: "red"
+                state: "red"
+                icon: "exclamation"
+            $scope.steps.2.status = detail.status
+            $scope.steps.2.detail.push detail
+
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = data?content?map (diff) ->
           h = diff.header
