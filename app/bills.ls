@@ -225,19 +225,23 @@ angular.module 'app.controllers.bills' []
             fo: true
           .success
           $scope <<< {report}
-          if report.summary is /審查決議：「不予審議」/
-            $scope.steps.3.date = report.motions.0.dates.0.date
-            $scope.steps.3.status
-              ..step = 'scheduled'
-            detail =
-              name: "committee"
-              description: report.summary
-              status:
+          $scope.steps.3.date = report.motions.0.dates.0.date
+          $scope.steps.3.status
+            ..step = 'scheduled'
+          detail = do
+            name: "committee"
+            description: report.summary
+            status: do
+              if report.summary is /審查決議：「不予審議」/
                 step: "red"
                 state: "red"
                 icon: "exclamation"
-            $scope.steps.2.status = detail.status
-            $scope.steps.2.detail.push detail
+              else
+                step: "passed"
+                state: "passed"
+                icon: "check"
+          $scope.steps.2.status = detail.status
+          $scope.steps.2.detail.push detail
 
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = data?content?map (diff) ->
