@@ -19,6 +19,7 @@
     stroke-width: 1.5px
 
 .bill
+  +box-sizing(border-box)
   width: 100%
 
   #qrlink
@@ -284,6 +285,18 @@
     .diff.text em
       background-color: #A1CF88
       +vendor-prefix(text-emphasis, dot)
+
+  .ui.very.thin.sidebar
+    .ui.vertical.menu
+      width: 8rem
+    width: 8rem!important
+    margin-left: 0!important
+    padding-top: 50px
+    white-space: normal
+
+  @media only screen and (min-width: 768px)
+    padding-left: 8rem
+
   @media only screen and (max-width: 768px)
     .mobile-hide
       display: none
@@ -291,6 +304,35 @@
       margin-top: -1.5rem !important
     .ui.stackable.grid > .column.left
       margin-top: 0 !important
+
+  @media (max-width: 640px)
+    .bill-progress .common.ui.seven.steps,
+    .bill-progress .ui.small.steps
+      width: 100%
+      display: block
+      .stage:first-child .step:first-child
+        border-radius: 0
+      .ui.step
+        width: 100%
+        margin-bottom: 1px
+        .ui.label.pointing.below
+          margin-left: 10px
+          margin-top: 42px
+          &:before
+            display: none
+        &:after
+          display: block
+          width: 1em
+          height: 1em
+          top: 40px
+          left: 50%
+          box-shadow: 1px -1px 0px 0px white inset
+      .ui.state
+        margin-left: -2.5rem
+    .bill .bill-progress .ui.small.steps
+      .ui.step:after
+        top: 2rem
+
 div.item
   outline: none
   text-decoration: none
@@ -336,39 +378,4 @@ div.item
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbf5e6), color-stop(100%, white))
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBF5E6', endColorstr='#FFFFFF',GradientType=0 )
     border: 1px solid #CFB57C
-.ui.very.thin.sidebar
-  .ui.vertical.menu
-    width: 8rem
-  width: 8rem!important
-  margin-left: 0!important
-  padding-top: 50px
-  white-space: normal
 
-
-@media (max-width: 640px)
-  .bill .bill-progress .common.ui.seven.steps,
-  .bill .bill-progress .ui.small.steps
-    width: 100%
-    display: block
-    .stage:first-child .step:first-child
-      border-radius: 0
-    .ui.step
-      width: 100%
-      margin-bottom: 1px
-      .ui.label.pointing.below
-        margin-left: 10px
-        margin-top: 42px
-        &:before
-          display: none
-      &:after
-        display: block
-        width: 1em
-        height: 1em
-        top: 40px
-        left: 50%
-        box-shadow: 1px -1px 0px 0px white inset
-    .ui.state
-      margin-left: -2.5rem
-  .bill .bill-progress .ui.small.steps
-    .ui.step:after
-      top: 2rem
