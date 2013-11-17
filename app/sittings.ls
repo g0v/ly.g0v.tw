@@ -56,7 +56,10 @@ angular.module 'app.controllers.sittings' []
     length = 40 if !length
     $scope.loadingList = true
     {entries} <- LYModel.get 'sittings' do
-      params: {q:{"ad":8,"committee": type},l:length, f:{"motions":0}}
+      params:
+        q: ad: 8, committee: type
+        l: length
+        f: {-motions, -videos}
     .success
     $scope.loadingList = false
     $scope.lists[$scope.context] = entries
