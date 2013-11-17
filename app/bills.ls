@@ -131,6 +131,7 @@ function build-steps(motions)
         state: "not-yet"
         icon: "check"
       date: ""
+      detail: []
     * name: "announced"
       sub: false
       description: "頒佈"
@@ -139,6 +140,7 @@ function build-steps(motions)
         state: "not-yet"
         icon: "check"
       date: ""
+      detail: []
     * name: "implemented"
       sub: false
       description: "生效"
@@ -147,6 +149,7 @@ function build-steps(motions)
         state: "hidden"
         icon: ""
       date: ""
+      detail: []
   for motion, i in motions
     if i is 0 => steps.0.date = motion.dates.0.date
     match motion.status
