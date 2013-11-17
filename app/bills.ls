@@ -248,7 +248,7 @@ angular.module 'app.controllers.bills' []
             while a.splice 0, 3
             m.links = res
             switch m.progress
-            case '提案' => match-motions $scope.steps[0].detail, m
+            case '提案', '退回程序' => match-motions $scope.steps[0].detail, m
             case '一讀' => match-motions $scope.steps[1].detail, m
             case '委員會' => match-motions $scope.steps[2].detail, m
             case '二讀' => match-motions $scope.steps[3].detail, m
