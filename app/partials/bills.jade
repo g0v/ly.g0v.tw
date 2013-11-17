@@ -4,7 +4,7 @@
   .bill-progress(ng-if="bill_ref")
     .common.ui.seven.steps
       span.stage(ng-repeat="step in steps")
-        a.ui.step(ng-click="showSub($index)",ng-class="step.status.step") 
+        a.ui.step(ng-click="showSub($index)",ng-class="step.status.step")
           .step-description {{step.description}}
           .date {{step.date}}
           //-.ui.pointing.below.label(ng-class="step.status.step") {{step.date}}
@@ -18,6 +18,18 @@
           //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
         .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
 
+  .ui.list(ng-if="ttsmotions")
+    .item
+      i.icon.exclamation
+      | 這應該要整合到上面的列表，但是還沒做好
+    .item(ng-repeat="ttsmotion in ttsmotions")
+        .content
+            a.header {{ttsmotion.date | date:'yyyy-MM-dd' }} - {{ttsmotion.progress || ttsmotion.summary}}
+            .description
+              | {{ ttsmotion.resolution }}
+              i.icon.archive(ng-show="ttsmotion.links") p.
+              span(ng-repeat="l in ttsmotion.links")
+                a(target="_blank",ng-href="{{l.link}}") {{l.text}}
   .summary
     .links.ui.vertical.menu.right.floated
       .item(ng-show="bill_ref")

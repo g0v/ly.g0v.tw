@@ -219,6 +219,32 @@ angular.module 'app.controllers.bills' []
           return $state.transitionTo 'bills', { billId: bill.bill_ref }
         $scope.steps = build-steps bill.motions
         if bill.bill_ref isnt /-/ # original proposal
+          require! sprintf
+          {entries: $scope.ttsmotions} <- LYModel.get "ttsmotions" params: do
+            s: {date: -1}
+            q: JSON.stringify do
+              bill_refs: $contains: bill.bill_ref
+          .success
+          for m in $scope.ttsmotions
+            # XXX this should be processed in api.ly
+            m.resolution -= /\(p\.(.*)\)/
+            a = RegExp.$1.split /(?:[\s,;]*)?(.*?)\s*(\[.*?\])/
+            res = []
+            do
+              [_, text, link]:x = a.slice 0, 3
+              if x.length is 3
+                link = JSON.parse link
+                # linkify type 'g'
+                #// /lgcgi/lypdftxt\?(\d\d\d?)(\d\d\d)(\d\d);(\d+);(\d+) //
+                if link.0 is \g
+                  vol = sprintf "%03d%03d%02d", ...link[1 to 3]
+                  link = "http://lis.ly.gov.tw/lgcgi/lypdftxt?#vol;#{link.4};#{link.5}"
+                res.push {text, link}
+              else
+                break
+            while a.splice 0, 3
+            m.links = res
+
           report <- LYModel.get "bills" params: do
             q: JSON.stringify do
               report_of: $contains: bill.bill_id
