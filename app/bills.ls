@@ -85,7 +85,10 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
     value.right = $sce.trustAsHtml value.right
   comment = $sce.trustAsHtml comment
   return {comment,difflines,left-item,left-item-anchor,right-item}
-
+function match-motions(substeps, ttsmotions)
+  for s in substeps
+    if s.date is moment(ttsmotions.date) .format 'YYYY-MM-DD' and s.description is \決定： + ttsmotions.resolution.replace /\(\S+\s+\S+\)/, ''
+      s.links = ttsmotions.links
 function build-steps(motions)
   steps =
     * name: "proposal"
@@ -225,7 +228,7 @@ angular.module 'app.controllers.bills' []
             q: JSON.stringify do
               bill_refs: $contains: bill.bill_ref
           .success
-          for m in $scope.ttsmotions
+          for m, i in $scope.ttsmotions
             # XXX this should be processed in api.ly
             m.resolution -= /\(p\.(.*)\)/
             a = RegExp.$1.split /(?:[\s,;]*)?(.*?)\s*(\[.*?\])/
@@ -244,6 +247,14 @@ angular.module 'app.controllers.bills' []
                 break
             while a.splice 0, 3
             m.links = res
+            switch m.progress
+            case '提案' => match-motions $scope.steps[0].detail, m
+            case '一讀' => match-motions $scope.steps[1].detail, m
+            case '委員會' => match-motions $scope.steps[2].detail, m
+            case '二讀' => match-motions $scope.steps[3].detail, m
+            case '三讀' => match-motions $scope.steps[4].detail, m
+            case '頒佈' => match-motions $scope.steps[5].detail, m
+            case '生效' => match-motions $scope.steps[6].detail, m
 
           report <- LYModel.get "bills" params: do
             q: JSON.stringify do
