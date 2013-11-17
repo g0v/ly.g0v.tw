@@ -282,7 +282,8 @@ angular.module 'app.controllers.bills' []
             diffbase: h[base-index]
             diffnew: h.0
             diffcontent: diff.content.map diffentry diff, 0, c, base-index, $sce
-        total-entries = $scope.diff.map (.content.length) .reduce (+)
+        if $scope.diff?length
+          total-entries = that.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
 
       committee ?.= map -> { abbr: it, name: committees[it] }
