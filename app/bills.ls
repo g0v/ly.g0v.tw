@@ -86,9 +86,13 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
   comment = $sce.trustAsHtml comment
   return {comment,difflines,left-item,left-item-anchor,right-item}
 function match-motions(substeps, ttsmotions)
+  date = moment(ttsmotions.date) .format 'YYYY-MM-DD'
   for s in substeps
-    if s.date is moment(ttsmotions.date) .format 'YYYY-MM-DD' and s.description is \決定： + ttsmotions.resolution.replace /\(\S+\s+\S+\)/, ''
+    if s.date is date and s.description is \決定： + ttsmotions.resolution.replace /\(\S+\s+\S+\)/, ''
       s.links = ttsmotions.links
+      return
+  substeps.push {date, description: ttsmotions.resolution, links: ttsmotions.links}
+
 function build-steps(motions)
   steps =
     * name: "proposal"
