@@ -218,6 +218,7 @@ angular.module 'app.controllers.bills' []
       | state === 'delete' => '刪除'
       | state === 'insert' => '新增'
       | otherwise => '相同'
+    $scope.opts = {+show_date}
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- LYModel.get "bills/#{billId}" .success

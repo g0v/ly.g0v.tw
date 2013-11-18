@@ -21,13 +21,16 @@
           //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
         .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
 
-  .ui.list(ng-if="ttsmotions")
+  .ui.list.ttsmotions(ng-if="ttsmotions")
     .item
       i.icon.exclamation
       | 這應該要整合到上面的列表，但是還沒做好
     .item(ng-repeat="ttsmotion in ttsmotions")
         .content
-            a.header {{ttsmotion.date | date:'yyyy-MM-dd' }} - {{ttsmotion.progress || ttsmotion.summary}}
+            a.header
+              span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
+              span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
+              | {{ttsmotion.progress || ttsmotion.summary}}
             .description
               | {{ ttsmotion.resolution }}
               i.icon.archive(ng-show="ttsmotion.links") p.
