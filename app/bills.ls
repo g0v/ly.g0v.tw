@@ -73,8 +73,10 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
   newTextLines -= /^第(.*?)條(之.*?)?\s+/
   right-item = parse-article-heading RegExp.lastMatch - /\s+$/
   if !left-item
-    if newTextLines.match /^第\S+(章|編)/
-      left-item = newTextLines.split '　' .0
+    if newTextLines.match /^（\S+）\n第(.*?)條/
+      right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+    if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
+      left-item = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
       left-item-anchor = left-item
     else
       left-item = \§ + ( right-item || '')
@@ -290,6 +292,8 @@ angular.module 'app.controllers.bills' []
 
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = data?content?map (diff) ->
+          if !diff.name
+            diff.name = '併案審議'
           h = diff.header
           [base-index] = [i for n, i in h when n is /^現行/]
           [c] = [i for n, i in h when n is \說明]
