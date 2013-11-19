@@ -73,7 +73,7 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
   newTextLines -= /^第(.*?)條(之.*?)?\s+/
   right-item = parse-article-heading RegExp.lastMatch - /\s+$/
   if !left-item
-    if newTextLines.match /^（\S+）\n第(.*?)條/
+    if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
       right-item = parse-article-heading RegExp.lastMatch - /\s+$/
     if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
       left-item = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
