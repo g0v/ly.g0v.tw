@@ -116,7 +116,7 @@
       | vs
       span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
     .diff(ng-repeat="diffs in d.diffcontent")
-      .two.column.stackable.ui.grid(ng-repeat="diffline in diffs.difflines")
+      .two.column.stackable.ui.grid(ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
         .column(class="left {{diffline.state}}")
           .ui.segment.article-text
             a(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
@@ -128,7 +128,7 @@
             a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
-      .ui.segment.green(ng-bind-html="diffs.comment")
+      .ui.segment.green(ng-bind-html="diffs.comment", ng-show="diffs.comment")
       .ui.horizontal.divider
 
   .content.navigation.mobile-hide(ng-show="showSidebar")
@@ -137,5 +137,5 @@
         .item-section(ng-repeat="(i, d) in diff track by $index")
           a.item(href="#"+"{{d.name}}") {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit: a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+            .law-unit(ng-show="diffs.leftItemAnchor"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 
