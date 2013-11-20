@@ -68,7 +68,7 @@
                         span(ng-repeat="avatar in e.avatars")
                             img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
                     .motion
-                        span.item {{ e.item }}
+                        span.item-heading {{ e.item }}
                         span.proposer {{ e.proposed_by }}
                         a(ng-href="/bills/{{ e.bill_ref || e.bill_id }}")
                             span.summary {{ e.summary }}
