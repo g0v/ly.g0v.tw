@@ -1,4 +1,9 @@
 .bill
+
+  meta(property="og:title", content="{{summary}}")
+  meta(property="og:site_name", content="零時政府 g0V")
+  meta(property="og:image", content="http://ly.g0v.tw/img/g0v-logo.png")
+
   h1.bill(title="{{summary}}") {{summary}}
 
   .bill-progress(ng-if="bill_ref")
