@@ -72,6 +72,7 @@
                         span.proposer {{ e.proposed_by }}
                         a(ng-href="/bills/{{ e.bill_ref || e.bill_id }}")
                             span.summary {{ e.summary }}
+                        span.label.label-important(ng-show="e.sitting_introduced == sitting_id") new
                     .resolution {{ e.resolution }}
       // XXX: show onair and upcoming ivod link
       // XXX: search archived ivod clips for past sittings

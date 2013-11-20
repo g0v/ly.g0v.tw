@@ -31,6 +31,7 @@ angular.module 'app.controllers.sittings' []
 
   $scope.$watch '$state.params.sitting' ->
     if $state.params.sitting
+      $scope.sitting_id = that
       console.log 'specified sitting, get context from id of sitting'
       $scope.context = that - /[\d-]/g
       loadSitting that
