@@ -16,13 +16,20 @@ angular.module 'app.controllers.search' []
     $scope.stopDetect = true if res.length is 0
     $scope.busy = false
   doSearch = (keyword, cb)->
-    {paging, entries} <- LYModel.get 'bills' do
-      params: do
+    choice = 0 
+    searchChoice =
+      * name: \bills
         q: JSON.stringify do
           summary: $matches: keyword
+      * name: \amendments
+        q: JSON.stringify do
+          name: $matches: keyword
+    {paging, entries} <- LYModel.get searchChoice[choice].name, do
+      params: do
+        q: searchChoice[choice].q
         l: $scope.limit
         sk: $scope.sk
     .success
+    console.log entries
     $scope.sk += $scope.limit
-    cb entries
-
+    cb entries   
