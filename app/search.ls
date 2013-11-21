@@ -12,24 +12,20 @@ angular.module 'app.controllers.search' []
   $scope.moreResults = ->
     $scope.busy = true
     res <- doSearch $scope.keyword
-    $scope.results ++= res
+    for obj in res
+      data <- LYModel.get "bills/"+obj.bill_ref .success
+      $scope.results.push data
     $scope.stopDetect = true if res.length is 0
     $scope.busy = false
   doSearch = (keyword, cb)->
-    choice = 0 
-    searchChoice =
-      * name: \bills
-        q: JSON.stringify do
-          summary: $matches: keyword
-      * name: \amendments
+    {paging, entries} <- LYModel.get 'amendments' do
+      params: do
         q: JSON.stringify do
           name: $matches: keyword
-    {paging, entries} <- LYModel.get searchChoice[choice].name, do
-      params: do
-        q: searchChoice[choice].q
+        f: JSON.stringify do
+          bill_ref: 1
         l: $scope.limit
         sk: $scope.sk
     .success
-    console.log entries
     $scope.sk += $scope.limit
     cb entries   
