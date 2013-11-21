@@ -144,7 +144,8 @@ angular.module 'app.directives' <[app.services ]>
         if entries.length > 0
           results.html ''
           for entry in entries
-            result = angular.element \<div> .addClass \result .html entry.name
+            link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
+            result = angular.element \<div> .addClass \result .append link
             results.append result
           results.show!
       else => results.hide!
