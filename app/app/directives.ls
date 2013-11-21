@@ -128,4 +128,26 @@ angular.module 'app.directives' <[app.services ]>
       # to see whether the element is in viewport by checking TOP value
       if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
         scope.$apply(attrs.detectVisible)
+.directive 'autoComplete' <[$timeout LYModel]> ++ ($timeout, LYModel) ->
+  (scope, elm, attrs) ->
+    scope.$watch \searchKeyword (keyword) ->
+      results = elm.parent!.next!
+      if keyword
+        {paging, entries} <- LYModel.get 'amendments' do
+          params: do
+            q: JSON.stringify do
+              name: $matches: keyword
+            f: JSON.stringify do
+              name: 1
+            l: 7
+        .success
+        if entries.length > 0
+          results.html ''
+          for entry in entries
+            result = angular.element \<div> .addClass \result .html entry.name
+            results.append result
+          results.show!
+      else => results.hide!
+
+
 

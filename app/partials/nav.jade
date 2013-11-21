@@ -8,10 +8,11 @@ ul.nav
 
 ul.nav.pull-right
   li
-      form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
-        .ui.icon.input
-          input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword")
-          i.search.icon
+    form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
+      .ui.icon.input
+        input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword", auto-complete)
+        i.search.icon
+      .results
   li(ng-class="getClass('/about')", ng-class="{active:activeTab=='about'}")
     a(ng-href='/about') 關於
   li.fb-like
