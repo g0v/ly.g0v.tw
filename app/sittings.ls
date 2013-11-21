@@ -263,7 +263,7 @@ angular.module 'app.controllers.sittings' []
       cuts.forEach !(waveform, index) ->
         # XXX whole clips for committee can be just AM/PM of the same day
         wave <- $http.get "http://kcwu.csie.org/~kcwu/tmp/ivod/waveform/#{waveform.wmvid}.json"
-        .error -> mkwave [], speakers, waveform.first_frame, waveform.time, index
+        .error -> mkwave [], waveform.speakers, waveform.first_frame, waveform.time, index
         .success
         mkwave wave, waveform.speakers, waveform.first_frame, waveform.time, index
     else
