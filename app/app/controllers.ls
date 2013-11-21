@@ -38,7 +38,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
   $scope.submitSearch = ->
     $state.transitionTo 'search.target', { keyword: $scope.searchKeyword}
     $scope.searchKeyword = ''
-
+    
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
 

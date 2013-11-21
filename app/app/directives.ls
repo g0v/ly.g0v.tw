@@ -128,10 +128,48 @@ angular.module 'app.directives' <[app.services ]>
       # to see whether the element is in viewport by checking TOP value
       if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
         scope.$apply(attrs.detectVisible)
-.directive 'autoComplete' <[$timeout LYModel]> ++ ($timeout, LYModel) ->
+.directive 'autoComplete' <[$location $timeout $state LYModel]> ++ ($location, $timeout, $state, LYModel) ->
   (scope, elm, attrs) ->
-    scope.$watch \searchKeyword (keyword) ->
-      results = elm.parent!.next!
+    results = elm.parent!.next!
+    keys =
+      backspace : 8
+      enter     : 13
+      escape    : 27
+      upArrow   : 38
+      downArrow : 40
+    scope.currentIndex = -1
+    resultSize = 7
+    elm.on \keydown (event) ->
+      { keyCode } = event
+      currentIndex = scope.currentIndex
+      if results.children!.size! > 0
+        if keyCode is keys.enter
+          event.preventDefault!
+          if currentIndex >= 0
+            scope.searchKeyword = results.children!.eq currentIndex .text!
+            $timeout ->
+              #$location.path '/search/'+word
+              $state.transitionTo 'search.target' do 
+                keyword: scope.searchKeyword
+              scope.searchKeyword = ''
+            , 500
+        else if keyCode is keys.upArrow
+          results.children! .removeClass \active
+          newIndex = if currentIndex - 1 < 0
+                     then currentIndex
+                     else currentIndex-1
+          results.children!.eq newIndex .addClass \active
+          scope.currentIndex = newIndex
+          event.preventDefault!         
+        else if keyCode is keys.downArrow
+          results.children! .removeClass \active
+          newIndex = if currentIndex+1 >= resultSize
+                     then currentIndex
+                     else currentIndex+1
+          results.children!.eq newIndex .addClass \active
+          scope.currentIndex = newIndex
+          event.preventDefault!
+    scope.$watch \searchKeyword (keyword) ->   
       if keyword
         {paging, entries} <- LYModel.get 'amendments' do
           params: do
