@@ -66,7 +66,8 @@
                 li.row(ng-repeat="e in entries | filter:filter")
                     .avatars
                         span(ng-repeat="avatar in e.avatars")
-                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
+                            i.g0v-icon.large(ng-class="avatar.iconClass",ng-if="avatar.iconClass",ng-alt="{{avatar.name}}")
+                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party",ng-if="!avatar.iconClass")
                     .motion
                         span.item-heading {{ e.item }}
                         span.proposer {{ e.proposed_by }}

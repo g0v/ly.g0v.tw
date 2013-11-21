@@ -119,9 +119,13 @@ angular.module 'app.controllers.sittings' []
           allStatus = [key: \all, value: \全部] ++ [{key: a, value: $scope.statusName a} for a of {[e.status ? \unknown, true] for e in entries}]
           $scope.status = '' unless $scope.status in allStatus.map (.key)
           for e in entries when !e.avatars?
-              if e.proposed_by?match /委員(.*?)(、|等)/
-                  party = LYService.resolveParty that.1
-                  e.avatars = [party: party, name: that.1, avatar: CryptoJS.MD5 "MLY/#{that.1}" .toString!]
+            match e.proposed_by
+            | /委員(.*?)(、|等)/
+              party = LYService.resolveParty that.1
+              e.avatars = [party: party, name: that.1, avatar: CryptoJS.MD5 "MLY/#{that.1}" .toString!]
+            | /本院(.*黨團)/
+              party = LYService.parseParty that.1 - /黨團$/
+              e.avatars = [party: party, name: that.1, icon-class: party]
           $scope <<< {type, entries, allStatus}
 
       setStatus: (s) ->
