@@ -29,8 +29,14 @@ i.g0v-icon.YS:after { content: "\f012" }
 
 .g0v-icon-list .item {
   line-height: 3em;
-  margin: 10px
+  margin: 10px 10px 30px;
+  display: inline-block;
+  text-align: center;
+  width: 195px;
 }
+.g0v-icon-list .item .desc { line-height: 1.3em; }
+.g0v-icon-list .item .note { font-size: 0.5em; }
 .g0v-icon-list .item .g0v-icon {
-  margin-right: 10px;
+  margin-bottom: 3px;
+  display: block;
 }
