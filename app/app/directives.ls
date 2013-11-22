@@ -182,6 +182,9 @@ angular.module 'app.directives' <[app.services ]>
           results.html ''
           for entry in entries
             link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
+            link.on \click ->
+              scope.searchKeyword = ''
+              elm.bur!
             result = angular.element \<div> .addClass \result .append link
             results.append result
           results.show!
