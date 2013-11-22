@@ -33,7 +33,7 @@ angular.module 'app.services' []
 .service 'LYModel': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
     base = "#{window.global.config.APIENDPOINT}v0/collections/"
     _model = {}
-
+    
     localGet = (key) ->
       deferred = $q.defer!
       promise = deferred.promise
@@ -67,3 +67,33 @@ angular.module 'app.services' []
           localGet key
         else
           wrapHttpGet key, url, params
+
+.service 'LYLaws': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
+  base = "#{window.global.config.APIENDPOINT}v0/collections/laws"
+  _laws = []
+  init = ->
+    {paging, entries} <- $http.get base, do
+      params:
+        l: 1
+    .success
+    {paging, entries} <- $http.get base, do
+      params:
+        l: paging.count
+    .success
+    for entry in entries
+      _laws.push entry
+
+  search-law = (name) ->
+    result = []
+    for law in _laws
+      if law.name .match name and result.length < 7
+        result.push law
+    return result
+
+  init!
+
+  return do
+    get: (name, cb) ->
+      result = search-law name
+      cb result
+

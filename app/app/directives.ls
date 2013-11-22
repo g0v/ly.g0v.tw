@@ -128,7 +128,7 @@ angular.module 'app.directives' <[app.services ]>
       # to see whether the element is in viewport by checking TOP value
       if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
         scope.$apply(attrs.detectVisible)
-.directive 'autoComplete' <[$timeout $state LYModel]> ++ ($timeout, $state, LYModel) ->
+.directive 'autoComplete' <[$timeout $state LYModel LYLaws]> ++ ($timeout, $state, LYModel, LYLaws) ->
   (scope, elm, attrs) ->
     results = elm.parent!.next!
     keys =
@@ -172,22 +172,16 @@ angular.module 'app.directives' <[app.services ]>
           event.preventDefault!
     scope.$watch \searchKeyword (keyword) ->   
       if keyword
-        {paging, entries} <- LYModel.get 'laws' do
-          params: do
-            q: JSON.stringify do
-              name: $matches: keyword
-            l: 7
-        .success
-        if entries.length > 0
-          results.html ''
-          for entry in entries
-            link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
-            link.on \click ->
-              scope.searchKeyword = ''
-              elm.bur!
-            result = angular.element \<div> .addClass \result .append link
-            results.append result
-          results.show!
+        entries <- LYLaws.get keyword
+        results.html ''
+        for entry in entries
+          link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
+          link.on \click ->
+            scope.searchKeyword = ''
+            elm.bur!
+          result = angular.element \<div> .addClass \result .append link
+          results.append result
+        results.show!        
       else => results.hide!
 
 
