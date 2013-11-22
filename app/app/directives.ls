@@ -128,7 +128,7 @@ angular.module 'app.directives' <[app.services ]>
       # to see whether the element is in viewport by checking TOP value
       if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
         scope.$apply(attrs.detectVisible)
-.directive 'autoComplete' <[$location $timeout $state LYModel]> ++ ($location, $timeout, $state, LYModel) ->
+.directive 'autoComplete' <[$timeout $state LYModel]> ++ ($timeout, $state, LYModel) ->
   (scope, elm, attrs) ->
     results = elm.parent!.next!
     keys =
@@ -148,10 +148,10 @@ angular.module 'app.directives' <[app.services ]>
           if currentIndex >= 0
             scope.searchKeyword = results.children!.eq currentIndex .text!
             $timeout ->
-              #$location.path '/search/'+word
               $state.transitionTo 'search.target' do 
                 keyword: scope.searchKeyword
               scope.searchKeyword = ''
+              scope.currentIndex = -1
             , 500
         else if keyCode is keys.upArrow
           results.children! .removeClass \active
