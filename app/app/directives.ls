@@ -151,6 +151,7 @@ angular.module 'app.directives' <[app.services ]>
               $state.transitionTo 'search.target' do 
                 keyword: scope.searchKeyword
               scope.searchKeyword = ''
+              elm.blur!
               scope.currentIndex = -1
             , 500
         else if keyCode is keys.upArrow
