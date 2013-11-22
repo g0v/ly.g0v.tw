@@ -144,8 +144,8 @@ angular.module 'app.directives' <[app.services ]>
       currentIndex = scope.currentIndex
       if results.children!.size! > 0
         if keyCode is keys.enter
-          event.preventDefault!
           if currentIndex >= 0
+            event.preventDefault!
             scope.searchKeyword = results.children!.eq currentIndex .text!
             $timeout ->
               $state.transitionTo 'search.target' do 
