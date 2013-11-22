@@ -171,12 +171,10 @@ angular.module 'app.directives' <[app.services ]>
           event.preventDefault!
     scope.$watch \searchKeyword (keyword) ->   
       if keyword
-        {paging, entries} <- LYModel.get 'amendments' do
+        {paging, entries} <- LYModel.get 'laws' do
           params: do
             q: JSON.stringify do
               name: $matches: keyword
-            f: JSON.stringify do
-              name: 1
             l: 7
         .success
         if entries.length > 0
