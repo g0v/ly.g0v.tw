@@ -83,6 +83,7 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
       left-item-anchor = right-item
   difflines = line-based-diff baseTextLines, newTextLines
   angular.forEach difflines, (value, key)->
+    value.left = '無' unless value.left
     value.left = $sce.trustAsHtml value.left
     value.right = $sce.trustAsHtml value.right
   comment = $sce.trustAsHtml comment
