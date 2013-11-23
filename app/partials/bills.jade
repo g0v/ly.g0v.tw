@@ -44,7 +44,7 @@
         qrcode(text="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
       .item.hide-print
         i.code.icon
-        a(ng-href="http://api-beta.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank") JSON
+        a(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank") JSON
       .item.hide-print(ng-show="report.doc.pdf")
         i.file.icon
         a(ng-href="{{report.doc.pdf}}",target="_blank") 審查報告
