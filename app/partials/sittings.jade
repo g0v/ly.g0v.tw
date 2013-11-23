@@ -48,6 +48,21 @@
         .span10.content
   .row-fluid(ng-show="loaded", ng-show="video")
     #player
+    #share
+      span.buttons
+        a.icon-facebook-sign.sharebutton(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelink}}", , target="_blank")
+        a.icon-twitter-sign.sharebutton(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelink}}", target="_blank")
+        a.icon-google-plus-sign.sharebutton(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelink}}", target="_blank")
+      input(id="sharelink", type="text", ng-model="sharelink", size="30")
+      strong 開始時間
+      input(id="changeoffset", type="checkbox", ng-model="checked")
+      .timeoffset(ng-show="checked", name="offset")
+        span.offset
+          strong 開始日期
+          input(id="dateoffset", type="text", ng-model="dateoffset", size="10")
+        span.offset
+          strong 開始時間
+          input(id="timeoffset", type="text", ng-model="timeoffset", size="10")
     .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below

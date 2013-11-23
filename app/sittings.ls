@@ -14,7 +14,7 @@ function get-videos-by-cut(LYModel, sitting, cb)
   cb whole
 
 angular.module 'app.controllers.sittings' []
-.controller LYSittings: <[$rootScope $scope $http $state LYService LYModel]> ++ ($rootScope, $scope, $http, $state, LYService, LYModel) ->
+.controller LYSittings: <[$rootScope $scope $http $state LYService LYModel $location]> ++ ($rootScope, $scope, $http, $state, LYService, LYModel, $location) ->
   $rootScope.activeTab = \sittings
   committees = $rootScope.committees
 
@@ -47,6 +47,27 @@ angular.module 'app.controllers.sittings' []
     else
       console.log 'using context that we do not have yet. fetch it '
       loadList!
+
+  $scope.$watch '$location.hash()' ->
+    if($location.hash())
+      dateo = moment $location.hash()
+      if(dateo.isValid())
+        $scope.dateoffset = dateo.format('YYYY-MM-DD')
+        $scope.timeoffset = dateo.format('HH:MM:ss')
+      else
+        $scope.dateoffset = $location.hash() - /T.+/
+        $scope.timeoffset = $location.hash() - /.+T/
+      $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
+
+  $scope.$watch 'timeoffset' ->
+    hash = $scope.dateoffset + 'T' + $scope.timeoffset
+    $location.hash(hash)
+    $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
+
+  $scope.$watch 'dateoffset' ->
+    hash = $scope.dateoffset + 'T' + $scope.timeoffset
+    $location.hash(hash)
+    $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
 
   loadList = (length) ->
     if committees[$scope.context]
