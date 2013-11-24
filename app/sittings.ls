@@ -216,19 +216,20 @@ angular.module 'app.controllers.sittings' []
             $scope.player.nextStart = null
           if timer-id => clearInterval timer-id
           timer = {}
-            ..sec = $scope.player.getCurrentTime!
-            ..start = new Date!getTime! / 1000
+            ..current = $scope.player.getCurrentTime! * 1000
+            ..start = new Date!getTime!
             ..rate = $scope.player.getPlaybackRate!
             ..now = 0
           handler = ->
-            timer.now = new Date!getTime! / 1000
+            timer.now = new Date!getTime!
             # XXX: record actual current waveform
             $scope.$apply ->
               # TODO: we can keep current waveform in $scope
               # but let's do it later...
               for w in $scope.waveforms
                 if w.id == $scope.current-id
-                  w.current = timer.sec + (timer.now - timer.start) * timer.rate
+                  player-offset = timer.current + (timer.now - timer.start) * timer.rate
+                  w.current = player-offset / 1000
           timer-id := setInterval ->
             handler!
           , 10000
