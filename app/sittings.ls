@@ -48,26 +48,16 @@ angular.module 'app.controllers.sittings' []
       console.log 'using context that we do not have yet. fetch it '
       loadList!
 
-  $scope.$watch '$location.hash()' ->
-    if($location.hash())
-      dateo = moment $location.hash()
-      if(dateo.isValid())
-        $scope.dateoffset = dateo.format('YYYY-MM-DD')
-        $scope.timeoffset = dateo.format('HH:MM:ss')
-      else
-        $scope.dateoffset = $location.hash() - /T.+/
-        $scope.timeoffset = $location.hash() - /.+T/
-      $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
-
-  $scope.$watch 'timeoffset' ->
-    hash = $scope.dateoffset + 'T' + $scope.timeoffset
-    $location.hash(hash)
-    $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
-
-  $scope.$watch 'dateoffset' ->
-    hash = $scope.dateoffset + 'T' + $scope.timeoffset
-    $location.hash(hash)
-    $scope.sharelink = $location.absUrl() - /#.*$/ + '#' + $location.hash()
+  $scope.$watchCollection '[absolutePlayerTime, shareOffset, dateOffset, timeOffset]' ->
+    hash = if $scope.shareOffset
+      $scope <<<
+        dateOffset: $scope.absolutePlayerTime.format 'YYYY-MM-DD'
+        timeOffset: $scope.absolutePlayerTime.format 'HH:mm:ss'
+      '#' + $scope.dateOffset + 'T' + $scope.timeOffset
+    else
+      ''
+    $scope.sharelink = $location.absUrl() - /#.*$/ + hash
+    $scope.sharelinkEscaped = $location.absUrl() - /#.*$/ + escape hash
 
   loadList = (length) ->
     if committees[$scope.context]
@@ -230,6 +220,7 @@ angular.module 'app.controllers.sittings' []
                 if w.id == $scope.current-id
                   player-offset = timer.current + (timer.now - timer.start) * timer.rate
                   w.current = player-offset / 1000
+                  $scope.absolutePlayerTime = moment $scope.current-video.first_frame + player-offset
           timer-id := setInterval ->
             handler!
           , 10000
