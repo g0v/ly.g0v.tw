@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - 0.10
+
+before_install:
+  - sudo apt-get install ruby1.9.1
+  - sudo gem install sass compass
+
+env:
+  global:
+    secure: ! 'Cm2T3ZMpU3GjeAYguwZNMMj9DGCDjZsjiVYuXQ1PgznFG/PpGKcWNaNTt4b9
+
+      pBMRVP7uNtEXfQNcw8TjvG6/HFzuLG4KJeqZUacbbYCRugbny1bDd9iT4OLC
+
+      hnuO6WRsIg4m511XiKHcWu2nFuIFlwCBPS2dSBiRSg8U4Iz9Pqg='
+
+after_success: .travis/after_success.sh
