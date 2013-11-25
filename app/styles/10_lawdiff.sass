@@ -1,50 +1,5 @@
 @import "app/styles/mixins"
 
-.bill
-  margin-left: 10%
-  h1
-    margin: 1em
-    text-overflow: ellipsis
-    +word-break-sane
-    overflow: hidden
-    height: 3.1em
-  width: 80%
-  .role
-    float: left
-    clear: left
-    span.name
-      padding-left: 12px
-    ul
-      list-style: none
-    &.sponsors, &.committee
-      margin-left: 3em
-      width: 25%
-      li
-        width: 60px
-        float: left
-        &:first-child
-          width: 180px
-          clear: both
-          .avatar
-            width: 100px
-            height: 100px
-    &.committee
-      .avatar
-        margin: 8px
-      span.name
-        padding-left: 4px
-    &.cosponsors
-      li
-        width: 60px
-        float: left
-  .description
-    font-size: larger
-    margin: 1em
-    margin-right: 2em
-    width: 60%
-    float: right
-    position: relative
-
 .related
   margin: 2em
   margin-left: 3em

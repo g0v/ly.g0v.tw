@@ -445,8 +445,8 @@
   .navbar-static-top .container,
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
-    /*width: 768px;*/
-    width: 724px;
+    width: 768px;
+    /*width: 724px;*/
   }
   .span12 {
     width: 724px;

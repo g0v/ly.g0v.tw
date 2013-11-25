@@ -1,5 +1,13 @@
 @import "app/styles/mixins"
 @import "app/styles/ui-step"
+@import "compass/css3/box-shadow"
+@import "compass/css3/transform"
+@import "compass/css3/transition"
+@import "compass/css3/border-radius"
+@import "compass/css3/box-sizing"
+
+@mixin prefer-songti
+  font-family: "Songti TC", "Biaodian Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif
 
 @media print
   .hide-print
@@ -14,8 +22,9 @@
     stroke-width: 1.5px
 
 .bill
+  +box-sizing(border-box)
   width: 100%
-  font-family: "Songti TC", "Biaodian Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif
+
   #qrlink
     display: none
 
@@ -23,21 +32,222 @@
     text-decoration: none
     display: inline-block
 
-  h1.bill,h2
-    padding: 0
-    margin: 1em 0
-    height: auto
-    width: 100%
-  .ui.four.steps
-    margin-bottom: 2rem
-  p
-    font-size: 22px
-    line-height: 2rem
-    text-align: justify
+  h1, h2
+    padding: 1rem 0
+    margin: 1em 0 0 0
+    font-size: 1.7rem
+    +prefer-songti
+
+  .summary
+    +prefer-songti
+
+  .ui.label.light.gray
+    background-color: #eee
+    color: #666
+
+  .ttsmotions
+    .header span
+      width: 120px
+      display: inline-block
+
+  .bill-progress
+
+    .ui.label.light.gray
+      background-color: #eee
+      color: #666
+
+    .ui.pointing.label
+      position: absolute
+      left: 0
+
+    .ui.steps .no-hover.step,
+    .ui.no-hover.step
+      cursor: auto
+
+    .ui.steps
+
+      .ui.step .ui.pointing.below.label
+        top: -2rem
+
+      .step
+        display: inline-block
+        position: relative
+        min-height: 3rem
+        text-align: center
+        vertical-align: middle
+        padding: 0.3rem 0 0 1rem
+        +border-radius(0)
+        line-height: 1.2em
+        +box-sizing(border-box)
+
+        .step-description,
+        .substep-description,
+        .date
+          margin: 0
+          padding: 0
+          position: relative
+          z-index: 10
+        .step-description
+          font-size: large
+          font-weight: bold
+        .substep-description
+          font-weight: bold
+
+      &.small
+        margin: 1rem 0
+        .step
+          min-height: 2.5rem
+
+      &.common
+
+        .stage:first-child
+          .step,
+          .step:first-child,
+          .step:last-child
+            +border-corner-radius(top,left,0.315em)
+            +border-corner-radius(bottom,left,0.315em)
+
+        .stage:last-child
+          .step,
+          .step:first-child,
+          .step:last-child
+            margin-right: 0em
+            +border-corner-radius(top,right,0.315em)
+            +border-corner-radius(bottom,right,0.315em)
+            &:after
+              display: none
+
+    .ui.state.hidden
+      display: none
+
+    .ui.seven.steps .stage > .step
+      width: 14.285%
+
+    @mixin ui-step-color($n, $b, $c, $s, $h)
+      .ui.step.#{$n},
+      .ui.steps .step.#{$n}
+        background-color: $b
+        color: $c
+
+      .ui.step.#{$n}:hover,
+      .ui.step.#{$n}.hover
+        background-color: $h
+        color: $c
+
+      .ui.steps .step.#{$n}.hover:after,
+      .ui.steps .step.#{$n}:hover:after,
+      .ui.step.#{$n}:hover,
+      .ui.step.#{$n}.hover::after
+        background-color: $h
+        border-left-color: $h
+
+      .ui.step.no-hover.#{$n}:hover,
+      .ui.step.no-hover.#{$n}.hover
+        background-color: $b
+        color: $c
+
+      .ui.steps .step.no-hover.#{$n}.hover:after,
+      .ui.steps .step.no-hover.#{$n}:hover:after,
+      .ui.step.no-hover.#{$n}:hover,
+      .ui.step.no-hover.#{$n}.hover::after
+        background-color: $b
+        border-left-color: $b
+
+      .ui.step.#{$n}:after
+        border: none
+        background-color: $b
+        top: 0.42em
+        right: -1em
+        width: 2.15em
+        height: 2.15em
+        -webkit-transform: rotate(-45deg)
+        -moz-transform: rotate(-45deg)
+        -o-transform: rotate(-45deg)
+        -ms-transform: rotate(-45deg)
+        transform: rotate(-45deg)
+        -webkit-box-shadow: -1px -1px 0px 0px $s inset
+        -moz-box-shadow: -1px -1px 0px 0px $s inset
+        box-shadow: -1px -1px 0px 0px $s inset
+
+    @include ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
+    @include ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
+    @include ui-step-color(red,    #d95c5c, #ffffff, #ffffff, darken(#d95c5c, 10%))
+    @include ui-step-color(blue,   #6ecff5, #ffffff, #ffffff, darken(#6ecff5, 10%))
+    @include ui-step-color(purple, #564f8a, #ffffff, #ffffff, darken(#564f8a, 10%))
+    @include ui-step-color(teal,   #00b5ad, #ffffff, #ffffff, darken(#00b5ad, 10%))
+    @include ui-step-color(returned, #e96633, #ffffff, #ffffff, darken(#e96633, 10%))
+    @include ui-step-color(not-yet,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
+    @include ui-step-color(issued,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
+
+    .ui.step.not-implemented
+      opacity: 0.5
+
+    .ui.state
+      i
+        margin: 0
+      display: inline-block
+      z-index: 10
+      position: absolute
+      background: #f00
+      padding: 0.3em
+      border-radius: 2em
+      font-size: 0.8rem
+      font-weight: 900
+      background: #444
+      border: 3px solid #eee
+      color: #fff
+      margin: 0.8em 1em 0 0
+
+    .ui.small.state,
+    .ui.small.steps .state
+      font-size: 0.65rem
+
+    .ui.large.state,
+    .ui.large.steps .state
+      font-size: 1rem
+
+    @mixin ui-state-color($n, $b, $c)
+      .ui.state.#{$n}
+        background: $b
+        i
+          color: $c
+
+    @include ui-state-color(scheduled,  #5c6166, #ffffff)
+    @include ui-state-color(passed,  #5bbd72, #ffffff)
+    @include ui-state-color(red,    #d95c5c, #ffffff)
+    @include ui-state-color(blue,   #6ecff5, #ffffff)
+    @include ui-state-color(purple, #564f8a, #ffffff)
+    @include ui-state-color(teal,   #00b5ad, #ffffff)
+    @include ui-state-color(returned, #e96633, #ffffff)
+    @include ui-state-color(not-yet,  #ffffff, #ffffff)
+
+    .ui.pointing.below.label
+      &.passed,
+      &.passed:before
+        background-color: rgb(161, 207, 100)
+        border-color: rgb(161, 207, 100)
+        color: rgb(255, 255, 255)
+      &.scheduled,
+      &.scheduled:before
+        background-color: #5c6166
+        border-color: #5c6166
+        color: #fff
+
+  .summary
+    .links.ui.right.floated.menu
+      margin-left: 2rem
+      margin-bottom: 1rem
+    .description
+      font-size: larger
+      line-height: 1.5em
+
   .role
     .item
       float: left
       text-align: center
+      display: block
+      .infocard a
+        display: block
     .image.ui.rounded.corner
       background-color: #fff
     .committee, .sponsors, .cosponsors
@@ -47,6 +257,7 @@
   .content.default
     margin: 3rem 0
     line-height: 1.5rem
+    +prefer-songti
 
   p.sample
     text-align: center
@@ -60,6 +271,7 @@
       background-color: #f99
     .version
       background-color: #A1CF88
+      cursor: pointer
 
   .ui.segment.article-text
     padding-top: 0.5em
@@ -77,7 +289,7 @@
   .delete.left
     .diff.text em
       background-color: #f99
-      +vendor-prefix(text-emphasis, dot)    
+      +vendor-prefix(text-emphasis, dot)
   .replace.right
     .diff.text em
       background-color: #A1CF88
@@ -86,6 +298,22 @@
     .diff.text em
       background-color: #A1CF88
       +vendor-prefix(text-emphasis, dot)
+  .column.left
+    margin: 5px 0
+  .column.right
+    margin: 5px 0
+
+  .ui.very.thin.sidebar
+    .ui.vertical.menu
+      width: 8rem
+    width: 8rem!important
+    margin-left: 0!important
+    padding-top: 50px
+    white-space: normal
+
+  @media only screen and (min-width: 768px)
+    padding-left: 8rem
+
   @media only screen and (max-width: 768px)
     .mobile-hide
       display: none
@@ -93,3 +321,78 @@
       margin-top: -1.5rem !important
     .ui.stackable.grid > .column.left
       margin-top: 0 !important
+
+  @media (max-width: 640px)
+    .bill-progress .common.ui.seven.steps,
+    .bill-progress .ui.small.steps
+      width: 100%
+      display: block
+      .stage:first-child .step:first-child
+        border-radius: 0
+      .ui.step
+        width: 100%
+        margin-bottom: 1px
+        .ui.label.pointing.below
+          margin-left: 10px
+          margin-top: 42px
+          &:before
+            display: none
+        &:after
+          display: block
+          width: 1em
+          height: 1em
+          top: 40px
+          left: 50%
+          box-shadow: 1px -1px 0px 0px white inset
+      .ui.state
+        margin-left: -2.5rem
+    .bill .bill-progress .ui.small.steps
+      .ui.step:after
+        top: 2rem
+
+div.item
+  outline: none
+  text-decoration: none
+  strong
+    line-height: 30px
+  > span
+    width: 200px
+    padding: 10px 20px
+    margin-top: 20px
+    margin-left: -85px
+    opacity: 0
+    visibility: hidden
+    z-index: 10
+    position: absolute
+    font-family: Arial
+    font-size: 12px
+    font-style: normal
+    @include single-box-shadow(#999, 2px, 2px, 2px)
+    @include single-transition(all, 0.3s, ease-in-out)
+  &:hover > span
+    opacity: 1
+    text-decoration: none
+    visibility: visible
+    overflow: visible
+    margin-top: 20px
+    display: inline
+    margin-left: -60px
+  span b
+    width: 15px
+    height: 15px
+    margin-left: 20px
+    margin-top: -19px
+    display: block
+    position: absolute
+    background: #FBF5E6
+    border-top: 1px solid #CFB57C
+    border-right: 1px solid #CFB57C
+    @include rotate(-45deg)
+  > span
+    color: #000000
+    background: #FBF5E6
+    background: -moz-linear-gradient(top, #fbf5e6 0%, white 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbf5e6), color-stop(100%, white))
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBF5E6', endColorstr='#FFFFFF',GradientType=0 )
+    border: 1px solid #CFB57C
+

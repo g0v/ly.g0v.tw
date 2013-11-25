@@ -1,0 +1,16 @@
+.search
+    .ui.floating.message
+      span.keyword 搜尋 {{keyword}}
+      span.spinner.small(ng-show="busy")
+      span(ng-cloak, ng-show="results.length <= 0") ，無搜尋結果
+    .results(ng-show="results.length > 0")
+      .content.ui.segment(ng-repeat="r in results")
+        .ui.top.left.attached.label.red {{r.proposed_by}}
+        .body
+          span.name
+            a(ng-href="/bills/{{r.bill_ref || r.bill_id}}") {{r.summary}}
+          p.description {{r.abstract}}
+        .ui.bottom.attached.label
+          span(ng-repeat="s in r.sponsors", class="sponsor") {{s}}
+    h4(detect-visible="moreResults()") 目前找到：{{results.length}} 筆
+    span.spinner.small(ng-show="busy")

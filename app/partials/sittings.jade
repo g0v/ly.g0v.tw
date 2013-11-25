@@ -4,10 +4,10 @@
   h1
     span {{ name }}
   span(ng-show="videos.length > 0 && !loaded")
-    a.pull-right.btn.btn-info(ng-href="sittings/{{id}}/video") 觀看影片
+    a.pull-right.btn.btn-info(ng-href="/sittings/{{id}}/video") 觀看影片
   .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-    img(ng-show="loadingSitting", src="/img/loading.gif")
+    span.spinner.small(ng-show="loadingSitting")
   div(ng-hide="video")
     span.btn-group
       button.btn.dropdown-toggle(data-toggle="dropdown")
@@ -18,7 +18,7 @@
           a(ng-click="setContext('YS')") 院會
         li(ng-repeat="(type, name) in committees")
           a(ng-click="setContext(type)") {{name}}
-    img(ng-show="loadingList", src="/img/loading.gif")
+    span.spinner.small(ng-show="loadingSitting")
 
   .row-fluid
     .span10.content
@@ -41,11 +41,29 @@
         .row(ng-show="summary")
           .span3.td-title 概要
           .span9 {{ summary }}
+        .row(ng-show="proceeding_url")
+          .span3.td-title 議事錄
+          .span9: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
       .row-fluid
         .span10.content
   .row-fluid(ng-show="loaded", ng-show="video")
     #player
-    .wav-group(ng-repeat="waveform in waveforms")
+    #share
+      span.buttons
+        a.icon-facebook-sign.sharebutton(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
+        a.icon-twitter-sign.sharebutton(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
+        a.icon-google-plus-sign.sharebutton(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
+      input(id="sharelink", type="text", ng-model="sharelink", size="30")
+      strong 開始時間
+      input(id="changeoffset", type="checkbox", ng-model="shareOffset")
+      .timeoffset(ng-show="shareOffset", name="offset")
+        span.offset
+          strong 開始日期
+          input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
+        span.offset
+          strong 開始時間
+          input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
+    .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below
       img
@@ -63,12 +81,14 @@
                 li.row(ng-repeat="e in entries | filter:filter")
                     .avatars
                         span(ng-repeat="avatar in e.avatars")
-                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party")
+                            i.g0v-icon.large(ng-class="avatar.iconClass",ng-if="avatar.iconClass",ng-alt="{{avatar.name}}")
+                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party",ng-if="!avatar.iconClass")
                     .motion
-                        span.item {{ e.item }}
+                        span.item-heading {{ e.item }}
                         span.proposer {{ e.proposed_by }}
                         a(ng-href="/bills/{{ e.bill_ref || e.bill_id }}")
                             span.summary {{ e.summary }}
+                        span.label.label-important(ng-show="e.sitting_introduced == sitting_id") new
                     .resolution {{ e.resolution }}
       // XXX: show onair and upcoming ivod link
       // XXX: search archived ivod clips for past sittings

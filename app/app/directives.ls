@@ -1,4 +1,4 @@
-build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
+build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
   start = ( if d.time => moment that .unix! else -28800 ) * 1000
   xAxis = d3.svg.axis!scale x .orient "bottom"
     .tickFormat ->
@@ -10,6 +10,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
     .attr \height, h
     .on \click ->
       x0 = x.invert d3.mouse(@).0 - margin.left
+      $(svg)find \.location-marker .attr \transform, "translate(#{x0} #{margin.top})"
       d.cb x0
     .append \g .attr \transform "translate(#{margin.left} #{margin.top})"
 
@@ -32,6 +33,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
     .attr \stroke-width, \2px
     .attr \transform -> "translate(#{x d.current} 0)"
   svg.selectAll \g.avatar .data d.speakers .enter!append \g
+      ..each -> it.color = LYService.resolve-party-color it.mly
       ..attr \class \avatar
       ..attr \transform -> "translate(#{x it.offset / 1000} 0)"
       ..on \mouseover ->
@@ -50,20 +52,30 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope) ->
         tooltip.find \a.btn .on 'click' (event) ->
           scope.model.cb it.offset / 1000
           $ \#avatar-tooltip .hide!
+      ..append \rect
+        .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
+        .attr \height 12
+        .style \stroke-width \1px
+        .style \stroke -> it.color
+        .style \fill -> it.color
+        .style \fill-opacity \0.5
+      ..append \rect
+        .attr \width -> if (w = x it.length) < 12 => 12 else w - 1
+        .attr \height -> h - 12 - margin.bottom
+        .attr \transform "translate(0 12)"
+        .style \stroke-width \1px
+        .style \stroke -> it.color
+        .style \fill -> it.color
+        .style \fill-opacity \0.2
       ..append \image
         .attr \class "avatar small"
+        .attr \transform "translate(1 1)"
         .attr \width 10
         .attr \height 10
         .attr \xlink:href ->
           avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
           "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small"
         .attr \alt -> it.speaker
-      ..append \rect
-        .attr \width 10
-        .attr \height 10
-        .style \stroke \steelblue
-        .style \stroke-width \1px
-        .style \fill \none
 
 angular.module 'app.directives' <[app.services ]>
 
@@ -75,8 +87,8 @@ angular.module 'app.directives' <[app.services ]>
       scope.$apply ->
         scope.width = $window.innerWidth
         scope.height = $window.innerHeight
-.directive \ngWaveform ($compile) ->
-  return
+
+.directive \ngWaveform <[$compile LYService]> ++ ($compile, LYService) ->
     restrict: 'E',
     replace: true,
     template: "<div class='wav-group'><svg></svg></div>"
@@ -91,10 +103,86 @@ angular.module 'app.directives' <[app.services ]>
 
       waveform = new Waveform container: element[0], width: _width, height: _height, innerColor: _innercolor, outerColor: _outercolor
         ..canvas.style.marginLeft = "#{margin.left}px"
-      scope .$watch 'model.current', (v) ->
+      scope.$watch 'model.current', (v) ->
         element.find \.location-marker .attr \transform, "translate(#{x? v} #{margin.top})"
-      scope .$watch 'model', !(wave) ->
+      scope.$watch 'model', !(wave) ->
+        return unless wave
         x := d3.scale.linear!range [0, w - margin.left - margin.right] .domain [0, wave.wave.length]
         y := d3.scale.linear!range [h, 0] .domain [0, d3.max wave.wave]
-        build-avatar element, wave, {w,h,x,y,margin}, scope
+        build-avatar element, wave, {w,h,x,y,margin}, scope, LYService
         if wave => waveform .update data: wave.wave
+
+.directive 'whenScrolled' ->
+  (scope, elm, attr) ->
+    raw = elm[0];
+    <- elm.bind 'scroll'
+    if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight)
+      scope.$apply attr.whenScrolled
+
+.directive 'detectVisible' <[$window $document]> ++ ($window, $document) ->
+  (scope, elm, attrs) ->
+    return unless attrs.detectVisible
+    raw = elm[0]
+    angular.element $window .bind 'scroll', ->
+      return if scope.stopDetect # we could disable detection by enabling this flag
+      # to see whether the element is in viewport by checking TOP value
+      if $window.scrollY < raw.offsetTop && $window.scrollY + $window.innerHeight > raw.offsetTop
+        scope.$apply(attrs.detectVisible)
+.directive 'autoComplete' <[$timeout $state LYModel LYLaws]> ++ ($timeout, $state, LYModel, LYLaws) ->
+  (scope, elm, attrs) ->
+    results = elm.parent!.next!
+    keys =
+      backspace : 8
+      enter     : 13
+      escape    : 27
+      upArrow   : 38
+      downArrow : 40
+    scope.currentIndex = -1
+    resultSize = 7
+    elm.on \keydown (event) ->
+      { keyCode } = event
+      currentIndex = scope.currentIndex
+      if results.children!.size! > 0
+        if keyCode is keys.enter
+          if currentIndex >= 0
+            event.preventDefault!
+            scope.searchKeyword = results.children!.eq currentIndex .text!
+            $timeout ->
+              $state.transitionTo 'search.target' do 
+                keyword: scope.searchKeyword
+              scope.searchKeyword = ''
+              elm.blur!
+              scope.currentIndex = -1
+            , 500
+        else if keyCode is keys.upArrow
+          results.children! .removeClass \active
+          newIndex = if currentIndex - 1 < 0
+                     then currentIndex
+                     else currentIndex-1
+          results.children!.eq newIndex .addClass \active
+          scope.currentIndex = newIndex
+          event.preventDefault!         
+        else if keyCode is keys.downArrow
+          results.children! .removeClass \active
+          newIndex = if currentIndex+1 >= resultSize
+                     then currentIndex
+                     else currentIndex+1
+          results.children!.eq newIndex .addClass \active
+          scope.currentIndex = newIndex
+          event.preventDefault!
+    scope.$watch \searchKeyword (keyword) ->   
+      if keyword
+        entries <- LYLaws.get keyword
+        results.html ''
+        for entry in entries
+          link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
+          link.on \click ->
+            scope.searchKeyword = ''
+            elm.bur!
+          result = angular.element \<div> .addClass \result .append link
+          results.append result
+        results.show!        
+      else => results.hide!
+
+
+

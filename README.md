@@ -7,6 +7,7 @@ WARNING: this is work in progress and the file format is likely to change!
 
 to install needed packages
 
+    $ gem install compass
     $ npm install
 
 to run app locally,

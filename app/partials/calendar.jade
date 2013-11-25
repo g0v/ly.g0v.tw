@@ -1,13 +1,15 @@
-.calendar(ng-controller="LYCalendar",ngx-resize)
+.calendar(ngx-resize)
   ul.nav.nav-tabs
     li(ng-class="{active: type == 'sitting'}")
-      a(ng-click="change('sitting')") 一般議程
+      a(ng-click="change('sitting')", href="") 一般議程
     li(ng-class="{active: type == 'hearing'}")
-      a(ng-click="change('hearing')") 公聽會
+      a(ng-click="change('hearing')", href="") 公聽會
   .time 立法院行程：
     select(ng-model="weeks", ng-options="o.label for o in weeksOpts", ng-change="update()")
 
+
   .sitting
+    h3(ng-hide="groupNum > 0") 本日無行程
     .group
       // YS is not in committee mapping object, this is the customized block for it
       .title(ng-show="group.YS")
@@ -23,7 +25,8 @@
             tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group.YS")
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
-              td {{entry.name}}
+              td
+                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.summary}}
     .group(ng-repeat="(k, v) in group")
       .title(ng-show="committees[k]")
@@ -42,7 +45,8 @@
             tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
               td {{entry.formatDate}}
               td {{entry.time_start}} 至 {{entry.time_end}}
-              td {{entry.name}}
+              td
+                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
               td {{entry.chair}}
               td {{entry.summary}}
 

@@ -1,0 +1,67 @@
+/* inspired by http://www.designcouch.com/home/why/2013/05/23/dead-simple-pure-css-loading-spinner/ */
+
+$spinnerSize: 30px
+$spinnerBorder: 4px
+$spinnerSmallSize: 20px
+$spinnerSmallBorder: 3px
+$spinnerLargeSize: 42px
+$spinnerLargeBorder: 6px
+$spinnerPeriod: 1.5s
+$spinnerColorBackground: rgba(0, 174, 239, 0.15)
+$spinnerColorForeground: rgba(0, 174, 239, 1)
+
+.spinner
+  display: inline-block
+  height: $spinnerSize
+  width: $spinnerSize
+  margin: 0px auto
+  -webkit-animation: rotation $spinnerPeriod infinite linear
+  -moz-animation: rotation $spinnerPeriod infinite linear
+  -o-animation: rotation $spinnerPeriod infinite linear
+  animation: rotation $spinnerPeriod infinite linear
+  border-radius: 100%
+  border-left: $spinnerBorder solid $spinnerColorBackground
+  border-right: $spinnerBorder solid $spinnerColorBackground
+  border-bottom: $spinnerBorder solid $spinnerColorBackground
+  border-top: $spinnerBorder solid $spinnerColorForeground
+
+.spinner.small
+  height: $spinnerSmallSize
+  width: $spinnerSmallSize
+  border-left: $spinnerSmallBorder solid $spinnerColorBackground
+  border-right: $spinnerSmallBorder solid $spinnerColorBackground
+  border-bottom: $spinnerSmallBorder solid $spinnerColorBackground
+  border-top: $spinnerSmallBorder solid $spinnerColorForeground
+
+.spinner.large
+  height: $spinnerLargeSize
+  width: $spinnerLargeSize
+  border-left: $spinnerLargeBorder solid $spinnerColorBackground
+  border-right: $spinnerLargeBorder solid $spinnerColorBackground
+  border-bottom: $spinnerLargeBorder solid $spinnerColorBackground
+  border-top: $spinnerLargeBorder solid $spinnerColorForeground
+
+@-webkit-keyframes rotation
+  from
+    -webkit-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(359deg)
+
+@-moz-keyframes rotation
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -moz-transform: rotate(359deg)
+
+@-o-keyframes rotation
+  from
+    -o-transform: rotate(0deg)
+  to
+    -o-transform: rotate(359deg)
+
+@keyframes rotation
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(359deg)
+

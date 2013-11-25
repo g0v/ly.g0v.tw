@@ -1,3 +1,4 @@
 {
-  "BUILD": "git-unknown"
+  "BUILD": "git-unknown",
+  "APIENDPOINT": "http://api.ly.g0v.tw/"
 }
