@@ -5,7 +5,9 @@ node_js:
 
 before_install:
   - sudo apt-get install ruby1.9.1
-  - sudo gem install sass compass
+  - gem update --system
+  - gem install sass compass
+  - sass --version
 
 env:
   global:
