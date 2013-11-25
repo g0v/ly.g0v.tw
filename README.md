@@ -62,6 +62,7 @@ cordova emulate ios
 
 and you are launching your app.
 
+Reference: https://github.com/apache/cordova-cli
 
 ##Setting in cordova :
 
