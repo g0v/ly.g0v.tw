@@ -43,17 +43,24 @@ It is a bug of git fixed after 1.7.11.4. Check you git version (`git --version`)
 
 Using Cordova as a platform for building mobile apps
 
-Download the latest Cordova version 3.1.0 (We're using)
+Install Cordova through npm
 
-After download and unzip the file, unzip `cordova-ios.zip`, and go to `bin/` enter `./update_cordova_subproject ~/Documents/<your path to the repo>/contrib/ly_ios/ly_g0v.xcodeproj` and open up Xcode to run `ly_g0v.xcodeproj`, before you build start your server. And you can see the simulator on your mac :).
+```
+npm install -g cordova
+```
 
-##Create apps in cordova:
+after you install go to the folder in this repo and enter the following command:
 
-After downloading cordova-3.1.0 unzip `cordova-ios.zip`, go to `cordova-ios/bin` enter
 
-`./create [--shared] [--arc] <path_to_new_project> <package_name> <project_name>`
+```
+# install emulators on ios
+npm install -g ios-sim                                      
 
-And it will magically generate an app for you :D
+cordova emulate ios
+```
+
+and you are launching your app.
+
 
 ##Setting in cordova :
 
