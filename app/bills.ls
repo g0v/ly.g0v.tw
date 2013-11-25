@@ -18,6 +18,7 @@ line-based-diff = (text1, text2) ->
              | 0  => \both
              | 1  => \right
              | -1 => \left
+
     lines = text / '\n'
     for line, i in lines
       if line != ''
@@ -26,14 +27,16 @@ line-based-diff = (text1, text2) ->
           difflines[last_left].left += line
         if is-right target
           difflines[last_right].right += line
-        
-      if i != lines.length - 1 and text1.match text
+
+      if i != lines.length - 1
         difflines.push make-line-object!
-        if is-left target
+        if is-left target 
           last_left = difflines.length - 1
         if is-right target
           last_right = difflines.length - 1
-
+        if !text1.match text
+          last_left += 1
+          
   for line in difflines
     if line.left == '' and line.right != ''
       line.state = \insert
