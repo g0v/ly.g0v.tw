@@ -50,7 +50,7 @@ Install Cordova through npm
 npm install -g cordova
 ```
 
-after you install go to the folder in this repo and enter the following command:
+after you install go to the folder `contrib/ly_ios` in this repo and enter the following command:
 
 
 ```
