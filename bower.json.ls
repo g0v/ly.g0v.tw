@@ -7,6 +7,7 @@ dependencies:
   jquery: "~2.0.3"
   angular: "1.2.2"
   "angular-mocks": "1.2.2"
+  "angular-ui-router": "0.2.0"
 
 overrides:
   "angular-mocks":

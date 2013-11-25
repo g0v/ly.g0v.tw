@@ -11,9 +11,9 @@ engines:
   node: '0.8.x'
   npm: '1.1.x'
 scripts:
-  prepublish: './node_modules/.bin/lsc -cj package.ls'
+  prepublish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
   start: './node_modules/.bin/brunch b --config brunch-templates.ls && ./node_modules/.bin/brunch watch --server'
-  test: 'karma start --single-run true test/karma.conf.js'
+  test: 'bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
 dependencies: {}
 devDependencies:
   LiveScript: '1.1.x'
@@ -29,3 +29,7 @@ devDependencies:
   'clean-css-brunch': '1.5.x'
   'jade-angularjs-brunch': '0.0.5'
   'jsenv-brunch': '1.4.2'
+  'karma': '~0.10.5'
+  'karma-live-preprocessor': '~0.2.0'
+  'karma-mocha': '~0.1.0'
+  'karma-chai': '~0.0.2'

@@ -3,8 +3,8 @@
   module.exports = function(karma){
     return karma.set({
       basePath: "../",
-      frameworks: ["jasmine"],
-      files: ["bower_components/jquery/jquery.js", "bower_components/angular/angular.js", "_public/js/vendor.js", "_public/js/templates.js", "_public/js/partials.js", "_public/js/app.js", "bower_components/angular-mocks/angular-mocks.js", "test/unit/**/*.spec.*"],
+      frameworks: ["mocha", "chai"],
+      files: ["bower_components/jquery/jquery.js", "bower_components/angular/angular.js", "bower_components/angular-ui-router/release/angular-ui-router.js", "_public/js/vendor.js", "_public/js/templates.js", "_public/js/app.js", "bower_components/angular-mocks/angular-mocks.js", "test/unit/**/*.spec.*"],
       exclude: [],
       reporters: ["progress"],
       port: 9876,
