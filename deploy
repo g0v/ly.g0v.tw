@@ -12,6 +12,8 @@ git clone -s . -b gh-pages _public
 ./node_modules/.bin/brunch b --config brunch-templates.ls
 REV=`git describe --always`
 BUILD=git-$REV ./node_modules/.bin/brunch b -o
+# build twice, for static.html to propogate for now
+BUILD=git-$REV ./node_modules/.bin/brunch b -o
 cd _public
 git add -A .
 git commit-tree -m "regen for $REV" -p `git rev-parse HEAD` -p $REV `git write-tree` | xargs git reset --hard
