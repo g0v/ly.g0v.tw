@@ -56,8 +56,11 @@ after you install go to the folder `contrib/ly_ios` in this repo and enter the f
 ```
 # install emulators on ios
 npm install -g ios-sim                                      
+
+# add ios platform on cordova
 cordova platform add ios
 
+# launching !!
 cordova emulate ios
 ```
 
