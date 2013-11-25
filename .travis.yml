@@ -4,7 +4,7 @@ node_js:
   - 0.10
 
 before_install:
-  - sudo apt-get install rubygems
+  - sudo apt-get install ruby1.9.1
   - sudo gem install sass compass
 
 env:
