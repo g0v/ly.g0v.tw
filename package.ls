@@ -12,8 +12,9 @@ engines:
   npm: '1.1.x'
 scripts:
   prepublish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
-  start: './node_modules/.bin/brunch b --config brunch-templates.ls && ./node_modules/.bin/brunch watch --server'
-  test: 'bower i && brunch build && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
+  build: 'brunch b --config brunch-templates.ls && brunch b'
+  start: 'brunch b --config brunch-templates.ls && brunch watch --server'
+  test: 'npm build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
 dependencies: {}
 devDependencies:
   LiveScript: '1.1.x'
