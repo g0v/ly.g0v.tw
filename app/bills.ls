@@ -34,7 +34,7 @@ line-based-diff = (text1, text2) ->
           last_left = difflines.length - 1
         if is-right target
           last_right = difflines.length - 1
-        if !text1.match text
+        if text1 .indexOf(line) is -1
           last_left += 1
           
   for line in difflines
