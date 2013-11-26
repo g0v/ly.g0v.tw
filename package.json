@@ -16,7 +16,7 @@
     "prepublish": "lsc -cj package.ls && lsc -cj bower.json.ls",
     "build": "brunch b --config brunch-templates.ls && brunch b",
     "start": "brunch b --config brunch-templates.ls && brunch watch --server",
-    "test": "npm build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js"
+    "test": "npm run build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js"
   },
   "dependencies": {},
   "devDependencies": {
