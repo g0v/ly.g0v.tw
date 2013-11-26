@@ -9,9 +9,15 @@ before_install:
   - gem install sass compass
   - sass --version
 
+branches:
+  except:
+    - gh-pages
+
 env:
   global:
-    secure: ! 'Cm2T3ZMpU3GjeAYguwZNMMj9DGCDjZsjiVYuXQ1PgznFG/PpGKcWNaNTt4b9
+    - REPO="git@github.com:g0v/ly.g0v.tw.git"
+
+    - secure: ! 'Cm2T3ZMpU3GjeAYguwZNMMj9DGCDjZsjiVYuXQ1PgznFG/PpGKcWNaNTt4b9
 
       pBMRVP7uNtEXfQNcw8TjvG6/HFzuLG4KJeqZUacbbYCRugbny1bDd9iT4OLC
 
