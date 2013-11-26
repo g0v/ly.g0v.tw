@@ -34,4 +34,5 @@ devDependencies:
   'karma-live-preprocessor': '~0.2.0'
   'karma-mocha': '~0.1.0'
   'karma-chai': '~0.0.2'
+  'karma-coverage': '~0.1.2'
   'bower': '1.2.x'

@@ -11,6 +11,7 @@ app/assets/*html
 _public
 node_modules/*
 bower_components/*
+coverage/*
 npm-debug.log
 
 *.swp
