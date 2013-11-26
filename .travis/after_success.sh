@@ -4,8 +4,8 @@
 git remote set-url origin $REPO.git
 git config --global user.email "g0v-ly@googlegroups.com"
 git config --global user.name "g0v ly (via TravisCI)"
-
-$ cat >> ~/.ssh/config <<EOF
+mkdir ~/.ssh
+cat >> ~/.ssh/config <<EOF
 Host *
 IdentityFile           ~/.ssh/id_rsa
 StrictHostKeyChecking  no
