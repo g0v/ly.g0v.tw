@@ -15,7 +15,7 @@ branches:
 
 env:
   global:
-    - REPO="git@github.com:g0v/ly.g0v.tw.git"
+    - REPO="git@github.com:g0v/ly.g0v.tw"
 
     - secure: ! 'Cm2T3ZMpU3GjeAYguwZNMMj9DGCDjZsjiVYuXQ1PgznFG/PpGKcWNaNTt4b9
 
