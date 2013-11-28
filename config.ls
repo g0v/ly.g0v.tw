@@ -53,5 +53,6 @@ exports.config =
       extension: '.static.jade'
       path: [ /^app/ ]
     jade_angular:
-      modules_folder: \partials
+      modules_folder: \templates
+      single_file_name: \app.templates.js
       locals: {}

@@ -1,25 +1,25 @@
 # Declare app level module which depends on filters, and services
 
-angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services partials ui.state utils monospaced.qrcode]>
+angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services app.templates ui.state utils monospaced.qrcode]>
 
 .config <[$stateProvider $urlRouterProvider $locationProvider]> ++ ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
     .state 'motions' do
       url: '/motions'
-      templateUrl: '/partials/motions.html'
+      templateUrl: 'app/partials/motions.jade'
       controller: \LYMotions
     .state 'motions.sitting' do
       url: '/{session}/{sitting}'
 
     .state 'bills' do
       url: '/bills/{billId}'
-      templateUrl: '/partials/bills.html'
+      templateUrl: 'app/partials/bills.jade'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBills
 
     .state 'calendar' do
       url: '/calendar'
-      templateUrl: '/partials/calendar.html'
+      templateUrl: 'app/partials/calendar.jade'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYCalendar
     .state 'calendar.period' do
@@ -27,7 +27,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
 
     .state 'sittings' do
       url: '/sittings'
-      templateUrl: '/partials/sittings.html'
+      templateUrl: 'app/partials/sittings.jade'
       controller: \LYSittings
       resolve: _init: <[LYService]> ++ (.init!)
     .state 'sittings.detail' do
@@ -37,24 +37,24 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
 
     .state 'debates' do
       url: '/debates'
-      templateUrl: '/partials/debates.html'
+      templateUrl: 'app/partials/debates.jade'
       resolve: _init: <[LYService]> ++ (.init!)
 
     .state 'sitting' do
       url: '/sitting'
-      templateUrl: '/partials/sitting.html'
+      templateUrl: 'app/partials/sitting.jade'
       controller: \LYSitting
 
     .state 'search' do
       url: '/search'
-      templateUrl: '/partials/search.html'
+      templateUrl: 'app/partials/search.jade'
       controller: \LYSearch
     .state 'search.target' do
       url: '/{keyword}'
 
     .state 'about' do
       url: '/about'
-      templateUrl: '/partials/about.html'
+      templateUrl: 'app/partials/about.jade'
       controller: \About
     # Catch all
   $urlRouterProvider

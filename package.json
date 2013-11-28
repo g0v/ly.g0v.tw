@@ -31,7 +31,7 @@
     "auto-reload-brunch": "1.6.x",
     "uglify-js-brunch": "1.5.x",
     "clean-css-brunch": "1.6.x",
-    "jade-angularjs-brunch": "0.0.5",
+    "jade-angularjs-brunch": "1.1.1",
     "jsenv-brunch": "1.4.2",
     "karma": "~0.10.5",
     "karma-live-preprocessor": "~0.2.0",
