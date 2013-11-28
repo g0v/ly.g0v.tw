@@ -1,4 +1,4 @@
-describe 'my app' (,) ->
+describe 'ly.g0v.tw' (,) ->
 
   beforeEach !->
     browser!navigateTo '/'
@@ -7,10 +7,10 @@ describe 'my app' (,) ->
     expect browser!location!url! .toBe "/calendar/today"
 
 
-  describe 'view1' (,) !->
+  describe 'calendar/today' (,) !->
 
     beforeEach !->
       browser!navigateTo '#/calendar/today'
 
-    it 'should render view1 when user navigates to /view1' ->
+    it 'should render calendar when user navigates to /calendar/today' ->
       expect element('[ui-view] .time:first').text! .toMatch /立法院行程/
