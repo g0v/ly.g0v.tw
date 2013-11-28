@@ -44,9 +44,9 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
-$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$sansFontFamily:        "Biaodian Pro Sans CNS", "Helvetica Neue", Helvetica, Arial, "Han Heiti CNS", sans-serif !default;
+$serifFontFamily:       "Biaodian Pro Serif CNS", Georgia, "Times New Roman", Times, "Han Songti CNS", serif !default;
+$monoFontFamily:        "Biaodian Pro Sans CNS", Monaco, Menlo, Consolas, "Courier New", "Han Heiti CNS", monospace, sans-serif !default;
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
