@@ -6,8 +6,7 @@
 @import "compass/css3/border-radius"
 @import "compass/css3/box-sizing"
 
-@mixin prefer-songti
-  font-family: "Songti TC", "Biaodian Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif
+
 
 @media print
   .hide-print
@@ -36,10 +35,10 @@
     padding: 1rem 0
     margin: 1em 0 0 0
     font-size: 1.7rem
-    +prefer-songti
+    +ly-songti-display
 
   .summary
-    +prefer-songti
+    +ly-songti
 
   .ui.label.light.gray
     background-color: #eee
@@ -257,7 +256,10 @@
   .content.default
     margin: 3rem 0
     line-height: 1.5rem
-    +prefer-songti
+
+    .diff .diff.text,
+    [ng-show="diffs.comment"]
+      +ly-songti
 
   p.sample
     text-align: center
@@ -282,22 +284,20 @@
   .diff.text
     color: #333
     margin-right: 0.5rem
-  .replace.left
-    .diff.text em
-      background-color: #f99
-      +vendor-prefix(text-emphasis, dot)
-  .delete.left
-    .diff.text em
-      background-color: #f99
-      +vendor-prefix(text-emphasis, dot)
-  .replace.right
-    .diff.text em
-      background-color: #A1CF88
-      +vendor-prefix(text-emphasis, dot)
+  .replace.left,
+  .delete.left,
+  .replace.right,
   .insert.right
     .diff.text em
-      background-color: #A1CF88
-      +vendor-prefix(text-emphasis, dot)
+      +em-reset
+      background-color: lighten(#f99, 7%)
+      color: #000
+
+  .replace.right,
+  .insert.right
+    .diff.text em
+      background-color: lighten(#A1CF88, 10%)
+
   .column.left
     margin: 5px 0
   .column.right
