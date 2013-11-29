@@ -5,9 +5,10 @@ main: "_public/js/app.js"
 ignore: ["**/.*", "node_modules", "components"]
 dependencies:
   jquery: "~2.0.3"
-  angular: "1.2.2"
-  "angular-mocks": "1.2.2"
+  angular: "1.2.3"
+  "angular-mocks": "1.2.3"
   "angular-ui-router": "0.2.0"
+  "angular-scenario": "1.2.3"
 
 overrides:
   "angular-mocks":
