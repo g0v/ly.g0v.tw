@@ -11,8 +11,19 @@
 @media print
   .hide-print
     display: none !important
+
   #qrlink
     display: block !important
+
+  .bill
+    .replace.left,
+    .delete.left,
+    .replace.right,
+    .insert.right
+      .diff.text em
+        border-bottom: 3px double lightgrey !important
+        padding-bottom: .125em !important
+
 
 .history
   path.link, .node rect
