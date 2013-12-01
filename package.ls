@@ -15,6 +15,7 @@ scripts:
   build: 'brunch b --config brunch-templates.ls && brunch b'
   start: 'brunch b --config brunch-templates.ls && brunch watch --server'
   test: 'npm run build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
+  utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
 dependencies: {}
 devDependencies:
   LiveScript: '1.1.x'
@@ -36,3 +37,5 @@ devDependencies:
   'karma-chai': '~0.0.2'
   'karma-ng-scenario': '0.1.0'
   'bower': '1.2.x'
+  'mocha': '~1.14.0'
+  'chai': '~1.8.0'
