@@ -3,39 +3,39 @@
 
   .bill-progress(ng-if="bill_ref")
     .common.ui.seven.steps
-      span.stage(ng-repeat="step in steps")
-        a.ui.step(ng-click="showSub($index)",ng-class="step.status.step")
+      span.stage(bindonce, ng-repeat="step in steps")
+        a.ui.step(ng-click="showSub($index)",bo-class="step.status.step")
           .step-description {{step.description}}
           .date {{step.date}}
           //-.ui.pointing.below.label(ng-class="step.status.step") {{step.date}}
-        .ui.state(ng-class="step.status.state"): i.icon(ng-class="step.status.icon")
+        .ui.state(bo-class="step.status.state"): i.icon(bo-class="step.status.icon")
 
-    .ui.small.steps(ng-repeat="step in steps")
-      span.stage(ng-show="step.sub",ng-repeat="substep in step.detail")
-        .ui.step(ng-class="substep.status.step")
+    .ui.small.steps(bindonce, ng-repeat="step in steps")
+      span.stage(bo-show="step.sub", bindonce, ng-repeat="substep in step.detail")
+        .ui.step(bo-class="substep.status.step")
           .substep-description {{substep.description}}
-            i.icon.archive(ng-show="substep.links") p.
-            span(ng-repeat="l in substep.links")
-              a(target="_blank",ng-href="{{l.link}}") {{l.text}}
+            i.icon.archive(bo-show="substep.links") p.
+            span(bindonce, ng-repeat="l in substep.links")
+              a(target="_blank",bo-href-i="{{l.link}}") {{l.text}}
           .date {{substep.date}}
           //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
-        .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
+        .ui.state(bo-class="substep.status.state"): i.icon(bo-class="substep.status.icon")
 
   .ui.list.ttsmotions(ng-if="ttsmotions")
     .item
       i.icon.exclamation
       | 這應該要整合到上面的列表，但是還沒做好
-    .item(ng-repeat="ttsmotion in ttsmotions")
+    .item(bindonce, ng-repeat="ttsmotion in ttsmotions")
         .content
             a.header
-              span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
-              span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
+              span.date(bo-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
+              span.sitting(bo-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
               | {{ttsmotion.progress || ttsmotion.summary}}
             .description
               | {{ ttsmotion.resolution }}
-              i.icon.archive(ng-show="ttsmotion.links") p.
-              span(ng-repeat="l in ttsmotion.links")
-                a(target="_blank",ng-href="{{l.link}}") {{l.text}}
+              i.icon.archive(bo-show="ttsmotion.links") p.
+              span(bindonce, ng-repeat="l in ttsmotion.links")
+                a(target="_blank",bo-href-i="{{l.link}}") {{l.text}}
   .summary
     .links.ui.vertical.menu.right.floated
       .item(ng-show="bill_ref")
@@ -67,75 +67,75 @@
   .role
     .committee(ng-show="committee")
       ul
-          li(ng-repeat="c in committee")
+          li(bindonce, ng-repeat="c in committee")
               span
-                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+                  img.avatar.medium(bo-src-i="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",bo-alt="c.name",bo-class="c.abbr")
                   span.name {{c.name}}委員會
     .clearfix
     h2.ui.horizontal.divider 提案人
     .sponsors(ng-show="sponsors")
-      .item(ng-repeat="e in sponsors")
+      .item(bindonce, ng-repeat="e in sponsors")
         .image.ui.rounded.corner.hide-print
-         img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
+         img.avatar(bo-src-i="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",bo-alt="e.name",bo-class="e.party")
         .content
           .name {{e.name}}
         span.infocard
           b
-          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+          a.fact.text(bo-href-i="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+          a.wiki.text(bo-href-i="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
     .clearfix
     h2.ui.horizontal.divider 連署人
     .cosponsors(ng-show="cosponsors")
-      .item(ng-repeat="e in cosponsors")
+      .item(bindonce, ng-repeat="e in cosponsors")
         .image.ui.rounded.corner.hide-print
-          img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
+          img.avatar(bo-src-i="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",bo-alt="e.name",bo-class="e.party")
         .content
           .name {{e.name}}
         span.infocard
           b
-          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+          a.fact.text(bo-href-i="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+          a.wiki.text(bo-href-i="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
 
   .clearfix
   .history
   .clearfix
   .related(ng-show="related")
       ul
-          li(ng-repeat="r in related")
+          li(bindonce, ng-repeat="r in related")
               span
-                  img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
+                  img.avatar(bo-show="r.avatar",bo-src-i="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",bo-alt="r.name",bo-class="r.party")
                   span.summary {{r.summary}}
 
   .clearfix
-  .content.default(ng-repeat="(i, d) in diff")
-    a(name="{{d.name}}")
+  .content.default(bindonce, ng-repeat="(i, d) in diff")
+    a(bo-id="d.name")
     h2.ui.horizontal.divider {{d.name}}
 
     p.sample
-      span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
-      span(ng-hide="!d.diffbase") vs
-      span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-    .diff(ng-repeat="diffs in d.diffcontent")
-      .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
-        .column(class="left {{diffline.state}}", ng-hide="!d.diffbase")
+      span.delete(bo-hide="!d.diffbase") {{d.diffbase}}
+      span(bo-hide="!d.diffbase") vs
+      span.version(bindonce, ng-repeat="v in d.versions",bo-class="{insert: v == d.diffnew}", bo-text="v", ng-click="setDiff(d, v)")
+    .diff(bindonce, ng-repeat="diffs in d.diffcontent")
+      .column.stackable.ui.grid(bindonce, ng-repeat="diffline in diffs.difflines", bo-class="{two:d.diffbase, one:!d.diffbase}", bo-hide="diffline.left == '' && diffline.right == ''")
+        .column.left(bo-class="diffline.state", bo-hide="!d.diffbase")
           .ui.segment.article-text
-            a(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
+            a(id="original-{{diffs.leftItemAnchor}}",bo-href-i="#original-{{diffs.leftItemAnchor}}",bo-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
               .ui.ribbon.label {{diffs.leftItem}}
-            .ui.right.corner.label(ng-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
+            .ui.right.corner.label(bo-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.left")
-        .column.right(class="right {{diffline.state}}")
-          .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
-            .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
+        .column.right(bo-class="diffline.state")
+          .ui.segment.article-text(bo-class="{'mobile-hide': !diffline.right}")
+            a.ui.ribbon.label(href="",target="blank",bo-show="$index == 0") {{diffs.rightItem}}
+            .ui.right.corner.label(bo-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
-      .ui.segment.green(ng-bind-html="diffs.comment", ng-show="diffs.comment")
+      .ui.segment.green(ng-bind-html="diffs.comment", bo-show="diffs.comment")
       .ui.horizontal.divider
 
   .content.navigation.mobile-hide(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu
-        .item-section(ng-repeat="(i, d) in diff track by $index")
-          a.item(href="#"+"{{d.name}}") {{d.name}}
-          .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+        .item-section(bindonce, ng-repeat="(i, d) in diff track by $index")
+          a.item(bo-href-i="#"+"{{d.name}}") {{d.name}}
+          .law-unit-wrap(bindonce, ng-repeat="diffs in d.diffcontent")
+            .law-unit(bo-show="diffs.leftItemAnchor"): a.item(bo-href-i="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 
