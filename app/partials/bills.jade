@@ -11,7 +11,7 @@
         .ui.state(bo-class="step.status.state"): i.icon(bo-class="step.status.icon")
 
     .ui.small.steps(bindonce, ng-repeat="step in steps")
-      span.stage(bo-show="step.sub", bindonce, ng-repeat="substep in step.detail")
+      span.stage(ng-show="step.sub", bindonce, ng-repeat="substep in step.detail")
         .ui.step(bo-class="substep.status.step")
           .substep-description {{substep.description}}
             i.icon.archive(bo-show="substep.links") p.
