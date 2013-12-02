@@ -61,3 +61,7 @@
 // Utility classes
 @import "vendor/styles/bootstrap/utilities"; // Has to be last to override when necessary
 
+.visible-large-display { display: none !important ; }
+@media (min-width: 1200px) {
+  .visible-large-display { display: inherit !important ; }
+}

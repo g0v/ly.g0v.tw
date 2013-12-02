@@ -9,7 +9,7 @@ ul.nav
 ul.nav.pull-right
   li
     form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
-      .ui.icon.input
+      .ui.icon.input.mini
         input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword", auto-complete)
         i.search.icon
       .results

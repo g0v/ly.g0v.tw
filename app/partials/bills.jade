@@ -131,7 +131,7 @@
       .ui.segment.green(ng-bind-html="diffs.comment", ng-show="diffs.comment")
       .ui.horizontal.divider
 
-  .content.navigation.mobile-hide(ng-show="showSidebar")
+  .content.navigation.visible-desktop(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu
         .item-section(ng-repeat="(i, d) in diff track by $index")
