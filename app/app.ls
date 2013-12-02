@@ -1,6 +1,6 @@
 # Declare app level module which depends on filters, and services
 
-angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services app.templates ui.state utils monospaced.qrcode]>
+angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.directives app.filters app.services app.templates ui.state utils monospaced.qrcode pasvaz.bindonce]>
 
 .config <[$stateProvider $urlRouterProvider $locationProvider]> ++ ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
