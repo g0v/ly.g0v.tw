@@ -11,6 +11,12 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
     .state 'motions.sitting' do
       url: '/{session}/{sitting}'
 
+    .state 'sittings-new' do
+      url: '/sittings-new'
+      templateUrl: 'app/partials/sittings-new.jade'
+      resolve: _init: <[LYService]> ++ (.init!)
+      controller: \LYSittingsNew
+
     .state 'bills' do
       url: '/bills/{billId}'
       templateUrl: 'app/partials/bills.jade'

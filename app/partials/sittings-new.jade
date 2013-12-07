@@ -1,0 +1,278 @@
+.ly-bill
+
+  .filter
+    .default.level.two.menu
+      .ui.menu
+        a.item 本日
+          .ui.label.light.gray 2013 11/1
+        a.item.active 本會期
+          .ui.label.light.gray 2013 10/10 - 11/11
+        .ui.simple.dropdown.item 其他會期
+          i.dropdown.icon
+          .menu
+            a.item 所有會期
+            a.item 8 屆 4 會期
+              .ui.label.light.gray 2013 8/8 - 9/9
+        a.item.advanced(ng-click="adv_mode = !adv_mode") 更多選項
+        .ui.simple.dropdown.item.right 依　狀態
+          i.dropdown.icon
+          .menu
+            .item.active 狀態
+            .item 最近更新
+            .item 最多人瀏覽
+            .item 進展速度
+            .item 相關主題被重視度
+    .filter.advanced(ng-show="adv_mode")
+      //-.ui.menu.date
+        .ui.pagination.menu
+          .icon.item
+            i.icon.left.arrow
+          .item 10/10
+          .item 10/11
+          .item 10/12
+          .today.item.selected 10/13
+            .ui.label.right.corner 今
+          .item.selected 10/14
+          .item.holiday.disabled 10/15
+          .item.holiday.disabled 10/16
+          .item 10/17
+          .item 10/18
+          .icon.item
+            i.icon.right.arrow
+      .committee
+        .ui.grid.stackable
+          .row
+            .eight.wide.column
+              .ui.grid.stackable
+                .row
+                  .six.wide.column
+                    .category.ui.button 院會　
+                    .three.column.ui.grid
+                      .column
+                        .category.ui.button.disabled 程序
+                      .column
+                        .category.ui.button.disabled 紀律
+                      .column
+                        .category.ui.button.disabled 修憲
+                  .ten.wide.column
+                    .ui.four.column.grid
+                      .column
+                        .category.ui.button.active 經濟
+                        .category.ui.button.disabled 財政
+                      .column
+                        .category.ui.button.disabled 內政
+                        .category.ui.button.active 外交國防
+                      .column
+                        .category.ui.button 社福衛環
+                        .category.ui.button.disabled 教育文化
+                      .column
+                        .category.ui.button.disabled 司法法制
+                        .category.ui.button.disabled 交通
+            .eight.wide.column
+              .nav
+                .ui.tiered.menu
+                  .ui.secondary.pointing.menu
+                    a.active.item 全部
+                    a.item 決議
+                    a.item 質詢
+                    a.item 公聽
+                    a.item 國是
+                    a.item 查照
+                  .ui.sub.menu
+                    a.active.item 全部
+                    a.item 法律
+                    a.item 預算
+                    a.item 程序
+                    a.item 人事
+                    a.item 其他
+
+
+.bill.list
+
+  .ui.horizontal.divider 處理中
+  .two.column.ui.stackable.grid
+    .column
+      .bill.ui.segment.orange
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label 本次會議正在進行：10.10、10.14
+        .summary
+          p 本院委員劉建國等16人擬具「民用航空法第九十三條之一條文修正草案」，請審議案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span ＯＯ委員會　提案
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　連署
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+    .column
+      .bill.ui.segment.orange
+        .ui.left.corner.label.orange 臨時
+        .ui.top.right.attached.label.orange 今天
+        .summary
+          p 22日下午1時50分至2時30分為處理臨時提案時間
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會　主席
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　委員
+    .column
+      .bill.ui.segment.orange
+        .ui.left.corner.label.orange 公聽
+        .ui.top.right.attached.label.orange 今天
+        .summary
+          p ...
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會　主席
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　講者
+  .ui.horizontal.divider 已排程
+  .two.column.ui.stackable.grid
+    .column
+      .bill.ui.segment
+        .ui.left.corner.label 國是
+        .ui.top.right.attached.label.black
+          | 即將舉行，還剩 1 天
+        .summary
+          p 25日上午9時至10時為國是論壇時間
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會　主席
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　委員
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+    .column
+      .bill.ui.segment
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label.black
+          | 即將一讀，還剩 3 天
+          i.icon.attention
+        .summary
+          p 本院台灣團結聯盟黨團擬具「立法院職權行使法部分條文修正草案」，請審議案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會　提案
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　連署
+  .ui.horizontal.divider 待排程
+  .two.column.ui.stackable.grid
+    .column
+      .bill.ui.segment.secondary
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label.green 一讀通過，2 天前
+        .summary
+          p 本院委員劉建國等16人擬具「民用航空法第九十三條之一條文修正草案」，請審議案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span ＯＯ委員會　提案
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　連署
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+    .column
+      .bill.ui.segment.secondary
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label.gray 被復議，4 天前
+        .summary
+          p 本院委員李應元等17人擬具「大學法第十四條條文修正草案」，請審議案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span ＯＯ委員會　提案
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　連署
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+  .ui.horizontal.divider 已結束
+  .two.column.ui.stackable.grid
+    .column
+      .bill.ui.segment.tertiary
+        .ui.left.corner.label 質詢
+        .ui.top.right.attached.label.blue 已質詢，1 天前
+        .summary
+          p 類別：邊政事務、醫改
+          p 主題：原住民族建設、醫療資源
+          p 關鍵詞：環境權、開發行為環境影響說明、南迴醫院
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會　質詢：廖國棟
+            span 　答覆：陳沖、沈世宏、邱文達
+    .column
+      .bill.ui.segment.tertiary
+        .ui.left.corner.label 預算
+        .ui.top.right.attached.label.blue 已查照，5 天前
+        .summary
+          p 行政院函，為該院衛生署為因應H7N9流感疫情，相關防疫工作所需經費不敷5億4,809萬8千元，動支102年度中央政府總預算第二預備金支應，檢送第二預備金動支數額機關別表，請查照案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span 院會
+    .column
+      .bill.ui.segment.tertiary
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label.green 已生效，8 天前
+        .summary
+          p 本院委員李應元等17人擬具「大學法第十四條條文修正草案」，請審議案。
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span ＯＯ委員會　提案
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            span 　連署
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+            img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/9a8b851e007eea8f0fd81eaaa2f77a4e?size=medium")
+
