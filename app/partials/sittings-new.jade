@@ -90,6 +90,22 @@
 .bill.list
 
   .ui.horizontal.divider 處理中
+  .two.column.ui.stackable.grid(ng-repeat="motion in motions")
+    .column
+      .bill.ui.segment.orange
+        .ui.left.corner.label 修法
+        .ui.top.right.attached.label 本次會議正在進行：10.10、10.14
+        .summary
+          p {{motion.summary}}
+        .ui.bottom.attached.label
+          .legislator.image.ui.rounded.corner
+            span {{motion.committees}}　提案
+            span(ng-repeat="avatar in motion.sponsor_avatars")
+              img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/{{avatar}}?size=small")
+            span 　連署
+            span(ng-repeat="avatar in motion.cosponsor_avatars")
+              img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/{{avatar}}?size=small")
+
   .two.column.ui.stackable.grid
     .column
       .bill.ui.segment.orange

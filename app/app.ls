@@ -12,7 +12,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       url: '/{session}/{sitting}'
 
     .state 'sittings-new' do
-      url: '/sittings-new'
+      url: '/sittings-new/{sittingId}'
       templateUrl: 'app/partials/sittings-new.jade'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYSittingsNew
