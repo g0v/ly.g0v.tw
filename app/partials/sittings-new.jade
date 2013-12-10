@@ -1,5 +1,6 @@
 .ly-bill
 
+  // TODO implement the filter
   .filter
     .default.level.two.menu
       .ui.menu
@@ -90,11 +91,14 @@
 .bill.list
 
   .ui.horizontal.divider 處理中
-  .two.column.ui.stackable.grid(ng-repeat="motion in motions")
-    .column
+  .two.column.ui.stackable.grid
+    // Some motions are not yet implemented and marked as hidden.
+    // TODO: Implement them.
+    .column(ng-repeat="motion in motions | filter:{show: true}")
       .bill.ui.segment.orange
-        .ui.left.corner.label 修法
-        .ui.top.right.attached.label 本次會議正在進行：10.10、10.14
+        .ui.left.corner.label {{motion.category}}
+        .ui.top.right.attached.label 本次會議正在進行：
+          <span ng-repeat="date in motion.dates">{{date}}{{$last ? '' : ', '}}</span>
         .summary
           p {{motion.summary}}
         .ui.bottom.attached.label
@@ -106,6 +110,8 @@
             span(ng-repeat="avatar in motion.cosponsor_avatars")
               img.small_avatar.DPP(src="http://avatars.io/50a65bb26e293122b0000073/{{avatar}}?size=small")
 
+  // Reference mock from http://g0v.github.io/semantic-ui-experiment/ly-bill.html
+  // Remove this when everything is implemented.
   .two.column.ui.stackable.grid
     .column
       .bill.ui.segment.orange
