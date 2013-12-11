@@ -55,6 +55,7 @@ angular.module 'app.controllers.sittings-new' []
 
         $scope.motions[motion_map[bill_id]] <<< {
           category: '修法',
+          bill_id: bill_id,
           date: date_display,
           sponsors: sponsors || [],
           cosponsors: cosponsors || [],
