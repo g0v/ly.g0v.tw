@@ -5,7 +5,7 @@
       url('../fonts/g0v-ly.woff') format('woff'),
       url('../fonts/g0v-ly.ttf') format('truetype');
 }
-i.g0v-icon{font-style:normal;font-family:g0v-ly;vertical-align:baseline}
+i.g0v-icon{font-style:normal;font-family:g0v-ly!important;vertical-align:baseline}
 i.g0v-icon:after{display:inline;content: " ";}
 i.g0v-icon.large {font-size: 3em; vertical-align: middle}
 i.g0v-icon.KMT:after { content: "\f001"; color: #0D2393; }
