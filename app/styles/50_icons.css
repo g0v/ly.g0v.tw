@@ -5,7 +5,13 @@
       url('../fonts/g0v-ly.woff') format('woff'),
       url('../fonts/g0v-ly.ttf') format('truetype');
 }
-i.g0v-icon{font-style:normal;font-family:g0v-ly!important;vertical-align:baseline}
+i.g0v-icon{
+  font-style: normal;
+  /* I'd prefer have my own style when using as icons */
+  font-family: g0v-ly!important;
+  border-bottom: none!important;
+  vertical-align: baseline;
+}
 i.g0v-icon:after{display:inline;content: " ";}
 i.g0v-icon.large {font-size: 3em; vertical-align: middle}
 i.g0v-icon.KMT:after { content: "\f001"; color: #0D2393; }
@@ -44,4 +50,6 @@ i.g0v-icon.YS:after { content: "\f012" }
 i.icon {
   /* no one can claim icon from me! no one! */
   font-family: 'Icons'!important; 
+  /* no one could ever add border-bottom for me! even the han.js! */
+  border-bottom: none!important;
 }
