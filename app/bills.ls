@@ -160,7 +160,7 @@ function build-steps(motions)
   steps
 
 angular.module 'app.controllers.bills' []
-.controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll) ->
+.controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
     $scope.diffstate = (left_right, state) ->
       | left_right is 'left' and state isnt 'equal' => 'red'
@@ -266,9 +266,11 @@ angular.module 'app.controllers.bills' []
         sponsors: bill.sponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
+            twlylink: TWLYService.getLink it
         cosponsors: bill.cosponsors?map ->
             party = LYService.resolveParty it
             party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
+            twlylink: TWLYService.getLink it
         setDiff: (diff, version) ->
             [idx] = [i for n, i in diff.header when n is version]
             base-index = diff.base-index
