@@ -40,3 +40,8 @@ i.g0v-icon.YS:after { content: "\f012" }
   margin-bottom: 3px;
   display: block;
 }
+
+i.icon {
+  /* no one can claim icon from me! no one! */
+  font-family: 'Icons'!important; 
+}
