@@ -34,6 +34,10 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
               js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
               fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
+    |<% if (mode == 'bot') { %>
+    h1 國會大代誌
+    |<% } else { %>
+    |<!-- render navbar for normal mode -->
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container.hide-print
@@ -47,6 +51,8 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
               .brand.g0v: img(src="/img/g0v-icon-invert.png")
             a.brand(href='/') 國會大代誌
             .nav-collapse.collapse(ng-include="'app/partials/nav.jade'")
+    |<!-- end of render navbar for normal mode -->
+    |<% } %>
     .container
       div(ui-view)
   - if (typeof(googleAnalytics) !== 'undefined')

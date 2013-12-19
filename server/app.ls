@@ -10,7 +10,8 @@ lyserver = (app) ->
 
   fbHandler = (res) ->
     console.log 'Facebook Crawler User Agent'
-    fs.createReadStream '_public/index.html' .pipe res
+    res.render 'index.html', do
+      mode: 'bot'
 
   handlerMap = do
     fb: fbHandler
@@ -28,6 +29,8 @@ lyserver = (app) ->
       if req.headers['user-agent'].match re
         return handlerMap[k]
 
+  app.engine '.html', require('ejs').__express
+  app.set 'views', '_public'
 
   app.use express.static \_public
 
