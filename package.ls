@@ -32,6 +32,7 @@ devDependencies:
   'jade-angularjs-brunch': '1.1.1'
   'jsenv-brunch': '1.4.2'
   "express": '3.4.x'
+  "ejs": 'latest'
   'karma': '~0.10.5'
   'karma-live-preprocessor': '~0.2.0'
   'karma-mocha': '~0.1.0'
