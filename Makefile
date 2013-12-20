@@ -1,4 +1,4 @@
-JS_FILES=server/app.js
+JS_FILES=server/app.js server/opengraph.js
 
 .ls.js:
 	env PATH="$$PATH:./node_modules/LiveScript/bin" livescript -c  $<

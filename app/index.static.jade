@@ -6,6 +6,14 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     meta(name='viewport', content='width=device-width')
     meta(name='description', content='')
     meta(name='author', content='')
+
+    |<% if (mode == 'bot') { %>
+    |<meta property='og:title',content='<%= meta.title %>' >
+    |<meta property='og:url',content='<%= meta.url %>' >
+    |<meta property='og:image',content='<%= meta.img %>' >
+    |<meta property='og:description',content='<%= meta.description %>' >
+    |<% } %>
+
     title(ng-bind-template='{{$state.current.title}}')
     link(rel='stylesheet', href='/css/app.css')
     link(rel="shotcut icon",href="/img/favicon.ico")

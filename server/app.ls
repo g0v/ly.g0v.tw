@@ -1,17 +1,20 @@
 express = require \express
 fs = require \fs
+opengraph = require \./opengraph
 
 lyserver = (app) ->
   port = 3333
 
-  defHandler = (res) ->
+  defHandler = (req, res) ->
     console.log 'Default handler'
     fs.createReadStream '_public/index.html' .pipe res
 
-  fbHandler = (res) ->
+  fbHandler = (req, res) ->
     console.log 'Facebook Crawler User Agent'
+    result <- opengraph.getMeta req
     res.render 'index.html', do
       mode: 'bot'
+      meta: result
 
   handlerMap = do
     fb: fbHandler
@@ -40,7 +43,7 @@ lyserver = (app) ->
 
   app.use (req, res) ->
     handler = getReqHandler req
-    handler res
+    handler req, res
 
   app.listen port, ->
     console.log "Running on port #port"
