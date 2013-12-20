@@ -32,7 +32,11 @@ lyserver = (app) ->
   app.engine '.html', require('ejs').__express
   app.set 'views', '_public'
 
-  app.use express.static \_public
+  app.use '/js', express.static \_public/js
+  app.use '/css', express.static \_public/css
+  app.use '/data', express.static \_public/data
+  app.use '/fonts', express.static \_public/fonts
+  app.use '/img', express.static \_public/img
 
   app.use (req, res) ->
     handler = getReqHandler req
