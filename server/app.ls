@@ -10,7 +10,7 @@ lyserver = (app) ->
     fs.createReadStream '_public/index.html' .pipe res
 
   fbHandler = (req, res) ->
-    console.log 'Facebook Crawler User Agent'
+    console.log 'Facebook Open Graph Crawler User Agent'
     result <- opengraph.getMeta req
     res.render 'index.html', do
       mode: 'bot'
@@ -18,10 +18,10 @@ lyserver = (app) ->
 
   handlerMap = do
     fb: fbHandler
-    def: fbHandler #XXX: use fbHandler since we are still developing
+    def: defHandler
 
   patternMap = do
-    fb: /.*facebookexternalhitv.*/
+    fb: /.*https:\/\/www.facebook.com/externalhit_uatext.php.*/
     def: /.*/
 
 
