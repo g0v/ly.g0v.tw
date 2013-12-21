@@ -1,26 +1,14 @@
 OpenGraph = ->
-  http = require \http
+  request = require \request
   getApi = (path, cb) ->
-    opts = do
-      hostname: \api.ly.g0v.tw
-      method: \GET
-      path: '/v0/collections' + path
-
-    console.log JSON.stringify opts
-
-    req = http.request opts, (res) ->
-      res.on \data, (chunk) ->
-        try
-          if res.statusCode is 200
-            cb JSON.parse chunk.toString!
-          else
-            cb {}
-        catch e
-          cb {}
-    req.on \error, (e) ->
-      console.log "Request error: #path"
-      cb {}, result
-    req.end!
+    err, resp, body <- request.get 'http://api.ly.g0v.tw/v0/collections' + path
+    try
+      if resp.statusCode is 200
+        cb JSON.parse body
+      else if err
+        cb {}, result
+    catch e
+      cb {}
 
   handlers = []
 
