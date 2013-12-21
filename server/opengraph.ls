@@ -47,6 +47,15 @@ OpenGraph = ->
       result <<< description: desc if desc
       cb result
 
+  handlers.push do
+    # path: /sittings
+    pattern: /^\/sittings[/]?$/
+    handle: (req, result, cb)->
+      result <<< title: '國會大代誌'
+      result <<< url: 'http://ly.g0v.tw/sittings/'
+      result <<< description: '立法院會議記錄'
+      cb result
+
   og = do
     getMeta : (req, cb) ->
       result = do
