@@ -8,10 +8,10 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     meta(name='author', content='')
 
     |<% if (mode == 'bot') { %>
-    |<meta property='og:title',content='<%= meta.title %>' >
-    |<meta property='og:url',content='<%= meta.url %>' >
-    |<meta property='og:image',content='<%= meta.img %>' >
-    |<meta property='og:description',content='<%= meta.description %>' >
+    |<meta property='og:title' content='<%= meta.title %>' >
+    |<meta property='og:url' content='<%= meta.url %>' >
+    |<meta property='og:image' content='<%= meta.img %>' >
+    |<meta property='og:description' content='<%= meta.description %>' >
     |<% } %>
 
     title(ng-bind-template='{{$state.current.title}}')
