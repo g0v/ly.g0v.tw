@@ -38,8 +38,13 @@ OpenGraph = ->
     handle: (req, result, cb) ->
       json <- getApi req.url
       result <<< url : 'http://ly.g0v.tw' + req.url
-      if json.summary
-        result <<< description: json.summary
+      desc = ''
+      desc += json.summary if json.summary
+      if json.abstract
+        desc += json.abstract
+      else if json.proposed_by
+        desc += '提案人：' + json.proposed_by
+      result <<< description: desc if desc
       cb result
 
   og = do
