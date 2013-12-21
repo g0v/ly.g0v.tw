@@ -11,9 +11,12 @@ OpenGraph = ->
 
     req = http.request opts, (res) ->
       res.on \data, (chunk) ->
-        if res.statusCode is 200
-          cb JSON.parse chunk.toString!
-        else
+        try
+          if res.statusCode is 200
+            cb JSON.parse chunk.toString!
+          else
+            cb {}
+        catch e
           cb {}
     req.on \error, (e) ->
       console.log "Request error: #path"
