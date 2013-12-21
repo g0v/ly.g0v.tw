@@ -5,7 +5,7 @@ OpenGraph = ->
     method: \GET
 
   getApi = (path, cb) ->
-    opts <<< path: '/v0/collections/' + path
+    opts <<< path: '/v0/collections' + path
 
     console.log JSON.stringify opts
 
