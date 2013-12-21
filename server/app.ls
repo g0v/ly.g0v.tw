@@ -1,5 +1,4 @@
 express = require \express
-fs = require \fs
 opengraph = require \./opengraph
 
 lyserver = (app) ->
@@ -7,7 +6,8 @@ lyserver = (app) ->
 
   defHandler = (req, res) ->
     console.log 'Default handler'
-    fs.createReadStream '_public/index.html' .pipe res
+    res.render 'index.html', do
+      mode: 'normal'
 
   fbHandler = (req, res) ->
     console.log 'Facebook Open Graph Crawler User Agent'
