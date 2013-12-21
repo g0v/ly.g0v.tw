@@ -62,8 +62,8 @@ OpenGraph = ->
         url: 'http://ly.g0v.tw'
         description: '零時政府立法院網頁'
         img: 'http://ly.g0v.tw/img/g0v-logo.png'
-      for h in handlers
-        return h.handle req, result, cb if req.url and req.url.match h.pattern
+      for h in handlers when req.url?match h.pattern
+        return h.handle req, result, cb
 
       # nothing matched, use def
       cb result
