@@ -28,6 +28,7 @@ devDependencies:
   'static-jade-brunch': '1.7.x'
   'auto-reload-brunch': '1.6.x'
   'uglify-js-brunch': '1.5.x'
+  'request': '2.27.x'
   'clean-css-brunch': '1.6.x'
   'jade-angularjs-brunch': '1.1.1'
   'jsenv-brunch': '1.4.2'
