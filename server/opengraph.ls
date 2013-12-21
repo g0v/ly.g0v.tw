@@ -63,6 +63,16 @@ OpenGraph = ->
       console.log JSON.stringify result
       cb result
 
+  handlers.push do
+    # path: /debates*
+    pattern: /^\/debates.*$/
+    handle: (req, result, cb) ->
+      result <<< title: '國會大代誌'
+      result <<< url : 'http://ly.g0v.tw' + req.url if req.url
+      result <<< description: '立法院質詢紀錄'
+      console.log JSON.stringify result
+      cb result
+
   og = do
     getMeta : (req, cb) ->
       result = do
