@@ -21,7 +21,7 @@ lyserver = (app) ->
     def: defHandler
 
   patternMap = do
-    fb: /.*https:\/\/www.facebook.com\/externalhit_uatext.php.*/
+    fb: /.*www.facebook.com\/externalhit_uatext.php.*/
     def: /.*/
 
 
