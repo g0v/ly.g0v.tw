@@ -55,6 +55,16 @@ OpenGraph = ->
       result <<< description: '立法院會議記錄'
       cb result
 
+  handlers.push do
+    # path: /sittings/08-04-ECO-04
+    pattern: /^\/sittings\/.+/
+    handle: (req, result, cb) ->
+      json <- getApi req.url
+      result <<< title: json.name if json.name
+      result <<< url : 'http://ly.g0v.tw' + req.url if req.url
+      result <<< description: json.summary if json.summary
+      cb result
+
   og = do
     getMeta : (req, cb) ->
       result = do
