@@ -1,11 +1,10 @@
 OpenGraph = ->
   http = require \http
-  opts = do
-    hostname: \api.ly.g0v.tw
-    method: \GET
-
   getApi = (path, cb) ->
-    opts <<< path: '/v0/collections' + path
+    opts = do
+      hostname: \api.ly.g0v.tw
+      method: \GET
+      path: '/v0/collections' + path
 
     console.log JSON.stringify opts
 
