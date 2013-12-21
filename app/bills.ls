@@ -19,26 +19,25 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
     baseTextLines -= /^第(.*?)條(之.*?)?\s+/
     if parse-article-heading RegExp.lastMatch - /\s+$/
       left-item = \§ + that
-      left-item-anchor = that
   newTextLines = entry[idx] || entry[base-index] || ''
   newTextLines -= /^第(.*?)條(之.*?)?\s+/
-  right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+  right-item-anchor = parse-article-heading RegExp.lastMatch - /\s+$/
+  right-item = \§ + right-item-anchor
   if !left-item
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
-      right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+      right-item-anchor = parse-article-heading RegExp.lastMatch - /\s+$/
+      right-item = \§ + right-item-anchor
     if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
-      left-item = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
-      left-item-anchor = left-item
+      left-item = \§ + newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
-      left-item = \§ + ( right-item || '')
-      left-item-anchor = right-item
+      left-item = right-item || ''
   difflines = line-based-diff baseTextLines, newTextLines
   angular.forEach difflines, (value, key)->
     value.left = '無' unless value.left
     value.left = $sce.trustAsHtml value.left
     value.right = $sce.trustAsHtml value.right
   comment = $sce.trustAsHtml comment
-  return {comment,difflines,left-item,left-item-anchor,right-item}
+  return {comment,difflines,left-item,right-item,right-item-anchor}
 function match-motions(substeps, ttsmotions)
   date = moment(ttsmotions.date) .format 'YYYY-MM-DD'
   for s in substeps

@@ -123,13 +123,14 @@
       .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
         .column(class="left {{diffline.state}}", ng-hide="!d.diffbase")
           .ui.segment.article-text
-            a(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
+            a(ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
               .ui.ribbon.label {{diffs.leftItem}}
             .ui.right.corner.label(ng-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.left")
         .column.right(class="right {{diffline.state}}")
           .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
+            a(id="modified-{{diffs.rightItemAnchor}}",ng-href="#modified-{{diffs.rightItemAnchor}}")
+              .ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
       .ui.segment.green(ng-bind-html="diffs.comment", ng-show="diffs.comment")
@@ -141,5 +142,5 @@
         .item-section(ng-repeat="(i, d) in diff track by $index")
           a.item(href="#"+"{{d.name}}") {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+            .law-unit(ng-show="diffs.rightItemAnchor"): a.item(ng-href="\#modified-{{diffs.rightItemAnchor}}") {{diffs.rightItem}}
 
