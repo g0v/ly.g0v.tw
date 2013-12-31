@@ -1,3 +1,4 @@
+---
 language: node_js
 
 node_js:
@@ -9,16 +10,15 @@ before_install:
 
 branches:
   except:
-    - gh-pages
+  - gh-pages
 
-env:
-  global:
-    - REPO="git@github.com:g0v/ly.g0v.tw"
+deploy:
+  on: express_server
+  provider: nodejitsu
+  user: clkao
+  api_key:
+    secure: ! 'ZTIUonMOmBRMz5SpI0GvkBLAjoZuq6M4b7flq7HFDAQoaxv6Gok3UOMGmUV6
 
-    - secure: ! 'Cm2T3ZMpU3GjeAYguwZNMMj9DGCDjZsjiVYuXQ1PgznFG/PpGKcWNaNTt4b9
+      mI7uGnLqAggYjWeoIF6yFUIN69hLpIwvfZylOdPU+h/W+H0xlxxtHCvSyc5R
 
-      pBMRVP7uNtEXfQNcw8TjvG6/HFzuLG4KJeqZUacbbYCRugbny1bDd9iT4OLC
-
-      hnuO6WRsIg4m511XiKHcWu2nFuIFlwCBPS2dSBiRSg8U4Iz9Pqg='
-
-after_success: .travis/after_success.sh
+      Ad1AHf93zbf845Cg4LSR0I6fKPewhBW8uFKF5ZYcd7ppofwYrI8='

@@ -1,16 +1,13 @@
-express = require \express
-opengraph = require \./opengraph
+require! <[express ./opengraph]>
 
 lyserver = (app) ->
-  port = 3333
+  port = if process.env.NODE_ENV is \production => 80 else 3333
 
   defHandler = (req, res) ->
-    console.log 'Default handler'
     res.render 'index.html', do
       mode: 'normal'
 
   fbHandler = (req, res) ->
-    console.log 'Facebook Open Graph Crawler User Agent'
     result <- opengraph.getMeta req
     res.render 'index.html', do
       mode: 'bot'

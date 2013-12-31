@@ -1,26 +1,26 @@
 {
   "author": "Chia-liang Kao",
-  "name": "ly.g0v.tw",
+  "name": "lyg0vtw",
   "description": "ly.g0v.tw",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/g0v/ly.g0v.tw",
   "repository": {
     "type": "git",
     "url": "https://github.com/g0v/ly.g0v.tw"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "0.10.x",
+    "npm": "1.3.x"
   },
+  "subdomain": "lygovtw",
   "scripts": {
     "prepublish": "lsc -cj package.ls && lsc -cj bower.json.ls",
-    "build": "brunch b --config brunch-templates.ls && brunch b",
-    "start": "brunch b --config brunch-templates.ls && brunch watch --server",
+    "build": "brunch b --config brunch-templates.ls && brunch b -o",
+    "start": "npm run build && lsc server/app.ls",
     "test": "npm run build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js",
     "utiltest": "./node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "LiveScript": "1.1.x",
     "brunch": "1.6.x",
     "javascript-brunch": "1.6.x",
