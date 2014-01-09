@@ -8,6 +8,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     meta(name='author', content='')
     title(ng-bind-template='{{$state.current.title}}')
     link(rel='stylesheet', href='/css/app.css')
+    link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/Han/2.2.3/han.css")
     link(rel="shotcut icon",href="/img/favicon.ico")
     script(src='http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js')
     //if lte IE 7
@@ -24,6 +25,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     script(src='/js/app.templates.js')
     script(src='/js/templates.js')
     script(src='/js/app.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/2.2.3/js/han.js')
   body(ng-controller='AppCtrl',ng-cloak,data-spy="scroll")
     #fb-root
       script.
