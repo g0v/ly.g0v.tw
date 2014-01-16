@@ -11,6 +11,7 @@ engines:
   node: '0.10.x'
   npm: '1.3.x'
 subdomain: 'lyg0vtw'
+domains: <[ly.g0v.tw beta.ly.g0v.tw]>
 scripts:
   republish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
   build: 'brunch b --config brunch-templates.ls && brunch b -o && lsc -c server'
