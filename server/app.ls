@@ -29,6 +29,8 @@ lyserver = (app) ->
       if req.headers['user-agent'].match re
         return handlerMap[k]
 
+  app.use require 'prerender-node' if process.env.PRERENDER_SERVICE_URL
+
   app.engine '.html', require('ejs').__express
   app.set 'views', '_public'
 

@@ -20,6 +20,7 @@ scripts:
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
 dependencies:
   express: '3.4.x'
+  prerender: '0.1.x'
   ejs: '0.8.x'
   request: '2.27.x'
 devDependencies:
