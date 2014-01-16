@@ -12,6 +12,8 @@ branches:
   except:
   - gh-pages
 
+before_deploy: "npm run build"
+
 deploy:
   on: express_server
   provider: nodejitsu
