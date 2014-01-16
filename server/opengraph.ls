@@ -1,5 +1,5 @@
 OpenGraph = ->
-  g0v = 'http://ly.g0v.tw'
+  make-url = (req, path) -> req.protocol + '://' + req.headers.host + path
   request = require \request
   getApi = (path, cb) ->
     err, resp, body <- request.get 'http://api.ly.g0v.tw/v0/collections' + path
@@ -25,7 +25,8 @@ OpenGraph = ->
     pattern: /^\/bills.*/
     handle: (req, result, cb) ->
       json <- getApi req.url
-      result <<< url : g0v + req.url
+      base req.protocol + '://' + req.headers.host
+      result <<< url: make-url req.url
       desc = ''
       desc += json.summary if json.summary
       if json.abstract
@@ -40,7 +41,7 @@ OpenGraph = ->
     pattern: /^\/sittings[/]?$/
     handle: (req, result, cb)->
       result <<< title: '國會大代誌'
-      result <<< url: g0v + '/sittings/'
+      result <<< url: make-url '/sittings/'
       result <<< description: '立法院會議記錄'
       cb result
 
@@ -50,7 +51,7 @@ OpenGraph = ->
     handle: (req, result, cb) ->
       json <- getApi req.url
       result <<< title: json.name if json.name
-      result <<< url : g0v + req.url if req.url
+      result <<< url: make-url req.url if req.url
       result <<< description: json.summary if json.summary
       cb result
 
@@ -59,7 +60,7 @@ OpenGraph = ->
     pattern: /^\/calendar.*$/
     handle: (req, result, cb) ->
       result <<< title: '國會大代誌'
-      result <<< url : g0v + req.url if req.url
+      result <<< url: make-url req.url if req.url
       result <<< description: '立法院行程與預報'
       console.log JSON.stringify result
       cb result
@@ -69,7 +70,7 @@ OpenGraph = ->
     pattern: /^\/debates.*$/
     handle: (req, result, cb) ->
       result <<< title: '國會大代誌'
-      result <<< url : g0v + req.url if req.url
+      result <<< url: make-url req.url if req.url
       result <<< description: '立法院質詢紀錄'
       console.log JSON.stringify result
       cb result
@@ -78,9 +79,9 @@ OpenGraph = ->
     getMeta : (req, cb) ->
       result = do
         title: '國會大代誌'
-        url: g0v
+        url: make-url '/'
         description: '零時政府立法院網頁'
-        img: g0v + '/img/g0v-logo.png'
+        img: make-url '/img/g0v-2line-white-s.png'
       for h in handlers when req.url?match h.pattern
         return h.handle req, result, cb
 
