@@ -1,0 +1,16 @@
+**/.DS_Store
+nbproject
+manifest.mf
+build.xml
+
+.project
+.settings
+.idea/*
+app/assets/*html
+
+node_modules/*
+bower_components/*
+npm-debug.log
+out/*
+
+*.swp
