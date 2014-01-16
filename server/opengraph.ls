@@ -25,7 +25,6 @@ OpenGraph = ->
     pattern: /^\/bills.*/
     handle: (req, result, cb) ->
       json <- getApi req.url
-      base req.protocol + '://' + req.headers.host
       result <<< url: make-url req, req.url
       desc = ''
       desc += json.summary if json.summary
