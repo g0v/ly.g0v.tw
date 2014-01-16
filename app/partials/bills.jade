@@ -111,7 +111,7 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  .content.default(ng-repeat="(i, d) in diff")
+  .content.default(ng-repeat="(i, d) in diff", scroll-spy)
     a(name="{{d.name}}")
     h2.ui.horizontal.divider {{d.name}}
 
@@ -139,7 +139,6 @@
     .ui.very.thin.sidebar
       .ui.vertical.menu
         .item-section(ng-repeat="(i, d) in diff track by $index")
-          a.item(href="#"+"{{d.name}}") {{d.name}}
+          a.item(href="#"+"{{d.name}}", ng-click="scrollTo(d);", ng-class="{spy: d.isSpy}") {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
-
+            .law-unit(ng-show="diffs.leftItemAnchor", ng-class="{spy: diffs.isSpy}", ng-click="scrollTo(diffs);"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
