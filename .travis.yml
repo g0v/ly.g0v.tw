@@ -12,10 +12,13 @@ branches:
   except:
   - gh-pages
 
+before_deploy: "npm run build"
+
 deploy:
   on: express_server
   provider: nodejitsu
   user: clkao
+  skip_cleanup: true
   api_key:
     secure: ! 'ZTIUonMOmBRMz5SpI0GvkBLAjoZuq6M4b7flq7HFDAQoaxv6Gok3UOMGmUV6
 
