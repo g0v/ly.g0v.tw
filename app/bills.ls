@@ -305,7 +305,7 @@ angular.module 'app.controllers.bills' []
       unless spies?
         top ?:= elem.offset().top
         bottom ?:= top + elem.height()
-        spies = []
+        spies := []
         for d, i in scope.diff
           ds ?= $(spy-target)
           len ?= scope.diff.length-1
