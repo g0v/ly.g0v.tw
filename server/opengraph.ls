@@ -27,12 +27,12 @@ OpenGraph = ->
       json <- getApi req.url
       result <<< url: make-url req, req.url
       desc = ''
-      desc += json.summary if json.summary
       if json.abstract
         desc += json.abstract
       else if json.proposed_by
         desc += '提案人：' + json.proposed_by
       result <<< description: desc if desc
+      result <<< title: (json.bill_ref || json.bill_id) + ': ' json.summary
       cb result
 
   handlers.push do
