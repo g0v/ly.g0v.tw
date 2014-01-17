@@ -18,7 +18,7 @@ lyserver = (app) ->
     def: defHandler
 
   patternMap = do
-    fb: /.*www.facebook.com\/externalhit_uatext.php.*/
+    fb: /externalhit_uatext|prerender/
     def: /.*/
 
 
