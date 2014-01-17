@@ -32,7 +32,7 @@ OpenGraph = ->
       else if json.proposed_by
         desc += '提案人：' + json.proposed_by
       result <<< description: desc if desc
-      result <<< title: (json.bill_ref || json.bill_id) + ': ' json.summary
+      result <<< title: (json.bill_ref || json.bill_id) + ': ' + json.summary
       cb result
 
   handlers.push do
