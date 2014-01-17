@@ -173,6 +173,7 @@ angular.module 'app.controllers.bills' []
       | state === 'insert' => '新增'
       | otherwise => '相同'
     $scope.opts = {+show_date}
+    $scope.spies = {}
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- LYModel.get "bills/#{billId}" .success
@@ -283,58 +284,49 @@ angular.module 'app.controllers.bills' []
           if index == i
             v.sub = !v.sub
           else v.sub = false
-      $scope.scrollTo = (diff) ->
-        top-navbar-height = $('.navbar-fixed-top').height()
-        for d, i in $scope.diff
-          if diff == d
-            window.scroll 0, $('.content.default')[i].offsetTop - top-navbar-height
-          else if (index = Array.prototype.indexOf.call(d.diffcontent, diff)) != -1
-            window.scroll 0, $(".content.default:nth(#{i}) > .diff")[index].offsetTop - top-navbar-height
       $timeout -> $anchorScroll!
-      
-.directive 'scrollSpy', <[$window]> ++ ($window)->
+.directive 'spy', <[$location]> ++ ($location)->
+  restrict: 'A'
+  link: (scope, elem, attrs)->
+    return unless scope.d?
+    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
+    obj = scope.spies[id] ?= {}
+    obj.in = -> elem.addClass 'spy'
+    obj.out = -> elem.removeClass 'spy'
+.directive 'spyTarget', <[$location]> ++ ($location)->
+  restrct: 'A'
+  link: (scope, elem, attrs)->
+    return unless scope.d?
+    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
+    obj = scope.spies[id] ?= {}
+    obj.elem = elem
+.directive 'scrollSpy', <[$window $timeout]> ++ ($window, $timeout)->
   restrict: 'A'
   controller: <[$scope]> ++ ($scope)->
+    $window.diff = $scope.diff
+    $window.spies = $scope.spies
   link: (scope, elem, attrs)->
-    top = bottom = null
-    spies = null
-    old-spy = null
     top-navbar-height = $('.navbar-fixed-top').height()
-    spy-target = attrs.class.replace /\s*\b(\w)/g, '.$1'
-    $($window).scroll (e)->
-      unless spies?
-        top ?:= elem.offset().top
-        bottom ?:= top + elem.height()
-        spies := []
-        for d, i in scope.diff
-          ds ?= $(spy-target)
-          len ?= scope.diff.length-1
-          spy = {
-            spy: d
-            top: ds[i].offsetTop
-          }
-          spies.push spy
-          diffs = $("#{spy-target}:nth(#{i}) > .diff")
-          j = 0
-          for , diff of d.diffcontent
-            spies.push {
-              spy: diff
-              top: diffs[j].offsetTop
-              bottom: diffs[j].offsetTop + diffs[j].offsetHeight
-            }
-            ++j
-        spy.bottom = if j then spies[spies.indexOf(spy) + 1].top else spy.top + ds[i].offsetHeight
-      screen-top = $window.scrollY + top-navbar-height
-      screen-bottom = screen-top + $($window).height() - top-navbar-height
+    update-position = ->
+      console.log top-navbar-height
+      for , spy of scope.spies
+        spy.top = spy.elem.offset().top - top-navbar-height
+    scope.$watch 'diff', (diffs)->
+      for , spy of spies
+        spy.destroy = true
+      for d in diffs when d.$$hash-key?
+        spies[d.$$hash-key].destroy = false
+        for diff in d.diffcontent when diff.$$hash-key?
+          spies["#{diff.$$hash-key}-#{d.$$hash-key}"].destroy = false
+      for key, spy of spies when spy.destroy == true
+        delete spies[key]
+      update-position()
+    $($window).scroll ->
+      scrollTop = $window.scrollY
       the-spy = null
-      for spy in spies
-        spy.spy.is-spy = false
-      unless screen-bottom < top or screen-top > bottom
-        for spy in spies when screen-bottom >= spy.top and screen-top < spy.bottom
+      for , spy of scope.spies
+        spy.out()
+        if scrollTop > spy.top and !(spy.top < the-spy?.top)
           the-spy = spy
-          break
-        the-spy ?= spies[spies.length-1]
-        the-spy.spy.is-spy = true
-      if old-spy != the-spy
-        old-spy = the-spy
-        scope.$apply()
+      the-spy?.in()
+    $timeout update-position, 100
