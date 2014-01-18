@@ -75,31 +75,11 @@
     .clearfix
     h2.ui.horizontal.divider 提案人
     .sponsors(ng-show="sponsors")
-      .item(ng-repeat="e in sponsors")
-        .image.ui.rounded.corner.hide-print
-          a(ng-href="e.twlylink", target="blank")
-            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}",ng-class="e.party")
-        .content
-          .name {{e.name}}
-        //span.infocard
-          b
-          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
-          a.text(ng-if="e.twlylink",ng-href="e.twlylink",target="blank") 投票指南
+      .item(ng-repeat="e in sponsors", legislator="e")
     .clearfix
     h2.ui.horizontal.divider 連署人
     .cosponsors(ng-show="cosponsors")
-      .item(ng-repeat="e in cosponsors")
-        .image.ui.rounded.corner.hide-print
-          a(ng-href="e.twlylink", target="blank")
-            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}",ng-class="e.party")
-        .content
-          .name {{e.name}}
-        //span.infocard
-          b
-          a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-          a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
-          a.text(ng-if="e.twlylink", ng-href="e.twlylink",target="blank") 投票指南
+      .item(ng-repeat="e in cosponsors", legislator="e")
 
   .clearfix
   .history

@@ -80,9 +80,7 @@
             ul.motions(ng-class="{{type}}")
                 li.row(ng-repeat="e in entries | filter:filter")
                     .avatars
-                        span(ng-repeat="avatar in e.avatars")
-                            i.g0v-icon.large(ng-class="avatar.iconClass",ng-if="avatar.iconClass",ng-alt="{{avatar.name}}")
-                            img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party",ng-if="!avatar.iconClass")
+                        .item(ng-repeat="avatar in e.avatars", legislator="avatar")
                     .motion
                         span.item-heading {{ e.item }}
                         span.proposer {{ e.proposed_by }}

@@ -184,5 +184,23 @@ angular.module 'app.directives' <[app.services ]>
         results.show!        
       else => results.hide!
 
-
-
+.directive \legislator ->
+  restrict: \EA
+  scope:
+    person: \=legislator
+  template: """
+      <div class="image ui rounded corner hide-print">
+        <a ng-href="person.twlylink" target="blank">
+          <img class="avatar" ng-src="http://avatars.io/50a65bb26e293122b0000073/{{person.avatar}}?size=small" ng-alt="{{person.name}}" ng-class="person.party" />
+        </a>
+      </div>
+      <div class="content">
+        <div class="name">{{person.name}}</div>
+      </div>
+      <span class="infocard">
+        <b></b>
+        <a class="fact text" href="http://fact.g0v.tw/wiki/{{person.name}}" target="blank">生平時間軸</a>
+        <a class="wiki text" href="http://zh.wikipedia.org/wiki/{{person.name}}" target="blank">Wikipedia</a>
+        <a class="text" ng-if="person.twlylink" ng-href="e.twlylink" target="blank">投票指南</a>
+      </span>
+    """
