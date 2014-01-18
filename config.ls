@@ -23,14 +23,7 @@ exports.config =
     javascripts:
       joinTo:
         'js/app.js': /^app/
-        'js/vendor.js': /^vendor/
-      order:
-        before:
-          'vendor/scripts/console-helper.js'
-          'vendor/scripts/angular/angular.js'
-        after:
-          'app/app/controllers.ls'
-          ...
+        'js/vendor.js': /^vendor|bower_components/
 
     stylesheets:
       joinTo:
