@@ -16,3 +16,5 @@ dependencies:
 overrides:
   "angular-mocks":
     main: "README.md"
+  "angular-scenario":
+    main: "README.md"
