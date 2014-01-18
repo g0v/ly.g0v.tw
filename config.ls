@@ -44,15 +44,7 @@ exports.config =
   # Enable or disable minifying of result js / css files.
   # minify: true
   plugins:
-    jade:
-      options:
-        pretty: yes
+    jade_angular:
+#      single_file_name: \app.templates.js
       locals:
         googleAnalytics: 'UA-41326468-1'
-    static_jade:
-      extension: '.static.jade'
-      path: [ /^app/ ]
-    jade_angular:
-      modules_folder: \templates
-      single_file_name: \app.templates.js
-      locals: {}

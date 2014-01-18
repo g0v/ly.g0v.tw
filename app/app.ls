@@ -46,11 +46,6 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       templateUrl: 'app/partials/debates.jade'
       resolve: _init: <[LYService]> ++ (.init!)
 
-    .state 'sitting' do
-      url: '/sitting'
-      templateUrl: 'app/partials/sitting.jade'
-      controller: \LYSitting
-
     .state 'search' do
       url: '/search'
       templateUrl: 'app/partials/search.jade'

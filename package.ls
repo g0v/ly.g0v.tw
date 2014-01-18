@@ -12,8 +12,8 @@ engines:
   npm: '1.1.x'
 scripts:
   prepublish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
-  build: 'brunch b --config brunch-templates.ls && brunch b'
-  start: 'brunch b --config brunch-templates.ls && brunch watch --server'
+  build: 'brunch b'
+  start: 'brunch watch --server'
   test: 'npm run build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
 dependencies: {}
@@ -24,8 +24,6 @@ devDependencies:
   'LiveScript-brunch': '1.6.x'
   'css-brunch': '1.6.x'
   'sass-brunch': '1.6.x'
-  'jade-brunch': '1.6.x'
-  'static-jade-brunch': '1.7.x'
   'auto-reload-brunch': '1.6.x'
   'uglify-js-brunch': '1.5.x'
   'clean-css-brunch': '1.6.x'

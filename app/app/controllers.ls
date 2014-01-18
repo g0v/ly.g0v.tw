@@ -38,7 +38,7 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
   $scope.submitSearch = ->
     $state.transitionTo 'search.target', { keyword: $scope.searchKeyword}
     $scope.searchKeyword = ''
-    
+
 .controller About: <[$rootScope $http]> ++ ($rootScope, $http) ->
     $rootScope.activeTab = \about
 
@@ -100,78 +100,3 @@ angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sitt
                 accepted: \查照
             names[s] ? s
     window.loadMotions $scope
-
-.controller LYSitting: <[$rootScope $scope $http]> ++ ($rootScope, $scope, $http) ->
-    data <- $http.get '/data/yslog/ly-4004.json'
-        .success
-    $rootScope.activeTab = \sitting
-    $scope.json = data
-    $scope.meta = data.meta
-    $scope.meta.map = []
-
-    patterns = {
-        "立法院公報": /^立法院公報　/,
-        "主席": /^主　+席　/,
-        "時間": /^時　+間　/,
-        "地點": /^地　+點　/
-    }
-
-    data.meta.raw.forEach (v, i, a) ->
-        for type,pattern of patterns
-            if v.match pattern
-                v = v.replace pattern,""
-                key = type
-                break
-            else
-                key = ""
-        data.meta.map.push {key, value: v}
-
-    $scope.annoucement = []
-    $scope.interpellation = {answers: [], questions: [], interpellations: []}
-    $scope.interp = []
-    parse = (type, content) ->
-        switch type
-        | \Announcement =>
-            $scope.Announcement = content
-            for idx,entry of content
-                section = {
-                    subject: entry.subject,
-                    conversation: []
-                }
-
-                for [speaker, words] in entry.conversation
-                    section.conversation.push {speaker, words}
-                $scope.annoucement.push section
-
-        | \Interpellation =>
-            for _,[receiver, words] of content.answers
-                $scope.interpellation.answers.push {receiver, words}
-            for _,[asker, words] of content.questions
-                $scope.interpellation.questions.push {asker, words}
-            for [type,entries] in content.interpellation when type is \interp
-                $scope.interp.push entries
-            for [type,entries] in content.interpellation
-                if type is \interp or type is \interpdoc or type is \exmotion
-                    section = {
-                        questioner: entries.0.0,
-                        conversation: []
-                    }
-
-                    for [speaker, words] in entries
-                        section.conversation.push {speaker, words}
-                else
-                    section = {
-                        questioner: null,
-                        conversation:[{
-                            speaker: type
-                            words: entries
-                        }]
-                    }
-
-                $scope.interpellation.interpellations.push section
-
-        | otherwise =>
-            $scope.otherwise = content
-
-    for entry in data.log
-        parse ...entry
