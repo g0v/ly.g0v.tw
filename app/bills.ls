@@ -291,7 +291,9 @@ angular.module 'app.controllers.bills' []
     return unless scope.d?
     id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
     obj = scope.spies[id] ?= {}
-    obj.in = -> elem.addClass 'spy'
+    obj.in = ->
+      elem.addClass 'spy'
+      elem[0].scrollIntoViewIfNeeded()
     obj.out = -> elem.removeClass 'spy'
 .directive 'spyTarget', <[$location]> ++ ($location)->
   restrct: 'A'
@@ -306,11 +308,10 @@ angular.module 'app.controllers.bills' []
     $window.diff = $scope.diff
     $window.spies = $scope.spies
   link: (scope, elem, attrs)->
-    top-navbar-height = $('.navbar-fixed-top').height()
     update-position = ->
-      console.log top-navbar-height
+      scope.top-navbar-height = $('.navbar-fixed-top').height()
       for , spy of scope.spies
-        spy.top = spy.elem.offset().top - top-navbar-height
+        spy.top = spy.elem.offset().top - scope.top-navbar-height
     scope.$watch 'diff', (diffs)->
       for , spy of spies
         spy.destroy = true
