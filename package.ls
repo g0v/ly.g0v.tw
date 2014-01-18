@@ -12,9 +12,9 @@ engines:
   npm: '1.1.x'
 scripts:
   prepublish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
-  build: 'brunch b'
+  build: 'bower i && brunch b'
   start: 'brunch watch --server'
-  test: 'npm run build && bower i && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
+  test: 'npm run build && karma start --browsers PhantomJS --single-run true test/karma.conf.js'
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
 dependencies: {}
 devDependencies:
