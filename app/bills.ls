@@ -42,6 +42,21 @@ make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
     left-item-anchor: amendment.original-article
     right-item: \§ + amendment.article
 
+diffmeta = (content) -> content?map (diff) ->
+  if !diff.name
+    diff.name = '併案審議'
+  h = diff.header
+  [base-index] = [i for n, i in h when n is /^現行/]
+  [c] = [i for n, i in h when n is \說明]
+
+  diff{header,content,name} <<< do
+    versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
+    base-index: base-index
+    comment-index: c
+    diffbase: h[base-index]
+    diffnew: h.0
+    amendment: diff.content.map bill-amendment diff, 0, c, base-index
+
 function match-motions(substeps, ttsmotions)
   date = moment(ttsmotions.date) .format 'YYYY-MM-DD'
   for s in substeps
@@ -247,21 +262,8 @@ angular.module 'app.controllers.bills' []
           $scope.steps.2.detail.push detail
 
         data <- LYModel.get "bills/#{billId}/data" .success
-        $scope.diff = data?content?map (diff) ->
-          if !diff.name
-            diff.name = '併案審議'
-          h = diff.header
-          [base-index] = [i for n, i in h when n is /^現行/]
-          [c] = [i for n, i in h when n is \說明]
-
-          amendment = diff.content.map bill-amendment diff, 0, c, base-index
-          diff{header,content,name} <<< do
-            versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
-            base-index: base-index
-            comment-index: c
-            diffbase: h[base-index]
-            diffnew: h.0
-            diffcontent: amendment.map make-diff $sce
+        $scope.diff = diffmeta data?content
+        $scope.diff.map (diff) -> diff.diffcontent = diff.amendment.map make-diff $sce
         if $scope.diff?length
           total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
@@ -284,6 +286,27 @@ angular.module 'app.controllers.bills' []
             diff <<< do
                 diffnew: version
                 diffcontent: amendment.map make-diff $sce
+      $scope.$watch '$state.params.otherBills' ->
+        other-bills = it.split \,
+        return unless other-bills.length
+        for billId in other-bills
+          bill <- LYModel.get "bills/#{billId}" .success
+          data <- LYModel.get "bills/#{billId}/data" .success
+          $scope.to-compare ?= {}
+          $scope.to-compare[billId] = bill <<< diff: diffmeta data?content
+      $scope.$watch 'toCompare' ->
+        return unless it
+        matrix = {}
+        expand = (bill_ref, content) ->
+          for d in content
+            matrix[d.name] ?= {}
+            for entry in d.amendment
+              x = matrix[d.name][entry.article || entry.original-article] ?= {}
+              x[bill_ref] = entry
+        expand $scope.bill_ref, $scope.diff
+        for k, val of it => expand k, val.diff
+        console.log matrix
+
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
           if index == i
