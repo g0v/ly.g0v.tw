@@ -14,6 +14,8 @@ dependencies:
   "google-diff-match-patch-js": "~1.0.0"
 
 overrides:
+  "angular":
+    dependencies: jquery: "*"
   "angular-mocks":
     main: "README.md"
   "angular-scenario":
