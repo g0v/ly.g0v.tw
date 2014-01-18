@@ -287,8 +287,8 @@ angular.module 'app.controllers.bills' []
                 diffnew: version
                 diffcontent: amendment.map make-diff $sce
       $scope.$watch '$state.params.otherBills' ->
-        other-bills = it.split \,
-        return unless other-bills.length
+        other-bills = it?split \,
+        return unless other-bills?length
         for billId in other-bills
           bill <- LYModel.get "bills/#{billId}" .success
           data <- LYModel.get "bills/#{billId}/data" .success
