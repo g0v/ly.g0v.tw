@@ -3,7 +3,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
   head
     meta(charset='utf-8')
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-    meta(name='viewport', content='width=device-width')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
     title(ng-bind-template='{{$state.current.title}}')
@@ -28,19 +28,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
               js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
               fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
-    .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
-        .container.hide-print
-            button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a(href="http://github.com/g0v/ly.g0v.tw",target="_blank").pull-right.visible-large-display
-              .small.badge.badge-inverse.pull-right.build-id {{ config_build }}
-            a(href="http://g0v.tw", target="_blank").pull-right
-              .brand.g0v: img(src="/img/g0v-icon-invert.png")
-            a.brand(href='/') 國會大代誌
-            .nav-collapse.collapse(ng-include="'app/partials/nav.jade'")
+    include partials/nav.jade
     .container
       div(ui-view)
   - if (typeof(googleAnalytics) !== 'undefined')

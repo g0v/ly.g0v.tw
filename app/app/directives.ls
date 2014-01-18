@@ -178,7 +178,7 @@ angular.module 'app.directives' <[app.services ]>
           link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
           link.on \click ->
             scope.searchKeyword = ''
-            elm.bur!
+            elm.blur!
           result = angular.element \<div> .addClass \result .append link
           results.append result
         results.show!        

@@ -1,20 +1,19 @@
-ul.nav
-  li(ng-class="getClass('/calendar')", ng-class="{active:activeTab=='calendar'}")
-    a(ng-href='/calendar') 預報
-  li(ng-class="getClass('/sittings')", ng-class="{active:activeTab=='sittings'}")
-    a(ng-href='/sittings') 會議
-  li(ng-class="getClass('/debates')", ng-class="{active:activeTab=='debates'}")
-    a(ng-href="/debates") 質詢
-
-ul.nav.pull-right
-  li
-    form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
-      .ui.icon.input.mini
-        input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword", auto-complete)
-        i.search.icon
-      .results
-  li(ng-class="getClass('/about')", ng-class="{active:activeTab=='about'}")
-    a(ng-href='/about') 關於
-  li.fb-like
-    a
-      .fb-like(data-send="false",data-href="https://facebook.com/g0v.tw",data-width="120",data-layout="button_count",data-show-faces="false",data-font="verdana")
+.ui.top.fixed.inverted.horizontal.fluid.menu
+  .container.hide-print
+    a.item.header.brand(href='/')國會大代誌
+    a.item(ng-href='/calendar', ng-class="{active:activeTab == 'calendar'}") 預報
+    a.item(ng-href='/sittings', ng-class="{active:activeTab == 'sittings'}") 會議
+    a.item(ng-href="/debates", ng-class="{active:activeTab == 'debates'}") 質詢
+    .right.floated.menu 
+      .item
+        form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
+          .ui.icon.input.mini
+            input#global-search(type="text", placeholder="搜尋", ng-model="searchKeyword", auto-complete)
+            i.search.icon
+          .results
+      a.item.about(ng-href="/about", ng-class="{active:activeTab == 'about'}") 關於
+      .item
+        .fb-like(data-send="false",data-href="https://facebook.com/g0v.tw",data-width="120",data-layout="button_count",data-show-faces="false",data-font="verdana")
+      a.item.g0v-logo(href='http://g0v.tw', target='_blank')
+        img(src='/img/g0v-icon-invert.png')
+    a.ui.top.right.attached.label.build-id(href="http://githum.com/g0v/ly.g0v.tw"): {{ config_build }}

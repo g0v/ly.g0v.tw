@@ -1,94 +1,94 @@
 .sittings(ng-cloak)
   script(src="https://www.youtube.com/iframe_api")
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
-  h1
-    span {{ name }}
-  span(ng-show="videos.length > 0 && !loaded")
-    a.pull-right.btn.btn-info(ng-href="/sittings/{{id}}/video") 觀看影片
+  h1.ui.header {{ name }}
+  a.ui.button.right.floated(ng-show="videos.length > 0 && !loaded", ng-href="/sittings/{{id}}/video") 觀看影片
   .sitting-options(ng-hide="video")
     select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
     span.spinner.small(ng-show="loadingSitting")
-  div(ng-hide="video")
-    span.btn-group
-      button.btn.dropdown-toggle(data-toggle="dropdown")
-        選擇其他
-        span.caret
-      ul.dropdown-menu
-        li
-          a(ng-click="setContext('YS')") 院會
-        li(ng-repeat="(type, name) in committees")
-          a(ng-click="setContext(type)") {{name}}
-    span.spinner.small(ng-show="loadingSitting")
-
-  .row-fluid
-    .span10.content
-      .role.committee(ng-show="committee")
+  .ui.selection.dropdown(ng-hide="video")
+    input(type='hidden')
+    .text 選擇其他
+    i.dropdown.icon
+    .menu
+      .item(ng-click="setContext('YS')") 院會
+      .item(ng-repeat="(type, name) in committees", ng-click="setContext(type)") {{name}}
+  span.spinner.small(ng-show="loadingSitting")
+  .ui.grid
+    .thirteen.wide.column.content
+      .ui.segment.role.committee(ng-show="committee")
         ul
           li(ng-repeat="c in committee")
             span
               img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
               span.name {{c.name}}委員會
       // XXX use mly filter to set styles
-      .hero-unit
+      .ui.segment.grid.schedule
         .row(ng-show="dates[0].chair")
-          .span3.td-title 主席
-          .span9 {{ dates[0].chair }}
+          .four.wide.column.right.aligned.td-title 主席
+          .twelve.wide.column {{ dates[0].chair }}
         .row(ng-show="dates", ng-repeat="entry in dates")
-          .span3.td-title
+          .four.wide.column.right.aligned.td-title
             span(ng-show="$index==0") 時間
-          .span9
+          .twelve.wide.column
             {{entry.date}} : {{entry.time_start}} -  {{entry.time_end}}
         .row(ng-show="summary")
-          .span3.td-title 概要
-          .span9 {{ summary }}
+          .four.wide.column.right.aligned.td-title 概要
+          .twelve.wide.column {{ summary }}
         .row(ng-show="proceeding_url")
-          .span3.td-title 議事錄
-          .span9: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
-      .row-fluid
-        .span10.content
-  .row-fluid(ng-show="loaded", ng-show="video")
+          .four.wide.column.right.aligned.td-title 議事錄
+          .twelve.wide.column: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
+  
+  .ui.segment(ng-show="loaded", ng-show="video")
     #player
-    #share
-      span.buttons
-        a.icon-facebook-sign.sharebutton(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
-        a.icon-twitter-sign.sharebutton(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
-        a.icon-google-plus-sign.sharebutton(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
-      input(id="sharelink", type="text", ng-model="sharelink", size="30")
+    #share.ui.segment
+      span.actions
+        .ui.tiny.facebook.button(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
+          i.facebook.icon  
+        .ui.tiny.twitter.button(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
+          i.twitter.icon
+        .ui.tiny.google.plus-sign.button(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
+          i.google.plus.icon
+      .ui.input
+        input(id="sharelink", type="text", ng-model="sharelink", size="30")
       strong 開始時間
       input(id="changeoffset", type="checkbox", ng-model="shareOffset")
       .timeoffset(ng-show="shareOffset", name="offset")
         span.offset
           strong 開始日期
-          input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
+          .ui.input
+            input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
         span.offset
           strong 開始時間
-          input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
+          .ui.input
+            input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
     .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below
-      img
+      img.ui.image
       .name
-      a.btn
+      button.ui.tiny.button
         i.icon.play
-  .row-fluid(ng-hide="video")
-      .entries.motions
-          input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
-          ul(class="nav nav-tabs")
-            li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
-              a(href="") {{s.value}}
-          .list
-            ul.motions(ng-class="{{type}}")
-                li.row(ng-repeat="e in entries | filter:filter")
-                    .avatars
-                        .item(ng-repeat="avatar in e.avatars", legislator="avatar")
-                    .motion
-                        span.item-heading {{ e.item }}
-                        span.proposer {{ e.proposed_by }}
-                        a(ng-href="/bills/{{ e.bill_ref || e.bill_id }}")
-                            span.summary {{ e.summary }}
-                        span.label.label-important(ng-show="e.sitting_introduced == sitting_id") new
-                    .resolution {{ e.resolution }}
-      // XXX: show onair and upcoming ivod link
-      // XXX: search archived ivod clips for past sittings
-      // XXX: show agenda from misq, annotated with info from npl
-      // XXX: show debates, wrans if YS
+  .ui.segment(ng-hide="video")
+    .ui.tabular.menu
+      .item(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+      .item.right.floated.filter
+        .ui.search.input
+          input.search-query(ng-model="filter", placeholder="輸入關鍵字過濾列表")
+    .ui.segment.motions(ng-class="{{type}}")
+      .ui.list
+        .item(ng-repeat="e in entries | filter:filter")
+          .ui.left.floated.avatars
+            span(ng-repeat="avatar in e.avatars")
+              i.g0v-icon.large(ng-class="avatar.iconClass",ng-if="avatar.iconClass",ng-alt="{{avatar.name}}")
+              img.avatar.image(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party",ng-if="!avatar.iconClass")
+          .ui.horizontal.segment.motion
+            span.item-heading {{ e.item }}
+            span.proposer {{ e.proposed_by }}
+            a.summary(ng-href="/bills/{{ e.bill_ref || e.bill_id }}") {{ e.summary }}
+            .ui.red.label(ng-show="e.sitting_introduced == sitting_id") new
+          .resolution {{ e.resolution }}
+    // XXX: show onair and upcoming ivod link
+    // XXX: search archived ivod clips for past sittings
+    // XXX: show agenda from misq, annotated with info from npl
+    // XXX: show debates, wrans if YS
