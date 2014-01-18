@@ -29,6 +29,31 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
               fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
     include partials/nav.jade
+    script.
+      var button;
+      $(window).resize(function(evt){
+        var width, list;
+        evt.preventDefault();
+        width = $(this).width();
+        list = $('.ui.menu .content');
+        if(width > 768) { 
+          list.css('display', 'block');
+        } else {
+          list.css('display', 'none');
+        }
+      });
+      button = $('.ui.button');
+      button.on('click', function(evt){
+        var list,display;
+        evt.preventDefault();
+        list = $('.ui.menu .content');
+        display = list.css('display');
+        if( display === 'none') {
+          list.css('display', 'block');
+        } else {
+          list.css('display', 'none');
+        }        
+      });
     .container
       div(ui-view)
   - if (typeof(googleAnalytics) !== 'undefined')

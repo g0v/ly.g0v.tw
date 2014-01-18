@@ -1,3 +1,22 @@
+.ui.collapsible.menu
+  display: inline
+  @media screen and (max-width: 768px)
+    display: block
+  .header
+    .button
+      margin: 0.5em
+      display: none
+      @media screen and (max-width: 768px)
+        display: block
+  .content
+    @media screen and (max-width: 768px)
+      display: none
+    .item, .menu
+      @media screen and (max-width: 768px)
+        display: block
+        float: none
+        clear: both
+
 .ui.top.fixed.inverted.menu
   text-shadow: 0 -1px 0 rgba(0,0,0,.25)
   background-color: #663300
@@ -7,19 +26,23 @@
     padding: 1em
     &.active, &:hover, &:focus
       background-color: #371b00
-  .brand
-    background: url("/img/logo.png") left no-repeat
-    padding: 12px 40px
-    margin-left: 0px
-    color: #ffcc00
-    font-size: 26px
-    font-weight: bold
-    &:hover, &:focus
-      background: url("/img/logow.png") left no-repeat
-      color: #fff
+  .header
+    .brand
+      background: url("/img/logo.png") left no-repeat
+      padding: 12px 40px
+      margin-left: 0px
+      color: #ffcc00
+      font-size: 26px
+      font-weight: bold
+      &:hover, &:focus
+        background: url("/img/logow.png") left no-repeat
+        color: #fff
+    .g0v-logo
+      padding: 0
+      margin-right: 4em
+      img
+        height: 50px
   .right.floated.menu
-    @media screen and (min-width: 998px)
-      margin-right: 100px
     .item
       padding: 0 5px
       &:hover, &:focus
@@ -28,9 +51,6 @@
         padding: 1em
         &.active, &:hover, &:focus
           background-color: #371b00
-      &.g0v-logo
-        img
-          height: 50px
   .ui.attached.top.label
     @media screen and (max-width: 998px)
       display: none
