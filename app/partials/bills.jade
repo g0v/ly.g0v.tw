@@ -112,15 +112,15 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  .content.default(ng-repeat="(i, d) in diff")
-    a(name="{{d.name}}")
+  .content.default(ng-repeat="(i, d) in diff", scroll-spy)
+    a(name="{{d.name}}", spy-target)
     h2.ui.horizontal.divider {{d.name}}
 
     p.sample
       span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
       span(ng-hide="!d.diffbase") vs
       span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-    .diff(ng-repeat="diffs in d.diffcontent")
+    .diff(ng-repeat="diffs in d.diffcontent", spy-target)
       .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
         .column(class="left {{diffline.state}}", ng-hide="!d.diffbase")
           .ui.segment.article-text
@@ -140,7 +140,6 @@
     .ui.very.thin.sidebar
       .ui.vertical.menu
         .item-section(ng-repeat="(i, d) in diff track by $index")
-          a.item(href="#"+"{{d.name}}") {{d.name}}
+          a.item(href="#"+"{{d.name}}", spy) {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor"): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
-
+            .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
