@@ -10,20 +10,16 @@ if [ `git rev-list HEAD...$upstream/master --count` -ne 0 ]; then
   exit 1
 fi
 npm i
-cp app/index.static.jade app/404.static.jade
 rm -rf _public
 # XXX: use --reference when not in shallow clone
 #git clone $REPO --reference . -b gh-pages _public
 git clone $REPO -b gh-pages _public
 
-./node_modules/.bin/brunch b --config brunch-templates.ls
 REV=`git describe --always`
 BUILD=git-$REV ./node_modules/.bin/brunch b -o
-# build twice, for static.html to propogate for now
-BUILD=git-$REV ./node_modules/.bin/brunch b -o
+cp -f _public/index.html _public/404.html
 cd _public
 git add -A .
 echo "regen for $REV" | git commit-tree `git write-tree` -p `git rev-parse HEAD` -p $REV | xargs git reset --hard
 git push origin gh-pages
 cd ..
-rm -f app/404.static.jade

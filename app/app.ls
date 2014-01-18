@@ -23,6 +23,9 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBills
 
+    .state 'bills.compare' do
+      url: '/compare/{otherBills}'
+
     .state 'calendar' do
       url: '/calendar'
       templateUrl: 'app/partials/calendar.jade'
@@ -45,11 +48,6 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       url: '/debates'
       templateUrl: 'app/partials/debates.jade'
       resolve: _init: <[LYService]> ++ (.init!)
-
-    .state 'sitting' do
-      url: '/sitting'
-      templateUrl: 'app/partials/sitting.jade'
-      controller: \LYSitting
 
     .state 'search' do
       url: '/search'
