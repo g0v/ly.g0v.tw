@@ -173,6 +173,7 @@ angular.module 'app.controllers.bills' []
       | state === 'insert' => '新增'
       | otherwise => '相同'
     $scope.opts = {+show_date}
+    $scope.spies = {}
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- LYModel.get "bills/#{billId}" .success
@@ -284,3 +285,48 @@ angular.module 'app.controllers.bills' []
             v.sub = !v.sub
           else v.sub = false
       $timeout -> $anchorScroll!
+.directive 'spy', <[$location]> ++ ($location)->
+  restrict: 'A'
+  link: (scope, elem, attrs)->
+    return unless scope.d?
+    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
+    obj = scope.spies[id] ?= {}
+    obj.in = -> elem.addClass 'spy'
+    obj.out = -> elem.removeClass 'spy'
+.directive 'spyTarget', <[$location]> ++ ($location)->
+  restrct: 'A'
+  link: (scope, elem, attrs)->
+    return unless scope.d?
+    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
+    obj = scope.spies[id] ?= {}
+    obj.elem = elem
+.directive 'scrollSpy', <[$window $timeout]> ++ ($window, $timeout)->
+  restrict: 'A'
+  controller: <[$scope]> ++ ($scope)->
+    $window.diff = $scope.diff
+    $window.spies = $scope.spies
+  link: (scope, elem, attrs)->
+    top-navbar-height = $('.navbar-fixed-top').height()
+    update-position = ->
+      console.log top-navbar-height
+      for , spy of scope.spies
+        spy.top = spy.elem.offset().top - top-navbar-height
+    scope.$watch 'diff', (diffs)->
+      for , spy of spies
+        spy.destroy = true
+      for d in diffs when d.$$hash-key?
+        spies[d.$$hash-key].destroy = false
+        for diff in d.diffcontent when diff.$$hash-key?
+          spies["#{diff.$$hash-key}-#{d.$$hash-key}"].destroy = false
+      for key, spy of spies when spy.destroy == true
+        delete spies[key]
+      update-position()
+    $($window).scroll ->
+      scrollTop = $window.scrollY
+      the-spy = null
+      for , spy of scope.spies
+        spy.out()
+        if scrollTop > spy.top and !(spy.top < the-spy?.top)
+          the-spy = spy
+      the-spy?.in()
+    $timeout update-position, 100
