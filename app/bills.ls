@@ -5,7 +5,7 @@ parse-article-heading = (text) ->
   _items.filter -> it
   .map zhutil.parseZHNumber .join \-
 
-diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
+bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   h = diff.header
   comment = if \string is typeof entry[c]
     entry[c]
@@ -18,27 +18,30 @@ diffentry = (diff, idx, c, base-index, $sce) -> (entry) ->
   if baseTextLines
     baseTextLines -= /^第(.*?)條(之.*?)?\s+/
     if parse-article-heading RegExp.lastMatch - /\s+$/
-      left-item = \§ + that
-      left-item-anchor = that
+      original-article = that
   newTextLines = entry[idx] || entry[base-index] || ''
   newTextLines -= /^第(.*?)條(之.*?)?\s+/
-  right-item = parse-article-heading RegExp.lastMatch - /\s+$/
-  if !left-item
+  article = parse-article-heading RegExp.lastMatch - /\s+$/
+  if !original-article
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
-      right-item = parse-article-heading RegExp.lastMatch - /\s+$/
+      article = parse-article-heading RegExp.lastMatch - /\s+$/
     if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
-      left-item = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
-      left-item-anchor = left-item
+      original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
-      left-item = \§ + ( right-item || '')
-      left-item-anchor = right-item
-  difflines = line-based-diff baseTextLines, newTextLines
-  angular.forEach difflines, (value, key)->
-    value.left = '無' unless value.left
-    value.left = $sce.trustAsHtml value.left
-    value.right = $sce.trustAsHtml value.right
+      original-article = article || ''
+  return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
+
+make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
+  difflines = line-based-diff base-content, content .map ->
+    it.left = $sce.trustAsHtml it.left || '無'
+    it.right = $sce.trustAsHtml it.right
+    it
   comment = $sce.trustAsHtml comment
-  return {comment,difflines,left-item,left-item-anchor,right-item}
+  return {comment,difflines} <<< do
+    left-item: \§ + amendment.original-article
+    left-item-anchor: amendment.original-article
+    right-item: \§ + amendment.article
+
 function match-motions(substeps, ttsmotions)
   date = moment(ttsmotions.date) .format 'YYYY-MM-DD'
   for s in substeps
@@ -251,13 +254,14 @@ angular.module 'app.controllers.bills' []
           [base-index] = [i for n, i in h when n is /^現行/]
           [c] = [i for n, i in h when n is \說明]
 
+          amendment = diff.content.map bill-amendment diff, 0, c, base-index
           diff{header,content,name} <<< do
             versions: h.filter (it, i) -> it isnt \說明 and i isnt base-index
             base-index: base-index
             comment-index: c
             diffbase: h[base-index]
             diffnew: h.0
-            diffcontent: diff.content.map diffentry diff, 0, c, base-index, $sce
+            diffcontent: amendment.map make-diff $sce
         if $scope.diff?length
           total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
@@ -276,9 +280,10 @@ angular.module 'app.controllers.bills' []
             [idx] = [i for n, i in diff.header when n is version]
             base-index = diff.base-index
             c = diff.comment-index
+            amendment = diff.content.map bill-amendment diff, idx, c, base-index
             diff <<< do
                 diffnew: version
-                diffcontent: diff.content.map diffentry diff, idx, c, base-index, $sce
+                diffcontent: amendment.map make-diff $sce
       $scope.showSub = (index) ->
         angular.forEach $scope.steps, (v, i) ->
           if index == i
