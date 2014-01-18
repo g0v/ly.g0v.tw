@@ -1,0 +1,10 @@
+.image.ui.rounded.corner.hide-print
+  a(ng-href="e.twlylink", target="blank")
+    img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{person.avatar}}?size=small",ng-alt="{{person.name}}",ng-class="person.party")
+.content
+  .name {{person.name}}
+span.infocard
+  b
+  a.fact.text(href="http://fact.g0v.tw/wiki/{{person.name}}",target="blank") 生平時間軸
+  a.wiki.text(href="http://zh.wikipedia.org/wiki/{{person.name}}",target="blank") Wikipedia
+  a.text(ng-if="person.twlylink", ng-href="person.twlylink",target="blank") 投票指南
