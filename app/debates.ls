@@ -51,7 +51,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
             displayName: \質詢人
             width: 130
             cellTemplate: """
-            <div legislator="asked_by(row)"></div>
+            <div class="item" legislator="asked_by(row)"></div>
             """
           * field: 'source'
             displayName: \質詢公報
