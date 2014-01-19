@@ -1,10 +1,10 @@
 .image.ui.rounded.corner.hide-print
-  a(ng-href="e.twlylink", target="blank")
-    img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{person.avatar}}?size=small",ng-alt="{{person.name}}",ng-class="person.party")
+  a(ng-href="twlylink", target="blank")
+    img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar}}?size=small",ng-alt="{{name}}",ng-class="party")
 .content
-  .name {{person.name}}
+  .name {{name}}
 span.infocard
   b
-  a.fact.text(href="http://fact.g0v.tw/wiki/{{person.name}}",target="blank") 生平時間軸
-  a.wiki.text(href="http://zh.wikipedia.org/wiki/{{person.name}}",target="blank") Wikipedia
-  a.text(ng-if="person.twlylink", ng-href="person.twlylink",target="blank") 投票指南
+  a.fact.text(href="http://fact.g0v.tw/wiki/{{name}}",target="blank") 生平時間軸
+  a.wiki.text(href="http://zh.wikipedia.org/wiki/{{name}}",target="blank") Wikipedia
+  a.text(ng-if="twlylink", ng-href="twlylink",target="blank") 投票指南

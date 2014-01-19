@@ -132,8 +132,7 @@ angular.module 'app.controllers.sittings' []
           for e in entries when !e.avatars?
             match e.proposed_by
             | /委員(.*?)(、|等)/
-              party = LYService.resolveParty that.1
-              e.avatars = [party: party, name: that.1, avatar: CryptoJS.MD5 "MLY/#{that.1}" .toString!]
+              e.avatars = [that.1]
             | /本院(.*黨團)/
               party = LYService.parseParty that.1 - /黨團$/
               e.avatars = [party: party, name: that.1, icon-class: party]
