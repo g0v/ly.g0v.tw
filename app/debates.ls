@@ -6,9 +6,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
         | otherwise      => $sce.trustAsHtml '未答'
     $scope.asked_by = ({{asked_by}:entity}) ->
         return '' unless asked_by[0]
-        party = LYService.resolveParty asked_by[0]
-        avatar = CryptoJS.MD5 "MLY/#{asked_by[0]}" .toString!
-        $sce.trustAsHtml asked_by[0] + """<img class="avatar small #party" src="http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small" alt="#{asked_by[0]}">""" 
+        return asked_by[0]
     padLeft = (str, length) ->
         if str.length >= length
             return str
@@ -53,7 +51,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
             displayName: \質詢人
             width: 130
             cellTemplate: """
-            <div ng-bind-html="asked_by(row)"></div>
+            <div legislator="asked_by(row)"></div>
             """
           * field: 'source'
             displayName: \質詢公報
