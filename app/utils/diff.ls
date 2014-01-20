@@ -69,6 +69,7 @@ char-based-diff-to-diffline = (ds) ->
       while last < associate
         difflines[last][side] = ''
         last++
+      difflines[last] ?= {}
       difflines[last][side] = text
       last++
 
