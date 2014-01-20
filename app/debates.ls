@@ -39,7 +39,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
             $scope.getData newVal
     , true
     $scope.gridOptions = {+showFilter, +showColumnMenu, +showGroupPanel, +enableHighlighting, +enableRowSelection, +enablePaging, +showFooter} <<< do
-        rowHeight: 80
+        rowHeight: 90
         data: \debates
         pagingOptions: $scope.pagingOptions,
         i18n: \zh-tw
