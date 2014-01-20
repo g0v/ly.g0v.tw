@@ -269,15 +269,7 @@ angular.module 'app.controllers.bills' []
         $scope.showSidebar = total-entries > 3
 
       committee ?.= map -> { abbr: it, name: committees[it] }
-      $scope <<< bill{summary,abstract,bill_id,bill_ref,doc} <<< {committee} <<<
-        sponsors: bill.sponsors?map ->
-            party = LYService.resolveParty it
-            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
-            twlylink: TWLYService.getLink it
-        cosponsors: bill.cosponsors?map ->
-            party = LYService.resolveParty it
-            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
-            twlylink: TWLYService.getLink it
+      $scope <<< bill{summary,abstract,bill_id,bill_ref,doc,sponsors,cosponsors} <<< {committee} <<<
         setDiff: (diff, version) ->
             [idx] = [i for n, i in diff.header when n is version]
             base-index = diff.base-index

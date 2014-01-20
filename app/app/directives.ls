@@ -184,5 +184,14 @@ angular.module 'app.directives' <[app.services ]>
         results.show!        
       else => results.hide!
 
-
-
+.directive \legislator (LYService, TWLYService, $parse)->
+  restrict: \A
+  scope: true
+  templateUrl: 'app/partials/legislator.jade'
+  link: (scope, elm, attrs) ->
+    name = $parse(attrs.legislator)(scope)
+    scope <<<
+      party: LYService.resolveParty name
+      name: name
+      avatar: CryptoJS.MD5 "MLY/#name" .toString!
+      twlylink: TWLYService.getLink name
