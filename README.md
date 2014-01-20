@@ -5,12 +5,13 @@ WARNING: this is work in progress and the file format is likely to change!
 
 # Usage
 
-to install needed packages
+Install required packages:
 
-    $ gem install compass
+    $ sudo gem install compass
     $ npm install
+    $ npm run build
 
-to run app locally,
+Start app locally:
 
     $ npm start    # then open http://localhost:3333/
 
@@ -55,7 +56,7 @@ after you install go to the folder `contrib/ly_ios` in this repo and enter the f
 
 ```
 # install emulators on ios
-npm install -g ios-sim                                      
+npm install -g ios-sim
 
 # add ios platform on cordova
 cordova platform add ios
