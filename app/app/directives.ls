@@ -184,7 +184,7 @@ angular.module 'app.directives' <[app.services ]>
         results.show!        
       else => results.hide!
 
-.directive \legislator (LYService, TWLYService, $parse)->
+.directive \legislator <[LYService TWLYService $parse]> ++ (LYService, TWLYService, $parse)->
   restrict: \A
   scope: true
   templateUrl: 'app/partials/legislator.jade'
