@@ -4,9 +4,6 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
     $scope.answer = (answer) ->
         | answer         => $sce.trustAsHtml '已答'
         | otherwise      => $sce.trustAsHtml '未答'
-    $scope.asked_by = ({{asked_by}:entity}) ->
-        return '' unless asked_by[0]
-        return asked_by[0]
     padLeft = (str, length) ->
         if str.length >= length
             return str
@@ -51,7 +48,7 @@ angular.module 'ly.g0v.tw.controllers' <[ng]>
             displayName: \質詢人
             width: 130
             cellTemplate: """
-            <div class="item" legislator="asked_by(row)"></div>
+              <div class="item" legislator="asked_by" ng-repeat="asked_by in row.entity.asked_by"></div>
             """
           * field: 'source'
             displayName: \質詢公報
