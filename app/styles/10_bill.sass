@@ -287,8 +287,6 @@
       float: left
       text-align: center
       display: block
-      .infocard a
-        display: block
     .image.ui.rounded.corner
       background-color: #fff
     .committee, .sponsors, .cosponsors
@@ -410,11 +408,12 @@
 div.item
   outline: none
   text-decoration: none
+  position: relative
   strong
     line-height: 30px
-  > span
-    width: 65px
-    padding: 10px 20px
+  > .infocard
+    width: 8em
+    padding: 10px
     margin-top: 20px
     margin-left: -70px
     opacity: 0
@@ -426,32 +425,38 @@ div.item
     font-style: normal
     @include single-box-shadow(#999, 2px, 2px, 2px)
     @include single-transition(all, 0.6s, ease-in-out)
-  &:hover > span
-    opacity: 1
-    text-decoration: none
-    visibility: visible
-    overflow: visible
-    margin-top: 20px
-    display: inline
-    margin-left: -50px
-  span b
-    width: 15px
-    height: 15px
-    margin-left: 20px
-    margin-top: -19px
-    display: block
-    position: absolute
-    background: #FBF5E6
-    border-top: 1px solid #CFB57C
-    border-right: 1px solid #CFB57C
-    @include rotate(-45deg)
-  > span
     color: #000000
     background: #FBF5E6
     background: -moz-linear-gradient(top, #fbf5e6 0%, white 100%)
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbf5e6), color-stop(100%, white))
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBF5E6', endColorstr='#FFFFFF',GradientType=0 )
     border: 1px solid #CFB57C
+    b
+      width: 15px
+      height: 15px
+      margin-left: 40px
+      margin-top: -19px
+      display: block
+      position: absolute
+      background: #FBF5E6
+      border-top: 1px solid #CFB57C
+      border-right: 1px solid #CFB57C
+      @include rotate(-45deg)
+    a
+      display: block
+      color: inherit
+      padding: 0.8em
+      +border-radius(0.3em)
+      &:hover
+        background-color: rgba(#000,0.05)
+        +transition(0.5s)
+  &:hover > .infocard
+    opacity: 1
+    text-decoration: none
+    visibility: visible
+    overflow: visible
+    margin-left: -60px
+    display: inline
 
 .item-section .spy
   background-color: #e0e0c3
