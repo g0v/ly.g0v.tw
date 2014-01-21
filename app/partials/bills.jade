@@ -17,7 +17,9 @@
         a.item.hide-print(ng-show="doc.doc",ng-href="{{doc.doc}}",target="_blank")
           i.icon.download.disk
           | Word
-        a.right.item(ng-init="show_related_bills=false",ng-show="bill_ref",ng-click="show_related_bills=!show_related_bills") 相關議案
+        a.right.item(ng-init="show_related_bills=false",ng-show="bill_ref",ng-click="show_related_bills=!show_related_bills")
+          i.icon.fork.code
+          | 相關議案
       .ui.sub.menu.related-bill(ng-show="show_related_bills")
         .item
           | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
@@ -51,7 +53,7 @@
 
   .ui.list.ttsmotions(ng-if="ttsmotions")
     .item
-      i.icon.exclamation
+      i.icon.down
       | 這應該要整合到上面的列表，但是還沒做好
     .item(ng-repeat="ttsmotion in ttsmotions")
         .content
@@ -135,8 +137,8 @@
             a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
-      .ui.segment.green(ng-bind-html="diffs.comment", ng-show="diffs.comment")
-      .ui.horizontal.divider
+      .ui.pointing.label.diff-comment(ng-bind-html="diffs.comment", ng-show="diffs.comment")
+      //-.ui.horizontal.divider
 
   .content.navigation.visible-desktop(ng-show="showSidebar")
     .ui.very.thin.sidebar

@@ -296,7 +296,7 @@
         padding: 0 0.5rem
 
   .content.default
-    margin: 3rem 0
+    margin-bottom: 1rem
     line-height: 1.5rem
 
     .diff .diff.text,
@@ -341,9 +341,20 @@
       background-color: lighten(#A1CF88, 10%)
 
   .column.left
-    margin: 5px 0
+    margin: 0
   .column.right
-    margin: 5px 0
+    margin: 0
+
+  .ui.pointing.label.diff-comment
+    width: 100%
+    margin-bottom: 1em
+    font-size: 1rem
+    background-color: #fffaf2
+    +box-shadow(0 0 1px rgba(#000,0.5))
+    &:before
+      background-color: #fffaf2
+      border: 1px rgba(#000,0.1) solid
+      border-width: 1px 0 0 1px
 
   .ui.very.thin.sidebar
     .ui.vertical.menu
