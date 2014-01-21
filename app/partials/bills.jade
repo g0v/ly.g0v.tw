@@ -30,12 +30,14 @@
             a.header
               span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
               span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
-              | {{ttsmotion.progress || ttsmotion.summary}}
+              span {{ttsmotion.progress || ttsmotion.summary}}
             .description
               | {{ ttsmotion.resolution }}
-              i.icon.archive(ng-show="ttsmotion.links") p.
+              i.icon.file(ng-show="ttsmotion.links")
+              |  p. 
               span(ng-repeat="l in ttsmotion.links")
-                a(target="_blank",ng-href="{{l.link}}") {{l.text}}
+                a.page(target="_blank",ng-href="{{l.link}}")
+                  | {{l.text}}
   .summary
     .links.ui.vertical.menu.right.floated
       .item(ng-show="bill_ref")
