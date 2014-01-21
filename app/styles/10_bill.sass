@@ -46,9 +46,10 @@
 
   h1, h2
     padding: 1rem 0
-    margin: 1em 0 0 0
     font-size: 1.7rem
     +ly-songti-display
+    &.ui.header
+      margin: 1rem 0 0 0
 
   .summary
     +ly-songti
@@ -58,6 +59,7 @@
     color: #666
 
   .ttsmotions
+    margin-top: 0
     .header
       display: inline-block
       span
@@ -70,6 +72,22 @@
         color: inherit
         +border-radius(0.3em)
         background-color: rgba(#000,0.05)
+
+  .bill-meta
+    //.links.ui.right.floated.menu
+      margin-left: 2rem
+      margin-bottom: 1rem
+    .ui.sub.menu.related-bill
+      .item
+        display: block
+        line-height: 1.5em
+        .related-bill-action
+          display: inline
+          float: right
+        .ui.button
+          margin: 0
+          padding-top: 0.8em
+          padding-bottom: 0.8em
 
   .bill-progress
 
@@ -86,6 +104,7 @@
       cursor: auto
 
     .ui.steps
+      margin-bottom: 1rem
 
       .ui.step .ui.pointing.below.label
         top: -2rem
@@ -115,7 +134,6 @@
           font-weight: bold
 
       &.small
-        margin: 1rem 0
         .step
           min-height: 2.5rem
 
@@ -255,20 +273,6 @@
         color: #fff
 
   .summary
-    //.links.ui.right.floated.menu
-      margin-left: 2rem
-      margin-bottom: 1rem
-    .ui.sub.menu.related_bill
-      .item
-        display: block
-        line-height: 1.5em
-        .related_bill_action
-          display: inline
-          float: right
-        .ui.button
-          margin: 0
-          padding-top: 0.8em
-          padding-bottom: 0.8em
     .description
       font-size: larger
       line-height: 1.5em
@@ -345,7 +349,7 @@
     white-space: normal
 
   @media only screen and (min-width: 768px)
-    padding: 4rem 1rem 1rem 10rem
+    padding: 4rem 1rem 1rem 9rem
     width: 100%
 
   @media only screen and (max-width: 768px)
