@@ -39,31 +39,34 @@
                 a.page(target="_blank",ng-href="{{l.link}}")
                   | {{l.text}}
   .summary
-    .links.ui.vertical.menu.right.floated
-      .item(ng-show="bill_ref")
-        h4 提案編號 {{ bill_ref }}
-      .item.center.right#qrlink
-        qrcode(text="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
-      .item.hide-print
-        i.code.icon
-        a(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank") JSON
-      .item.hide-print(ng-show="report.doc.pdf")
-        i.file.icon
-        a(ng-href="{{report.doc.pdf}}",target="_blank") 審查報告
-      .item.hide-print(ng-show="doc.pdf")
-        i.file.icon
-        a(ng-href="{{doc.pdf}}",target="_blank") PDF
-      .item.hide-print(ng-show="doc.doc")
-        i.file.icon
-        a(ng-href="{{doc.doc}}",target="_blank") Word
-      //-.item(ng-show="bill_ref") Related bills
-        .menu
-          .item
-            a(ng-href="",target="_blank")
-              | 民法親屬編、繼承編部分條文修正草案
-          .item
-            a(ng-href="",target="_blank")
-              | 民法親屬編、繼承編部分條文修正草案
+    .links.ui.tiered.menu
+      .menu
+        .item(ng-show="bill_ref") 提案編號 {{ bill_ref }}
+        .item.center.right#qrlink
+          qrcode(text="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
+        a.item.hide-print(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
+          i.code.icon
+          | JSON
+        a.item.hide-print(ng-show="report.doc.pdf",ng-href="{{report.doc.pdf}}",target="_blank")
+          i.file.icon
+          | 審查報告
+        a.item.hide-print(ng-show="doc.pdf",ng-href="{{doc.pdf}}",target="_blank")
+          i.icon.download.disk
+          | PDF
+        a.item.hide-print(ng-show="doc.doc",ng-href="{{doc.doc}}",target="_blank")
+          i.icon.download.disk
+          | Word
+        a.right.item(ng-init="show_related_bills=false",ng-show="bill_ref",ng-click="show_related_bills=!show_related_bills") 相關議案
+      .ui.sub.menu.related_bill(ng-show="show_related_bills")
+        .item
+          | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
+          .related_bill_action
+            a.ui.small.button.icon.labeled(ng-href="",target="_blank")
+              i.icon.forward.mail
+              | 前往此議案
+            a.ui.small.button.icon.labeled(ng-href="",target="_blank")
+              i.icon.exchange
+              | 比較此議案
     p.description {{abstract}}
 
   .role
@@ -139,3 +142,5 @@
           a.item(href="#"+"{{d.name}}", spy) {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
             .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+script.
+  $(".ui.dropdown").dropdown();
