@@ -42,9 +42,9 @@
       span.stage(ng-repeat="substep in step.detail")
         .ui.step(ng-class="substep.status.step")
           .substep-description {{substep.description}}
-            i.icon.archive(ng-show="substep.links") p.
-            span(ng-repeat="l in substep.links")
-              a(target="_blank",ng-href="{{l.link}}") {{l.text}}
+            i.icon.file(ng-show="substep.links")
+            |  p. 
+            a(ng-repeat="l in substep.links",target="_blank",ng-href="{{l.link}}") {{l.text}}
           .date {{substep.date}}
           //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
         .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
