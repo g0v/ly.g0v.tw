@@ -283,15 +283,56 @@
       line-height: 1.5em
 
   .role
-    .item
-      //-float: left
-      text-align: center
-      display: inline-block
-    .image.ui.rounded.corner
-      background-color: #fff
     .committee, .sponsors, .cosponsors
       .content
         padding: 0 0.5rem
+    .toggle
+      margin: 0
+      padding: 1rem 0
+      cursor: pointer
+      +border-radius(0.3em)
+      i.icon
+        vertical-align: inherit
+        opacity: 0.3
+      &:before,&:after
+        margin: 0
+      &:hover
+        background-color: rgba(#000,0.03)
+        +transition(0.5s)
+        i.icon
+          opacity: 1
+          +transition(0.5s)
+    .item
+      text-align: center
+      display: inline-block
+      .image.ui.rounded.corner
+        background-color: #fff
+        .avatar,.content,.infocard
+          +transition(0.5s)
+      &.expanded
+        .avatar
+          width: 50px
+          height: 50px
+          border-width: 0 0 4px 0
+        .content, .infocard
+          display: block
+      &.simplified
+        .avatar
+          border-width: 0.5rem
+          width: 0
+          height: 0
+        .content, .infocard
+          display: none
+    .sponsors
+      min-height: 6rem
+      .item:first-child
+        float: left
+        .avatar
+          width: 50px
+          height: 50px
+          border-width: 0 0 4px 0
+        .content, .infocard
+          display: block
 
   .content.default
     margin-bottom: 1rem
@@ -419,7 +460,7 @@ div.item
     width: 8em
     padding: 10px
     margin-top: 20px
-    margin-left: -70px
+    left: -30%
     opacity: 0
     visibility: hidden
     z-index: 10
@@ -459,8 +500,8 @@ div.item
     text-decoration: none
     visibility: visible
     overflow: visible
-    margin-left: -60px
-    display: inline
+    left: -40%
+    display: block
 
 .item-section .spy
   background-color: #e0e0c3
