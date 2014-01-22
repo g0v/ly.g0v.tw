@@ -1,43 +1,125 @@
-.bill.compare
-  .ui.two.column.stackable.grid(ng-if="toCompare")
+.bill.compare(ng-if="toCompare")
+  .ui.two.column.stackable.grid
     .column
       .bill-meta
         .links.ui.tiered.menu
           .menu
             a.item(ng-href="",ng-show="bill_ref") 提案編號 {{ bill_ref }}
               i.icon.forward.mail
-          .ui.sub.menu.related-bill(ng-show="show_related_bills")
-            .item
-              | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
-              .related-bill-action
-                a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                  i.icon.forward.mail
-                  | 前往此議案
-                a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                  i.icon.exchange
-                  | 比較此議案
       h1.ui.header.bill(title="{{summary}}") {{summary}}
       .summary
         p.description {{abstract}}
+      .role
+        ul.committee(ng-show="committee")
+            li(ng-repeat="c in committee")
+                span
+                    img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+                    span.name {{c.name}}委員會
+        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
+          i.icon.unhide
+        .sponsors(ng-show="sponsors")
+          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
+            .image.ui.rounded.corner.hide-print(ng-class="e.party")
+              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}")
+            .content
+              .name {{e.name}}
+            span.infocard
+              b
+              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
+          i.icon.unhide
+        .cosponsors(ng-show="cosponsors")
+          .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
+            .image.ui.rounded.corner.hide-print(ng-class="e.party")
+              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}")
+            .content
+              .name {{e.name}}
+            span.infocard
+              b
+              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+      .related(ng-show="related")
+          ul
+              li(ng-repeat="r in related")
+                  span
+                      img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
+                      span.summary {{r.summary}}
     .column(ng-repeat="(ref, bill) in toCompare")
       .bill-meta
         .links.ui.tiered.menu
           .menu
             a.item(ng-href="",ng-show="bill_ref") 提案編號 {{ ref }}
               i.icon.forward.mail
-          .ui.sub.menu.related-bill(ng-show="show_related_bills")
-            .item
-              | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
-              .related-bill-action
-                a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                  i.icon.forward.mail
-                  | 前往此議案
-                a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                  i.icon.exchange
-                  | 比較此議案
-      h1.ui.header.bill(title="{{summary}}") {{bill.summary}}
+      h1.ui.header.bill(title="{{bill.summary}}") {{bill.summary}}
       .summary
         p.description {{bill.abstract}}
+      .role
+        ul.committee(ng-show="bill.committee")
+            li(ng-repeat="c in bill.committee")
+                span
+                    img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+                    span.name {{c.name}}委員會
+        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
+          i.icon.unhide
+        .sponsors(ng-show="bill.sponsors")
+          .item(ng-repeat="e in bill.sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
+            .image.ui.rounded.corner.hide-print(ng-class="e.party")
+              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}")
+            .content
+              .name {{e.name}}
+            span.infocard
+              b
+              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
+          i.icon.unhide
+        .cosponsors(ng-show="bill.cosponsors")
+          .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
+            .image.ui.rounded.corner.hide-print(ng-class="e.party")
+              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}")
+            .content
+              .name {{e.name}}
+            span.infocard
+              b
+              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
+              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
+      .related(ng-show="bill.related")
+          ul
+              li(ng-repeat="r in bill.related")
+                  span
+                      img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
+                      span.summary {{r.summary}}
+  .content.default(ng-repeat="(i, d) in diff", scroll-spy)
+    a(name="{{d.name}}", spy-target)
+    h2.ui.horizontal.divider {{d.name}}
+    //-p.sample
+      span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
+      span(ng-hide="!d.diffbase") vs
+      span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
+    .diff(ng-repeat="diffs in d.diffcontent", spy-target)
+      .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
+        .column(class="left {{diffline.state}}", ng-hide="!d.diffbase")
+          .ui.segment.article-text
+            a(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
+              .ui.ribbon.label {{diffs.leftItem}}
+            .ui.right.corner.label(ng-class="diffstate('left', '{{diffline.state}}')") {{difftxt('left', diffline.state)}}
+            .diff.text(href="",target="blank", ng-bind-html="diffline.left")
+          .ui.pointing.label.diff-comment(ng-bind-html="diffs.comment", ng-show="diffs.comment")
+        .column.right(class="right {{diffline.state}}")
+          .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
+            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
+            .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
+            .diff.text(href="",target="blank", ng-bind-html="diffline.right")
+          .ui.pointing.label.diff-comment(ng-bind-html="diffs.comment", ng-show="diffs.comment")
+      //-.ui.horizontal.divider
+  .content.navigation.visible-desktop.mobile-hide(ng-show="showSidebar")
+    .ui.very.thin.sidebar
+      .ui.vertical.menu
+        .item-section(ng-repeat="(i, d) in diff track by $index")
+          a.item(href="#"+"{{d.name}}", spy) {{d.name}}
+          .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
+            .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 
 .bill
   .bill-meta
@@ -186,7 +268,7 @@
       .ui.pointing.label.diff-comment(ng-bind-html="diffs.comment", ng-show="diffs.comment")
       //-.ui.horizontal.divider
 
-  .content.navigation.visible-desktop(ng-show="showSidebar")
+  .content.navigation.visible-desktop.mobile-hide(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu
         .item-section(ng-repeat="(i, d) in diff track by $index")
