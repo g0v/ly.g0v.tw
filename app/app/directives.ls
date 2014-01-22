@@ -181,16 +181,17 @@ angular.module 'app.directives' <[app.services ]>
             elm.blur!
           result = angular.element \<div> .addClass \result .append link
           results.append result
-        results.show!        
+        results.show!
       else => results.hide!
 
 .directive \legislator <[LYService TWLYService $parse]> ++ (LYService, TWLYService, $parse)->
   restrict: \A
-  scope: true
+  scope:
+    legislator: \=legislator
   templateUrl: 'app/partials/legislator.jade'
-  link: (scope, elm, attrs) ->
-    name = $parse(attrs.legislator)(scope)
-    scope <<<
+  controller: <[$scope]> ++ ($scope) ->
+    name <- $scope.$watch 'legislator'
+    $scope <<<
       party: LYService.resolveParty name
       name: name
       avatar: CryptoJS.MD5 "MLY/#name" .toString!
