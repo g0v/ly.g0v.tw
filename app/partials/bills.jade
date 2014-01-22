@@ -19,26 +19,10 @@
           i.icon.unhide
         .sponsors(ng-show="sponsors")
           .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
         h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
           i.icon.unhide
         .cosponsors(ng-show="cosponsors")
           .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
       .related(ng-show="related")
           ul
               li(ng-repeat="r in related")
@@ -64,26 +48,10 @@
           i.icon.unhide
         .sponsors(ng-show="bill.sponsors")
           .item(ng-repeat="e in bill.sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
         h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
           i.icon.unhide
         .cosponsors(ng-show="bill.cosponsors")
           .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
       .related(ng-show="bill.related")
           ul
               li(ng-repeat="r in bill.related")
@@ -211,28 +179,12 @@
           i.icon.unhide
         .sponsors(ng-show="sponsors")
           .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
       .column.right
         //-.ui.segment
         h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
           i.icon.unhide
         .cosponsors(ng-show="cosponsors")
           .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-            .image.ui.rounded.corner.hide-print(ng-class="e.party")
-              img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small",ng-alt="{{e.name}}")
-            .content
-              .name {{e.name}}
-            span.infocard
-              b
-              a.fact.text(href="http://fact.g0v.tw/wiki/{{e.name}}",target="blank") 生平時間軸
-              a.wiki.text(href="http://zh.wikipedia.org/wiki/{{e.name}}",target="blank") Wikipedia
   .clearfix
   .history
   .clearfix
