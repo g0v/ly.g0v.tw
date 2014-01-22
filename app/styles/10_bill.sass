@@ -6,8 +6,6 @@
 @import "compass/css3/border-radius"
 @import "compass/css3/box-sizing"
 
-
-
 @media print
   .hide-print
     display: none !important
@@ -33,23 +31,11 @@
 
 .bill
   +box-sizing(border-box)
-  width: 100%
   .basic-info
     padding-left: 2rem
 
   #qrlink
     display: none
-
-  a,a:link,a:hover,a:active
-    text-decoration: none
-    display: inline-block
-
-  h1, h2
-    padding: 1rem 0
-    font-size: 1.7rem
-    +ly-songti-display
-    &.ui.header
-      margin: 1rem 0 0 0
 
   .summary
     +ly-songti
@@ -409,11 +395,10 @@
     white-space: normal
 
   @media only screen and (min-width: 768px)
-    padding: 4rem 1rem 1rem 9rem
-    width: 100%
+    padding: 0 1rem 1rem 9rem
 
   @media only screen and (max-width: 768px)
-    padding: 4rem 0.5rem 0.5rem 0.5rem
+    padding: 0 0.5rem 0.5rem 0.5rem
     .mobile-hide
       display: none
     .ui.stackable.grid > .column.right
@@ -512,6 +497,9 @@ div.item
     .menu
       .item
         width: 100%
+  .row
+    margin: 0
+    padding: 0
   @media only screen and (max-width: 768px)
     .ui.stackable.grid .row > .column, .ui.stackable.grid > .column
       margin-top: 0!important
