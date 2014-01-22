@@ -148,7 +148,7 @@ angular.module 'app.directives' <[app.services ]>
             event.preventDefault!
             scope.searchKeyword = results.children!.eq currentIndex .text!
             $timeout ->
-              $state.transitionTo 'search.target' do 
+              $state.transitionTo 'search.target' do
                 keyword: scope.searchKeyword
               scope.searchKeyword = ''
               elm.blur!
@@ -161,7 +161,7 @@ angular.module 'app.directives' <[app.services ]>
                      else currentIndex-1
           results.children!.eq newIndex .addClass \active
           scope.currentIndex = newIndex
-          event.preventDefault!         
+          event.preventDefault!
         else if keyCode is keys.downArrow
           results.children! .removeClass \active
           newIndex = if currentIndex+1 >= resultSize
@@ -170,7 +170,7 @@ angular.module 'app.directives' <[app.services ]>
           results.children!.eq newIndex .addClass \active
           scope.currentIndex = newIndex
           event.preventDefault!
-    scope.$watch \searchKeyword (keyword) ->   
+    scope.$watch \searchKeyword (keyword) ->
       if keyword
         entries <- LYLaws.get keyword
         results.html ''
