@@ -38,13 +38,13 @@
         .row(ng-show="proceeding_url")
           .four.wide.column.right.aligned.td-title 議事錄
           .twelve.wide.column: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
-  
+
   .ui.segment(ng-show="loaded", ng-show="video")
     #player
     #share.ui.segment
       span.actions
         .ui.tiny.facebook.button(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
-          i.facebook.icon  
+          i.facebook.icon
         .ui.tiny.twitter.button(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
           i.twitter.icon
         .ui.tiny.google.plus-sign.button(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
@@ -79,9 +79,7 @@
       .ui.list
         .item(ng-repeat="e in entries | filter:filter")
           .ui.left.floated.avatars
-            span(ng-repeat="avatar in e.avatars")
-              i.g0v-icon.large(ng-class="avatar.iconClass",ng-if="avatar.iconClass",ng-alt="{{avatar.name}}")
-              img.avatar.image(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small",ng-alt="{{avatar.name}}",ng-class="avatar.party",ng-if="!avatar.iconClass")
+            .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{foo: 1}")
           .ui.horizontal.segment.motion
             span.item-heading {{ e.item }}
             span.proposer {{ e.proposed_by }}
