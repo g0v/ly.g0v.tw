@@ -281,6 +281,7 @@ angular.module 'app.controllers.bills' []
       $scope.$watch '$state.params.otherBills' ->
         other-bills = it?split \,
         return unless other-bills?length
+        $scope.bill_refs = [$scope.bill_ref] ++ other-bills
         for billId in other-bills
           bill <- LYModel.get "bills/#{billId}" .success
           data <- LYModel.get "bills/#{billId}/data" .success
@@ -288,7 +289,7 @@ angular.module 'app.controllers.bills' []
           $scope.to-compare[billId] = bill <<< diff: diffmeta data?content
       $scope.$watch 'toCompare' ->
         return unless it
-        matrix = {}
+        $scope.diff-matrix = matrix = {}
         expand = (bill_ref, content) ->
           for d in content
             matrix[d.name] ?= {}

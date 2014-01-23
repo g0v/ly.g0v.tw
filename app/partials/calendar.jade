@@ -1,52 +1,47 @@
 .calendar(ngx-resize)
-  ul.nav.nav-tabs
-    li(ng-class="{active: type == 'sitting'}")
-      a(ng-click="change('sitting')", href="") 一般議程
-    li(ng-class="{active: type == 'hearing'}")
-      a(ng-click="change('hearing')", href="") 公聽會
-  .time 立法院行程：
+  .ui.top.attached.tabular.menu
+    a.item(ng-class="{active: type == 'sitting'}",ng-click="change('sitting')", href="") 一般議程
+    a.item(ng-class="{active: type == 'hearing'}",ng-click="change('hearing')", href="") 公聽會
+  .ui.header.time 立法院行程：
     select(ng-model="weeks", ng-options="o.label for o in weeksOpts", ng-change="update()")
 
 
-  .sitting
-    h3(ng-hide="groupNum > 0") 本日無行程
-    .group
+  .ui.blue.segment.sitting
+    h3.ui.header(ng-hide="groupNum > 0") 本日無行程
       // YS is not in committee mapping object, this is the customized block for it
-      .title(ng-show="group.YS")
-        .time 院會
-        table.ui.table.segment
-          thread
-            tr
-              th.two.wide 日期
-              th.two.wide 時間
-              th.three.wide 名稱
-              th.nine.wide 議程
-          tbody
-            tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group.YS")
-              td {{entry.formatDate}}
-              td {{entry.time_start}} 至 {{entry.time_end}}
-              td
-                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
-              td {{entry.summary}}
-    .group(ng-repeat="(k, v) in group")
-      .title(ng-show="committees[k]")
-        .time
-          img.avatar.small(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{k}}?size=small")
-          span {{committees[k]}}
-        table.ui.table.segment
-          thread
-            tr
-              th.two.wide 日期
-              th.two.wide 時間
-              th.three.wide 名稱
-              th.one.wide 主席
-              th.eight.wide 議程
-          tbody
-            tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
-              td {{entry.formatDate}}
-              td {{entry.time_start}} 至 {{entry.time_end}}
-              td
-                a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
-              td {{entry.chair}}
-              td {{entry.summary}}
-
+    .ui.orange.segment(ng-show="group.YS")
+      .ui.header.time 院會
+      table.ui.table.segment
+        thread
+          tr
+            th.two.wide 日期
+            th.two.wide 時間
+            th.three.wide 名稱
+            th.nine.wide 議程
+        tbody
+          tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group.YS")
+            td {{entry.formatDate}}
+            td {{entry.time_start}} 至 {{entry.time_end}}
+            td
+              a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
+            td {{entry.summary}}
+    .ui.green.segment(ng-repeat="(k, v) in group", ng-show="committees[k]")
+      .ui.header.time
+        img.avatar.small(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{k}}?size=small")
+        span {{committees[k]}}
+      table.ui.table.segment
+        thread
+          tr
+            th.two.wide 日期
+            th.two.wide 時間
+            th.three.wide 名稱
+            th.one.wide 主席
+            th.eight.wide 議程
+        tbody
+          tr(ng-class="{negative:entry.onair}" ,ng-repeat="entry in group[k]")
+            td {{entry.formatDate}}
+            td {{entry.time_start}} 至 {{entry.time_end}}
+            td
+              a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
+            td {{entry.chair}}
+            td {{entry.summary}}

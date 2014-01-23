@@ -1,94 +1,95 @@
 .sittings(ng-cloak)
   script(src="https://www.youtube.com/iframe_api")
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
-  h1
-    span {{ name }}
-  span(ng-show="videos.length > 0 && !loaded")
-    a.pull-right.btn.btn-info(ng-href="/sittings/{{id}}/video") 觀看影片
-  .sitting-options(ng-hide="video")
-    select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-    span.spinner.small(ng-show="loadingSitting")
-  div(ng-hide="video")
-    span.btn-group
-      button.btn.dropdown-toggle(data-toggle="dropdown")
-        選擇其他
-        span.caret
-      ul.dropdown-menu
-        li
-          a(ng-click="setContext('YS')") 院會
-        li(ng-repeat="(type, name) in committees")
-          a(ng-click="setContext(type)") {{name}}
-    span.spinner.small(ng-show="loadingSitting")
+  .ui.menu#select-sitting(ng-hide="video")
+    .ui.dropdown.item
+      input(type='hidden')
+      .text 選擇院會/委員會
+      i.dropdown.icon
+      .menu
+        .item(ng-click="setContext('YS')") 院會
+        .item(ng-repeat="(type, name) in committees", ng-click="setContext(type)") {{name}}
+    .item
+      select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
+      span.spinner.small(ng-show="loadingSitting")
+    a.ui.button.right.item(ng-show="videos.length > 0 && !loaded", ng-href="/sittings/{{id}}/video") 觀看影片
+  #sitting-summary
+    h1.ui.header {{ name }}
+    //-span.spinner.small(ng-show="loadingSitting")
+    .role
+      .committee(ng-show="!committee")
+        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-YS?size=medium",ng-alt="院會",ng-class="")
+        .name 院會
+      .committee(ng-show="committee",ng-repeat="c in committee")
+        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+        .name {{c}} 委員會
+    // XXX use mly filter to set styles
+    .schedule
+      table.ui.basic.table
+        tr(ng-show="dates[0].chair")
+          th.four.wide 主席
+          td {{ dates[0].chair }}
+        tr(ng-show="dates", ng-repeat="entry in dates")
+          th.four.wide {{entry.date}}
+          td {{entry.time_start}} -  {{entry.time_end}}
+        tr(ng-show="summary")
+          th.four.wide 概要
+          td {{ summary }}
+        tr(ng-show="proceeding_url")
+          th.four.wide 議事錄
+          td: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
 
-  .row-fluid
-    .span10.content
-      .role.committee(ng-show="committee")
-        ul
-          li(ng-repeat="c in committee")
-            span
-              img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-              span.name {{c.name}}委員會
-      // XXX use mly filter to set styles
-      .hero-unit
-        .row(ng-show="dates[0].chair")
-          .span3.td-title 主席
-          .span9 {{ dates[0].chair }}
-        .row(ng-show="dates", ng-repeat="entry in dates")
-          .span3.td-title
-            span(ng-show="$index==0") 時間
-          .span9
-            {{entry.date}} : {{entry.time_start}} -  {{entry.time_end}}
-        .row(ng-show="summary")
-          .span3.td-title 概要
-          .span9 {{ summary }}
-        .row(ng-show="proceeding_url")
-          .span3.td-title 議事錄
-          .span9: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
-      .row-fluid
-        .span10.content
-  .row-fluid(ng-show="loaded", ng-show="video")
+  #video(ng-show="loaded", ng-show="video")
     #player
-    #share
-      span.buttons
-        a.icon-facebook-sign.sharebutton(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
-        a.icon-twitter-sign.sharebutton(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
-        a.icon-google-plus-sign.sharebutton(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
-      input(id="sharelink", type="text", ng-model="sharelink", size="30")
+    #share.ui.segment
+      span.actions
+        .ui.tiny.facebook.button(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
+          i.facebook.icon
+        .ui.tiny.twitter.button(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
+          i.twitter.icon
+        .ui.tiny.google.plus-sign.button(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
+          i.google.plus.icon
+      .ui.input
+        input(id="sharelink", type="text", ng-model="sharelink", size="30")
       strong 開始時間
       input(id="changeoffset", type="checkbox", ng-model="shareOffset")
       .timeoffset(ng-show="shareOffset", name="offset")
         span.offset
           strong 開始日期
-          input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
+          .ui.input
+            input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
         span.offset
           strong 開始時間
-          input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
+          .ui.input
+            input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
     .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below
-      img
+      img.ui.image
       .name
-      a.btn
+      button.ui.tiny.button
         i.icon.play
-  .row-fluid(ng-hide="video")
-      .entries.motions
-          input.filter(ng-model="filter",class="search-query pull-right", placeholder="輸入關鍵字過濾列表")
-          ul(class="nav nav-tabs")
-            li(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}")
-              a(href="") {{s.value}}
-          .list
-            ul.motions(ng-class="{{type}}")
-                li.row(ng-repeat="e in entries | filter:filter")
-                    .avatars
-                        .item(ng-repeat="avatar in e.avatars", legislator="avatar")
-                    .motion
-                        span.item-heading {{ e.item }}
-                        span.proposer {{ e.proposed_by }}
-                        a(ng-href="/bills/{{ e.bill_ref || e.bill_id }}")
-                            span.summary {{ e.summary }}
-                        span.label.label-important(ng-show="e.sitting_introduced == sitting_id") new
-                    .resolution {{ e.resolution }}
-      // XXX: show onair and upcoming ivod link
-      // XXX: search archived ivod clips for past sittings
-      // XXX: show agenda from misq, annotated with info from npl
-      // XXX: show debates, wrans if YS
+  #motions(ng-hide="video")
+    .ui.menu
+      a.item(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+      // todo: show motion count in tabular menu
+      .item
+        .ui.icon.input
+          input(ng-model="filter", placeholder="輸入關鍵字過濾列表")
+      // issue: don't know how to put .item to right without creating a new row in this menu, weird
+    .motions(ng-class="{{type}}")
+      .item(ng-repeat="e in entries | filter:filter")
+        .avatars
+          .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{hideName: true}")
+        .ui.segment.motion
+          span.item-heading {{ e.item }}
+          span.proposer {{ e.proposed_by }}
+          a.summary(ng-href="/bills/{{ e.bill_ref || e.bill_id }}") {{ e.summary }}
+          .ui.red.label(ng-show="e.sitting_introduced == sitting_id") new
+        .resolution {{ e.resolution }}
+    // XXX: show onair and upcoming ivod link
+    // XXX: search archived ivod clips for past sittings
+    // XXX: show agenda from misq, annotated with info from npl
+    // XXX: show debates, wrans if YS
+script.
+  $('.ui.dropdown').dropdown()

@@ -1,18 +1,109 @@
+@import "app/styles/mixins"
+@import "compass/css3"
 
-.motions
-  .item-heading
-    padding-right: 10px
-    padding-left: 10px
-  .item
-    float: left
-    text-align: center
-    display: block
-    .infocard a
-      display: block
-  .avatars
-    span
-      margin: 20px 0 20px 10px
-      display: inline-block
+.sittings
+  #select-sitting
+    margin-top: -1rem
+  #sitting-summary
+    padding: 0 1rem
+    @media only screen and (max-width: 480px)
+      padding: 0
+    .role
+      width: 8rem
+      float: left
+      margin: 1rem 0 0 0
+      .avatar
+        width: 8rem
+        height: 8rem
+      .name
+        text-align: center
+    .schedule
+      margin: 1rem 0 0 10rem
+    @media only screen and (max-width: 480px)
+      .role
+        float: none
+        .avatar
+          display: none
+      .schedule
+        margin: 0
+  #motions
+    .motions
+      &>.item
+        clear: both
+      .avatars
+        float: left
+        width: 5rem
+        margin-bottom: 1rem
+        .image
+          margin: 0 1rem
+        .content
+          display: block
+          text-align: center
+          margin-top: 0.3rem
+      .motion
+        margin: 0 1rem 1rem 5rem
+        position: relative
+        line-height: 1.8em
+        .ui.label
+          line-height: 1em
+        a
+          color: inherit
+          padding: 0.3em 0.8em
+          background-color: rgba(teal,0.1)
+          &:hover
+            background-color: rgba(teal,0.2)
+        &:after
+          display: none
+        &:before
+          content: ""
+          width: 0.5rem
+          height: 0.5rem
+          position: absolute
+          left: -0.3rem
+          border: 1px #ddd solid
+          border-width: 0 0 1px 1px
+          background-color: #fff
+          +rotate(45deg)
+
+//.ui.grid
+  .schedule
+    margin: 1.5% 0
+    .row
+      padding: 0.6% 0
+      margin: 0
+      .column
+        @media (min-width: 1200px)
+          min-height: 30px
+      .td-title
+        font-weight: 700
+        color: #630
+//.ui.tabular.menu
+  .item.right.floated.filter
+    &:hover, &:focus
+      background: none
+//.motions
+  .list
+    .item
+      border: 1px solid rgba(0, 0, 0, 0.07)
+      margin-top: -1px
+      border-color: #AAA
+      margin: 0
+      padding: 0
+      .avatars
+        span
+          margin-left: 10px
+          display: inline-block
+      .motion
+        line-height: 20px
+        margin-top: 20px
+        margin-left: 0px
+        .item-heading
+          padding-right: 10px
+          padding-left: 10px
+      .resolution
+        padding-left: 80px
+        margin: 5px
+        clear: both
 li a i
   padding-right: 3px
 #share
@@ -73,3 +164,4 @@ li a i
     border-radius: 2px
   .name
     margin-top: 8px
+
