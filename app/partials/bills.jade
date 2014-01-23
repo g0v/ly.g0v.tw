@@ -4,7 +4,7 @@
       .bill-meta
         .links.ui.tiered.menu
           .menu
-            a.item(ng-href="",ng-show="bill_ref") 提案編號 {{ bill_ref }}
+            a.item(ng-href="/bills/{{bill_ref}}",ng-show="bill_ref") 提案編號 {{ bill_ref }}
               i.icon.forward.mail
       h1.ui.header.bill(title="{{summary}}") {{summary}}
       .summary
@@ -33,7 +33,7 @@
       .bill-meta
         .links.ui.tiered.menu
           .menu
-            a.item(ng-href="",ng-show="bill_ref") 提案編號 {{ ref }}
+            a.item(ng-href="/bills/{{ref}}",ng-show="bill_ref") 提案編號 {{ ref }}
               i.icon.forward.mail
       h1.ui.header.bill(title="{{bill.summary}}") {{bill.summary}}
       .summary
