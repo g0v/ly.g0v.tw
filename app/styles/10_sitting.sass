@@ -1,4 +1,5 @@
 @import "app/styles/mixins"
+@import "compass/css3"
 
 .sittings
   #select-sitting
@@ -25,9 +26,46 @@
           display: none
       .schedule
         margin: 0
+  #motions
+    .motions
+      &>.item
+        clear: both
+      .avatars
+        float: left
+        width: 5rem
+        margin-bottom: 1rem
+        .image
+          margin: 0 1rem
+        .content
+          display: block
+          text-align: center
+          margin-top: 0.3rem
+      .motion
+        margin: 0 1rem 1rem 5rem
+        position: relative
+        line-height: 1.8em
+        .ui.label
+          line-height: 1em
+        a
+          color: inherit
+          padding: 0.3em 0.8em
+          background-color: rgba(teal,0.1)
+          &:hover
+            background-color: rgba(teal,0.2)
+        &:after
+          display: none
+        &:before
+          content: ""
+          width: 0.5rem
+          height: 0.5rem
+          position: absolute
+          left: -0.3rem
+          border: 1px #ddd solid
+          border-width: 0 0 1px 1px
+          background-color: #fff
+          +rotate(45deg)
 
-
-.ui.grid
+//.ui.grid
   .schedule
     margin: 1.5% 0
     .row
@@ -39,11 +77,11 @@
       .td-title
         font-weight: 700
         color: #630
-.ui.tabular.menu
+//.ui.tabular.menu
   .item.right.floated.filter
     &:hover, &:focus
       background: none
-.motions
+//.motions
   .list
     .item
       border: 1px solid rgba(0, 0, 0, 0.07)

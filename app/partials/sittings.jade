@@ -23,7 +23,7 @@
       .committee(ng-show="committee",ng-repeat="c in committee")
         img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
         .name {{c}} 委員會
-    //- XXX use mly filter to set styles
+    // XXX use mly filter to set styles
     .schedule
       table.ui.basic.table
         tr(ng-show="dates[0].chair")
@@ -70,22 +70,23 @@
       button.ui.tiny.button
         i.icon.play
   #motions(ng-hide="video")
-    .ui.tabular.menu
-      .item(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
-      .item.right.floated.filter
-        .ui.search.input
-          input.search-query(ng-model="filter", placeholder="輸入關鍵字過濾列表")
-    .ui.segment.motions(ng-class="{{type}}")
-      .ui.list
-        .item(ng-repeat="e in entries | filter:filter")
-          .ui.left.floated.avatars
-            .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{foo: 1}")
-          .ui.horizontal.segment.motion
-            span.item-heading {{ e.item }}
-            span.proposer {{ e.proposed_by }}
-            a.summary(ng-href="/bills/{{ e.bill_ref || e.bill_id }}") {{ e.summary }}
-            .ui.red.label(ng-show="e.sitting_introduced == sitting_id") new
-          .resolution {{ e.resolution }}
+    .ui.menu
+      a.item(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
+      // todo: show motion count in tabular menu
+      .item
+        .ui.icon.input
+          input(ng-model="filter", placeholder="輸入關鍵字過濾列表")
+      // issue: don't know how to put .item to right without creating a new row in this menu, weird
+    .motions(ng-class="{{type}}")
+      .item(ng-repeat="e in entries | filter:filter")
+        .avatars
+          .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{foo: 1}")
+        .ui.segment.motion
+          span.item-heading {{ e.item }}
+          span.proposer {{ e.proposed_by }}
+          a.summary(ng-href="/bills/{{ e.bill_ref || e.bill_id }}") {{ e.summary }}
+          .ui.red.label(ng-show="e.sitting_introduced == sitting_id") new
+        .resolution {{ e.resolution }}
     // XXX: show onair and upcoming ivod link
     // XXX: search archived ivod clips for past sittings
     // XXX: show agenda from misq, annotated with info from npl
