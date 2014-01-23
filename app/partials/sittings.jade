@@ -40,28 +40,30 @@
           td: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
 
   #video(ng-show="loaded", ng-show="video")
-    #player
-    #share.ui.segment
-      span.actions
-        .ui.tiny.facebook.button(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
-          i.facebook.icon
-        .ui.tiny.twitter.button(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
-          i.twitter.icon
-        .ui.tiny.google.plus-sign.button(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
-          i.google.plus.icon
-      .ui.input
-        input(id="sharelink", type="text", ng-model="sharelink", size="30")
-      strong 開始時間
-      input(id="changeoffset", type="checkbox", ng-model="shareOffset")
-      .timeoffset(ng-show="shareOffset", name="offset")
-        span.offset
-          strong 開始日期
-          .ui.input
-            input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
-        span.offset
-          strong 開始時間
-          .ui.input
-            input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
+    .player.wrapper
+      #player
+    .share.wrapper
+      #share
+        span.actions
+          .ui.tiny.facebook.button(title="分享至Facebook", ng-href="https://www.facebook.com/sharer.php?u={{sharelinkEscaped}}&via=lyg0vtw", , target="_blank")
+            i.facebook.icon
+          .ui.tiny.twitter.button(title="分享至Twitter", ng-href="https://twitter.com/intent/tweet?url={{sharelinkEscaped}}", target="_blank")
+            i.twitter.icon
+          .ui.tiny.google.plus-sign.button(title="分享至Google Plus", href="https://plus.google.com/share?url={{sharelinkEscaped}}", target="_blank")
+            i.google.plus.icon
+        .ui.input
+          input(id="sharelink", type="text", ng-model="sharelink", size="30")
+        strong 開始時間
+        input(id="changeoffset", type="checkbox", ng-model="shareOffset")
+        .timeoffset(ng-show="shareOffset", name="offset")
+          span.offset
+            strong 開始日期
+            .ui.input
+              input(id="dateoffset", type="text", ng-model="dateOffset", size="10")
+          span.offset
+            strong 開始時間
+            .ui.input
+              input(id="timeoffset", type="text", ng-model="timeOffset", size="10")
     .wav-group(ng-repeat="waveform in waveforms track by $index")
       ng-waveform(ng-model="waveform")
     #avatar-tooltip.ui.label.pointing.below
