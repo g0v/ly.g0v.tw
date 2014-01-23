@@ -4,7 +4,7 @@
   .ui.menu#select-sitting(ng-hide="video")
     .ui.dropdown.item
       input(type='hidden')
-      .text 院會
+      .text 選擇院會/委員會
       i.dropdown.icon
       .menu
         .item(ng-click="setContext('YS')") 院會
@@ -13,34 +13,33 @@
       select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
       span.spinner.small(ng-show="loadingSitting")
     a.ui.button.right.item(ng-show="videos.length > 0 && !loaded", ng-href="/sittings/{{id}}/video") 觀看影片
-  h1.item.ui.header {{ name }}
-  span.spinner.small(ng-show="loadingSitting")
-  .ui.grid
-    .thirteen.wide.column.content
-      .ui.segment.role.committee(ng-show="committee")
-        ul
-          li(ng-repeat="c in committee")
-            span
-              img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-              span.name {{c.name}}委員會
-      // XXX use mly filter to set styles
-      .ui.segment.grid.schedule
-        .row(ng-show="dates[0].chair")
-          .four.wide.column.right.aligned.td-title 主席
-          .twelve.wide.column {{ dates[0].chair }}
-        .row(ng-show="dates", ng-repeat="entry in dates")
-          .four.wide.column.right.aligned.td-title
-            span(ng-show="$index==0") 時間
-          .twelve.wide.column
-            {{entry.date}} : {{entry.time_start}} -  {{entry.time_end}}
-        .row(ng-show="summary")
-          .four.wide.column.right.aligned.td-title 概要
-          .twelve.wide.column {{ summary }}
-        .row(ng-show="proceeding_url")
-          .four.wide.column.right.aligned.td-title 議事錄
-          .twelve.wide.column: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
+  #sitting-summary
+    h1.ui.header {{ name }}
+    //-span.spinner.small(ng-show="loadingSitting")
+    .role
+      .committee(ng-show="!committee")
+        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-YS?size=medium",ng-alt="院會",ng-class="")
+        .name 院會
+      .committee(ng-show="committee",ng-repeat="c in committee")
+        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+        .name {{c}} 委員會
+    //- XXX use mly filter to set styles
+    .schedule
+      table.ui.basic.table
+        tr(ng-show="dates[0].chair")
+          th.four.wide 主席
+          td {{ dates[0].chair }}
+        tr(ng-show="dates", ng-repeat="entry in dates")
+          th.four.wide {{entry.date}}
+          td {{entry.time_start}} -  {{entry.time_end}}
+        tr(ng-show="summary")
+          th.four.wide 概要
+          td {{ summary }}
+        tr(ng-show="proceeding_url")
+          th.four.wide 議事錄
+          td: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
 
-  .ui.segment(ng-show="loaded", ng-show="video")
+  #video(ng-show="loaded", ng-show="video")
     #player
     #share.ui.segment
       span.actions
@@ -70,7 +69,7 @@
       .name
       button.ui.tiny.button
         i.icon.play
-  .ui.segment(ng-hide="video")
+  #motions(ng-hide="video")
     .ui.tabular.menu
       .item(ng-repeat="s in allTypes",ng-click="setType(s.key)",ng-class="{active: s.key == type}") {{s.value}}
       .item.right.floated.filter

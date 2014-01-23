@@ -3,6 +3,29 @@
 .sittings
   #select-sitting
     margin-top: -1rem
+  #sitting-summary
+    padding: 0 1rem
+    @media only screen and (max-width: 480px)
+      padding: 0
+    .role
+      width: 8rem
+      float: left
+      margin: 1rem 0 0 0
+      .avatar
+        width: 8rem
+        height: 8rem
+      .name
+        text-align: center
+    .schedule
+      margin: 1rem 0 0 10rem
+    @media only screen and (max-width: 480px)
+      .role
+        float: none
+        .avatar
+          display: none
+      .schedule
+        margin: 0
+
 
 .ui.grid
   .schedule
