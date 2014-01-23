@@ -3,61 +3,27 @@
     .column
       .bill-meta
         .links.ui.tiered.menu
-          .menu
+          .menu.number
             a.item(ng-href="/bills/{{bill_ref}}",ng-show="bill_ref") 提案編號 {{ bill_ref }}
               i.icon.forward.mail
+          .menu.role
+            .item.simplified(ng-repeat="e in sponsors", legislator="e")
+            .item.simplified(ng-repeat="e in cosponsors", legislator="e")
       h1.ui.header.bill(title="{{summary}}") {{summary}}
       .summary
         p.description {{abstract}}
-      .role
-        ul.committee(ng-show="committee")
-            li(ng-repeat="c in committee")
-                span
-                    img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-                    span.name {{c.name}}委員會
-        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
-          i.icon.unhide
-        .sponsors(ng-show="sponsors")
-          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
-          i.icon.unhide
-        .cosponsors(ng-show="cosponsors")
-          .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-      .related(ng-show="related")
-          ul
-              li(ng-repeat="r in related")
-                  span
-                      img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
-                      span.summary {{r.summary}}
     .column(ng-repeat="(ref, bill) in toCompare")
       .bill-meta
         .links.ui.tiered.menu
           .menu
             a.item(ng-href="/bills/{{ref}}",ng-show="bill_ref") 提案編號 {{ ref }}
               i.icon.forward.mail
+          .menu.role
+            .item.simplified(ng-repeat="e in bill.sponsors", legislator="e")
+            .item.simplified(ng-repeat="e in cosponsors", legislator="e")
       h1.ui.header.bill(title="{{bill.summary}}") {{bill.summary}}
       .summary
         p.description {{bill.abstract}}
-      .role
-        ul.committee(ng-show="bill.committee")
-            li(ng-repeat="c in bill.committee")
-                span
-                    img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-                    span.name {{c.name}}委員會
-        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
-          i.icon.unhide
-        .sponsors(ng-show="bill.sponsors")
-          .item(ng-repeat="e in bill.sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
-          i.icon.unhide
-        .cosponsors(ng-show="bill.cosponsors")
-          .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-      .related(ng-show="bill.related")
-          ul
-              li(ng-repeat="r in bill.related")
-                  span
-                      img.avatar(ng-show="r.avatar",ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small",ng-alt="{{r.name}}",ng-class="r.party")
-                      span.summary {{r.summary}}
   .content.default(ng-repeat="(name, statues) in diffMatrix", scroll-spy)
     a(name="{{name}}", spy-target)
     h2.ui.horizontal.divider {{name}}

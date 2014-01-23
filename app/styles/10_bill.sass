@@ -494,9 +494,23 @@ div.item
 
 .bill.compare
   .bill-meta
+    margin-bottom: 1rem
     .menu
-      .item
-        width: 100%
+      &.number
+        .item
+          width: 100%
+      &.role
+        .item
+          display: inline-block
+          padding: 0
+        .item:first-child
+          float: left
+          .avatar
+            width: 50px
+            height: 50px
+            border-width: 0 0 4px 0
+          .content
+            display: block
   .row
     margin: 0
     padding: 0
