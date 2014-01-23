@@ -188,11 +188,21 @@ angular.module 'app.directives' <[app.services ]>
   restrict: \A
   scope:
     legislator: \=legislator
+    legislator-style: \=
   templateUrl: 'app/partials/legislator.jade'
   controller: <[$scope]> ++ ($scope) ->
     name <- $scope.$watch 'legislator'
-    $scope <<<
-      party: LYService.resolveParty name
-      name: name
-      avatar: CryptoJS.MD5 "MLY/#name" .toString!
-      twlylink: TWLYService.getLink name
+    if name is  /(?:本院)?(.*黨團)/
+      party = LYService.parseParty that.1 - /黨團$/
+      $scope <<< {name, party, icon-class: party}
+      return
+    if \String is typeof! name
+      avatar = "http://avatars.io/50a65bb26e293122b0000073/#{CryptoJS.MD5 "MLY/#name" .toString!}"
+      avatar += "?size=#{$scope.legislator-style?size ? 'small'}"
+      $scope <<<
+        party: LYService.resolveParty name
+        name: name
+        avatar: avatar
+        twlylink: TWLYService.getLink name
+    else
+      $scope <<< $scope.legislator

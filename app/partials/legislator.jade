@@ -1,6 +1,7 @@
 .image.ui.rounded.corner.hide-print
-  a(ng-href="twlylink", target="blank")
-    img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar}}?size=small",ng-alt="{{name}}",ng-class="party")
+  i.g0v-icon.large(ng-class="iconClass",ng-if="iconClass",ng-alt="{{name}}")
+  a(ng-href="{{twlylink}}", target="blank",ng-if="!iconClass")
+    img.avatar(ng-src="{{avatar}}",ng-alt="{{name}}",ng-class="party")
 .content
   .name {{name}}
 span.infocard
