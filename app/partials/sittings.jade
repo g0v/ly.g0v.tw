@@ -1,18 +1,19 @@
 .sittings(ng-cloak)
   script(src="https://www.youtube.com/iframe_api")
   script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js")
-  h1.ui.header {{ name }}
-  a.ui.button.right.floated(ng-show="videos.length > 0 && !loaded", ng-href="/sittings/{{id}}/video") 觀看影片
-  .sitting-options(ng-hide="video")
-    select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
-    span.spinner.small(ng-show="loadingSitting")
-  .ui.selection.dropdown(ng-hide="video")
-    input(type='hidden')
-    .text 選擇其他
-    i.dropdown.icon
-    .menu
-      .item(ng-click="setContext('YS')") 院會
-      .item(ng-repeat="(type, name) in committees", ng-click="setContext(type)") {{name}}
+  .ui.menu#select-sitting(ng-hide="video")
+    .ui.dropdown.item
+      input(type='hidden')
+      .text 院會
+      i.dropdown.icon
+      .menu
+        .item(ng-click="setContext('YS')") 院會
+        .item(ng-repeat="(type, name) in committees", ng-click="setContext(type)") {{name}}
+    .item
+      select(ng-model="chosenSitting", ng-options="sitting.name for sitting in currentList")
+      span.spinner.small(ng-show="loadingSitting")
+    a.ui.button.right.item(ng-show="videos.length > 0 && !loaded", ng-href="/sittings/{{id}}/video") 觀看影片
+  h1.item.ui.header {{ name }}
   span.spinner.small(ng-show="loadingSitting")
   .ui.grid
     .thirteen.wide.column.content
