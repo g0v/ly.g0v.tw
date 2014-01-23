@@ -80,7 +80,7 @@
     .motions(ng-class="{{type}}")
       .item(ng-repeat="e in entries | filter:filter")
         .avatars
-          .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{foo: 1}")
+          .item(ng-repeat="avatar in e.avatars", legislator="avatar",legislator-style="{hideName: true}")
         .ui.segment.motion
           span.item-heading {{ e.item }}
           span.proposer {{ e.proposed_by }}

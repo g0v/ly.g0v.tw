@@ -2,7 +2,7 @@
   i.g0v-icon.large(ng-class="iconClass",ng-if="iconClass",ng-alt="{{name}}")
   a(ng-href="{{twlylink}}", target="blank",ng-if="!iconClass")
     img.avatar(ng-src="{{avatar}}",ng-alt="{{name}}",ng-class="party")
-.content
+.content(ng-hide="legislatorStyle.hideName")
   .name {{name}}
 span.infocard
   b
