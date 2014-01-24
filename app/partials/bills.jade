@@ -131,7 +131,7 @@
           span.ui.tiny.black.button 提案人
             i.icon.unhide
         .sponsors(ng-show="sponsors")
-          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
+          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'", legislator-style="{size: 'medium'}")
       .column.right(ng-show="cosponsors")
         //-.ui.segment
         h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor")
