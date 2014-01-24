@@ -148,7 +148,7 @@ angular.module 'app.directives' <[app.services ]>
             event.preventDefault!
             scope.searchKeyword = results.children!.eq currentIndex .text!
             $timeout ->
-              $state.transitionTo 'search.target' do 
+              $state.transitionTo 'search.target' do
                 keyword: scope.searchKeyword
               scope.searchKeyword = ''
               elm.blur!
@@ -161,7 +161,7 @@ angular.module 'app.directives' <[app.services ]>
                      else currentIndex-1
           results.children!.eq newIndex .addClass \active
           scope.currentIndex = newIndex
-          event.preventDefault!         
+          event.preventDefault!
         else if keyCode is keys.downArrow
           results.children! .removeClass \active
           newIndex = if currentIndex+1 >= resultSize
@@ -170,7 +170,7 @@ angular.module 'app.directives' <[app.services ]>
           results.children!.eq newIndex .addClass \active
           scope.currentIndex = newIndex
           event.preventDefault!
-    scope.$watch \searchKeyword (keyword) ->   
+    scope.$watch \searchKeyword (keyword) ->
       if keyword
         entries <- LYLaws.get keyword
         results.html ''
@@ -178,11 +178,31 @@ angular.module 'app.directives' <[app.services ]>
           link = angular.element \<a> .attr 'href', '/search/'+ entry.name .html entry.name
           link.on \click ->
             scope.searchKeyword = ''
-            elm.bur!
+            elm.blur!
           result = angular.element \<div> .addClass \result .append link
           results.append result
-        results.show!        
+        results.show!
       else => results.hide!
 
-
-
+.directive \legislator <[LYService TWLYService $parse]> ++ (LYService, TWLYService, $parse)->
+  restrict: \A
+  scope:
+    legislator: \=legislator
+    legislator-style: \=
+  templateUrl: 'app/partials/legislator.jade'
+  controller: <[$scope]> ++ ($scope) ->
+    name <- $scope.$watch 'legislator'
+    if name is  /(?:本院)?(.*黨團)/
+      party = LYService.parseParty that.1 - /黨團$/
+      $scope <<< {name, party, icon-class: party}
+      return
+    if \String is typeof! name
+      avatar = "http://avatars.io/50a65bb26e293122b0000073/#{CryptoJS.MD5 "MLY/#name" .toString!}"
+      avatar += "?size=#{$scope.legislator-style?size ? 'small'}"
+      $scope <<<
+        party: LYService.resolveParty name
+        name: name
+        avatar: avatar
+        twlylink: TWLYService.getLink name
+    else
+      $scope <<< $scope.legislator

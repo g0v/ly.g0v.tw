@@ -148,7 +148,7 @@ angular.module 'app.services' []
       party
 
 .service 'TWLYService': <[$http]> ++ ($http) ->
-  base = 'http://twly.herokuapp.com/voter/'
+  base = 'http://vote.ly.g0v.tw/voter/'
   getLink: (name) ->
       return if TWLYMapping[name] => base + TWLYMapping[name]
 

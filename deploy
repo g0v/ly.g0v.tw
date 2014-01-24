@@ -16,7 +16,7 @@ rm -rf _public
 git clone $REPO -b gh-pages _public
 
 REV=`git describe --always`
-BUILD=git-$REV ./node_modules/.bin/brunch b -o
+BUILD=git-$REV ./node_modules/.bin/brunch b -P
 cp -f _public/index.html _public/404.html
 cd _public
 git add -A .

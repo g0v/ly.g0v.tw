@@ -269,15 +269,7 @@ angular.module 'app.controllers.bills' []
         $scope.showSidebar = total-entries > 3
 
       committee ?.= map -> { abbr: it, name: committees[it] }
-      $scope <<< bill{summary,abstract,bill_id,bill_ref,doc} <<< {committee} <<<
-        sponsors: bill.sponsors?map ->
-            party = LYService.resolveParty it
-            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
-            twlylink: TWLYService.getLink it
-        cosponsors: bill.cosponsors?map ->
-            party = LYService.resolveParty it
-            party: party, name: it, avatar: CryptoJS.MD5 "MLY/#{it}" .toString!
-            twlylink: TWLYService.getLink it
+      $scope <<< bill{summary,abstract,bill_id,bill_ref,doc,sponsors,cosponsors} <<< {committee} <<<
         setDiff: (diff, version) ->
             [idx] = [i for n, i in diff.header when n is version]
             base-index = diff.base-index
@@ -287,8 +279,9 @@ angular.module 'app.controllers.bills' []
                 diffnew: version
                 diffcontent: amendment.map make-diff $sce
       $scope.$watch '$state.params.otherBills' ->
-        other-bills = it.split \,
-        return unless other-bills.length
+        other-bills = it?split \,
+        return unless other-bills?length
+        $scope.bill_refs = [$scope.bill_ref] ++ other-bills
         for billId in other-bills
           bill <- LYModel.get "bills/#{billId}" .success
           data <- LYModel.get "bills/#{billId}/data" .success
@@ -296,7 +289,7 @@ angular.module 'app.controllers.bills' []
           $scope.to-compare[billId] = bill <<< diff: diffmeta data?content
       $scope.$watch 'toCompare' ->
         return unless it
-        matrix = {}
+        $scope.diff-matrix = matrix = {}
         expand = (bill_ref, content) ->
           for d in content
             matrix[d.name] ?= {}

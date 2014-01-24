@@ -10,7 +10,6 @@ clean:
 server : $(JS_FILES)
 
 client:
-	./node_modules/.bin/brunch b --config brunch-templates.ls
 	./node_modules/.bin/brunch b
 
 build: client server

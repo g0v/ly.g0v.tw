@@ -5,10 +5,10 @@ WARNING: this is work in progress and the file format is likely to change!
 
 # Usage
 
-To install needed packages
-
-    $ gem install compass
+Install required packages:
+    $ sudo gem install compass
     $ npm install
+    $ npm run build
 
 To build both of client and server side. It use brunch to build client side code from **app** to **_public** and compile server side code under directory **server**.
 
@@ -63,7 +63,7 @@ after you install go to the folder `contrib/ly_ios` in this repo and enter the f
 
 ```
 # install emulators on ios
-npm install -g ios-sim                                      
+npm install -g ios-sim
 
 # add ios platform on cordova
 cordova platform add ios

@@ -1,10 +1,58 @@
-.nav
-  .search
-    padding-top: 10px
-    margin: 0px
-    #global-search
-      height: 2em
-      padding-top: 0.3em
-      padding-bottom: 0.3em
-    .search.icon
-      padding-top: 0.4em
+.ui.collapsible.menu
+  display: inline
+  @media screen and (max-width: 768px)
+    display: block
+  .header
+    .button
+      margin: 0.5em
+      display: none
+      @media screen and (max-width: 768px)
+        display: block
+  .content
+    @media screen and (max-width: 768px)
+      display: none
+    .item, .menu
+      @media screen and (max-width: 768px)
+        display: block
+        float: none
+        clear: both
+
+.ui.top.fixed.inverted.menu
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25)
+  background-color: #663300
+  background-image: linear-gradient(to bottom, #663300, #663300)
+  z-index: 1000
+  .item
+    padding: 1em
+    &.active, &:hover, &:focus
+      background-color: #371b00
+  .header
+    .brand
+      background: url("/img/logo.png") left no-repeat
+      padding: 12px 40px
+      margin-left: 0px
+      color: #ffcc00
+      font-size: 26px
+      font-weight: bold
+      &:hover, &:focus
+        background: url("/img/logow.png") left no-repeat
+        color: #fff
+    .g0v-logo
+      padding: 0
+      margin-right: 7em
+      @media screen and (max-width: 998px)
+        margin-right: 0
+      img
+        height: 50px
+  .right.floated.menu
+    .item
+      padding: 0 5px
+      &:hover, &:focus
+        background: none
+      &.about
+        padding: 1em
+        &.active, &:hover, &:focus
+          background-color: #371b00
+  .ui.attached.top.label
+    @media screen and (max-width: 998px)
+      display: none
