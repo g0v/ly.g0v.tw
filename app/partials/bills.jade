@@ -129,7 +129,7 @@
             i.icon.unhide
         .sponsors(ng-show="sponsors")
           .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-      .column.right
+      .column.right(ng-show="cosponsors")
         //-.ui.segment
         h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor")
           span.ui.tiny.black.button 連署人
