@@ -34,6 +34,7 @@ devDependencies:
   'karma-mocha': '~0.1.0'
   'karma-chai': '~0.0.2'
   'karma-ng-scenario': '0.1.0'
+  'karma-phantomjs-launcher': '~0.1.0'
   'bower': '1.2.x'
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
