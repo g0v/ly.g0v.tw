@@ -48,6 +48,9 @@
         a.item.hide-print(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
           i.code.icon
           | JSON
+        a.item.hide-print(ng-href="http://misq.ly.gov.tw/MISQ/IQuery/misq5000QueryBillDetail.action?billNo={{ bill_id }}",target="_blank")
+          i.icon.flag
+          | 立法院
         a.item.hide-print(ng-show="report.doc.pdf",ng-href="{{report.doc.pdf}}",target="_blank")
           i.file.icon
           | 審查報告
