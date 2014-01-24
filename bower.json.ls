@@ -14,6 +14,7 @@ dependencies:
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
   "ng-grid": "~2.0.7"
+  "angular-qrcode": "~2.0.0"
 
 overrides:
   "angular":
