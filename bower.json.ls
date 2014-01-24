@@ -13,6 +13,7 @@ dependencies:
   "angular-ui-router": "0.0.1"
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
+  "ng-grid": "~2.0.7"
 
 overrides:
   "angular":
