@@ -6,8 +6,10 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
+    meta(property='prerender:viewport',content='980,630')
 
     |<% if (mode == 'bot') { %>
+    |<meta property='prerender:selector' content='<%= meta.selector %>' >
     |<meta property='og:title' content='<%= meta.title %>' >
     |<meta property='og:url' content='<%= meta.url %>' >
     |<meta property='og:image' content='<%= meta.img %>' >
