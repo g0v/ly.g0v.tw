@@ -12,6 +12,9 @@ dependencies:
   "angular-scenario": "1.2.8"
   "angular-ui-router": "0.0.1"
   "google-diff-match-patch-js": "~1.0.0"
+  cryptojslib: "3.1.2"
+  "ng-grid": "~2.0.7"
+  "angular-qrcode": "~2.0.0"
 
 overrides:
   "angular":
@@ -20,3 +23,5 @@ overrides:
     main: "README.md"
   "angular-scenario":
     main: "README.md"
+  cryptojslib:
+    main: "rollups/md5.js"

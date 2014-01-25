@@ -49,7 +49,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
           tooltip.find \img .attr \src, "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=medium"
         ,0
         tooltip.find \.name .text it.mly
-        tooltip.find \a.btn .on 'click' (event) ->
+        tooltip.find \.playit .on 'click' (event) ->
           scope.model.cb it.offset / 1000
           $ \#avatar-tooltip .hide!
       ..append \rect

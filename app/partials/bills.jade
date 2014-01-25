@@ -39,38 +39,40 @@
           .ui.pointing.label.diff-comment(ng-bind="versions[version].comment", ng-show="versions[version].comment")
 
 .bill
-  .basic-info
-    .bill-meta
-      .links.ui.tiered.menu
-        .menu
-          .item(ng-show="bill_ref") 提案編號 {{ bill_ref }}
-          .item.center.right#qrlink
-            qrcode(text="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
-          a.item.hide-print(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
-            i.code.icon
-            | JSON
-          a.item.hide-print(ng-show="report.doc.pdf",ng-href="{{report.doc.pdf}}",target="_blank")
-            i.file.icon
-            | 審查報告
-          a.item.hide-print(ng-show="doc.pdf",ng-href="{{doc.pdf}}",target="_blank")
-            i.icon.download.disk
-            | PDF
-          a.item.hide-print(ng-show="doc.doc",ng-href="{{doc.doc}}",target="_blank")
-            i.icon.download.disk
-            | Word
-          a.right.item(ng-init="show_related_bills=false",ng-show="bill_ref",ng-click="show_related_bills=!show_related_bills")
-            i.icon.fork.code
-            | 相關議案
-        .ui.sub.menu.related-bill(ng-show="show_related_bills")
-          .item
-            | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
-            .related-bill-action
-              a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                i.icon.forward.mail
-                | 前往此議案
-              a.ui.small.button.icon.labeled(ng-href="",target="_blank")
-                i.icon.exchange
-                | 比較此議案
+  .bill-meta
+    .links.ui.tiered.menu
+      .menu
+        .item(ng-show="bill_ref") 提案編號 {{ bill_ref }}
+        .item.center.right#qrlink
+          qrcode(data="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
+        a.item.hide-print(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
+          i.code.icon
+          | JSON
+        a.item.hide-print(ng-href="http://misq.ly.gov.tw/MISQ/IQuery/misq5000QueryBillDetail.action?billNo={{ bill_id }}",target="_blank")
+          i.icon.flag
+          | 立法院
+        a.item.hide-print(ng-show="report.doc.pdf",ng-href="{{report.doc.pdf}}",target="_blank")
+          i.file.icon
+          | 審查報告
+        a.item.hide-print(ng-show="doc.pdf",ng-href="{{doc.pdf}}",target="_blank")
+          i.icon.download.disk
+          | PDF
+        a.item.hide-print(ng-show="doc.doc",ng-href="{{doc.doc}}",target="_blank")
+          i.icon.download.disk
+          | Word
+        a.right.item(ng-init="show_related_bills=false",ng-show="bill_ref",ng-click="show_related_bills=!show_related_bills")
+          i.icon.fork.code
+          | 相關議案
+      .ui.sub.menu.related-bill(ng-show="show_related_bills")
+        .item
+          | 相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案相關議案
+          .related-bill-action
+            a.ui.small.button.icon.labeled(ng-href="",target="_blank")
+              i.icon.forward.mail
+              | 前往此議案
+            a.ui.small.button.icon.labeled(ng-href="",target="_blank")
+              i.icon.exchange
+              | 比較此議案
 
     .bill-progress(ng-if="bill_ref")
       .common.ui.seven.steps
@@ -125,14 +127,16 @@
     //-.ui.segment
     .ui.two.column.stackable.grid
       .column.left
-        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
-          i.icon.unhide
+        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor")
+          span.ui.tiny.black.button 提案人
+            i.icon.unhide
         .sponsors(ng-show="sponsors")
-          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-      .column.right
+          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'", legislator-style="{size: 'medium'}")
+      .column.right(ng-show="cosponsors")
         //-.ui.segment
-        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
-          i.icon.unhide
+        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor")
+          span.ui.tiny.black.button 連署人
+            i.icon.unhide
         .cosponsors(ng-show="cosponsors")
           .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
   .clearfix
