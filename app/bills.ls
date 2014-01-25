@@ -41,6 +41,7 @@ make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
     left-item: \§ + amendment.original-article
     left-item-anchor: amendment.original-article
     right-item: \§ + amendment.article
+    right-item-anchor: amendment.article
 
 diffmeta = (content) -> content?map (diff) ->
   if !diff.name

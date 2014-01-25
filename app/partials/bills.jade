@@ -161,7 +161,7 @@
       span(ng-hide="!d.diffbase") vs
       span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
     .diff(ng-repeat="diffs in d.diffcontent", spy-target)
-      .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines", ng-hide="diffline.left == '' && diffline.right == ''")
+      .column.stackable.ui.grid(ng-class="{two:d.diffbase, one:!d.diffbase}", ng-repeat="diffline in diffs.difflines track by $index", ng-hide="diffline.left == '' && diffline.right == ''")
         .column(class="left {{diffline.state}}", ng-hide="!d.diffbase")
           .ui.segment.article-text
             a(id="original-{{diffs.leftItemAnchor}}",ng-href="#original-{{diffs.leftItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
@@ -170,7 +170,8 @@
             .diff.text(href="",target="blank", ng-bind-html="diffline.left")
         .column.right(class="right {{diffline.state}}")
           .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
-            a.ui.ribbon.label(href="",target="blank",ng-show="$index == 0") {{diffs.rightItem}}
+            a(id="proposed-{{diffs.rightItemAnchor}}",ng-href="#proposed-{{diffs.rightItemAnchor}}",ng-show="$index == 0",style="margin-top: -90px; padding-top: 90px")
+              .ui.ribbon.label(ng-show="$index == 0") {{diffs.rightItem}}
             .ui.right.corner.label(ng-class="diffstate('right', '{{diffline.state}}')") {{difftxt('right', diffline.state)}}
             .diff.text(href="",target="blank", ng-bind-html="diffline.right")
       .ui.pointing.label.diff-comment(ng-bind-html="diffs.comment", ng-show="diffs.comment")
