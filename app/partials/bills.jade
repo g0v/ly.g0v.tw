@@ -92,50 +92,49 @@
             //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
           .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
 
-    .ui.list.ttsmotions(ng-if="ttsmotions")
-      .item
-        i.icon.down
-        | 這應該要整合到上面的列表，但是還沒做好
-      .item(ng-repeat="ttsmotion in ttsmotions")
-          .content
-              a.header
-                span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
-                span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
-                span {{ttsmotion.progress || ttsmotion.summary}}
-              .description
-                | {{ ttsmotion.resolution }}
-                i.icon.file(ng-show="ttsmotion.links")
-                |  p.
-                span(ng-repeat="l in ttsmotion.links")
-                  a.page(target="_blank",ng-href="{{l.link}}")
-                    | {{l.text}}
+  .ui.list.ttsmotions(ng-if="ttsmotions")
+    .item
+      i.icon.down
+      | 這應該要整合到上面的列表，但是還沒做好
+    .item(ng-repeat="ttsmotion in ttsmotions")
+        .content
+            a.header
+              span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
+              span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
+              span {{ttsmotion.progress || ttsmotion.summary}}
+            .description
+              | {{ ttsmotion.resolution }}
+              i.icon.file(ng-show="ttsmotion.links")
+              |  p.
+              span(ng-repeat="l in ttsmotion.links")
+                a.page(target="_blank",ng-href="{{l.link}}")
+                  | {{l.text}}
 
-    h1.ui.header.bill(title="{{summary}}") {{summary}}
+  h1.ui.header.bill(title="{{summary}}") {{summary}}
 
-    .summary
-      p.description {{abstract}}
+  .summary
+    p.description {{abstract}}
 
-    .role
-      //-.ui.segment
-      ul.committee(ng-show="committee")
-          li(ng-repeat="c in committee")
-              span
-                  img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
-                  span.name {{c.name}}委員會
-      //-.ui.segment
-      .ui.two.column.stackable.grid
-        .column.left
-          h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
-            i.icon.unhide
-          .sponsors(ng-show="sponsors")
-            .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
-        .column.right
-          //-.ui.segment
-          h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
-            i.icon.unhide
-          .cosponsors(ng-show="cosponsors")
-            .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
-
+  .role
+    //-.ui.segment
+    ul.committee(ng-show="committee")
+        li(ng-repeat="c in committee")
+            span
+                img.avatar.medium(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+                span.name {{c.name}}委員會
+    //-.ui.segment
+    .ui.two.column.stackable.grid
+      .column.left
+        h2.ui.horizontal.divider.toggle(ng-init="expand_sponsor=false",ng-click="expand_sponsor=!expand_sponsor") 提案人
+          i.icon.unhide
+        .sponsors(ng-show="sponsors")
+          .item(ng-repeat="e in sponsors", legislator="e",ng-class="expand_sponsor? 'expanded':'simplified'")
+      .column.right
+        //-.ui.segment
+        h2.ui.horizontal.divider.toggle(ng-init="expand_cosponsor=false",ng-click="expand_cosponsor=!expand_cosponsor") 連署人
+          i.icon.unhide
+        .cosponsors(ng-show="cosponsors")
+          .item(ng-repeat="e in cosponsors", legislator="e",ng-class="expand_cosponsor? 'expanded':'simplified'")
   .clearfix
   .history
   .clearfix
