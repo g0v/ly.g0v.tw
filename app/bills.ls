@@ -331,9 +331,9 @@ angular.module 'app.controllers.bills' []
     $window.spies = $scope.spies
   link: (scope, elem, attrs)->
     update-position = ->
-      scope.top-navbar-height = $('.navbar-fixed-top').height()
+      top-navbar-height = $ '.top.fixed.menu' .height!
       for , spy of scope.spies
-        spy.top = spy.elem.offset().top - scope.top-navbar-height
+        spy.top = spy.elem.offset!top - top-navbar-height
     scope.$watch 'diff', (diffs)->
       for , spy of spies
         spy.destroy = true
@@ -347,6 +347,7 @@ angular.module 'app.controllers.bills' []
     $($window).scroll ->
       scrollTop = $window.scrollY
       the-spy = null
+      # XXX maintain a sorted array so we can optimize this
       for , spy of scope.spies
         spy.out()
         if scrollTop > spy.top and !(spy.top < the-spy?.top)
