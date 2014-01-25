@@ -124,8 +124,8 @@ angular.module 'app.services' []
     init: ->
       $http.get '/data/mly-8.json' .success -> mly := it
     resolveParty: (n) ->
-      [party] = [party for {party,name} in mly when name is n]
-      party
+      [party]? = [party for {party,name} in mly when name is n]
+      party ? 'unknown'
     resolve-party-color: (n) -> {KMT: \#000095 DPP: \#009a00 PFP: \#fe6407}[@resolve-party n] or \#999
     parseParty: (n) ->
       party = match n
