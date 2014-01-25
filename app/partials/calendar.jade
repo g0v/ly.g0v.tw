@@ -43,5 +43,6 @@
             td {{entry.time_start}} 至 {{entry.time_end}}
             td
               a(ng-href="/sittings/{{entry.sitting_id}}") {{entry.name}}
-            td {{entry.chair}}
+            td.chair
+              .item(legislator="entry.chair",legislator-style="{size: 'medium'}")
             td {{entry.summary}}
