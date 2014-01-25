@@ -15,7 +15,7 @@ branches:
 before_deploy: "npm run build"
 
 deploy:
-  on: express_server
+  on: master
   provider: nodejitsu
   user: clkao
   skip_cleanup: true
@@ -25,3 +25,9 @@ deploy:
       mI7uGnLqAggYjWeoIF6yFUIN69hLpIwvfZylOdPU+h/W+H0xlxxtHCvSyc5R
 
       Ad1AHf93zbf845Cg4LSR0I6fKPewhBW8uFKF5ZYcd7ppofwYrI8='
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.net#g0v.tw"
+    on_success: always
