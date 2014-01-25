@@ -8,12 +8,9 @@ build.xml
 .idea/*
 app/assets/*html
 
-_public
 node_modules/*
 bower_components/*
 npm-debug.log
 out/*
-
-server/*.js
 
 *.swp

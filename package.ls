@@ -1,22 +1,28 @@
 #!/usr/bin/env lsc -cj
 author: 'Chia-liang Kao'
-name: 'ly.g0v.tw'
+name: 'lyg0vtw'
 description: 'ly.g0v.tw'
-version: '0.1.1'
+version: '0.2.0'
 homepage: 'https://github.com/g0v/ly.g0v.tw'
 repository:
   type: 'git'
   url: 'https://github.com/g0v/ly.g0v.tw'
 engines:
-  node: '0.8.x'
-  npm: '1.1.x'
+  node: '0.10.x'
+  npm: '1.3.x'
+subdomain: 'lyg0vtw'
+domains: <[ly.g0v.tw beta.ly.g0v.tw]>
 scripts:
-  prepublish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
-  build: 'bower i && brunch b'
-  start: 'brunch watch --server'
+  republish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
+  build: 'bower i && brunch b -o && lsc -c server'
+  start: 'node ./server/app.js'
   test: 'npm run build && ./node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
-dependencies: {}
+dependencies:
+  express: '3.4.x'
+  'prerender-node': '0.1.x'
+  ejs: '0.8.x'
+  request: '2.27.x'
 devDependencies:
   LiveScript: '1.2.x'
   brunch: '1.7.x'
