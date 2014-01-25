@@ -188,9 +188,10 @@ angular.module 'app.directives' <[app.services ]>
   restrict: \A
   scope:
     legislator: \=legislator
-    legislator-style: \=
+    style: \=legislatorStyle
   templateUrl: 'app/partials/legislator.jade'
   controller: <[$scope]> ++ ($scope) ->
+    $scope.legislator-style = angular.copy $scope.style ? {}
     name <- $scope.$watch 'legislator'
     if name is  /(?:本院)?(.*黨團)/
       party = LYService.parseParty that.1 - /黨團$/
@@ -198,6 +199,8 @@ angular.module 'app.directives' <[app.services ]>
       return
     if \String is typeof! name
       {avatar}:mly? = LYService.mly-by-name name
+      if mly
+        $scope.legislator-style.info-card ?= true
       if avatar => avatar += "?size=#{$scope.legislator-style?size ? 'small'}"
       $scope <<<
         party: mly?party ? 'unknown'

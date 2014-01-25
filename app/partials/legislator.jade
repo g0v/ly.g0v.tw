@@ -2,9 +2,9 @@
   i.g0v-icon.large(ng-class="iconClass",ng-if="iconClass",ng-alt="{{name}}")
   a(ng-href="{{twlylink}}", target="blank",ng-if="!iconClass")
     img.avatar(ng-src="{{avatar}}",ng-alt="{{name}}",ng-class="party")
-.content(ng-hide="legislatorStyle.hideName")
+.content
   .name {{name}}
-span.infocard
+span.infocard(ng-if="legislatorStyle.infoCard")
   b
   a.fact.text(href="http://fact.g0v.tw/wiki/{{name}}",target="blank") 生平時間軸
   a.wiki.text(href="http://zh.wikipedia.org/wiki/{{name}}",target="blank") Wikipedia
