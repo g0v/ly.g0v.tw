@@ -197,10 +197,10 @@ angular.module 'app.directives' <[app.services ]>
       $scope <<< {name, party, icon-class: party}
       return
     if \String is typeof! name
-      avatar = "http://avatars.io/50a65bb26e293122b0000073/#{CryptoJS.MD5 "MLY/#name" .toString!}"
+      {avatar}:mly = LYService.mly-by-name name
       avatar += "?size=#{$scope.legislator-style?size ? 'small'}"
       $scope <<<
-        party: LYService.resolveParty name
+        party: mly.party ? 'unknown'
         name: name
         avatar: avatar
         twlylink: TWLYService.getLink name
