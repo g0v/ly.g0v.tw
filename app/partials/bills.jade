@@ -152,7 +152,7 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  .content.default(ng-repeat="(i, d) in diff", scroll-spy="showSidebar")
+  .content.default(ng-repeat="(i, d) in diff", scroll-spy="{{showSidebar && !isMobile}}")
     a(name="{{d.name}}", spy-target)
     h2.ui.horizontal.divider {{d.name}}
 
