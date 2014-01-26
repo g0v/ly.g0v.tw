@@ -335,6 +335,7 @@ angular.module 'app.controllers.bills' []
       for , spy of scope.spies
         spy.top = spy.elem.offset!top - top-navbar-height
     scope.$watch 'diff', (diffs)->
+      return unless diffs
       for , spy of spies
         spy.destroy = true
       for d in diffs when d.$$hash-key?
@@ -344,7 +345,7 @@ angular.module 'app.controllers.bills' []
       for key, spy of spies when spy.destroy == true
         delete spies[key]
       update-position()
-    $($window).scroll ->
+    scroll-handler = ->
       scrollTop = $window.scrollY
       the-spy = null
       # XXX maintain a sorted array so we can optimize this
@@ -353,4 +354,9 @@ angular.module 'app.controllers.bills' []
         if scrollTop > spy.top and !(spy.top < the-spy?.top)
           the-spy = spy
       the-spy?.in()
+    attrs.$observe 'scrollSpy' ->
+      if scope.$eval it
+        $($window).bind \scroll scroll-handler
+      else
+        $($window).unbind \scroll scroll-handler
     $timeout update-position, 100
