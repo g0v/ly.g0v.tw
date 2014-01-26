@@ -49,17 +49,6 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     include partials/nav.jade
     script.
       var button;
-      $(window).resize(function(evt){
-        var width, list;
-        evt.preventDefault();
-        width = $(this).width();
-        list = $('.ui.menu .content');
-        if(width > 768) {
-          list.css('display', 'block');
-        } else {
-          list.css('display', 'none');
-        }
-      });
       button = $('.ui.button');
       button.on('click', function(evt){
         var list,display;

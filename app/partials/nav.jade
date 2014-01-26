@@ -10,7 +10,7 @@
       a.item(ng-href='/calendar', ng-class="{active:activeTab == 'calendar'}") 預報
       a.item(ng-href='/sittings', ng-class="{active:activeTab == 'sittings'}") 會議
       a.item(ng-href="/debates", ng-class="{active:activeTab == 'debates'}") 質詢
-      .right.floated.menu 
+      .right.floated.menu
         .item
           form.ui.form.search(ng-submit="submitSearch()", ng-controller="SearchFormCtrl")
             .ui.icon.input.mini

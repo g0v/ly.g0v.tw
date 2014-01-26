@@ -67,7 +67,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
   # Without serve side support html5 must be disabled.
   $locationProvider.html5Mode true
 
-.run <[$rootScope $state $stateParams $location $anchorScroll]> ++ ($rootScope, $state, $stateParams, $location, $anchorScroll) ->
+.run <[$rootScope $state $stateParams $location $window $anchorScroll]> ++ ($rootScope, $state, $stateParams, $location, $window, $anchorScroll) ->
   $rootScope.$state = $state
   $rootScope.$stateParam = $stateParams
   $rootScope.go = -> $location.path it
@@ -76,3 +76,9 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
     window?ga? 'send' 'pageview' page: $location.$$url, title: name
   window.onYouTubeIframeAPIReady = ->
     $rootScope.$broadcast \youtube-ready
+
+  check-mobile = ->
+    width = $($window).width!
+    $rootScope.is-mobile = width <= 768
+  $ $window .resize -> $rootScope.$apply check-mobile
+  check-mobile!
