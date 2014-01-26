@@ -378,6 +378,15 @@
   .column.right
     margin: 0
 
+  .ui.stackable.grid
+    &>.row
+      margin: 0
+      &>.column.left
+        margin: 0!important
+      @media only screen and (max-width: 768px)
+        &>.column.right.equal
+          display: none!important
+
   .ui.pointing.label.diff-comment
     width: 100%
     margin: 1em 0 1em 0
