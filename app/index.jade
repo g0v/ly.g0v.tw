@@ -1,5 +1,5 @@
 doctype html
-html(lang='zh-Hant', ng-app='ly.g0v.tw')
+html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
   head
     meta(charset='utf-8')
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
@@ -49,17 +49,20 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw')
     include partials/nav.jade
     script.
       var button;
-      button = $('.ui.button');
+      button = $('.ui.top.menu .ui.button');
       button.on('click', function(evt){
         var list,display;
         evt.preventDefault();
-        list = $('.ui.menu .content');
+        list = $('.ui.top.menu .content');
         display = list.css('display');
         if( display === 'none') {
           list.css('display', 'block');
         } else {
           list.css('display', 'none');
         }
+      });
+      $('.ui.top.menu a.item').on('click', function(evt){
+        $('html.is-mobile .ui.top.menu .content').css('display', 'none')
       });
     |<!-- end of render navbar for normal mode -->
     |<% } %>
