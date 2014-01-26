@@ -381,12 +381,16 @@
   .ui.stackable.grid
     &>.row
       margin: 0
+      padding: 0
       &>.column.right
         margin: 0!important
-        padding: 0!important
+        padding-top: 0!important
+        padding-bottom: 0!important
       &>.column.left
-        padding: 0!important
+        padding-top: 0!important
+        padding-bottom: 0!important
       @media only screen and (max-width: 768px)
+        padding-top: 1rem !important
         &>.column.right.equal
           display: none!important
 
