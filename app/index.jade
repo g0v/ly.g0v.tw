@@ -48,19 +48,31 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
     |<!-- render navbar for normal mode -->
     include partials/nav.jade
     script.
-      var button;
-      button = $('.ui.top.menu .ui.button');
-      button.on('click', function(evt){
-        var list,display;
-        evt.preventDefault();
-        list = $('.ui.top.menu .content');
-        display = list.css('display');
-        if( display === 'none') {
-          list.css('display', 'block');
-        } else {
-          list.css('display', 'none');
-        }
-      });
+      (function(){
+        var button, list;
+        button = $('.ui.top.menu .ui.button');
+        list = $('.ui.top.menu .container .content');
+        $(window).resize(function (evt) {
+          evt.preventDefault();
+          var width = $(this).width();
+          console.log(list);
+          if(width > 768) {
+            list.css('display', 'block');
+          } else {
+            list.css('display', 'none');
+          }
+        });
+        button.on('click', function(evt){
+          var display;
+          evt.preventDefault();
+          display = list.css('display');
+          if( display === 'none') {
+            list.css('display', 'block');
+          } else {
+            list.css('display', 'none');
+          }
+        });
+      }());
       $('.ui.top.menu a.item').on('click', function(evt){
         $('html.is-mobile .ui.top.menu .content').css('display', 'none')
       });
