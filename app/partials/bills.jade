@@ -183,6 +183,6 @@
         .item-section(ng-repeat="(i, d) in diff track by $index")
           a.item(href="#"+"{{d.name}}", spy) {{d.name}}
           .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#original-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
+            .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#{{d.diffbase ? 'original' : 'proposed'}}-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 script.
   $(".ui.dropdown").dropdown();
