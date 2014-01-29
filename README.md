@@ -6,19 +6,25 @@ WARNING: this is work in progress and the file format is likely to change!
 # Usage
 
 Install required packages:
-    $ sudo gem install compass
-    $ npm install
-    $ npm run build
 
-To build both of client and server side. It use brunch to build client side code from **app** to **_public** and compile server side code under directory **server**.
+1.    `$ sudo gem install compass`
+2.    `$ npm install`
+3.    `$ npm run build`
 
-    $ make build
+## For Front-End Developer 
+(try to modify anything under **app** directory)
 
 If you are just developing client side code, this command will launch a server and watch and changes via brunch.
 
     $ make dev   # then open http://localhost:3333/
 
-Or, to run express server
+## For Back-End Developer
+
+To build both of client and server side. It use brunch to build client side code from **app** to **_public** and compile server side code under directory **server**.
+
+    $ make build
+
+and run express server.
 
     $ make run   # then open http://localhost:3333/
 
