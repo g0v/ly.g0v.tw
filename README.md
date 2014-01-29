@@ -98,6 +98,28 @@ Setting in cordova is really easy, all the settings are in `contrib/ly_ios/ly_g0
 
 ```
 
+# Test
+
+## karma
+
+Reference: <http://karma-runner.github.io>
+
+## protractor
+
+To run protractor, first you need to run server for client side code described in [Usage](#usage).
+
+Then you need to start a standalone selenium server.
+```
+node_modules/.bin/webdriver-manager start
+```
+
+Finally, you can use protractor to run test cases.
+```
+node_modules/.bin/protractor test/protractor.conf.ls
+```
+
+Reference: <https://github.com/angular/protractor>
+
 # License
 
 The MIT license: http://g0v.mit-license.org/
