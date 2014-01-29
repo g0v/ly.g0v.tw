@@ -1,16 +1,24 @@
-describe 'ly.g0v.tw' (,) ->
+require! protractor
+const URL = 'http://localhost:3333/'
+
+describe 'ly.g0v.tw' (,) !->
+  var ptor
 
   beforeEach !->
-    browser!navigateTo '/'
+    ptor := protractor.getInstance!
+    ptor.get URL
 
   it 'should automatically redirect to /calendar/today when location hash/fragment is empty' !->
-    expect browser!location!url! .toBe "/calendar/today"
+    url <-! ptor.getCurrentUrl!.then
+    expect url .toBe URL + 'calendar/today'
 
+describe 'calendar/today' (,) !->
+  var ptor
 
-  describe 'calendar/today' (,) !->
+  beforeEach !->
+    ptor := protractor.getInstance!
+    ptor.get URL + 'calendar/today'
 
-    beforeEach !->
-      browser!navigateTo '#/calendar/today'
-
-    it 'should render calendar when user navigates to /calendar/today' ->
-      expect element('[ui-view] .time:first').text! .toMatch /立法院行程/
+  it 'should render calendar when user navigates to /calendar/today' !->
+    # FIXME: How to implement it?
+    #expect element('[ui-view] .time:first').text! .toMatch /立法院行程/
