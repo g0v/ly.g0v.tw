@@ -44,3 +44,4 @@ devDependencies:
   'bower': '1.2.x'
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
+  'protractor': 'git://github.com/czchen/protractor#feature/ls_conf'
