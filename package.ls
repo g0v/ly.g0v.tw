@@ -45,3 +45,7 @@ devDependencies:
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
   'protractor': 'git://github.com/czchen/protractor#feature/ls_conf'
+  async: '0.2.10'
+  gulp: '3.5.0'
+  "gulp-util": '2.2.13'
+  "gulp-protractor": '0.0.3'

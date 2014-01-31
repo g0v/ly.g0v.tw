@@ -114,14 +114,9 @@ Reference: <http://karma-runner.github.io>
 
 To run protractor, first you need to run server for client side code described in [Usage](#usage).
 
-Then you need to start a standalone selenium server.
+Then
 ```
-node_modules/.bin/webdriver-manager start
-```
-
-Finally, you can use protractor to run test cases.
-```
-node_modules/.bin/protractor test/protractor.conf.ls
+gulp
 ```
 
 Reference: <https://github.com/angular/protractor>
