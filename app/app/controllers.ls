@@ -14,7 +14,7 @@ renderCommittee = (committee) ->
     return '院會' if committee is \null # orz, we got stringified version at filter
     committee = [committee] unless $.isArray committee
     res = for c in committee
-        """<img class="avatar small" src="http://avatars.io/50a65bb26e293122b0000073/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
+        """<img class="avatar small" src="http://avatars.io/52ed1f85c747b48148000053/committee-#{c}?size=small" alt="#{committees[c]}">""" + committees[c]
     res.join ''
 
 
