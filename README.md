@@ -116,7 +116,7 @@ To run protractor, first you need to run server for client side code described i
 
 Then
 ```
-gulp
+npm run protractor
 ```
 
 Reference: <https://github.com/angular/protractor>

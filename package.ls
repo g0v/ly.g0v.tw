@@ -18,6 +18,7 @@ scripts:
   start: 'node ./server/app.js'
   test: 'npm run build && ./node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
+  protractor: 'gulp --require LiveScript'
 dependencies:
   express: '3.4.x'
   'prerender-node': '0.1.x'
