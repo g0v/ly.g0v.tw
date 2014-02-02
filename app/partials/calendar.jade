@@ -10,7 +10,9 @@
     h3.ui.header(ng-hide="groupNum > 0") 本日無行程
       // YS is not in committee mapping object, this is the customized block for it
     .ui.orange.segment(ng-show="group.YS")
-      .ui.header.time 院會
+      .ui.header.time
+        i.g0v-icon.YS
+        | 院會
       table.ui.table.segment
         thread
           tr
@@ -27,7 +29,7 @@
             td {{entry.summary}}
     .ui.green.segment(ng-repeat="(k, v) in group", ng-show="committees[k]")
       .ui.header.time
-        img.avatar.small(ng-src="http://avatars.io/52ed1f85c747b48148000053/committee-{{k}}?size=small")
+        i.g0v-icon(ng-class="k")
         span {{committees[k]}}
       table.ui.table.segment
         thread
