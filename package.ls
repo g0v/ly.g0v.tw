@@ -15,6 +15,7 @@ domains: <[ly.g0v.tw beta.ly.g0v.tw]>
 scripts:
   republish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
   build: 'bower i && brunch b -o && lsc -c server'
+  dev: 'brunch w'
   start: 'node ./server/app.js'
   test: 'npm run build && ./node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
   utiltest: './node_modules/.bin/lsc -cbo out/ app/utils && node_modules/mocha/bin/mocha --compilers ls:LiveScript test/unit/util'
