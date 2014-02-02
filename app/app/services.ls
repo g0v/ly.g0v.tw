@@ -50,7 +50,6 @@ angular.module 'app.services' []
       promise.error = (fn) ->
         promise.then fn
       $timeout ->
-        console.log \useLocalCache
         deferred.resolve _model[key]
       return promise
 
@@ -58,7 +57,6 @@ angular.module 'app.services' []
       {success, error}:req = $http.get url, params
       req.success = (fn) ->
         rsp <- success
-        console.log 'save response to local model'
         _model[key] = rsp
         fn rsp
       req.error = (fn) ->
