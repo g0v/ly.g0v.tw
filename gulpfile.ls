@@ -4,10 +4,11 @@ require! async
 require! gulp
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
+require! pushserve
 
 const webdriver-path = './node_modules/.bin/webdriver-manager'
 
-var webdriver-process, standalone-selenium-pid
+var webdriver-process, standalone-selenium-pid, httpServer
 
 webdriver-update = (cb) ->
   gutil.log "updating webdriver"
@@ -22,7 +23,7 @@ webdriver-start = (cb) ->
     gutil.log "webdriver-start complete"
 
   <- webdriver-process.stdout.on \data
-  # webdriver won't die if it's selenium is still alive,
+  # webdriver won't die if selenium still running
   # so we have to kill selenium directly after protractor finish
   if it.toString! is /seleniumProcess.pid: (\d+)/
     standalone-selenium-pid := that.1
@@ -38,10 +39,14 @@ webdriver = (cb) ->
 
 gulp.task \webdriver, webdriver
 
-gulp.task \protractor <[webdriver]> ->
+gulp.task \httpServer ->
+  httpServer := pushserve port: 3333, path: './_public/'
+
+gulp.task \protractor <[webdriver httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor configFile: "./test/protractor.conf.ls"
 
 gulp.task \default, <[protractor]> ->
   gutil.log "Kill Selenium (#{standalone-selenium-pid})"
   process.kill standalone-selenium-pid
+  httpServer.close!

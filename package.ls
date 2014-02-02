@@ -50,3 +50,4 @@ devDependencies:
   gulp: '3.5.0'
   "gulp-util": '2.2.13'
   "gulp-protractor": '0.0.3'
+  pushserve: '0.1.6'
