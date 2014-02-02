@@ -341,7 +341,7 @@ angular.module 'app.controllers.bills' []
       for d in diffs when d.$$hash-key?
         spies[d.$$hash-key].destroy = false
         for diff in d.diffcontent when diff.$$hash-key?
-          spies["#{diff.$$hash-key}-#{d.$$hash-key}"].destroy = false
+          spies["#{diff.$$hash-key}-#{d.$$hash-key}"]?destroy = false
       for key, spy of spies when spy.destroy == true
         delete spies[key]
       update-position()
