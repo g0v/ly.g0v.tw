@@ -31,7 +31,9 @@ script:
 before_deploy: "BUILD=git-`git describe --always` npm run build"
 
 deploy:
-  on: master
+  on:
+    branch: master
+    condition: "$TEST = unit"
   provider: nodejitsu
   user: clkao
   skip_cleanup: true
