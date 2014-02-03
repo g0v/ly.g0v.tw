@@ -18,12 +18,18 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       controller: \LYSittingsNew
 
     .state 'bills' do
+      url: '/bills'
+      templateUrl: 'app/partials/bills-hot.jade'
+      resolve: _init: <[LYService]> ++ (.init!)
+      controller: \LYBillsIndex
+
+    .state 'bills-detail' do
       url: '/bills/{billId}'
       templateUrl: 'app/partials/bills.jade'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBills
 
-    .state 'bills.compare' do
+    .state 'bills-detail.compare' do
       url: '/compare/{otherBills}'
 
     .state 'calendar' do

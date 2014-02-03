@@ -1,0 +1,13 @@
+.bill-index
+  .ui.menu.tabular
+    .item 熱門議案
+    a.item(ng-class="{active: currentTab == '1'}",ng-click="currentTab = '1'") 本日
+    a.item(ng-class="{active: currentTab == '7'}",ng-click="currentTab = '7'") 本週
+    a.item(ng-class="{active: currentTab == '30'}",ng-click="currentTab = '30'") 本月
+  .ui.two.column.stackable.grid
+    .row(ng-repeat="bill in currentBills")
+      .column(ng-show="bill.sponsors")
+        .item(legislator="bill.sponsors[0]")
+        .ui.pointing.left.label
+          a(ng-href="/bills/{{bill.bill_ref}}") {{bill.summary || 'xxxxx'}}
+      .column some feedback or statistics

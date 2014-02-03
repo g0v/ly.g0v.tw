@@ -179,6 +179,20 @@ function build-steps(motions)
   steps
 
 angular.module 'app.controllers.bills' []
+.controller LYBillsIndex: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
+  $scope.current-tab = '1'
+  {entries: $scope.bill-stats} <- LYModel.get "analytics" params: do
+    q: JSON.stringify do
+      name: 'bill'
+  .success
+  $scope.$watch 'currentTab' ->
+    [selected]? = [e for e in $scope.bill-stats when e.timeframe is it]
+    selected.bills ?= [{bill_ref,count} for [bill_ref, count] in selected.content]
+    for bill in selected.bills when !bill.sponsors => let bill
+      {committee}:bill-details <- LYModel.get "bills/#{bill.bill_ref}" .success
+      bill <<< bill-details
+    $scope.current-bills = selected.bills
+
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
     $scope.diffstate = (left_right, state) ->
