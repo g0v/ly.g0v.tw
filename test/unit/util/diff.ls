@@ -1,5 +1,6 @@
 require! 'assert'
-require! '../../../out/diff.js'
+require! 'LiveScript'
+require! '../../../app/utils/diff'
 
 describe 'diff', ->
   describe 'char-based-diff-to-diffline', (_it_) ->
