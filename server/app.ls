@@ -3,7 +3,7 @@ require! <[express ./opengraph]>
 lyserver = (app) ->
   port = if process.env.NODE_ENV is \production => 80 else 3333
   env-param = if process.env.NODE_ENV isnt \production
-    {googleAnalytics: 'UA-41326468-1'}
+    {googleAnalytics: 'UA-41326468-1', env: \production}
   else {}
 
   defHandler = (req, res) ->
