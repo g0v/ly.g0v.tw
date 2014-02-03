@@ -1,7 +1,7 @@
 require! <[express ./opengraph]>
 
 export lyserver = (app = express!) ->
-  env-param = if process.env.NODE_ENV isnt \production
+  env-param = if process.env.NODE_ENV is \production
     {googleAnalytics: 'UA-41326468-1', env: \production}
   else {}
 
