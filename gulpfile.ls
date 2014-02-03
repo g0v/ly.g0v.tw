@@ -4,11 +4,10 @@ require! async
 require! gulp
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
-require! pushserve
 
 const webdriver-path = './node_modules/.bin/webdriver-manager'
 
-var webdriver-process, standalone-selenium-pid, httpServer
+var webdriver-process, standalone-selenium-pid, http-server
 
 webdriver-update = (cb) ->
   gutil.log "updating webdriver"
@@ -40,7 +39,12 @@ webdriver = (cb) ->
 gulp.task \webdriver, webdriver
 
 gulp.task \httpServer ->
-  httpServer := pushserve port: 3333, path: './_public/'
+  console.log \meh
+  {lyserver} = require \./server/app
+  http-server := require \http .create-server lyserver!
+  port = 3333
+  http-server.listen port, ->
+    console.log "Running on port #port"
 
 gulp.task \protractor <[webdriver httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]

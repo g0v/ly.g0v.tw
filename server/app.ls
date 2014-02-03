@@ -1,7 +1,6 @@
 require! <[express ./opengraph]>
 
-lyserver = (app) ->
-  port = if process.env.NODE_ENV is \production => 80 else 3333
+export lyserver = (app = express!) ->
   env-param = if process.env.NODE_ENV isnt \production
     {googleAnalytics: 'UA-41326468-1', env: \production}
   else {}
@@ -45,9 +44,10 @@ lyserver = (app) ->
     handler = getReqHandler req
     handler req, res
 
-  app.listen port, ->
+if process?argv?1 is /app.(js|ls)$/
+  server = require \http .create-server lyserver!
+  port = if process.env.NODE_ENV is \production => 80 else 3333
+  server.listen port, ->
     console.log "Running on port #port"
-
-app = express!
-lyserver app
+  server
 
