@@ -14,11 +14,10 @@ subdomain: 'lyg0vtw'
 domains: <[ly.g0v.tw beta.ly.g0v.tw]>
 scripts:
   republish: 'lsc -cj package.ls && lsc -cj bower.json.ls'
-  build: 'bower i && brunch b -o && lsc -c server'
+  build: 'gulp --require LiveScript build server'
   start: 'node ./server/app.js'
-  test: 'npm run build && ./node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
-  utiltest: 'mocha --compilers ls:LiveScript test/unit/util'
-  protractor: 'gulp --require LiveScript'
+  test: 'gulp --require LiveScript build test:unit'
+  protractor: 'gulp --require LiveScript test:e2e'
 dependencies:
   express: '3.4.x'
   'prerender-node': '0.1.x'
@@ -49,4 +48,5 @@ devDependencies:
   async: '0.2.10'
   gulp: '3.5.0'
   "gulp-util": '2.2.13'
+  "gulp-exec": '~1.0.4'
   "gulp-protractor": '0.0.3'

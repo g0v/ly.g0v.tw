@@ -13,6 +13,21 @@ branches:
   except:
   - gh-pages
 
+env:
+  matrix:
+    - TEST=unit
+    - TEST=sauce
+  global:
+    - secure: "GhqCBThsPRyVORGZwqvW8jdBza2qc7zgYF2rRaksTQzAYLvrX+UXuoAZSbkF\nWAmd4Dx3IfUm5Hv/NKg41Snh1XNsJrU2aXh5VZEbi9xCs5pwQ87zSXOvDjEr\nwTqfLISlyrUBNSIYjcUEE029jBCKq63giK4QVeL58FY9AKC2MxQ="
+    - secure: "gtSV2z58U4UJ8gzvPgPaA8+91ySrqEkcAgfhtTHEt+ayGAIZibeVi+RRSaGW\nTY3Vaonn8jfT9L7f49v4UHtsUO9fY5W4Q/kkXyrifTBfbcAlnIcVPZvvZBck\njcFwW4MqO4WwqgdR1+Yo8gQQq0tOj5lVSAEI+tJhPZQB7BdiX3M="
+
+before_script:
+  - if [ "x$TEST" == "xsauce" ]; then curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash; fi
+  - npm install -g gulp
+
+script:
+  - gulp --require LiveScript test:$TEST
+
 before_deploy: "BUILD=git-`git describe --always` npm run build"
 
 deploy:
