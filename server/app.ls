@@ -2,14 +2,16 @@ require! <[express ./opengraph]>
 
 lyserver = (app) ->
   port = if process.env.NODE_ENV is \production => 80 else 3333
+  env-param = if process.env.NODE_ENV isnt \production
+    {googleAnalytics: 'UA-41326468-1'}
+  else {}
 
   defHandler = (req, res) ->
-    res.render 'index.html', do
-      mode: 'normal'
+    res.render 'index.jade' {mode: 'normal'} <<< env-param
 
   fbHandler = (req, res) ->
     result <- opengraph.getMeta req
-    res.render 'index.html', do
+    res.render 'index.jade', do
       mode: 'bot'
       meta: result
 
@@ -31,8 +33,7 @@ lyserver = (app) ->
 
   app.use require 'prerender-node' if process.env.PRERENDER_SERVICE_URL
 
-  app.engine '.html', require('ejs').__express
-  app.set 'views', '_public'
+  app.set 'views', 'app'
 
   app.use '/js', express.static \_public/js
   app.use '/css', express.static \_public/css
