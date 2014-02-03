@@ -39,7 +39,6 @@ webdriver = (cb) ->
 gulp.task \webdriver, webdriver
 
 gulp.task \httpServer ->
-  console.log \meh
   {lyserver} = require \./server/app
   http-server := require \http .create-server lyserver!
   port = 3333
@@ -54,3 +53,14 @@ gulp.task \default, <[protractor]> ->
   gutil.log "Kill Selenium (#{standalone-selenium-pid})"
   process.kill standalone-selenium-pid
   httpServer.close!
+
+gulp.task \sauce <[httpServer]> ->
+  gulp.src ["./test/e2e/app/*.ls"]
+    .pipe protractor do
+      configFile: "./test/protractor.conf.ls"
+      args: do
+        seleniumAddress: ''
+        sauceUser: process.env.SAUCE_USERNAME
+        sauceKey: process.env.SAUCE_ACCESS_KEY
+        'capabilities.tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
+        'capabilities.build': process.env.TRAVIS_BUILD_NUMBER
