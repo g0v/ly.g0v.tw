@@ -196,7 +196,7 @@ angular.module 'app.controllers.bills' []
     $scope.$watch '$state.params.billId' ->
       {billId} = $state.params
       {committee}:bill <- LYModel.get "bills/#{billId}" .success
-      $state.current.title = "ly.g0v.tw - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
+      $state.current.title = "國會大代誌 - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
 
       if bill.bill_ref #legislative
         if that isnt billId and that isnt /;/
