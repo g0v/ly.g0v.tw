@@ -84,7 +84,11 @@ gulp.task 'test:unit' <[test:karma test:util]>
 gulp.task 'test:karma' ->
   gulp.src 'package.json'
     .pipe gulp-exec './node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
+    .on \error ->
+      throw it
 
 gulp.task 'test:util' ->
   gulp.src 'package.json'
     .pipe gulp-exec './node_modules/.bin/mocha --compilers ls:LiveScript test/unit/util'
+    .on \error ->
+      throw it
