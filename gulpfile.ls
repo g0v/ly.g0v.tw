@@ -80,7 +80,8 @@ gulp.task 'build' ->
     .pipe gulp-exec 'bower i && ./node_modules/.bin/brunch b -P'
 
 gulp.task 'test:unit' <[build]> ->
-  gulp.start <[test:karma test:util]>
+  gulp.start 'test:karma'
+  gulp.start 'test:util'
 
 gulp.task 'test:karma' ->
   gulp.src 'package.json'
