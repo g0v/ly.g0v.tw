@@ -16,7 +16,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
       meta(property='og:image',content=meta.img)
       meta(property='og:description',content=meta.description)
 
-    title(ng-bind-template='{{$state.current.title}}')
+    title(ng-bind-template='{{$state.current.title || "國會大代誌"}}')
     link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css")
     link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/Han/2.2.3/han.css")
     link(rel='stylesheet', href='/css/app.css')
