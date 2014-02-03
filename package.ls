@@ -22,7 +22,7 @@ scripts:
 dependencies:
   express: '3.4.x'
   'prerender-node': '0.1.x'
-  ejs: '0.8.x'
+  jade: '1.1.x'
   request: '2.27.x'
 devDependencies:
   LiveScript: '1.2.x'

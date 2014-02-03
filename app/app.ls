@@ -73,7 +73,6 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
   $rootScope.go = -> $location.path it
   $rootScope.config_build = window.global.config.BUILD
   $rootScope.$on \$stateChangeSuccess (e, {name}) ->
-    console.log \changed, $location.$$url, $location
     window?ga? 'send' 'pageview' page: $location.$$path, title: name
   window.onYouTubeIframeAPIReady = ->
     $rootScope.$broadcast \youtube-ready

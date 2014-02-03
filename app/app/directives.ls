@@ -46,7 +46,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
         avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
         tooltip.find \img .attr \src, "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAQAICRAEAOw=="
         setTimeout ->
-          tooltip.find \img .attr \src, "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=medium"
+          tooltip.find \img .attr \src, "http://avatars.io/52ed1f85c747b48148000053/#{avatar}?size=medium"
         ,0
         tooltip.find \.name .text it.mly
         tooltip.find \.playit .on 'click' (event) ->
@@ -74,7 +74,7 @@ build-avatar = (root, d, {w,h,x,y,margin}, scope, LYService) ->
         .attr \height 10
         .attr \xlink:href ->
           avatar = CryptoJS.MD5 "MLY/#{it.mly}" .toString!
-          "http://avatars.io/50a65bb26e293122b0000073/#{avatar}?size=small"
+          "http://avatars.io/52ed1f85c747b48148000053/#{avatar}?size=small"
         .attr \alt -> it.speaker
 
 angular.module 'app.directives' <[app.services ]>

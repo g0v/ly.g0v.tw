@@ -18,10 +18,10 @@
     //-span.spinner.small(ng-show="loadingSitting")
     .role
       .committee(ng-show="!committee")
-        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-YS?size=medium",ng-alt="院會",ng-class="")
+        i.large.g0v-icon.YS
         .name 院會
       .committee(ng-show="committee",ng-repeat="c in committee")
-        img.avatar(ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium",ng-alt="{{c.name}}",ng-class="{{c.abbr}}")
+        i.large.g0v-icon(ng-class="c")
         .name {{c}} 委員會
     // XXX use mly filter to set styles
     .schedule
