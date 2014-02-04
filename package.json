@@ -20,7 +20,7 @@
   "scripts": {
     "republish": "lsc -cj package.ls && lsc -cj bower.json.ls",
     "build": "gulp --require LiveScript build server",
-    "dev": "brunch w",
+    "dev": "gulp --require LiveScript dev",
     "start": "node ./server/app.js",
     "test": "gulp --require LiveScript build test:unit",
     "protractor": "gulp --require LiveScript test:e2e"

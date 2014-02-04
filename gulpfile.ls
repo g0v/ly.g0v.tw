@@ -45,14 +45,14 @@ webdriver = (cb) ->
 
 gulp.task \webdriver, webdriver
 
-gulp.task \httpServer <[server build]> ->
+gulp.task \httpServer <[server]> ->
   {lyserver} = require \./server/app
   http-server := require \http .create-server lyserver!
   port = 3333
   http-server.listen port, ->
     console.log "Running on port #port"
 
-gulp.task \protractor <[webdriver httpServer]> ->
+gulp.task \protractor <[webdriver build httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor configFile: "./test/protractor.conf.ls"
 
@@ -61,7 +61,7 @@ gulp.task 'test:e2e' <[protractor]> ->
   process.kill standalone-selenium-pid
   httpServer.close!
 
-gulp.task 'protractor:sauce' <[httpServer]> ->
+gulp.task 'protractor:sauce' <[build httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor do
       configFile: "./test/protractor.conf.ls"
@@ -94,3 +94,6 @@ gulp.task 'test:util' ->
     .pipe gulp-exec './node_modules/.bin/mocha --compilers ls:LiveScript test/unit/util'
     .on \error ->
       throw it
+
+gulp.task 'dev' <[httpServer]> ->
+  require \brunch .watch {}

@@ -9,28 +9,14 @@ Install required packages:
 
 1.    `$ sudo gem install compass`
 2.    `$ npm install`
-3.    `$ npm run build`
 
-## For Front-End Developer 
-(try to modify anything under **app** directory)
+Start server:
 
-If you are just developing client side code, this command will launch a server and watch and changes via brunch.
-
-    $ make dev   # then open http://localhost:3333/
-
-## For Back-End Developer
-
-To build both of client and server side. It use brunch to build client side code from **app** to **_public** and compile server side code under directory **server**.
-
-    $ make build
-
-and run express server.
-
-    $ make run   # then open http://localhost:3333/
+    $ npm run dev   # then open http://localhost:3333/
 
 # API Endpoint
 
-By default the frontend uses api-beta.ly.g0v.tw.  The code is at http://github.com/g0v/api.ly
+By default the frontend uses api.ly.g0v.tw.  The code is at http://github.com/g0v/api.ly
 
 # Terminologies
 
