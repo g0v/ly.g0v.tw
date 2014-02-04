@@ -8,10 +8,9 @@
     thead
         tr
           th.three.wide 
-          th 立法院網站
-          th 國會大代誌
+          th.five.wide 立法院網站
+          th.five.wide 國會大代誌
       tbody
-
         tr
           td 議案
           td 
@@ -30,7 +29,7 @@
               | 網頁瀏覽，線上閱讀
             .item
               i.icon.check.red 
-              | 永久連結網址，方便可社群分享（fb, twitter）
+              | 永久連結網址，方便社群分享
              
         tr
           td 議事網路轉播(IVOD) 
@@ -50,30 +49,31 @@
               | 支援 android, iOS
             .item
               i.icon.check.red 
-              | 永久連結網址，方便可社群分享（fb, twitter）
+              | 永久連結網址，方便社群分享
             .item
               i.icon.check.red 
               | 即時評論、互動評分
         tr
           td 議事影音資料(IVOD 資料庫)
           td 
-            li 只有立委能申請
-            li 只保存四年
+            li 依「立法院會議錄影錄音管理規則」可以只保存四年
+            li 只有立委本人能申請複製
           td 
             font(color="purple")
               b IVOD youtube 頻道
-                a(href="http://ivod.ly.g0v.tw", target="blank") 
+                a(href="http://www.youtube.com/channel/UCtancDIih1KmFjTWdQyuE9A", target="blank") 
                   i.icon.url
-            .item 
-              i.icon.check.red
-              | 上傳 youtube 備份，全民皆可觀看搜尋
             .item
               i.icon.check.red 
-              | 保存無限期
+              | 上傳 youtube 備份，保存無限期
+            .item 
+              i.icon.check.red
+              | 全民皆可觀看搜尋
+            
         tr
           td 公報
           td
-            li pdf 或 doc格式
+            li pdf 或 doc 格式
             li 無永久連結網址，難以分享
           td
             b 公報閱讀器（開發中 
@@ -85,11 +85,11 @@
               | 網頁瀏覽，線上閱讀
             .item
               i.icon.check
-              | 永久連結網址，方便社群分享（fb, twitter）
+              | 永久連結網址，方便社群分享
         tr
           td 投票紀錄
           td 
-            li pdf 或 doc格式
+            li pdf 或 doc 格式
             li 無永久連結網址，難以分享
           td 
             b 投票紀錄視覺化（開發中 
@@ -136,10 +136,16 @@
   完整貢獻者名單：
   br
   a(href="https://github.com/g0v/ly.g0v.tw/graphs/contributors") https://github.com/g0v/ly.g0v.tw/graphs/contributors
+  
   h3.ui.header 聯繫
-  | 歡迎到國會大代誌 
-  a(href="https://groups.google.com/forum/#!forum/g0v-ly") googlegroups 討論區
-  ，或來信 g0v-ly@googlegroups.com。
+  意見回饋：請到
+  a(href="https://groups.google.com/forum/#!forum/g0v-ly", target="blank") 國會大代誌 googlegroups 討論區
+  ，或來信 g0v-ly [at] googlegroups.com。
+  br
+  加入開發：這是一個開放的開發計畫，歡迎有志者一同加入協作，可以到上述討論區，或
+  a(href="http://hack.g0v.tw/g0v-ly/", target="blank") 工作共筆
+  加入我們。
+
   h3.ui.header 網站原始碼
   | 國會大代誌原始碼在 
   a(href="https://github.com/g0v/ly.g0v.tw") github.com，以
