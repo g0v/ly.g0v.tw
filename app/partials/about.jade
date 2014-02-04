@@ -1,103 +1,149 @@
-.about
-  h1.ui.header This is pre-alpha!
-  h2.ui.header Source code
-    .sub.header
-      a(href="https://github.com/g0v/ly.g0v.tw") Source code 
-      | is available on github.com and under
-      a(href="http://g0v.mit-license.org/")  MIT License
-  h2.ui.header Icon attributions
-  .ui.bulleted.list.attribution
-    .item
-      a(href='http://thenounproject.com/noun/judge/#icon-No3953', target='_blank') Judge
-      | designed by 
-      a(href='http://thenounproject.com/Luis', target='_blank') Luis Prado
-      | from The Noun Project
-    .item
-      a(href='http://thenounproject.com/noun/antenna/#icon-No10279',target='_blank') Antenna
-      | designed by 
-      a(href='http://thenounproject.com/rocavence', target='_blank') Roca Chang
-      | from The Noun Project
-    .item
-      a(href='http://thenounproject.com/noun/earth/#icon-No4570', target='_blank') Earth
-      | designed by 
-      a(href='http://thenounproject.com/thibault.geffroy', target='_blank') Thibault Geffroy
-      | from The Noun Project
-    .item
-      a(href='http://thenounproject.com/noun/institution/#icon-No1564', target='_blank') Institution
-      | designed by 
-      a(href='http://thenounproject.com/thibault.geffroy', target='_blank') Thibault Geffroy
-      | from The Noun Project
-  h2.ui.header Icons by Alice, ETBlue and WalkingIce
-  .ui.horizontal.list.g0v-icon-list
-    .item
-      i.g0v-icon.KMT.large
-      .desc 國民黨黨徽  
-        .note ( i.g0v.icon.KMT )
-    .item
-      i.g0v-icon.DPP.large
-      .desc 民進黨黨徽  
-        .note ( i.g0v-icon.DPP )
-    .item
-      i.g0v-icon.PFP.large
-      .desc 親民黨黨徽  
-        .note ( i.g0v-icon.PFP )
-    .item
-      i.g0v-icon.TSU.large
-      .desc 台灣團結聯盟黨徽  
-        .note ( i.g0v-icon.TSU )
-    .item
-      i.g0v-icon.NSU.large
-      .desc 無黨籍聯盟黨徽  
-        .note ( i.g0v-icon.NSU )
-    .item
-      i.g0v-icon.NON.large
-      .desc 無黨籍  
-        .note ( i.g0v-icon.NON )
-    .item
-      i.g0v-icon.CON.large
-      .desc 修憲委員會  
-        .note ( i.g0v-icon.CON )
-    .item
-      i.g0v-icon.DIS.large
-      .desc 紀律委員會  
-        .note ( i.g0v-icon.DIS )
-    .item
-      i.g0v-icon.FIN.large
-      .desc 財政委員會  
-        .note ( i.g0v-icon.FIN )
-    .item
-      i.g0v-icon.EDU.large
-      .desc 教育及文化委員會  
-        .note ( i.g0v-icon.EDU )
-    .item
-      i.g0v-icon.ECO.large
-      .desc 經濟委員會  
-        .note ( i.g0v-icon.ECO )
-    .item
-      i.g0v-icon.FND.large
-      .desc 外交與國防委員會  
-        .note ( i.g0v-icon.FND )
-    .item
-      i.g0v-icon.IAD.large
-      .desc 內政委員會  
-        .note ( i.g0v-icon.IAD )
-    .item
-      i.g0v-icon.JUD.large
-      .desc 司法與法制委員會  
-        .note ( i.g0v-icon.JUD )
-    .item
-      i.g0v-icon.PRO.large
-      .desc 程序委員會  
-        .note ( i.g0v-icon.PRO )
-    .item
-      i.g0v-icon.SWE.large
-      .desc 社會福利及衛生環境委員會  
-        .note ( i.g0v-icon.SWE )
-    .item
-      i.g0v-icon.TRA.large
-      .desc 交通委員會  
-        .note ( i.g0v-icon.TRA )
-    .item
-      i.g0v-icon.YS.large
-      .desc 院會  
-        .note ( i.g0v-icon.YS )
+.about-content
+  h3.ui.header 開放國會：從資料透明走向公民參與
+  | 曾經我們以為人人有票投就是民主，但如果缺乏監督機制，缺少了民意參與的民主如何為眾人謀福利？【國會大代誌】是 g0v.tw 台灣零時政府社群的計畫之一，以開放資料打造開放的國會資訊平台。旨在降低民眾參與的門檻，利用透明資訊、清晰介面、即時分享，提高資訊公開度及公民參與度。
+  h3.ui.header 國會大代誌的功能
+  | 本站綜合二十個立法院網站資料，將提案、委員會審查、院會各階段文件、影音整理成結構性資料，自動化更新所有資料。【國會大代誌】提供立法院從提案、審查、一二三讀之間所有的文件、影音資料的整合介面，並陸續開發「提案比一比」、「立院影城」、「IVOD youtube頻道」、「公報閱讀器」、「法案闖天關」等全新功能。
+  h3.ui.header gov vs. g0v
+  table.ui.celled.table.segment
+    thead
+        tr
+          th.three.wide 
+          th 立法院網站
+          th 國會大代誌
+      tbody
+
+        tr
+          td 議案
+          td 
+            li pdf 或 doc 格式
+            li 無永久連結網址，難以分享
+          td 
+            font(color="purple")
+              b 提案比一比
+                a(href="http://", target="blank") 
+                  i.iconurl
+            .item 
+              i.icon.check.red
+              | 彩色全文比較介面
+            .item
+              i.icon.check.red 
+              | 網頁瀏覽，線上閱讀
+            .item
+              i.icon.check.red 
+              | 永久連結網址，方便可社群分享（fb, twitter）
+             
+        tr
+          td 議事網路轉播(IVOD) 
+          td 
+            li IE ONLY
+            li 不支援行動裝置
+          td 
+            font(color="purple")
+              b 立院影城 
+                a(href="http://ivod.ly.g0v.tw", target="blank") 
+                  i.icon.url
+            .item 
+              i.icon.check.red
+              | 所有瀏覽器皆可收看
+            .item
+              i.icon.check.red 
+              | 支援 android, iOS
+            .item
+              i.icon.check.red 
+              | 永久連結網址，方便可社群分享（fb, twitter）
+            .item
+              i.icon.check.red 
+              | 即時評論、互動評分
+        tr
+          td 議事影音資料(IVOD 資料庫)
+          td 
+            li 只有立委能申請
+            li 只保存四年
+          td 
+            font(color="purple")
+              b IVOD youtube 頻道
+                a(href="http://ivod.ly.g0v.tw", target="blank") 
+                  i.icon.url
+            .item 
+              i.icon.check.red
+              | 上傳 youtube 備份，全民皆可觀看搜尋
+            .item
+              i.icon.check.red 
+              | 保存無限期
+        tr
+          td 公報
+          td
+            li pdf 或 doc格式
+            li 無永久連結網址，難以分享
+          td
+            b 公報閱讀器（開發中 
+              a(href="http://twlyreader-prototype.herokuapp.com/reader.html?json_url=/json/3948_interp.json", target="blank")
+                i.icon.url
+              |）
+            .item
+              i.icon.check
+              | 網頁瀏覽，線上閱讀
+            .item
+              i.icon.check
+              | 永久連結網址，方便社群分享（fb, twitter）
+        tr
+          td 投票紀錄
+          td 
+            li pdf 或 doc格式
+            li 無永久連結網址，難以分享
+          td 
+            b 投票紀錄視覺化（開發中 
+             a(href="http://g0v.github.io/ly-vote/", target="blank")
+              i.icon.url  
+              |）
+        tr
+          td 議案進度圖表
+          td 
+            li 散在2-3不同查詢系統
+          td 
+            b 法案闖天關（開發中
+             a(href="http://g0v.github.io/semantic-ui-experiment/public/bill-progress.html", target="blank")
+              i.icon.url
+              |）
+      //tfoot
+        tr
+          th 3 People
+          th ts
+          th gs
+
+
+  h3.ui.header 開發團隊
+  | 國會大代誌由 g0v.tw 社群開發維護，由2012年底開始開發，以下為主要貢獻者：
+  p
+  .ui.mini.images
+    a(href="https://github.com/clkao", target="blank")
+      img.ui.image(src='https://0.gravatar.com/avatar/f0cc4b511c06b73afb23beb5695a83d6?d=https%3A%2F%2Fidenticons.github.com%2F02b9e4f7aa1e5f60897e3688a8d3750b.png&r=x&s=60', data-title='test')
+    a(href="https://github.com/walkingice", target="blank")
+      img.ui.image(src='https://1.gravatar.com/avatar/26aed0cd42de0d4319c038e52dc80765?d=https%3A%2F%2Fidenticons.github.com%2F022cb62ec7cbe889faddb81e7c4c2351.png&r=x&s=60')
+    a(href="https://github.com/yhsiang", target="blank")
+      img.ui.image(src='https://2.gravatar.com/avatar/90e6857ae4cd92fcd6edcfa9f589bdaa?d=https%3A%2F%2Fidenticons.github.com%2Ff7bd66e3493b538aae3d9a4e93f52d9b.png&r=x&s=60')
+    a(href="https://github.com/ETBlue", target="blank")
+      img.ui.image(src='https://0.gravatar.com/avatar/c9dbd97e2e3a7b00639bab0e111c2be6?d=https%3A%2F%2Fidenticons.github.com%2F07cc0bfcdfb6597e7fde5b2c1778a2a9.png&r=x&s=60')
+    a(href="https://github.com/zbryikt", target="blank")
+      img.ui.image(src='https://0.gravatar.com/avatar/7f7cce675da85bf8807da9f8d0c3a955?d=https%3A%2F%2Fidenticons.github.com%2Fd2653e0e9496a6489da74dc6ed1d6696.png&r=x&s=60')
+    a(href="https://github.com/alicewei", target="blank")
+      img.ui.image(src='https://2.gravatar.com/avatar/dff4a0417a6df62e9f32e6d371884faa?d=https%3A%2F%2Fidenticons.github.com%2F8981714c22755d01ea240b8634cafe87.png&r=x&s=60')
+    a(href="https://github.com/chilijung", target="blank")
+      img.ui.image(src='https://1.gravatar.com/avatar/adde7be8481c61323c5d57bd02026cab?d=https%3A%2F%2Fidenticons.github.com%2F725f781326710132c7b1bbac40ed4a28.png&r=x&s=60')
+    a(href="https://github.com/victorhsieh", target="blank")
+      img.ui.image(src='https://2.gravatar.com/avatar/3eaaba634736b6e4cfe907b289b3d7c0?d=https%3A%2F%2Fidenticons.github.com%2Fedf75f57d90d90bd57f1796be4e9e26b.png&r=x&s=60')
+  p
+  完整貢獻者名單：
+  br
+  a(href="https://github.com/g0v/ly.g0v.tw/graphs/contributors") https://github.com/g0v/ly.g0v.tw/graphs/contributors
+  h3.ui.header 聯繫
+  | 歡迎到國會大代誌 
+  a(href="https://groups.google.com/forum/#!forum/g0v-ly") googlegroups 討論區
+  ，或來信 g0v-ly@googlegroups.com。
+  h3.ui.header 網站原始碼
+  | 國會大代誌原始碼在 
+  a(href="https://github.com/g0v/ly.g0v.tw") github.com，以
+  a(href="http://g0v.mit-license.org/")  MIT License 
+  | 授權。
+  h3.ui.header 本站目前為測試版！This is pre-alpha!
+
