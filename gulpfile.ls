@@ -96,4 +96,6 @@ gulp.task 'test:util' ->
       throw it
 
 gulp.task 'dev' <[httpServer]> ->
-  require \brunch .watch {}
+  require \brunch .watch {}, ->
+    gulp.start 'test:karma'
+    gulp.start 'test:util'
