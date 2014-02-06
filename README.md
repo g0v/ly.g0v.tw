@@ -9,6 +9,7 @@ Install required packages:
 
 1.    `$ sudo gem install compass`
 2.    `$ npm install`
+3.    `$ npm run build`
 
 Start server:
 
