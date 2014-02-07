@@ -178,7 +178,7 @@ function build-steps(motions)
       steps[0].detail.push detail
   steps
 
-angular.module 'app.controllers.bills' []
+angular.module 'app.controllers.bills' <[ly.diff]>
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
     $scope.diffstate = (left_right, state) ->
