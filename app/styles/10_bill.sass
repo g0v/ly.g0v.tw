@@ -13,16 +13,6 @@
   #qrlink
     display: block !important
 
-  .bill
-    .replace.left,
-    .delete.left,
-    .replace.right,
-    .insert.right
-      .diff.text em
-        border-bottom: 3px double lightgrey !important
-        padding-bottom: .125em !important
-
-
 .history
   path.link, .node rect
     fill: none
@@ -349,62 +339,6 @@
     &:before,&:after
       width: 40%
 
-  .ui.segment.article-text
-    padding-top: 0.5em
-    padding-bottom: 0.5em
-    margin: 0
-  .ui.ribbon
-    margin-top: -1.5em
-
-  .diff.text
-    color: #333
-    margin-right: 0.5rem
-  .replace.left,
-  .delete.left,
-  .replace.right,
-  .insert.right
-    .diff.text em
-      +em-reset
-      background-color: lighten(#f99, 7%)
-      color: #000
-
-  .replace.right,
-  .insert.right
-    .diff.text em
-      background-color: lighten(#A1CF88, 10%)
-
-  .column.left
-    margin: 0
-  .column.right
-    margin: 0
-
-  .ui.stackable.grid
-    &>.row
-      margin: 0
-      padding: 0
-      &>.column.right
-        margin: 0!important
-        padding-top: 0!important
-        padding-bottom: 0!important
-      &>.column.left
-        padding-top: 0!important
-        padding-bottom: 0!important
-      @media only screen and (max-width: 768px)
-        padding-top: 1rem !important
-        &>.column.right.equal
-          display: none!important
-
-  .ui.pointing.label.diff-comment
-    width: 100%
-    margin: 1em 0 1em 0
-    font-size: 1rem
-    background-color: #fffaf2
-    +box-shadow(0 0 1px rgba(#000,0.5))
-    &:before
-      background-color: #fffaf2
-      border: 1px rgba(#000,0.1) solid
-      border-width: 1px 0 0 1px
-
   .ui.very.thin.sidebar
     .ui.vertical.menu
       width: 8rem
@@ -418,12 +352,6 @@
 
   @media only screen and (max-width: 768px)
     padding: 0 0.5rem 0.5rem 0.5rem
-    .mobile-hide
-      display: none
-    .ui.stackable.grid > .row > .column.left
-      margin-top: 0 !important
-      &.ng-hide
-        display: none !important
 
   @media (max-width: 640px)
     .bill-progress .common.ui.seven.steps,
@@ -454,6 +382,15 @@
     .bill .bill-progress .ui.small.steps
       .ui.step:after
         top: 2rem
+  div[ly-bill]
+    .replace.left,
+    .delete.left,
+    .replace.right,
+    .insert.right
+      .diff.text em
+        +em-reset
+        background-color: lighten(#f99, 7%)
+        color: #000
 
 div.item
   outline: none
