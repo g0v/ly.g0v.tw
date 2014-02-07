@@ -31,18 +31,6 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
       original-article = article || ''
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
 
-make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
-  difflines = line-based-diff base-content, content .map ->
-    it.left = $sce.trustAsHtml it.left || '無'
-    it.right = $sce.trustAsHtml it.right
-    it
-  comment = $sce.trustAsHtml comment
-  return {comment,difflines} <<< do
-    left-item: \§ + amendment.original-article
-    left-item-anchor: amendment.original-article
-    right-item: \§ + amendment.article
-    right-item-anchor: amendment.article
-
 diffmeta = (content) -> content?map (diff) ->
   if !diff.name
     diff.name = '併案審議'
@@ -254,7 +242,6 @@ angular.module 'app.controllers.bills' <[ly.diff]>
 
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = diffmeta data?content
-        $scope.diff.map (diff) -> diff.diffcontent = diff.amendment.map make-diff $sce
         if $scope.diff?length
           total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
@@ -266,9 +253,7 @@ angular.module 'app.controllers.bills' <[ly.diff]>
             base-index = diff.base-index
             c = diff.comment-index
             amendment = diff.content.map bill-amendment diff, idx, c, base-index
-            diff <<< do
-                diffnew: version
-                diffcontent: amendment.map make-diff $sce
+            diff <<< diffnew: version
       $scope.$watch '$state.params.otherBills' ->
         other-bills = it?split \,
         return unless other-bills?length

@@ -8,6 +8,10 @@ angular.module 'ly.diff' <[app.templates]>
     console.log $scope.options
     $scope.$watchCollection ['left', 'right'] ->
       return unless $scope.left or $scope.right
+      $scope.leftItem = $scope.heading
+      $scope.leftItemAnchor = $scope.anchor
+      $scope.rightItem = $scope.heading-right ? $scope.leftItem
+      $scope.rightItemAnchor = $scope.anchor-right ? $scope.rightItemAnchor
       $scope.difflines = line-based-diff $scope.left, $scope.right .map ->
         it.left = $sce.trustAsHtml it.left || '無'
         it.right = $sce.trustAsHtml it.right
@@ -22,18 +26,14 @@ angular.module 'ly.diff' <[app.templates]>
         it
     if $scope.options.parse
       clone <- $transclude
-      $scope.heading = clone.closest '.heading' .text!
-      $scope.anchor = clone.closest '.anchor' .text!
       comment = clone.closest '.comment' .text!
 
       $scope <<<
         comment: $sce.trustAsHtml comment
-        leftItem: $scope.heading
-        leftItemAnchor: $scope.anchor
+        heading: clone.closest '.heading' .text!
+        anchor: clone.closest '.anchor' .text!
         left: clone.closest '.left' .text!
         right: clone.closest '.right' .text!
-      $scope.rightItem = $scope.heading-right ? $scope.leftItem
-      $scope.rightItemAnchor = $scope.anchor-right ? $scope.rightItemAnchor
     else
       $scope <<< $scope.options{left,right,heading,anchor} <<<
         comment: $sce.trustAsHtml $scope.options.comment
