@@ -181,16 +181,6 @@ function build-steps(motions)
 angular.module 'app.controllers.bills' <[ly.diff]>
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
-    $scope.diffstate = (left_right, state) ->
-      | left_right is 'left' and state isnt 'equal' => 'red'
-      | state === 'replace' || state === 'empty' || state === 'insert' || state === 'delete' => 'green'
-      | otherwise => ''
-    $scope.difftxt = (left_right, state) ->
-      | left_right is 'left' and state isnt 'equal' => '現行'
-      | state === 'replace' || state === 'empty' => '修正'
-      | state === 'delete' => '刪除'
-      | state === 'insert' => '新增'
-      | otherwise => '相同'
     $scope.opts = {+show_date}
     $scope.spies = {}
     $scope.$watch '$state.params.billId' ->
