@@ -1,7 +1,7 @@
 #!/usr/bin/env lsc -bc
 require! child_process
 require! async
-require! <[gulp gulp-exec]>
+require! <[gulp gulp-exec gulp-stylus]>
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
 
@@ -99,3 +99,8 @@ gulp.task 'dev' <[httpServer]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
+
+gulp.task 'ly.diff:css' ->
+  gulp.src './app/styles/ly-diff.sass'
+  .pipe gulp-stylus use: <[nib]>
+  .pipe gulp.dest './_public/css'
