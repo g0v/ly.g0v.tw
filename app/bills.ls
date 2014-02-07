@@ -26,13 +26,10 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
       article = parse-article-heading RegExp.lastMatch - /\s+$/
     if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
-      article = original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
+      original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
       original-article = article || ''
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
-
-item-from-article = ->
-  if it.match /^(（\S+）\n|)第\S+(章|編)/ then it else \§ + it
 
 make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
   difflines = line-based-diff base-content, content .map ->
@@ -41,9 +38,9 @@ make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
     it
   comment = $sce.trustAsHtml comment
   return {comment,difflines} <<< do
-    left-item: item-from-article amendment.original-article
+    left-item: \§ + amendment.original-article
     left-item-anchor: amendment.original-article
-    right-item: item-from-article amendment.article
+    right-item: \§ + amendment.article
     right-item-anchor: amendment.article
 
 diffmeta = (content) -> content?map (diff) ->
