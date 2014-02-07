@@ -52,3 +52,4 @@ devDependencies:
   "gulp-exec": '~1.0.4'
   "gulp-protractor": '~0.0.3'
   "gulp-livescript": '~0.1.1'
+  "gulp-stylus": '~0.0.12'
