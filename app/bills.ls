@@ -32,7 +32,7 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
 
 item-from-article = ->
-  if it.match /^(（\S+）\n|)第\S+(章|編)/ then it else \§ + it
+  if it?match /^(（\S+）\n|)第\S+(章|編)/ then it else \§ + it
 
 make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
   difflines = line-based-diff base-content, content .map ->
@@ -318,7 +318,7 @@ angular.module 'app.controllers.bills' []
     obj = scope.spies[id] ?= {}
     obj.in = ->
       elem.addClass 'spy'
-      elem[0].scrollIntoViewIfNeeded()
+      elem[0].scrollIntoViewIfNeeded?!
     obj.out = -> elem.removeClass 'spy'
 .directive 'spyTarget', <[$location]> ++ ($location)->
   restrct: 'A'
