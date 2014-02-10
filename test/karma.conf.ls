@@ -7,6 +7,7 @@ module.exports = (karma) ->
       * "_public/js/app.templates.js"
       * "_public/js/app.js"
       * "bower_components/angular-mocks/angular-mocks.js"
+      * "test/unit/*.spec.ls"
       * "test/unit/**/*.spec.ls"
     exclude: []
     reporters: ["progress"]
