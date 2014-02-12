@@ -5,6 +5,8 @@ parse-article-heading = (text) ->
   _items.filter -> it
   .map zhutil.parseZHNumber .join \-
 
+not-an-article = /^(（\S+）\n|)第\S+(章|編|節)/
+
 bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   h = diff.header
   comment = if \string is typeof entry[c]
@@ -25,14 +27,14 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   if !original-article
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
       article = parse-article-heading RegExp.lastMatch - /\s+$/
-    if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
+    if newTextLines.match not-an-article
       article = original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
       original-article = article || ''
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
 
 item-from-article = ->
-  if it?match /^(（\S+）\n|)第\S+(章|編)/ then it else \§ + it
+  if it?match not-an-article then it else \§ + it
 
 make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
   difflines = line-based-diff base-content, content .map ->
