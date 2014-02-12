@@ -50,5 +50,5 @@ devDependencies:
   gulp: '~3.5.0'
   "gulp-util": '~2.2.13'
   "gulp-exec": '~1.0.4'
-  "gulp-protractor": 'git://github.com/clkao/gulp-protractor.git'
+  "gulp-protractor": 'git://github.com/clkao/gulp-protractor.git#exit-value'
   "gulp-livescript": '~0.1.1'
