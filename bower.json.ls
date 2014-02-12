@@ -7,9 +7,9 @@ ignore: ["**/.*", "node_modules", "components"]
 dependencies:
   jquery: "~2.0.3"
   moment: "~2.4.0"
-  angular: "1.2.8"
-  "angular-mocks": "1.2.8"
-  "angular-scenario": "1.2.8"
+  angular: "1.2.12"
+  "angular-mocks": "1.2.12"
+  "angular-scenario": "1.2.12"
   "angular-ui-router": "0.0.1"
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
