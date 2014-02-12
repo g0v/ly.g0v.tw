@@ -85,6 +85,8 @@ gulp.task 'test:sauce' <[protractor:sauce]> ->
 gulp.task 'build' ->
   gulp.src 'package.json'
     .pipe gulp-exec 'bower i && ./node_modules/.bin/brunch b -P'
+    .on \error ->
+      throw it
 
 gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
