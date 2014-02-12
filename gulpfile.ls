@@ -55,6 +55,8 @@ gulp.task \httpServer <[server]> ->
 gulp.task \protractor <[webdriver build httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor configFile: "./test/protractor.conf.ls"
+    .on \error ->
+      throw it
 
 gulp.task 'test:e2e' <[protractor]> ->
   gutil.log "Kill Selenium (#{standalone-selenium-pid})"
@@ -74,6 +76,8 @@ gulp.task 'protractor:sauce' <[build httpServer]> ->
     .pipe protractor do
       configFile: "./test/protractor.conf.ls"
       args: args
+    .on \error ->
+      throw it
 
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
