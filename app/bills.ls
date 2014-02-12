@@ -43,9 +43,9 @@ make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
     it
   comment = $sce.trustAsHtml comment
   return {comment,difflines} <<< do
-    left-item: item-from-article amendment.original-article
+    left-item: \§ + amendment.original-article
     left-item-anchor: amendment.original-article
-    right-item: item-from-article amendment.article
+    right-item: \§ + amendment.article
     right-item-anchor: amendment.article
 
 diffmeta = (content) -> content?map (diff) ->
