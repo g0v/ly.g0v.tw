@@ -28,4 +28,4 @@ describe 'bills' !->
           for elem in it => elem.getText!then !->
             expect it .not.toBe \§
             expect it .not.toBe \§undefined
-    , 60000ms # TODO: speed up
+    , 300000ms # TODO: speed up getText
