@@ -62,15 +62,18 @@ gulp.task 'test:e2e' <[protractor]> ->
   httpServer.close!
 
 gulp.task 'protractor:sauce' <[build httpServer]> ->
+  args =
+    seleniumAddress: ''
+    sauceUser: process.env.SAUCE_USERNAME
+    sauceKey: process.env.SAUCE_ACCESS_KEY
+    'capabilities.build': process.env.TRAVIS_BUILD_NUMBER
+  if process.env.TRAVIS_JOB_NUMBER
+    args['capabilities.tunnel-identifier'] = that
+
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor do
       configFile: "./test/protractor.conf.ls"
-      args: do
-        seleniumAddress: ''
-        sauceUser: process.env.SAUCE_USERNAME
-        sauceKey: process.env.SAUCE_ACCESS_KEY
-        'capabilities.tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
-        'capabilities.build': process.env.TRAVIS_BUILD_NUMBER
+      args: args
 
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
