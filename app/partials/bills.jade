@@ -33,7 +33,7 @@
           .ui.segment
             a(id="{{version}}-{{statue}}",ng-href="#xx-{{statue}}",style="margin-top: -90px; padding-top: 90px")
               .ui.ribbon.label {{statue}}
-            {{versions[version].content}}
+            | {{versions[version].content}}
       .row
         .column(ng-repeat="version in bill_refs")
           .ui.pointing.label.diff-comment(ng-bind="versions[version].comment", ng-show="versions[version].comment")
