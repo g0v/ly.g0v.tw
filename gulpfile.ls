@@ -108,3 +108,14 @@ gulp.task 'dev' <[httpServer]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
+
+require! <[gulp-angular-templatecache gulp-jade]>
+gulp.task 'template' ->
+  gulp.src 'app/partials/**/*.jade'
+    .pipe gulp-jade!
+    .pipe gulp-angular-templatecache 'app.templates.js' do
+      base: process.cwd()
+      filename: 'app.templates.js'
+      module: 'app.templates'
+      standalone: true
+    .pipe gulp.dest '_public/js'

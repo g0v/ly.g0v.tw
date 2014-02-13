@@ -52,3 +52,5 @@ devDependencies:
   "gulp-exec": '~1.0.4'
   "gulp-protractor": '>= 0.0.4'
   "gulp-livescript": '~0.1.1'
+  "gulp-jade": '~0.4.1'
+  "gulp-angular-templatecache": 'git://github.com/clkao/gulp-angular-templatecache.git#master'
