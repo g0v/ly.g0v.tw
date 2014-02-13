@@ -34,7 +34,6 @@ devDependencies:
   'auto-reload-brunch': '1.7.x'
   'uglify-js-brunch': '1.7.x'
   'clean-css-brunch': '1.7.x'
-  'jade-angularjs-brunch': '1.1.1'
   'jsenv-brunch': '1.4.2'
   'karma': '>= 0.11.13'
   'karma-live-preprocessor': '>= 0.2.2'

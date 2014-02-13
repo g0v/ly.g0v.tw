@@ -82,7 +82,7 @@ gulp.task 'protractor:sauce' <[build httpServer]> ->
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
-gulp.task 'build' ->
+gulp.task 'build' <[template]> ->
   gulp.src 'package.json'
     .pipe gulp-exec 'bower i && ./node_modules/.bin/brunch b -P'
     .on \error ->
@@ -104,10 +104,11 @@ gulp.task 'test:util' ->
     .on \error ->
       throw it
 
-gulp.task 'dev' <[httpServer]> ->
+gulp.task 'dev' <[httpServer template]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
+  gulp.watch 'app/partials/**/*.jade' <[template]>
 
 require! <[gulp-angular-templatecache gulp-jade]>
 gulp.task 'template' ->
