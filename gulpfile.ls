@@ -55,6 +55,8 @@ gulp.task \httpServer <[server]> ->
 gulp.task \protractor <[webdriver build httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor configFile: "./test/protractor.conf.ls"
+    .on \error ->
+      throw it
 
 gulp.task 'test:e2e' <[protractor]> ->
   gutil.log "Kill Selenium (#{standalone-selenium-pid})"
@@ -62,22 +64,29 @@ gulp.task 'test:e2e' <[protractor]> ->
   httpServer.close!
 
 gulp.task 'protractor:sauce' <[build httpServer]> ->
+  args =
+    seleniumAddress: ''
+    sauceUser: process.env.SAUCE_USERNAME
+    sauceKey: process.env.SAUCE_ACCESS_KEY
+    'capabilities.build': process.env.TRAVIS_BUILD_NUMBER
+  if process.env.TRAVIS_JOB_NUMBER
+    args['capabilities.tunnel-identifier'] = that
+
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor do
       configFile: "./test/protractor.conf.ls"
-      args: do
-        seleniumAddress: ''
-        sauceUser: process.env.SAUCE_USERNAME
-        sauceKey: process.env.SAUCE_ACCESS_KEY
-        'capabilities.tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
-        'capabilities.build': process.env.TRAVIS_BUILD_NUMBER
+      args: args
+    .on \error ->
+      throw it
 
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
-gulp.task 'build' ->
+gulp.task 'build' <[template]> ->
   gulp.src 'package.json'
     .pipe gulp-exec 'bower i && ./node_modules/.bin/brunch b -P'
+    .on \error ->
+      throw it
 
 gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
@@ -95,10 +104,22 @@ gulp.task 'test:util' ->
     .on \error ->
       throw it
 
-gulp.task 'dev' <[httpServer]> ->
+gulp.task 'dev' <[httpServer template]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
+  gulp.watch 'app/partials/**/*.jade' <[template]>
+
+require! <[gulp-angular-templatecache gulp-jade]>
+gulp.task 'template' ->
+  gulp.src 'app/partials/**/*.jade'
+    .pipe gulp-jade!
+    .pipe gulp-angular-templatecache 'app.templates.js' do
+      base: process.cwd()
+      filename: 'app.templates.js'
+      module: 'app.templates'
+      standalone: true
+    .pipe gulp.dest '_public/js'
 
 gulp.task 'ly.diff:css' ->
   gulp.src './app/styles/ly-diff.sass'
