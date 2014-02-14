@@ -108,11 +108,11 @@ gulp.task 'dev' <[httpServer template]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
-  gulp.watch 'app/partials/**/*.jade' <[template]>
+  gulp.watch ['app/partials/**/*.jade', 'app/diff/*.jade'] <[template]>
 
 require! <[gulp-angular-templatecache gulp-jade]>
 gulp.task 'template' ->
-  gulp.src 'app/partials/**/*.jade'
+  gulp.src ['app/partials/**/*.jade', 'app/diff/*.jade']
     .pipe gulp-jade!
     .pipe gulp-angular-templatecache 'app.templates.js' do
       base: process.cwd()
