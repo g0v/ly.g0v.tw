@@ -1,3 +1,6 @@
+function trim(str)
+  str - /^s+/mg - /^\s+|\s+$/g
+
 angular.module 'ly.diff' []
 .directive 'lyDiff' <[$parse $sce]> ++ ($parse, $sce) ->
   restrict: \A
@@ -32,8 +35,8 @@ angular.module 'ly.diff' []
         comment: $sce.trustAsHtml comment
         heading: clone.closest '.heading' .text!
         anchor: clone.closest '.anchor' .text!
-        left: clone.closest '.left' .text!
-        right: clone.closest '.right' .text!
+        left: trim <| clone.closest '.left' .text!
+        right: trim <| clone.closest '.right' .text!
     else
       $scope <<< $scope.options{left,right,heading,anchor} <<<
         comment: $sce.trustAsHtml $scope.options.comment
