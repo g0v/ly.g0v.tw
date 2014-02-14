@@ -1,9 +1,9 @@
-angular.module 'ly.diff' <[app.templates]>
+angular.module 'ly.diff' []
 .directive 'lyDiff' <[$parse $sce]> ++ ($parse, $sce) ->
   restrict: \A
   scope: options: '=lyDiff'
   transclude: true
-  templateUrl: 'app/diff/diff.jade'
+  templateUrl: 'app/diff/diff.html'
   controller: <[$transclude $element $attrs $scope]> ++ ($transclude, $element, $attrs, $scope) ->
     console.log $scope.options
     $scope.$watchCollection ['left', 'right'] ->

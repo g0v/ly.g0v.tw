@@ -121,7 +121,24 @@ gulp.task 'template' ->
       standalone: true
     .pipe gulp.dest '_public/js'
 
-gulp.task 'ly.diff:css' ->
+gulp.task 'ly-diff' <[ly-diff:js ly-diff:css]>
+
+require! <[event-stream gulp-concat]>
+gulp.task 'ly-diff:js' ->
+  js = gulp.src 'app/diff.ls'
+    .pipe livescript({+bare}).on 'error', gutil.log
+  templates = gulp.src 'app/diff/diff.jade'
+    .pipe gulp-jade!
+    .pipe gulp-angular-templatecache do
+      base: process.cwd()
+      filename: 'app.templates.js'
+      module: 'ly.diff'
+
+  event-stream.merge js, templates
+    .pipe gulp-concat 'ly-diff.js'
+    .pipe gulp.dest '_public/js'
+
+gulp.task 'ly-diff:css' ->
   gulp.src './app/styles/ly-diff.sass'
   .pipe gulp-stylus use: <[nib]>
   .pipe gulp.dest './_public/css'
