@@ -125,7 +125,7 @@ gulp.task 'ly-diff' <[ly-diff:js ly-diff:css]>
 
 require! <[event-stream gulp-concat]>
 gulp.task 'ly-diff:js' ->
-  js = gulp.src 'app/diff.ls'
+  js = gulp.src <[app/utils/diff.ls app/diff.ls]>
     .pipe livescript({+bare}).on 'error', gutil.log
   templates = gulp.src 'app/diff/diff.jade'
     .pipe gulp-jade!
