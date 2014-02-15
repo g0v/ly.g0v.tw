@@ -1,7 +1,7 @@
 #!/usr/bin/env lsc -bc
 require! child_process
 require! async
-require! <[gulp gulp-exec]>
+require! <[gulp gulp-exec gulp-stylus]>
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
 
@@ -82,7 +82,7 @@ gulp.task 'protractor:sauce' <[build httpServer]> ->
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
-gulp.task 'build' <[template bower js:vendor]> (done) ->
+gulp.task 'build' <[template bower js:vendor css]> (done) ->
   options = if \production is gutil.env.env => {+production} else {}
   require \brunch .build options, -> done!
 
@@ -102,7 +102,7 @@ gulp.task 'test:util' ->
     .on \error ->
       throw it
 
-gulp.task 'dev' <[httpServer template js:vendor]> ->
+gulp.task 'dev' <[httpServer template js:vendor css]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
@@ -119,7 +119,7 @@ gulp.task 'template' ->
       standalone: true
     .pipe gulp.dest '_public/js'
 
-require! <[gulp-bower gulp-bower-files gulp-filter gulp-uglify]>
+require! <[gulp-bower gulp-bower-files gulp-filter gulp-uglify gulp-cssmin]>
 require! <[event-stream gulp-concat]>
 
 gulp.task 'bower' ->
@@ -133,3 +133,16 @@ gulp.task 'js:vendor' <[bower]> ->
     .pipe gulp-concat 'vendor.js'
   s .= pipe gulp-uglify! if gutil.env.env is \production
   s.pipe gulp.dest '_public/js'
+
+gulp.task 'css' <[bower]> ->
+  bower = gulp-bower-files!
+    .pipe gulp-filter -> it.path is /\.css$/
+
+  styl = gulp.src './app/styles/**/*.styl'
+    .pipe gulp-filter -> it.path isnt /\/_[^/]+\.styl$/
+    .pipe gulp-stylus use: <[nib]>
+
+  s = event-stream.merge bower, styl, gulp.src 'app/styles/**/*.css'
+    .pipe gulp-concat 'app.css'
+  s .= pipe gulp-cssmin! if gutil.env.env is \production
+  s.pipe gulp.dest './_public/css'

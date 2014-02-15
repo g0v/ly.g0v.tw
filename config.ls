@@ -24,10 +24,6 @@ exports.config =
       joinTo:
         'js/app.js': /^app/
 
-    stylesheets:
-      joinTo:
-        'css/app.css': /^(app|vendor|bower_components)/
-
   # Enable or disable minifying of result js / css files.
   # minify: true
   plugins:
