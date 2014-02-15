@@ -91,12 +91,14 @@ gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:util'
 
 gulp.task 'test:karma' ->
+  return if process.platform is \win32
   gulp.src 'package.json'
     .pipe gulp-exec './node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
     .on \error ->
       throw it
 
 gulp.task 'test:util' ->
+  return if process.platform is \win32
   gulp.src 'package.json'
     .pipe gulp-exec './node_modules/.bin/mocha --compilers ls:LiveScript test/unit/util'
     .on \error ->
