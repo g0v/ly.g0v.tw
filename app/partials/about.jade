@@ -1,84 +1,101 @@
 .about-content
   h2 關於本站
   .ui.divider
-  h3.ui.header 開放國會：從資料透明走向公民參與
-  | 曾經我們以為人人有票投就是民主，但如果缺乏監督機制，缺少了民意參與的民主如何為眾人謀福利？【國會大代誌】是 g0v.tw 台灣零時政府社群的計畫之一，以開放資料打造開放的國會資訊平台。旨在降低民眾參與的門檻，利用透明資訊、清晰介面、即時分享，提高資訊公開度及公民參與度。
-  h3.ui.header 國會大代誌的功能
+  .ui.warning.message 本站目前為測試版！This is pre-alpha!
+  h3.ui.header 別再他山之石，台灣的開放國會來了
+  | 曾經我們以為人人有票投就是民主，但如果缺乏監督機制，缺少了民意參與的民主如何為眾人謀福利？網路與資訊科技給了我們監督國會的新想像，眼看美國 OpenCongress.org、英國 TheyWorkForYou.com、義大利 OpenParliamento.it、韓國 pokr.kr 等開放國會網站如雨後春筍，台灣終於有了自己的開放國會網站：【國會大代誌】。
+  p
+  | 【國會大代誌】是 g0v.tw 台灣零時政府社群的計畫之一，透過開放資料打造開放的國會資訊平台，以透明資訊、清晰介面、即時分享、交叉比對，提高資訊公開度及公民參與度。
+  h3.ui.header 從資料透明走向公民參與
   | 本站綜合二十個立法院網站資料，將提案、委員會審查、院會各階段文件、影音整理成結構性資料，自動化更新所有資料。【國會大代誌】提供立法院從提案、審查、一二三讀之間所有的文件、影音資料的整合介面，並陸續開發「提案比一比」、「立院影城」、「IVOD youtube頻道」、「公報閱讀器」、「法案闖天關」等全新功能。
-  h3.ui.header gov vs. g0v
+  h3.ui.header 國會大代誌的功能之 gov vs. g0v
   table.ui.celled.table.segment
     thead
         tr
-          th.two.wide 
+          th.two.wide
           th.five.wide 立法院網站
           th.five.wide 國會大代誌
       tbody
         tr
           td 議案
-          td 
+          td
             li pdf 或 doc 格式
             li 無永久連結網址，難以分享
-          td 
+          td
             font(color="purple")
               b 提案比一比
-                a(href="http://", target="blank") 
+                a(href="http://", target="blank")
                   i.iconurl
-            .item 
+            .item
               i.icon.check.red
               | 彩色全文比較介面
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 網頁瀏覽，線上閱讀
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 永久連結網址，方便社群分享
-             
+
         tr
-          td 議事網路轉播(IVOD) 
-          td 
+          td 議事網路轉播(IVOD)
+          td
             li IE ONLY
             li 不支援行動裝置
-          td 
+          td
             font(color="purple")
-              b 立院影城 
-                a(href="http://ivod.ly.g0v.tw", target="blank") 
+              b 立院影城
+                a(href="http://ivod.ly.g0v.tw", target="blank")
                   i.icon.url
-            .item 
+            .item
               i.icon.check.red
               | 所有瀏覽器皆可收看
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 支援 android, iOS
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 永久連結網址，方便社群分享
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 即時評論、互動評分
         tr
           td 議事影音資料(IVOD 資料庫)
-          td 
+          td
             li 依「立法院會議錄影錄音管理規則」可以只保存四年
             li 只有立委本人能申請複製
-          td 
+          td
             font(color="purple")
               b IVOD youtube 頻道
-                a(href="http://www.youtube.com/channel/UCtancDIih1KmFjTWdQyuE9A", target="blank") 
+                a(href="http://www.youtube.com/channel/UCtancDIih1KmFjTWdQyuE9A", target="blank")
                   i.icon.url
             .item
-              i.icon.check.red 
+              i.icon.check.red
               | 上傳 youtube 備份，保存無限期
-            .item 
+            .item
               i.icon.check.red
               | 全民皆可觀看搜尋
-            
+        tr
+          td 投票紀錄
+          td
+            li pdf 或 doc 格式
+            li 無永久連結網址，難以分享
+          td
+            font(color="purple")
+              b 立委投票指南
+                a(href="http://vote.ly.g0v.tw", target="blank")
+                  i.icon.url
+            br
+            b 投票紀錄視覺化（開發中
+             a(href="http://g0v.github.io/ly-vote/", target="blank")
+              i.icon.url
+              |）
         tr
           td 公報
           td
             li pdf 或 doc 格式
             li 無永久連結網址，難以分享
           td
-            b 公報閱讀器（開發中 
+            b 公報閱讀器（開發中
               a(href="http://twlyreader-prototype.herokuapp.com/reader.html?json_url=/json/3948_interp.json", target="blank")
                 i.icon.url
               |）
@@ -88,21 +105,12 @@
             .item
               i.icon.check
               | 永久連結網址，方便社群分享
-        tr
-          td 投票紀錄
-          td 
-            li pdf 或 doc 格式
-            li 無永久連結網址，難以分享
-          td 
-            b 投票紀錄視覺化（開發中 
-             a(href="http://g0v.github.io/ly-vote/", target="blank")
-              i.icon.url  
-              |）
+
         tr
           td 議案進度圖表
-          td 
+          td
             li 散在2-3不同查詢系統
-          td 
+          td
             b 法案闖天關（開發中
              a(href="http://g0v.github.io/semantic-ui-experiment/public/bill-progress.html", target="blank")
               i.icon.url
@@ -115,13 +123,15 @@
 
 
   h3.ui.header 開發團隊
-  | 國會大代誌由 g0v.tw 社群開發維護，由2012年底開始開發，以下為主要貢獻者：
+  | 國會大代誌由 g0v.tw 社群自2012年底開始開發維護，以下為主要貢獻者：
   p
-  .ui.mini.images
+  .ui.mini.circular.images
     a(href="https://github.com/clkao", target="blank")
       img.ui.image(src='https://0.gravatar.com/avatar/f0cc4b511c06b73afb23beb5695a83d6?d=https%3A%2F%2Fidenticons.github.com%2F02b9e4f7aa1e5f60897e3688a8d3750b.png&r=x&s=60', data-title='test')
     a(href="https://github.com/walkingice", target="blank")
       img.ui.image(src='https://1.gravatar.com/avatar/26aed0cd42de0d4319c038e52dc80765?d=https%3A%2F%2Fidenticons.github.com%2F022cb62ec7cbe889faddb81e7c4c2351.png&r=x&s=60')
+    a(href="https://github.com/thewayiam", target="blank")
+      img.ui.image(src='https://1.gravatar.com/avatar/5caeef2bd738955918a3e8c3a611a751?d=https%3A%2F%2Fidenticons.github.com%2F2599f574fa42269169ce87b98febbabe.png&r=x&s=60')
     a(href="https://github.com/yhsiang", target="blank")
       img.ui.image(src='https://2.gravatar.com/avatar/90e6857ae4cd92fcd6edcfa9f589bdaa?d=https%3A%2F%2Fidenticons.github.com%2Ff7bd66e3493b538aae3d9a4e93f52d9b.png&r=x&s=60')
     a(href="https://github.com/ETBlue", target="blank")
@@ -137,23 +147,23 @@
     a(href="https://github.com/ipaaa", target="blank")
       img.ui.image(src='https://1.gravatar.com/avatar/59b5bdba79f1db01187c5620bd64c572?d=https%3A%2F%2Fidenticons.github.com%2Fa6f43f0eb6e9caa1ba8d80aa503afa16.png&r=x&s=60')
   p
-  完整貢獻者名單：
+  | 完整貢獻者名單：
   br
   a(href="https://github.com/g0v/ly.g0v.tw/graphs/contributors") https://github.com/g0v/ly.g0v.tw/graphs/contributors
-  
-  h3.ui.header 聯繫
-  意見回饋：請到
+
+  h3.ui.header 聯繫與加入
+  | 意見回饋：請到
   a(href="https://groups.google.com/forum/#!forum/g0v-ly", target="blank") 國會大代誌 googlegroups 討論區
-  ，或來信 g0v-ly [at] googlegroups.com。
+  | ，或來信 g0v-ly [at] googlegroups.com。
   br
-  加入開發：這是一個開放的開發計畫，歡迎有志者一同加入協作，可以到上述討論區，或
+  | 加入開發：這是一個開放的開發計畫，歡迎有志者一同加入協作，可以到上述討論區，或
   a(href="http://hack.g0v.tw/g0v-ly/", target="blank") 工作共筆
-  加入我們。
+  | 加入我們。
 
   h3.ui.header 網站原始碼
-  | 國會大代誌原始碼在 
+  | 國會大代誌原始碼在
   a(href="https://github.com/g0v/ly.g0v.tw") github.com，以
-  a(href="http://g0v.mit-license.org/")  MIT License 
+  a(href="http://g0v.mit-license.org/")  MIT License
   | 授權。
-  h3.ui.header 本站目前為測試版！This is pre-alpha!
+  .ui.warning.message 本站目前為測試版！This is pre-alpha!
 

@@ -5,11 +5,12 @@ version: "0.1.1"
 main: "_public/js/app.js"
 ignore: ["**/.*", "node_modules", "components"]
 dependencies:
+  "commonjs-require-definition": "~0.1.2"
   jquery: "~2.0.3"
   moment: "~2.4.0"
-  angular: "1.2.8"
-  "angular-mocks": "1.2.8"
-  "angular-scenario": "1.2.8"
+  angular: "1.2.12"
+  "angular-mocks": "1.2.12"
+  "angular-scenario": "1.2.12"
   "angular-ui-router": "0.0.1"
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
@@ -25,3 +26,5 @@ overrides:
     main: "README.md"
   cryptojslib:
     main: "rollups/md5.js"
+  "google-diff-match-patch-js":
+    main: "diff_match_patch_uncompressed.js"

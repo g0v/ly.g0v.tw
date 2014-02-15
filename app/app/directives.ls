@@ -189,7 +189,7 @@ angular.module 'app.directives' <[app.services ]>
   scope:
     legislator: \=legislator
     style: \=legislatorStyle
-  templateUrl: 'app/partials/legislator.jade'
+  templateUrl: 'app/partials/legislator.html'
   controller: <[$scope]> ++ ($scope) ->
     $scope.legislator-style = angular.copy $scope.style ? {}
     name <- $scope.$watch 'legislator'
