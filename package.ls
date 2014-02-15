@@ -56,5 +56,5 @@ devDependencies:
   "gulp-jade": '~0.4.1'
   "gulp-angular-templatecache": 'git://github.com/clkao/gulp-angular-templatecache.git#master'
   "gulp-bower": '~0.0.2'
-  "gulp-bower-files": 'git://github.com/clkao/gulp-bower-files.git#strict-main'
+  "gulp-bower-files": '>= 0.1.8'
   "gulp-filter": '~0.2.1'
