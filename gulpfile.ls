@@ -1,7 +1,7 @@
 #!/usr/bin/env lsc -bc
 require! child_process
 require! async
-require! <[gulp gulp-exec gulp-stylus gulp-mocha]>
+require! <[gulp gulp-stylus gulp-mocha gulp-karma]>
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
 
@@ -91,11 +91,19 @@ gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:util'
 
 gulp.task 'test:karma' ->
-  return if process.platform is \win32
-  gulp.src 'package.json'
-    .pipe gulp-exec './node_modules/karma/bin/karma start --browsers PhantomJS --single-run true test/karma.conf.ls'
-    .on \error ->
-      throw it
+  gulp.src [
+    * "_public/js/vendor.js"
+    * "_public/js/app.templates.js"
+    * "_public/js/app.js"
+    * "bower_components/angular-mocks/angular-mocks.js"
+    * "test/unit/**/*.spec.ls"
+  ]
+  .pipe gulp-karma do
+    config-file: 'test/karma.conf.ls'
+    action: 'run'
+    browsers: <[PhantomJS]>
+  .on \error ->
+    throw it
 
 gulp.task 'test:util' ->
   gulp.src 'test/unit/util/**/*.ls'

@@ -61,3 +61,4 @@ devDependencies:
   "gulp-cssmin": '~0.1.0'
   "gulp-filter": '~0.2.1'
   "gulp-mocha": '~0.4.1'
+  "gulp-karma": 'git://github.com/clkao/gulp-karma.git#master'
