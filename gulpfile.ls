@@ -50,7 +50,7 @@ gulp.task \httpServer <[server]> ->
   http-server := require \http .create-server lyserver!
   port = 3333
   http-server.listen port, ->
-    console.log "Running on port #port"
+    console.log "Running on http://localhost:#port"
 
 gulp.task \protractor <[webdriver build httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
