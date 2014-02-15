@@ -57,4 +57,5 @@ devDependencies:
   "gulp-angular-templatecache": 'git://github.com/clkao/gulp-angular-templatecache.git#master'
   "gulp-bower": '~0.0.2'
   "gulp-bower-files": '>= 0.1.8'
+  "gulp-uglify": '~0.2.1'
   "gulp-filter": '~0.2.1'

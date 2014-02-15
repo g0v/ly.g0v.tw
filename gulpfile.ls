@@ -83,7 +83,8 @@ gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
 gulp.task 'build' <[template bower js:vendor]> (done) ->
-  require \brunch .build {}, -> done!
+  options = if \production is gutil.env.env => {+production} else {}
+  require \brunch .build options, -> done!
 
 gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
@@ -118,7 +119,7 @@ gulp.task 'template' ->
       standalone: true
     .pipe gulp.dest '_public/js'
 
-require! <[gulp-bower gulp-bower-files gulp-filter]>
+require! <[gulp-bower gulp-bower-files gulp-filter gulp-uglify]>
 require! <[event-stream gulp-concat]>
 
 gulp.task 'bower' ->
@@ -128,7 +129,7 @@ gulp.task 'js:vendor' <[bower]> ->
   bower = gulp-bower-files!
     .pipe gulp-filter -> it.path is /\.js$/
 
-  # XXX minify for production build
-  event-stream.merge bower, gulp.src 'vendor/scripts/**/*.js'
+  s = event-stream.merge bower, gulp.src 'vendor/scripts/**/*.js'
     .pipe gulp-concat 'vendor.js'
-    .pipe gulp.dest '_public/js'
+  s .= pipe gulp-uglify! if gutil.env.env is \production
+  s.pipe gulp.dest '_public/js'
