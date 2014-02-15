@@ -82,11 +82,8 @@ gulp.task 'protractor:sauce' <[build httpServer]> ->
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
-gulp.task 'build' <[template js:vendor]> ->
-  gulp.src 'package.json'
-    .pipe gulp-exec 'bower i && ./node_modules/.bin/brunch b -P'
-    .on \error ->
-      throw it
+gulp.task 'build' <[template bower]> (done) ->
+  require \brunch .build {}, -> done!
 
 gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
@@ -104,7 +101,7 @@ gulp.task 'test:util' ->
     .on \error ->
       throw it
 
-gulp.task 'dev' <[httpServer template js:vendor]> ->
+gulp.task 'dev' <[httpServer template]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
@@ -121,14 +118,17 @@ gulp.task 'template' ->
       standalone: true
     .pipe gulp.dest '_public/js'
 
-require! <[gulp-bower-files gulp-filter]>
+require! <[gulp-bower gulp-bower-files gulp-filter]>
 require! <[event-stream gulp-concat]>
 
-gulp.task 'js:vendor' ->
+gulp.task 'bower' ->
+  gulp-bower!
+
+gulp.task 'js:vendor' <[bower]> ->
   bower = gulp-bower-files!
     .pipe gulp-filter -> it.path is /\.js$/
 
   # XXX minify for production build
   event-stream.merge bower, gulp.src 'vendor/scripts/**/*.js'
     .pipe gulp-concat 'vendor.js'
-    .pipe gulp.dest '_public/_bjs'
+    .pipe gulp.dest '_public/js'
