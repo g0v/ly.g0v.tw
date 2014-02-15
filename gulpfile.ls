@@ -82,7 +82,7 @@ gulp.task 'protractor:sauce' <[build httpServer]> ->
 gulp.task 'test:sauce' <[protractor:sauce]> ->
   httpServer.close!
 
-gulp.task 'build' <[template bower]> (done) ->
+gulp.task 'build' <[template bower js:vendor]> (done) ->
   require \brunch .build {}, -> done!
 
 gulp.task 'test:unit' <[build]> ->
@@ -101,7 +101,7 @@ gulp.task 'test:util' ->
     .on \error ->
       throw it
 
-gulp.task 'dev' <[httpServer template]> ->
+gulp.task 'dev' <[httpServer template js:vendor]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
