@@ -1,7 +1,7 @@
 #!/usr/bin/env lsc -bc
 require! child_process
 require! async
-require! <[gulp gulp-exec gulp-stylus]>
+require! <[gulp gulp-exec gulp-stylus gulp-mocha]>
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
 
@@ -98,11 +98,8 @@ gulp.task 'test:karma' ->
       throw it
 
 gulp.task 'test:util' ->
-  return if process.platform is \win32
-  gulp.src 'package.json'
-    .pipe gulp-exec './node_modules/.bin/mocha --compilers ls:LiveScript test/unit/util'
-    .on \error ->
-      throw it
+  gulp.src 'test/unit/util/**/*.ls'
+    .pipe gulp-mocha compilers: 'ls:LiveScript'
 
 gulp.task 'dev' <[httpServer template js:vendor css]> ->
   require \brunch .watch {}, ->

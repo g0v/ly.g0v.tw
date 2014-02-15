@@ -60,3 +60,4 @@ devDependencies:
   "gulp-uglify": '~0.2.1'
   "gulp-cssmin": '~0.1.0'
   "gulp-filter": '~0.2.1'
+  "gulp-mocha": '~0.4.1'
