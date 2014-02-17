@@ -62,3 +62,5 @@ devDependencies:
   "gulp-filter": '~0.2.1'
   "gulp-mocha": '~0.4.1'
   "gulp-karma": 'git://github.com/clkao/gulp-karma.git#master'
+  "gulp-livereload": '~1.1.1'
+  "connect-livereload": '~0.3.2'

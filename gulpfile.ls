@@ -1,11 +1,12 @@
 #!/usr/bin/env lsc -bc
-require! child_process
-require! async
-require! <[gulp gulp-stylus gulp-mocha gulp-karma]>
+require! <[child_process async tiny-lr]>
+require! <[gulp gulp-stylus gulp-mocha gulp-karma gulp-livereload]>
 gutil = require 'gulp-util'
 {protractor, webdriver} = require \gulp-protractor
 
 livescript = require \gulp-livescript
+livereload-server = tiny-lr!
+livereload = -> gulp-livereload livereload-server
 
 gulp.task 'server' ->
   gulp.src './server/*.ls'
@@ -47,9 +48,11 @@ gulp.task \webdriver, webdriver
 
 gulp.task \httpServer <[server]> ->
   {lyserver} = require \./server/app
-  http-server := require \http .create-server lyserver!
+  app = require('express')!
+  app.use require('connect-livereload')!
+  lyserver app
   port = 3333
-  http-server.listen port, ->
+  app.listen port, ->
     console.log "Running on http://localhost:#port"
 
 gulp.task \protractor <[webdriver build httpServer]> ->
@@ -113,7 +116,12 @@ gulp.task 'dev' <[httpServer template js:vendor css]> ->
   require \brunch .watch {}, ->
     gulp.start 'test:karma'
     gulp.start 'test:util'
+  LIVERELOADPORT = 35729
+  livereload-server.listen LIVERELOADPORT, ->
+    console.log \listening
+    return gutil.log it if it
   gulp.watch 'app/partials/**/*.jade' <[template]>
+  gulp.watch 'app/**/*.styl' <[css]>
 
 require! <[gulp-angular-templatecache gulp-jade]>
 gulp.task 'template' ->
@@ -125,6 +133,7 @@ gulp.task 'template' ->
       module: 'app.templates'
       standalone: true
     .pipe gulp.dest '_public/js'
+    .pipe livereload!
 
 require! <[gulp-bower gulp-bower-files gulp-filter gulp-uglify gulp-cssmin]>
 require! <[event-stream gulp-concat]>
@@ -139,7 +148,8 @@ gulp.task 'js:vendor' <[bower]> ->
   s = event-stream.merge bower, gulp.src 'vendor/scripts/**/*.js'
     .pipe gulp-concat 'vendor.js'
   s .= pipe gulp-uglify! if gutil.env.env is \production
-  s.pipe gulp.dest '_public/js'
+  s .pipe gulp.dest '_public/js'
+    .pipe livereload!
 
 gulp.task 'css' <[bower]> ->
   bower = gulp-bower-files!
@@ -152,4 +162,5 @@ gulp.task 'css' <[bower]> ->
   s = event-stream.merge bower, styl, gulp.src 'app/styles/**/*.css'
     .pipe gulp-concat 'app.css'
   s .= pipe gulp-cssmin! if gutil.env.env is \production
-  s.pipe gulp.dest './_public/css'
+  s .pipe gulp.dest './_public/css'
+    .pipe livereload!
