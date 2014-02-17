@@ -50,9 +50,10 @@ gulp.task \httpServer <[server]> ->
   {lyserver} = require \./server/app
   app = require('express')!
   app.use require('connect-livereload')!
-  lyserver app
+  # use http-server here so we can close after protractor finishes
+  http-server := require \http .create-server lyserver app
   port = 3333
-  app.listen port, ->
+  http-server.listen port, ->
     console.log "Running on http://localhost:#port"
 
 gulp.task \protractor <[webdriver build httpServer]> ->
@@ -118,7 +119,6 @@ gulp.task 'dev' <[httpServer template js:vendor css]> ->
     gulp.start 'test:util'
   LIVERELOADPORT = 35729
   livereload-server.listen LIVERELOADPORT, ->
-    console.log \listening
     return gutil.log it if it
   gulp.watch 'app/partials/**/*.jade' <[template]>
   gulp.watch 'app/**/*.styl' <[css]>
