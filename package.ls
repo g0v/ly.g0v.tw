@@ -64,3 +64,4 @@ devDependencies:
   "gulp-karma": 'git://github.com/clkao/gulp-karma.git#master'
   "gulp-livereload": '~1.1.1'
   "connect-livereload": '~0.3.2'
+  "tiny-lr': '~0.0.5'
