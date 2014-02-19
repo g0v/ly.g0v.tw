@@ -1,5 +1,5 @@
 parse-article-heading = (text) ->
-  [_, ..._items]? = text.match /第(.+)條(?:之(.+))?/
+  [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
   return text unless _items
   require! zhutil
   _items.filter -> it
