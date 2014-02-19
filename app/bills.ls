@@ -1,9 +1,11 @@
 parse-article-heading = (text) ->
-  [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
-  return unless _items
+  [_, ..._items]? = text.match /第(.+)條(?:之(.+))?/
+  return text unless _items
   require! zhutil
   _items.filter -> it
   .map zhutil.parseZHNumber .join \-
+
+not-an-article = /^(（\S+）\n|)第\S+(章|編|節)/
 
 bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   h = diff.header
@@ -16,17 +18,17 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
     comment.=replace /\n/g "<br><br>\n"
   baseTextLines = entry[base-index] or ''
   if baseTextLines
-    baseTextLines -= /^第(.*?)條(之.*?)?\s+/
+    baseTextLines -= /^第(.*?)(條(之.*?)?|章|篇|節)\s+/
     if parse-article-heading RegExp.lastMatch - /\s+$/
       original-article = that
   newTextLines = entry[idx] || entry[base-index] || ''
-  newTextLines -= /^第(.*?)條(之.*?)?\s+/
+  newTextLines -= /^第(.*?)(條(之.*?)?|章|篇|節)\s+/
   article = parse-article-heading RegExp.lastMatch - /\s+$/
   if !original-article
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
       article = parse-article-heading RegExp.lastMatch - /\s+$/
-    if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
-      original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
+    if newTextLines.match not-an-article
+      article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
       original-article = article || ''
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
@@ -290,7 +292,7 @@ angular.module 'app.controllers.bills' <[ly.diff]>
     obj = scope.spies[id] ?= {}
     obj.in = ->
       elem.addClass 'spy'
-      elem[0].scrollIntoViewIfNeeded()
+      elem[0].scrollIntoViewIfNeeded?!
     obj.out = -> elem.removeClass 'spy'
 .directive 'spyTarget', <[$location]> ++ ($location)->
   restrct: 'A'
