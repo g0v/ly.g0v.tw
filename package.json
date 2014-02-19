@@ -37,7 +37,6 @@
     "javascript-brunch": "1.7.x",
     "LiveScript-brunch": "1.6.x",
     "css-brunch": "1.7.x",
-    "sass-brunch": "1.7.x",
     "auto-reload-brunch": "1.7.x",
     "uglify-js-brunch": "1.7.x",
     "clean-css-brunch": "1.7.x",
@@ -62,6 +61,16 @@
     "gulp-stylus": "~0.0.12",
     "gulp-concat": "~2.1.7",
     "gulp-jade": "~0.4.1",
-    "gulp-angular-templatecache": "git://github.com/clkao/gulp-angular-templatecache.git#master"
+    "gulp-angular-templatecache": "git://github.com/clkao/gulp-angular-templatecache.git#master",
+    "gulp-bower": "~0.0.2",
+    "gulp-bower-files": ">= 0.1.8",
+    "gulp-uglify": "~0.2.1",
+    "gulp-cssmin": "~0.1.0",
+    "gulp-filter": "~0.2.1",
+    "gulp-mocha": "~0.4.1",
+    "gulp-karma": "git://github.com/clkao/gulp-karma.git#master",
+    "gulp-livereload": "~1.1.1",
+    "connect-livereload": "~0.3.2",
+    "tiny-lr": "~0.0.5"
   }
 }

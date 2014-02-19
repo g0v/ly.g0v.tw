@@ -9,6 +9,7 @@
     "components"
   ],
   "dependencies": {
+    "commonjs-require-definition": "~0.1.2",
     "jquery": "~2.0.3",
     "moment": "~2.4.0",
     "angular": "1.2.12",
@@ -34,6 +35,9 @@
     },
     "cryptojslib": {
       "main": "rollups/md5.js"
+    },
+    "google-diff-match-patch-js": {
+      "main": "diff_match_patch_uncompressed.js"
     }
   }
 }
