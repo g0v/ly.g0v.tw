@@ -183,6 +183,6 @@ gulp.task 'ly-diff:js' ->
     .pipe gulp.dest '_public/js'
 
 gulp.task 'ly-diff:css' ->
-  gulp.src './app/styles/ly-diff.sass'
+  gulp.src './app/styles/ly-diff.styl'
   .pipe gulp-stylus use: <[nib]>
   .pipe gulp.dest './_public/css'
