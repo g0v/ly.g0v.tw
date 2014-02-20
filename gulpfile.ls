@@ -1,11 +1,10 @@
-#!/usr/bin/env lsc -bc
-require! <[child_process async tiny-lr]>
-require! <[gulp gulp-stylus gulp-mocha gulp-karma gulp-livereload]>
-gutil = require 'gulp-util'
+require! <[tiny-lr]>
+require! <[gulp gulp-util gulp-stylus gulp-mocha gulp-karma gulp-livereload]>
+gutil = gulp-util
 {protractor} = require \gulp-protractor
 
 livescript = require \gulp-livescript
-livereload-server = tiny-lr!
+livereload-server = require(\tiny-lr)!
 livereload = -> gulp-livereload livereload-server
 
 gulp.task 'server' ->
