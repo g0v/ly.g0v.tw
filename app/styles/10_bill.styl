@@ -302,40 +302,43 @@
     padding: 0 0.5rem 0.5rem 0.5rem
 
   @media (max-width: 640px)
-    .bill-progress .common.ui.seven.steps,
-    .bill-progress .ui.small.steps
-      width: 100%
-      display: block
-      .stage:first-child .step:first-child
-        border-radius: 0
-      .ui.step
+    .bill-progress
+      .ui.small.steps
+        .ui.step:after
+          top: 2rem
+      .common.ui.seven.steps, .ui.small.steps
         width: 100%
-        margin-bottom: 1px
-        .ui.label.pointing.below
-          margin-left: 10px
-          margin-top: 42px
-          &:before
+        display: block
+        .stage:first-child .step:first-child
+          border-radius: 0
+        .ui.step
+          width: 100%
+          margin-bottom: 1px
+          .ui.label.pointing.below
+            margin-left: 10px
+            margin-top: 42px
+            &:before
+              display: none
+          &:after
+            display: block
+            width: 1em
+            height: 1em
+            top: 40px
+            left: 50%
+            box-shadow: 1px -1px 0px 0px white inset
+          &.not-implemented
             display: none
-        &:after
-          display: block
-          width: 1em
-          height: 1em
-          top: 40px
-          left: 50%
-          box-shadow: 1px -1px 0px 0px white inset
-        &.not-implemented
-          display: none
-      .ui.state
-        margin-left: -2.5rem
-    .bill .bill-progress .ui.small.steps
-      .ui.step:after
-        top: 2rem
+        .ui.state
+          margin-left: -2.5rem
   div[ly-bill]
     .replace.left, .delete.left, .replace.right, .insert.right
       .diff.text em
         em-reset()
         background-color: lighten(#f99, 7%)
         color: #000
+    .ui.ribbon.label a
+      margin-top: -90px
+      padding-top: 90px
 
 div.item
   outline: none
