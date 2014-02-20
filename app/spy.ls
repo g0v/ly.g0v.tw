@@ -19,7 +19,9 @@ angular.module 'ly.spy' []
         $scope.$apply ->
           p?highlight = off
           t?highlight = on
-        $(".item-section.highlight").get(0).scrollIntoViewIfNeeded()
+        # TODO: scrollIntoViewIfNeeded polyfill
+        # https://gist.github.com/hsablonniere/2581101
+        elem.find \.highlight ?0?scrollIntoViewIfNeeded!
       p := t
     $scope.targets = []
     $scope.$on 'spy:register' (e, target) ->
