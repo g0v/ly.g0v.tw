@@ -8,8 +8,8 @@ angular.module 'ly.spy' []
   link: ($scope, elem, attrs) ->
     $scope.offset = +attrs.offset
     var p
-    $window.onscroll = ({page-y}) ->
-      page-y += $scope.offset
+    $window.onscroll = (event) ->
+      page-y = scroll-y + $scope.offset
       var t
       for i of $scope.targets
         t = $scope.targets[i]
@@ -19,6 +19,7 @@ angular.module 'ly.spy' []
         $scope.$apply ->
           p?highlight = off
           t?highlight = on
+        $(".item-section.highlight").get(0).scrollIntoViewIfNeeded()
       p := t
     $scope.targets = []
     $scope.$on 'spy:register' (e, target) ->
