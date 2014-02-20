@@ -19,7 +19,7 @@ angular.module 'ly.spy' []
         $scope.$apply ->
           p?highlight = off
           t?highlight = on
-        $(".item-section.highlight").get(0).scrollIntoViewIfNeeded()
+        $ ".item-section.highlight" .get(0)?scrollIntoViewIfNeeded!
       p := t
     $scope.targets = []
     $scope.$on 'spy:register' (e, target) ->
