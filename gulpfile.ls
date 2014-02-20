@@ -86,7 +86,7 @@ gulp.task 'dev' <[httpServer template js:vendor css]> ->
   LIVERELOADPORT = 35729
   livereload-server.listen LIVERELOADPORT, ->
     return gutil.log it if it
-  gulp.watch 'app/partials/**/*.jade' <[template]>
+  gulp.watch ['app/partials/**/*.jade', 'app/diff/*.jade', 'app/spy/*.jade'] <[template]>
   gulp.watch 'app/**/*.styl' <[css]>
 
 require! <[gulp-angular-templatecache gulp-jade]>
