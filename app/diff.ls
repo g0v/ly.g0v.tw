@@ -8,7 +8,6 @@ angular.module 'ly.diff' []
   transclude: true
   templateUrl: 'app/diff/diff.html'
   controller: <[$transclude $element $attrs $scope]> ++ ($transclude, $element, $attrs, $scope) ->
-    console.log $scope.options
     $scope.$watchCollection ['left', 'right'] ->
       return unless $scope.left or $scope.right
       $scope.leftItem = $scope.heading

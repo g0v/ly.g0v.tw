@@ -2,14 +2,14 @@
   .column.two.row(ng-repeat="diffline in difflines track by $index", ng-hide="diffline.left == '' && diffline.right == ''")
     .column.left(class="{{diffline.state}}", xng-hide="!d.diffbase")
       .ui.segment.article-text
-        a(id="original-{{leftItemAnchor}}",ng-href="#original-{{leftItemAnchor}}",ng-if="$index == 0",style="margin-top: -90px; padding-top: 90px")
-          .ui.ribbon.label {{leftItem}}
+        .ui.ribbon.label(ng-if="$index == 0")
+          a(id="original-{{leftItemAnchor}}",ng-href="#original-{{leftItemAnchor}}") {{leftItem}}
         .ui.right.corner.label(ng-class="diffline.leftstate") {{diffline.leftdesc}}
         .diff.text(href="",target="blank", ng-bind-html="diffline.left")
     .column.right(class="{{diffline.state}}")
       .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
-        a(id="proposed-{{rightItemAnchor}}",ng-href="#proposed-{{rightItemAnchor}}",ng-if="$index == 0",style="margin-top: -90px; padding-top: 90px",spy)
-          .ui.ribbon.label {{rightItem}}
+        .ui.ribbon.label(ng-if="$index == 0")
+          a(id="proposed-{{rightItemAnchor}}",ng-href="#proposed-{{rightItemAnchor}}",spy) {{rightItem}}
         .ui.right.corner.label(ng-class="diffline.rightstate") {{diffline.rightdesc}}
         .diff.text(href="",target="blank", ng-bind-html="diffline.right")
   .ui.pointing.label.diff-comment(ng-bind-html="comment", ng-show="comment")

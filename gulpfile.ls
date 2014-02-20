@@ -86,7 +86,7 @@ gulp.task 'dev' <[httpServer template js:vendor css]> ->
   LIVERELOADPORT = 35729
   livereload-server.listen LIVERELOADPORT, ->
     return gutil.log it if it
-  gulp.watch 'app/partials/**/*.jade' <[template]>
+  gulp.watch ['app/partials/**/*.jade', 'app/diff/*.jade', 'app/spy/*.jade'] <[template]>
   gulp.watch 'app/**/*.styl' <[css]>
 
 require! <[gulp-angular-templatecache gulp-jade]>
@@ -151,25 +151,4 @@ gulp.task 'ly-diff:js' ->
 gulp.task 'ly-diff:css' ->
   gulp.src './app/styles/ly-diff.styl'
   .pipe gulp-stylus use: <[nib]>
-  .pipe gulp.dest './_public/css'
-
-gulp.task 'ly-spy' <[ly-spy:js ly-spy:css]>
-
-gulp.task 'ly-spy:js' ->
-  js = gulp.src <[app/spy.ls]>
-    .pipe livescript({+bare}).on 'error', gutil.log
-  templates = gulp.src 'app/spy/spy.jade'
-    .pipe gulp-jade!
-    .pipe gulp-angular-templatecache do
-      base: process.cwd!
-      filename: 'app.template.js'
-      module: 'ly.spy'
-
-  event-stream.merge js, templates
-    .pipe gulp-concat 'ly-spy.js'
-    .pipe gulp.dest '_public/js'
-
-gulp.task 'ly-spy:css' ->
-  gulp.src './app/styles/ly-spy.styl'
-  .pipe guly-stylus use: <[nib]>
   .pipe gulp.dest './_public/css'
