@@ -24,10 +24,10 @@
       h1.ui.header.bill(title="{{bill.summary}}") {{bill.summary}}
       .summary
         p.description {{bill.abstract}}
-  .content.default(ng-repeat="(name, statues) in diffMatrix", scroll-spy)
-    a(name="{{name}}", spy-target)
+  .content.default(ng-repeat="(name, statues) in diffMatrix")
+    a(name="{{name}}")
     h2.ui.horizontal.divider {{name}}
-    .ui.two.column.grid(ng-repeat="(statue, versions) in statues", spy-target)
+    .ui.two.column.grid(ng-repeat="(statue, versions) in statues")
       .row
         .column(ng-repeat="version in bill_refs")
           .ui.segment
@@ -152,16 +152,18 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  .content.default(ng-repeat="(i, d) in diff", scroll-spy="{{showSidebar && !isMobile}}")
-    a(name="{{d.name}}", spy-target)
-    h2.ui.horizontal.divider {{d.name}}
+  div(scroll-spy offset="100")
+    .content.default(ng-repeat="(i, d) in diff")
+      a(name="{{d.name}}")
+      h2.ui.horizontal.divider {{d.name}}
 
-    p.sample
-      span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
-      span(ng-hide="!d.diffbase") vs
-      span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-    div(ng-repeat="amendment in d.amendment",ly-diff="{comment: amendment.comment, left: amendment.baseContent, right: amendment.content, heading: amendment.originalArticle, anchor: amendment.originalArticle}",spy-target)
+      p.sample
+        span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
+        span(ng-hide="!d.diffbase") vs
+        span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
+      div(ng-repeat="amendment in d.amendment",ly-diff="{comment: amendment.comment, left: amendment.baseContent, right: amendment.content, heading: amendment.originalArticle, anchor: amendment.originalArticle}")
 
+//-
   .content.navigation.visible-desktop.mobile-hide(ng-show="showSidebar")
     .ui.very.thin.sidebar
       .ui.vertical.menu

@@ -168,7 +168,7 @@ function build-steps(motions)
       steps[0].detail.push detail
   steps
 
-angular.module 'app.controllers.bills' <[ly.diff]>
+angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
     $scope.opts = {+show_date}
@@ -284,6 +284,7 @@ angular.module 'app.controllers.bills' <[ly.diff]>
             v.sub = !v.sub
           else v.sub = false
       $timeout -> $anchorScroll!
+/*
 .directive 'spy', <[$location]> ++ ($location)->
   restrict: 'A'
   link: (scope, elem, attrs)->
@@ -337,3 +338,4 @@ angular.module 'app.controllers.bills' <[ly.diff]>
       else
         $($window).unbind \scroll scroll-handler
     $timeout update-position, 100
+*/

@@ -14,7 +14,7 @@ angular.module 'ly.diff' []
       $scope.leftItem = $scope.heading
       $scope.leftItemAnchor = $scope.anchor
       $scope.rightItem = $scope.heading-right ? $scope.leftItem
-      $scope.rightItemAnchor = $scope.anchor-right ? $scope.rightItemAnchor
+      $scope.rightItemAnchor = $scope.anchor-right ? $scope.leftItemAnchor
       $scope.difflines = line-based-diff $scope.left, $scope.right .map ->
         it.left = $sce.trustAsHtml it.left || '無'
         it.right = $sce.trustAsHtml it.right
