@@ -1,10 +1,5 @@
-@import "app/styles/mixins"
-@import "app/styles/ui-step"
-@import "compass/css3/box-shadow"
-@import "compass/css3/transform"
-@import "compass/css3/transition"
-@import "compass/css3/border-radius"
-@import "compass/css3/box-sizing"
+@import "./_mixins"
+@import "./_ui-step"
 
 @media print
   .hide-print
@@ -13,16 +8,6 @@
   #qrlink
     display: block !important
 
-  .bill
-    .replace.left,
-    .delete.left,
-    .replace.right,
-    .insert.right
-      .diff.text em
-        border-bottom: 3px double lightgrey !important
-        padding-bottom: .125em !important
-
-
 .history
   path.link, .node rect
     fill: none
@@ -30,7 +15,7 @@
     stroke-width: 1.5px
 
 .bill
-  +box-sizing(border-box)
+  box-sizing: border-box
   .basic-info
     padding-left: 2rem
 
@@ -38,7 +23,7 @@
     display: none
 
   .summary
-    +ly-songti
+    ly-songti()
 
   .ui.label.light.gray
     background-color: #eee
@@ -56,13 +41,10 @@
       .page
         padding: 0.3em 0.8em
         color: inherit
-        +border-radius(0.3em)
+        border-radius(0.3em)
         background-color: rgba(#000,0.05)
 
   .bill-meta
-    //.links.ui.right.floated.menu
-      margin-left: 2rem
-      margin-bottom: 1rem
     .ui.sub.menu.related-bill
       .item
         display: block
@@ -76,19 +58,6 @@
           padding-bottom: 0.8em
 
   .bill-progress
-
-    .ui.label.light.gray
-      background-color: #eee
-      color: #666
-
-    .ui.pointing.label
-      position: absolute
-      left: 0
-
-    .ui.steps .no-hover.step,
-    .ui.no-hover.step
-      cursor: auto
-
     .ui.steps
       margin-bottom: 1rem
 
@@ -102,13 +71,11 @@
         text-align: center
         vertical-align: middle
         padding: 0.3rem 0 0 1rem
-        +border-radius(0)
+        border-radius: 0
         line-height: 1.2em
-        +box-sizing(border-box)
+        box-sizing: border-box
 
-        .step-description,
-        .substep-description,
-        .date
+        .step-description, .substep-description, .date
           margin: 0
           padding: 0
           position: relative
@@ -121,7 +88,7 @@
           a
             color: inherit
             padding: 0.3em 0.8em
-            +border-radius(0.3em)
+            border-radius(0.3em)
             background-color: rgba(#000,0.05)
 
       &.small
@@ -131,19 +98,15 @@
       &.common
 
         .stage:first-child
-          .step,
-          .step:first-child,
-          .step:last-child
-            +border-corner-radius(top,left,0.315em)
-            +border-corner-radius(bottom,left,0.315em)
+          .step, .step:first-child, .step:last-child
+            border-corner-radius(top,left,0.315em)
+            border-corner-radius(bottom,left,0.315em)
 
         .stage:last-child
-          .step,
-          .step:first-child,
-          .step:last-child
+          .step, .step:first-child, .step:last-child
             margin-right: 0em
-            +border-corner-radius(top,right,0.315em)
-            +border-corner-radius(bottom,right,0.315em)
+            border-corner-radius(top,right,0.315em)
+            border-corner-radius(bottom,right,0.315em)
             &:after
               display: none
 
@@ -153,37 +116,28 @@
     .ui.seven.steps .stage > .step
       width: 14.285%
 
-    @mixin ui-step-color($n, $b, $c, $s, $h)
-      .ui.step.#{$n},
-      .ui.steps .step.#{$n}
+    ui-step-color($n, $b, $c, $s, $h)
+      .ui.step.{$n}, .ui.steps .step.{$n}
         background-color: $b
         color: $c
 
-      .ui.step.#{$n}:hover,
-      .ui.step.#{$n}.hover
+      .ui.step.{$n}:hover, .ui.step.{$n}.hover
         background-color: $h
         color: $c
 
-      .ui.steps .step.#{$n}.hover:after,
-      .ui.steps .step.#{$n}:hover:after,
-      .ui.step.#{$n}:hover,
-      .ui.step.#{$n}.hover::after
+      .ui.steps .step.{$n}.hover:after, .ui.steps .step.{$n}:hover:after, .ui.step.{$n}:hover, .ui.step.{$n}.hover::after
         background-color: $h
         border-left-color: $h
 
-      .ui.step.no-hover.#{$n}:hover,
-      .ui.step.no-hover.#{$n}.hover
+      .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover
         background-color: $b
         color: $c
 
-      .ui.steps .step.no-hover.#{$n}.hover:after,
-      .ui.steps .step.no-hover.#{$n}:hover:after,
-      .ui.step.no-hover.#{$n}:hover,
-      .ui.step.no-hover.#{$n}.hover::after
+      .ui.steps .step.no-hover.{$n}.hover:after, .ui.steps .step.no-hover.{$n}:hover:after, .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover::after
         background-color: $b
         border-left-color: $b
 
-      .ui.step.#{$n}:after
+      .ui.step.{$n}:after
         border: none
         background-color: $b
         top: 0.42em
@@ -199,15 +153,19 @@
         -moz-box-shadow: -1px -1px 0px 0px $s inset
         box-shadow: -1px -1px 0px 0px $s inset
 
-    @include ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
-    @include ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
-    @include ui-step-color(red,    #d95c5c, #ffffff, #ffffff, darken(#d95c5c, 10%))
-    @include ui-step-color(blue,   #6ecff5, #ffffff, #ffffff, darken(#6ecff5, 10%))
-    @include ui-step-color(purple, #564f8a, #ffffff, #ffffff, darken(#564f8a, 10%))
-    @include ui-step-color(teal,   #00b5ad, #ffffff, #ffffff, darken(#00b5ad, 10%))
-    @include ui-step-color(returned, #e96633, #ffffff, #ffffff, darken(#e96633, 10%))
-    @include ui-step-color(not-yet,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
-    @include ui-step-color(issued,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
+      .ui.state.{$n}
+        background-color: $b
+        color: $c
+
+    ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
+    ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
+    ui-step-color(red,    #d95c5c, #ffffff, #ffffff, darken(#d95c5c, 10%))
+    ui-step-color(blue,   #6ecff5, #ffffff, #ffffff, darken(#6ecff5, 10%))
+    ui-step-color(purple, #564f8a, #ffffff, #ffffff, darken(#564f8a, 10%))
+    ui-step-color(teal,   #00b5ad, #ffffff, #ffffff, darken(#00b5ad, 10%))
+    ui-step-color(returned, #e96633, #ffffff, #ffffff, darken(#e96633, 10%))
+    ui-step-color(not-yet,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
+    ui-step-color(issued,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
 
     .ui.step.not-implemented
       opacity: 0.5
@@ -235,22 +193,6 @@
     .ui.large.state,
     .ui.large.steps .state
       font-size: 1rem
-
-    @mixin ui-state-color($n, $b, $c)
-      .ui.state.#{$n}
-        background: $b
-        i
-          color: $c
-
-    @include ui-state-color(scheduled,  #5c6166, #ffffff)
-    @include ui-state-color(passed,  #5bbd72, #ffffff)
-    @include ui-state-color(red,    #d95c5c, #ffffff)
-    @include ui-state-color(blue,   #6ecff5, #ffffff)
-    @include ui-state-color(purple, #564f8a, #ffffff)
-    @include ui-state-color(teal,   #00b5ad, #ffffff)
-    @include ui-state-color(returned, #e96633, #ffffff)
-    @include ui-state-color(not-yet,  #ffffff, #ffffff)
-
     .ui.pointing.below.label
       &.passed,
       &.passed:before
@@ -276,7 +218,7 @@
       margin: 0
       padding: 1rem 0
       cursor: pointer
-      +border-radius(0.3em)
+      border-radius(0.3em)
       i.icon
         vertical-align: inherit
         opacity: 0.3
@@ -284,10 +226,10 @@
         margin: 0
       &:hover
         background-color: rgba(#000,0.03)
-        +transition(0.5s)
+        transition(0.5s)
         i.icon
           opacity: 1
-          +transition(0.5s)
+          transition(0.5s)
     .item
       text-align: center
       display: inline-block
@@ -295,7 +237,7 @@
       .image.ui.rounded.corner
         background-color: #fff
         .avatar,.content,.infocard
-          +transition(0.5s)
+          transition(0.5s)
       &.expanded
         .avatar
           width: 50px
@@ -329,7 +271,7 @@
 
     .diff .diff.text,
     [ng-show="diffs.comment"]
-      +ly-songti
+      ly-songti()
 
   p.sample
     text-align: center
@@ -349,62 +291,6 @@
     &:before,&:after
       width: 40%
 
-  .ui.segment.article-text
-    padding-top: 0.5em
-    padding-bottom: 0.5em
-    margin: 0
-  .ui.ribbon
-    margin-top: -1.5em
-
-  .diff.text
-    color: #333
-    margin-right: 0.5rem
-  .replace.left,
-  .delete.left,
-  .replace.right,
-  .insert.right
-    .diff.text em
-      +em-reset
-      background-color: lighten(#f99, 7%)
-      color: #000
-
-  .replace.right,
-  .insert.right
-    .diff.text em
-      background-color: lighten(#A1CF88, 10%)
-
-  .column.left
-    margin: 0
-  .column.right
-    margin: 0
-
-  .ui.stackable.grid
-    &>.row
-      margin: 0
-      padding: 0
-      &>.column.right
-        margin: 0!important
-        padding-top: 0!important
-        padding-bottom: 0!important
-      &>.column.left
-        padding-top: 0!important
-        padding-bottom: 0!important
-      @media only screen and (max-width: 768px)
-        padding-top: 1rem !important
-        &>.column.right.equal
-          display: none!important
-
-  .ui.pointing.label.diff-comment
-    width: 100%
-    margin: 1em 0 1em 0
-    font-size: 1rem
-    background-color: #fffaf2
-    +box-shadow(0 0 1px rgba(#000,0.5))
-    &:before
-      background-color: #fffaf2
-      border: 1px rgba(#000,0.1) solid
-      border-width: 1px 0 0 1px
-
   .ui.very.thin.sidebar
     .ui.vertical.menu
       width: 8rem
@@ -418,42 +304,45 @@
 
   @media only screen and (max-width: 768px)
     padding: 0 0.5rem 0.5rem 0.5rem
-    .mobile-hide
-      display: none
-    .ui.stackable.grid > .row > .column.left
-      margin-top: 0 !important
-      &.ng-hide
-        display: none !important
 
   @media (max-width: 640px)
-    .bill-progress .common.ui.seven.steps,
-    .bill-progress .ui.small.steps
-      width: 100%
-      display: block
-      .stage:first-child .step:first-child
-        border-radius: 0
-      .ui.step
+    .bill-progress
+      .ui.small.steps
+        .ui.step:after
+          top: 2rem
+      .common.ui.seven.steps, .ui.small.steps
         width: 100%
-        margin-bottom: 1px
-        .ui.label.pointing.below
-          margin-left: 10px
-          margin-top: 42px
-          &:before
+        display: block
+        .stage:first-child .step:first-child
+          border-radius: 0
+        .ui.step
+          width: 100%
+          margin-bottom: 1px
+          .ui.label.pointing.below
+            margin-left: 10px
+            margin-top: 42px
+            &:before
+              display: none
+          &:after
+            display: block
+            width: 1em
+            height: 1em
+            top: 40px
+            left: 50%
+            box-shadow: 1px -1px 0px 0px white inset
+          &.not-implemented
             display: none
-        &:after
-          display: block
-          width: 1em
-          height: 1em
-          top: 40px
-          left: 50%
-          box-shadow: 1px -1px 0px 0px white inset
-        &.not-implemented
-          display: none
-      .ui.state
-        margin-left: -2.5rem
-    .bill .bill-progress .ui.small.steps
-      .ui.step:after
-        top: 2rem
+        .ui.state
+          margin-left: -2.5rem
+  div[ly-diff]
+    .replace.left, .delete.left, .replace.right, .insert.right
+      .diff.text em
+        em-reset()
+        background-color: lighten(#f99, 7%)
+        color: #000
+    .ui.ribbon.label a
+      margin-top: -90px
+      padding-top: 90px
 
 div.item
   outline: none
@@ -496,10 +385,10 @@ div.item
       display: block
       color: inherit
       padding: 0.8em
-      +border-radius(0.3em)
+      border-radius(0.3em)
       &:hover
         background-color: rgba(#000,0.05)
-        +transition(0.5s)
+        transition(0.5s)
   &:hover > .infocard
     opacity: 1
     text-decoration: none
@@ -507,9 +396,6 @@ div.item
     overflow: visible
     left: -40%
     display: block
-
-.item-section .spy
-  background-color: #e0e0c3
 
 .bill.compare
   .bill-meta

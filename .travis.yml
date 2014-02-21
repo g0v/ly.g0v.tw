@@ -27,7 +27,7 @@ before_script:
 script:
   - gulp --require LiveScript test:$TEST
 
-before_deploy: "BUILD=git-`git describe --always` npm run build"
+before_deploy: "BUILD=git-`git describe --always` gulp --require LiveScript build server --env production"
 
 deploy:
   on:

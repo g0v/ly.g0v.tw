@@ -189,7 +189,7 @@ angular.module 'app.directives' <[app.services ]>
   scope:
     legislator: \=legislator
     style: \=legislatorStyle
-  templateUrl: 'app/partials/legislator.jade'
+  templateUrl: 'app/partials/legislator.html'
   controller: <[$scope]> ++ ($scope) ->
     $scope.legislator-style = angular.copy $scope.style ? {}
     name <- $scope.$watch 'legislator'
@@ -209,3 +209,9 @@ angular.module 'app.directives' <[app.services ]>
         twlylink: TWLYService.getLink name
     else
       $scope <<< $scope.legislator
+
+.directive \repeatDone ->
+  restrict: \A
+  require: \ng-repeat
+  controller: <[$scope]> ++ ($scope) ->
+    $scope.$emit "repeat:finish" if $scope.$last

@@ -5,6 +5,7 @@ version: "0.1.1"
 main: "_public/js/app.js"
 ignore: ["**/.*", "node_modules", "components"]
 dependencies:
+  "commonjs-require-definition": "~0.1.2"
   jquery: "~2.0.3"
   moment: "~2.4.0"
   angular: "1.2.12"
@@ -15,6 +16,7 @@ dependencies:
   cryptojslib: "3.1.2"
   "ng-grid": "~2.0.7"
   "angular-qrcode": "~2.0.0"
+  "jquery-scrollintoview": "Arwid/jQuery.scrollIntoView"
 
 overrides:
   "angular":
@@ -25,3 +27,7 @@ overrides:
     main: "README.md"
   cryptojslib:
     main: "rollups/md5.js"
+  "google-diff-match-patch-js":
+    main: "diff_match_patch_uncompressed.js"
+  "jquery-scrollintoview":
+    main: "jquery.scrollIntoView.js"

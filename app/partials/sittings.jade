@@ -39,7 +39,7 @@
           th.four.wide 議事錄
           td: a(ng-href="{{ proceeding_url }}",target="_blank") PDF
 
-  #video(ng-show="loaded", ng-show="video")
+  #video(ng-show="loaded && video")
     .player.wrapper
       #player
     .share.wrapper

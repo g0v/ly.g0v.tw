@@ -1,6 +1,5 @@
 exports.config = do
   allScriptsTimeout: 11000,
-  seleniumAddress: 'http://localhost:4444/wd/hub'
 
   baseURL: 'http://localhost:3333'
 

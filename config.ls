@@ -23,16 +23,6 @@ exports.config =
     javascripts:
       joinTo:
         'js/app.js': /^app/
-        'js/vendor.js': /^vendor|bower_components/
-
-    stylesheets:
-      joinTo:
-        'css/app.css': /^(app|vendor|bower_components)/
-
-    templates:
-      joinTo:
-        # this name is required for jade_angular plugin to work
-        'js/dontUseMe': /^app(?!\/view)/
 
   # Enable or disable minifying of result js / css files.
   # minify: true
