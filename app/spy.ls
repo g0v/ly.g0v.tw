@@ -6,7 +6,25 @@ angular.module 'ly.spy' []
   replace: true
   templateUrl: 'app/spy/spy.html'
   link: ($scope, elem, attrs) ->
-    $scope.offset = +attrs.offset
+    $scope
+      ..targets = []
+      ..offset = +attrs.offset
+      ..$on 'spy:register' (e, target) ->
+        $scope.targets.push target
+      ..$on 'repeat:finish' (e) ->
+        # wait for awhile
+        $scope.$evalAsync ->
+          $anchors = elem.find attrs.anchor
+          $boxes = elem.find attrs.box
+          $anchors.each (i) ->
+            $elem = $ this
+            $box = $boxes.eq i
+            top = $box.position!top
+            $scope.targets.push do
+              anchor: $elem.attr \id
+              heading: $elem.text!
+              top: top
+              bottom: top + $box.height!
     var p
     $window.onscroll = (event) ->
       page-y = scroll-y + $scope.offset
@@ -23,21 +41,4 @@ angular.module 'ly.spy' []
         # https://gist.github.com/hsablonniere/2581101
         elem.find \.highlight ?0?scrollIntoViewIfNeeded!
       p := t
-    $scope.targets = []
-    $scope.$on 'spy:register' (e, target) ->
-      $scope.targets.push target
-.directive \spy <[$timeout]> ++ ($timeout) ->
-  restrict: \A
-  link: ($scope, elem, attrs) ->
-    # TODO: should be dynamic
-    box = elem.closest \.spy-box
-    box = elem if box.length is 0
-    top = box.position!top
-    $timeout ->
-      id = elem.attr \id or $scope.$index
-      $scope.$emit 'spy:register' do
-        anchor:  id
-        heading: elem.text!
-        top:     top
-        bottom:  top + box.height!
 

@@ -152,7 +152,7 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  div(scroll-spy offset="100")
+  div(scroll-spy offset="100" anchor=".right a" box=".ui.two.column.stackable.grid")
     .content.default(ng-repeat="(i, d) in diff")
       a(name="{{d.name}}")
       h2.ui.horizontal.divider {{d.name}}
@@ -161,15 +161,7 @@
         span.delete(ng-hide="!d.diffbase") {{d.diffbase}}
         span(ng-hide="!d.diffbase") vs
         span.version(ng-repeat="v in d.versions",ng-class="{insert: v == d.diffnew}",ng-bind="v",ng-click="setDiff(d, v)")
-      div(ng-repeat="amendment in d.amendment",ly-diff="{comment: amendment.comment, left: amendment.baseContent, right: amendment.content, heading: amendment.originalArticle, anchor: amendment.originalArticle}")
+      div(ng-repeat="amendment in d.amendment",repeat-done,ly-diff="{comment: amendment.comment, left: amendment.baseContent, right: amendment.content, heading: amendment.originalArticle, anchor: amendment.originalArticle}")
 
-//-
-  .content.navigation.visible-desktop.mobile-hide(ng-show="showSidebar")
-    .ui.very.thin.sidebar
-      .ui.vertical.menu
-        .item-section(ng-repeat="(i, d) in diff track by $index")
-          a.item(href="#"+"{{d.name}}", spy) {{d.name}}
-          .law-unit-wrap(ng-repeat="diffs in d.diffcontent")
-            .law-unit(ng-show="diffs.leftItemAnchor", spy): a.item(ng-href="\#{{d.diffbase ? 'original' : 'proposed'}}-{{diffs.leftItemAnchor}}") {{diffs.leftItem}}
 script.
   $(".ui.dropdown").dropdown();

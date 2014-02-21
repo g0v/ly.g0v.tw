@@ -209,3 +209,9 @@ angular.module 'app.directives' <[app.services ]>
         twlylink: TWLYService.getLink name
     else
       $scope <<< $scope.legislator
+
+.directive \repeatDone ->
+  restrict: \A
+  require: \ng-repeat
+  controller: <[$scope]> ++ ($scope) ->
+    $scope.$emit "repeat:finish" if $scope.$last
