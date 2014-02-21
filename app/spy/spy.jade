@@ -1,5 +1,5 @@
 .scroll-spy
-  ul.spy-menu.ui.vertical.menu
+  ul.spy-menu.ui.vertical.menu(ng-show="showSidebar")
     li.item-section(ng-repeat="t in targets" ng-class="{highlight: t.highlight}")
       a.item(href="#{{t.anchor}}") {{t.heading}}
   .spy-content(ng-transclude)
