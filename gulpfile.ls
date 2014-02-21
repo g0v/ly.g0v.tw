@@ -102,7 +102,7 @@ gulp.task 'template' ->
     .pipe livereload!
 
 require! <[gulp-bower gulp-bower-files gulp-filter gulp-uglify gulp-cssmin]>
-require! <[event-stream gulp-concat]>
+require! <[gulp-concat]>
 
 gulp.task 'bower' ->
   gulp-bower!
@@ -111,7 +111,8 @@ gulp.task 'js:vendor' <[bower]> ->
   bower = gulp-bower-files!
     .pipe gulp-filter -> it.path is /\.js$/
 
-  s = event-stream.merge bower, gulp.src 'vendor/scripts/*.js'
+  s = streamqueue { +objectMode }
+    .done bower, gulp.src 'vendor/scripts/*.js'
     .pipe gulp-concat 'vendor.js'
   s .= pipe gulp-uglify! if gutil.env.env is \production
   s .pipe gulp.dest '_public/js'
@@ -125,7 +126,8 @@ gulp.task 'css' <[bower]> ->
     .pipe gulp-filter -> it.path isnt /\/_[^/]+\.styl$/
     .pipe gulp-stylus use: <[nib]>
 
-  s = event-stream.merge bower, styl, gulp.src 'app/styles/**/*.css'
+  s = streamqueue { +objectMode }
+    .done bower, styl, gulp.src 'app/styles/**/*.css'
     .pipe gulp-concat 'app.css'
   s .= pipe gulp-cssmin! if gutil.env.env is \production
   s .pipe gulp.dest './_public/css'
@@ -133,7 +135,7 @@ gulp.task 'css' <[bower]> ->
 
 gulp.task 'ly-diff' <[ly-diff:js ly-diff:css]>
 
-require! <[event-stream gulp-concat]>
+require! <[streamqueue gulp-concat]>
 gulp.task 'ly-diff:js' ->
   js = gulp.src <[app/utils/diff.ls app/diff.ls]>
     .pipe livescript({+bare}).on 'error', gutil.log
@@ -144,7 +146,8 @@ gulp.task 'ly-diff:js' ->
       filename: 'app.templates.js'
       module: 'ly.diff'
 
-  event-stream.merge js, templates
+  streamqueue { +objectMode }
+    .done js, templates
     .pipe gulp-concat 'ly-diff.js'
     .pipe gulp.dest '_public/js'
 

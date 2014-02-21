@@ -44,7 +44,7 @@ devDependencies:
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
   'protractor': '~0.18.1'
-  "event-stream": '~3.1.0'
+  "streamqueue": '~0.0.5'
   gulp: '~3.5.0'
   "gulp-util": '~2.2.13'
   "gulp-exec": '~1.0.4'
