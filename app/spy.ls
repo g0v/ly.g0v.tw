@@ -37,8 +37,10 @@ angular.module 'ly.spy' []
         $scope.$apply ->
           p?highlight = off
           t?highlight = on
-        # TODO: scrollIntoViewIfNeeded polyfill
-        # https://gist.github.com/hsablonniere/2581101
-        elem.find \.highlight ?0?scrollIntoViewIfNeeded!
+        # use jquery.scrollIntoView()
+        # see:
+        #   /vendor/scripts/jquery.scrollIntoView.min.js
+        #   https://github.com/Arwid/jQuery.scrollIntoView
+        elem.find(\.highlight)?scrollIntoView!
       p := t
 

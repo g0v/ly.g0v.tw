@@ -111,7 +111,7 @@ gulp.task 'js:vendor' <[bower]> ->
   bower = gulp-bower-files!
     .pipe gulp-filter -> it.path is /\.js$/
 
-  s = event-stream.merge bower, gulp.src 'vendor/scripts/**/*.js'
+  s = event-stream.merge bower, gulp.src 'vendor/scripts/*.js'
     .pipe gulp-concat 'vendor.js'
   s .= pipe gulp-uglify! if gutil.env.env is \production
   s .pipe gulp.dest '_public/js'
