@@ -117,27 +117,27 @@
       width: 14.285%
 
     ui-step-color($n, $b, $c, $s, $h)
-      .ui.step.#{$n}, .ui.steps .step.#{$n}
+      .ui.step.{$n}, .ui.steps .step.{$n}
         background-color: $b
         color: $c
 
-      .ui.step.#{$n}:hover, .ui.step.#{$n}.hover
+      .ui.step.{$n}:hover, .ui.step.{$n}.hover
         background-color: $h
         color: $c
 
-      .ui.steps .step.#{$n}.hover:after, .ui.steps .step.#{$n}:hover:after, .ui.step.#{$n}:hover, .ui.step.#{$n}.hover::after
+      .ui.steps .step.{$n}.hover:after, .ui.steps .step.{$n}:hover:after, .ui.step.{$n}:hover, .ui.step.{$n}.hover::after
         background-color: $h
         border-left-color: $h
 
-      .ui.step.no-hover.#{$n}:hover, .ui.step.no-hover.#{$n}.hover
+      .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover
         background-color: $b
         color: $c
 
-      .ui.steps .step.no-hover.#{$n}.hover:after, .ui.steps .step.no-hover.#{$n}:hover:after, .ui.step.no-hover.#{$n}:hover, .ui.step.no-hover.#{$n}.hover::after
+      .ui.steps .step.no-hover.{$n}.hover:after, .ui.steps .step.no-hover.{$n}:hover:after, .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover::after
         background-color: $b
         border-left-color: $b
 
-      .ui.step.#{$n}:after
+      .ui.step.{$n}:after
         border: none
         background-color: $b
         top: 0.42em
@@ -152,6 +152,10 @@
         -webkit-box-shadow: -1px -1px 0px 0px $s inset
         -moz-box-shadow: -1px -1px 0px 0px $s inset
         box-shadow: -1px -1px 0px 0px $s inset
+
+      .ui.state.{$n}
+        background-color: $b
+        color: $c
 
     ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
     ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
