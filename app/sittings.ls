@@ -75,7 +75,7 @@ angular.module 'app.controllers.sittings' []
     .success
     $scope.loadingList = false
     $scope.lists[$scope.context] = entries
-    $scope.currentList = $scope.lists[$scope.context]
+    $scope.currentList = $scope.lists[$scope.context] .sort (x, y) -> if x.id > y.id => -1 else 1
 
   $scope.$watch 'currentList' (newV, oldV)->
     return unless $scope.currentList
