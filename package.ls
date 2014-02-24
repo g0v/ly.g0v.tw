@@ -53,7 +53,7 @@ devDependencies:
   "gulp-stylus": '~0.0.12'
   "gulp-concat": '~2.1.7'
   "gulp-jade": '~0.4.1'
-  "gulp-angular-templatecache": 'git://github.com/clkao/gulp-angular-templatecache.git#master'
+  "gulp-angular-templatecache": '^1.1.0'
   "gulp-bower": '~0.0.2'
   "gulp-bower-files": '>= 0.1.8'
   "gulp-uglify": '~0.2.1'
