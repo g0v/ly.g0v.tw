@@ -37,6 +37,12 @@ angular.module 'ly.spy' []
         $scope.$apply ->
           p?highlight = off
           t?highlight = on
-        elem.find \.highlight ?0?scrollIntoViewIfNeeded!
+        # use jquery.scrollIntoView()
+        # see:
+        # /vendor/scripts/jquery.scrollIntoView.min.js
+        # https://github.com/Arwid/jQuery.scrollIntoView
+        e = elem.find \.highlight
+        if e.length and e.isOutOfView! and $scope.showSidebar
+          e.scrollIntoView!
       p := t
 
