@@ -247,6 +247,7 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
         if $scope.diff?length
           total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
+        $timeout $anchorScroll
 
       committee ?.= map -> { abbr: it, name: committees[it] }
       $scope <<< bill{summary,abstract,bill_id,bill_ref,doc,sponsors,cosponsors} <<< {committee} <<<
@@ -283,4 +284,3 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
           if index == i
             v.sub = !v.sub
           else v.sub = false
-      $timeout -> $anchorScroll!
