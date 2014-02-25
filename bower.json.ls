@@ -17,6 +17,7 @@ dependencies:
   "ng-grid": "~2.0.7"
   "angular-qrcode": "~2.0.0"
   "jquery-scrollintoview": "Arwid/jQuery.scrollIntoView"
+  "angular-laweasyread": "g0v/angular-laweasyread"
 
 overrides:
   "angular":
@@ -31,3 +32,5 @@ overrides:
     main: "diff_match_patch_uncompressed.js"
   "jquery-scrollintoview":
     main: "jquery.scrollIntoView.js"
+  "angular-laweasyread":
+    main: "angular-laweasyread.js"
