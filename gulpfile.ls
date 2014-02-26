@@ -1,8 +1,7 @@
 require! <[tiny-lr]>
 require! <[gulp gulp-util gulp-stylus gulp-mocha gulp-karma gulp-livereload]>
-exec = require \gulp-exec
 gutil = gulp-util
-{protractor} = require \gulp-protractor
+{webdriver_update, protractor} = require \gulp-protractor
 
 livescript = require \gulp-livescript
 livereload-server = require(\tiny-lr)!
@@ -25,11 +24,9 @@ gulp.task \httpServer <[server]> ->
   http-server.listen port, ->
     console.log "Running on http://localhost:#port"
 
-gulp.task \webdriverUpdate ->
-  gulp.src './node_modules/protractor/bin/webdriver-manager'
-    .pipe exec '<%= file.path %> update'
+gulp.task \webdriver_update, webdriver_update
 
-gulp.task \protractor <[webdriverUpdate httpServer]> ->
+gulp.task \protractor <[webdriver_update httpServer]> ->
   gulp.src ["./test/e2e/app/*.ls"]
     .pipe protractor configFile: "./test/protractor.conf.ls"
     .on \error ->
