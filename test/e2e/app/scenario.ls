@@ -28,3 +28,12 @@ describe 'bills' !->
           for elem in it => elem.getText!then !->
             expect it .not.toBe \§
             expect it .not.toBe \§undefined
+
+  describe 'sroll spy' (,) !->
+    it 'should not scroll back' !->
+      browser.get URL + 'bills/956G14876'
+      browser.sleep 3000
+      browser.executeScript -> scroll 0 20000
+      browser.sleep 500
+      y = browser.executeScript -> scroll-y
+      y.then -> expect it .toBe 16426
