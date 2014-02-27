@@ -35,5 +35,7 @@ describe 'bills' !->
       browser.sleep 3000
       browser.executeScript -> scroll 0 20000
       browser.sleep 500
-      y = browser.executeScript -> scroll-y
-      y.then -> expect it .toBe 16426
+      y = browser.executeScript ->
+        current: scroll-y
+        max: $(document).height! - $(window).height!
+      y.then -> expect it.current .toBe it.max
