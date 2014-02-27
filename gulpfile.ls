@@ -38,7 +38,7 @@ gulp.task \protractor <[webdriverUpdate httpServer]> ->
 gulp.task 'test:e2e' <[protractor]> ->
   httpServer.close!
 
-gulp.task 'protractor:sauce' <[build httpServer]> ->
+gulp.task 'protractor:sauce' <[webdriverUpdate build httpServer]> ->
   args =
     seleniumAddress: ''
     sauceUser: process.env.SAUCE_USERNAME
