@@ -48,7 +48,7 @@ devDependencies:
   gulp: '~3.5.0'
   "gulp-util": '~2.2.13'
   "gulp-exec": '~1.0.4'
-  "gulp-protractor": '^0.0.6'
+  "gulp-protractor": '^0.0.7'
   "gulp-livescript": '~0.1.1'
   "gulp-stylus": '~0.0.12'
   "gulp-concat": '~2.1.7'
