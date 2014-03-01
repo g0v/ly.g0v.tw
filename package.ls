@@ -26,14 +26,6 @@ dependencies:
   request: '2.27.x'
 devDependencies:
   LiveScript: '1.2.x'
-  brunch: '1.7.x'
-  'javascript-brunch': '1.7.x'
-  'LiveScript-brunch': '1.6.x'
-  'css-brunch': '1.7.x'
-  'auto-reload-brunch': '1.7.x'
-  'uglify-js-brunch': '1.7.x'
-  'clean-css-brunch': '1.7.x'
-  'jsenv-brunch': '1.4.2'
   'karma': '>= 0.11.13'
   'karma-live-preprocessor': '>= 0.2.2'
   'karma-mocha': '~0.1.0'
@@ -62,5 +54,8 @@ devDependencies:
   "gulp-mocha": '~0.4.1'
   "gulp-karma": 'git://github.com/clkao/gulp-karma.git#master'
   "gulp-livereload": '~1.1.1'
+  "gulp-json-editor": "^2.0.2",
+  "gulp-commonjs": "^0.1.0"
+  "gulp-insert": "^0.2.0"
   "connect-livereload": '~0.3.2'
   "tiny-lr": '~0.0.5'

@@ -39,7 +39,8 @@ angular.module 'app.services' []
       return if LYService.mly-by-name(name)?id => base + that
 
 .service 'LYModel': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
-    base = "#{window.global.config.APIENDPOINT}v0/collections/"
+    config = require 'config.jsenv'
+    base = "#{config.APIENDPOINT}v0/collections/"
     _model = {}
 
     localGet = (key) ->
@@ -75,7 +76,8 @@ angular.module 'app.services' []
           wrapHttpGet key, url, params
 
 .service 'LYLaws': <[$q $http $timeout]> ++ ($q, $http, $timeout) ->
-  base = "#{window.global.config.APIENDPOINT}v0/collections/laws"
+  config = require 'config.jsenv'
+  base = "#{config.APIENDPOINT}v0/collections/laws"
   _laws = []
   init = ->
     {paging, entries} <- $http.get base, do
