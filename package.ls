@@ -56,5 +56,6 @@ devDependencies:
   "gulp-livereload": '~1.1.1'
   "gulp-json-editor": "^2.0.2",
   "gulp-commonjs": "^0.1.0"
+  "gulp-insert": "^0.2.0"
   "connect-livereload": '~0.3.2'
   "tiny-lr": '~0.0.5'
