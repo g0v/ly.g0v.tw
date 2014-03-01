@@ -53,7 +53,6 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
           $(window).resize(function (evt) {
             evt.preventDefault();
             var width = $(this).width();
-            console.log(list);
             if(width > 768) {
               list.css('display', 'block');
             } else {
