@@ -80,14 +80,9 @@ angular.module 'app.services' []
   init = ->
     {paging, entries} <- $http.get base, do
       params:
-        l: 1
+        l: -1
     .success
-    {paging, entries} <- $http.get base, do
-      params:
-        l: paging.count
-    .success
-    for entry in entries
-      _laws.push entry
+    _laws ++= entries
 
   search-law = (name) ->
     result = []
@@ -102,4 +97,3 @@ angular.module 'app.services' []
     get: (name, cb) ->
       result = search-law name
       cb result
-
