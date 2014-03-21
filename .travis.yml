@@ -23,7 +23,7 @@ before_script:
 script:
   - gulp --require LiveScript test:$TEST
 
-before_deploy: "BUILD=git-`git describe --always` gulp --require LiveScript build server --env production"
+before_deploy: "BUILD=git-`git describe --always` gulp --require LiveScript build ly-diff server --env production"
 
 deploy:
   on:
