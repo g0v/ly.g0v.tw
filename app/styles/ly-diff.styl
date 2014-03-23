@@ -1,0 +1,80 @@
+div[ly-diff]
+  @media print
+    .replace.left,
+    .delete.left,
+    .replace.right,
+    .insert.right
+      .diff.text em
+        border-bottom: 3px double lightgrey !important
+        padding-bottom: .125em !important
+
+  .diff.text
+    color: #333
+    margin-right: 0.5rem
+
+  .replace.right,
+  .insert.right
+    .diff.text em
+      background-color: lighten(#A1CF88, 10%)
+
+  .replace.left
+    .diff.text em
+      background-color: lighten(#f99, 7%)
+
+  .column.left
+    margin: 0
+  .column.right
+    margin: 0
+
+  .ui.stackable.grid
+    &>.row
+      margin: 0
+      padding: 0
+      &>.column.right
+        margin: 0!important
+        padding-top: 0!important
+        padding-bottom: 0!important
+      &>.column.left
+        padding-top: 0!important
+        padding-bottom: 0!important
+      @media only screen and (max-width: 768px)
+        padding-top: 1rem !important
+        &>.column.right.equal
+          display: none!important
+
+  .ui.pointing.label.diff-comment
+    width: 100%
+    margin: 1em 0 1em 0
+    font-size: 1rem
+    background-color: #fffaf2
+    box-shadow: 0 0 1px rgba(#000,0.5)
+    width: 80%
+    margin-left: 15%
+    margin-right: 5%
+    @media only screen and (max-width: 768px)
+      width: 100%
+      margin-left: 0
+      margin-right: 0
+    &:before
+      background-color: #fffaf2
+      border: 1px rgba(#000,0.1) solid
+      border-width: 1px 0 0 1px
+
+  .ui.segment.article-text
+    padding-top: 0.5em
+    padding-bottom: 0.5em
+    margin: 0
+  .ui.ribbon
+    margin-top: -1.5em
+    &.label a
+      margin-left: -1rem
+      font-size: larger
+      font-weight: bold
+      opacity: 1
+  @media only screen and (max-width: 768px)
+    .mobile-hide
+      display: none
+    .ui.stackable.grid > .row > .column.left
+      margin-top: 0 !important
+      &.ng-hide
+        display: none !important

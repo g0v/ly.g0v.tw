@@ -18,7 +18,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
 
     title(ng-bind-template='{{$state.current.title || "國會大代誌"}}')
     link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css")
-    link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/Han/2.2.3/han.css")
+    link(rel="stylesheet", type="text/css", href="//cdnjs.cloudflare.com/ajax/libs/Han/2.3.0/han.css")
     link(rel='stylesheet', href='/css/app.css')
     link(rel="shotcut icon",href="/img/favicon.ico")
     //if lte IE 7
@@ -29,7 +29,7 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
     script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/javascript/semantic.min.js')
     script(src='/js/app.templates.js')
     script(src='/js/app.js')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/2.2.3/js/han.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/2.3.0/han.js')
   body(ng-controller='AppCtrl',ng-cloak,data-spy="scroll")
     - if (env === 'production')
       #fb-root
@@ -53,7 +53,6 @@ html(lang='zh-Hant', ng-app='ly.g0v.tw', ng-class='{"is-mobile": isMobile}')
           $(window).resize(function (evt) {
             evt.preventDefault();
             var width = $(this).width();
-            console.log(list);
             if(width > 768) {
               list.css('display', 'block');
             } else {

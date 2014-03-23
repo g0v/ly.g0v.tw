@@ -16,6 +16,7 @@ dependencies:
   cryptojslib: "3.1.2"
   "ng-grid": "~2.0.7"
   "angular-qrcode": "~2.0.0"
+  "jquery-scrollintoview": "Arwid/jQuery.scrollIntoView"
 
 overrides:
   "angular":
@@ -28,3 +29,5 @@ overrides:
     main: "rollups/md5.js"
   "google-diff-match-patch-js":
     main: "diff_match_patch_uncompressed.js"
+  "jquery-scrollintoview":
+    main: "jquery.scrollIntoView.js"

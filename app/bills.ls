@@ -1,9 +1,11 @@
 parse-article-heading = (text) ->
   [_, ..._items]? = text.match /第(.+)之(.+)條/ or text.match /第(.+)條(?:之(.+))?/
-  return unless _items
+  return text unless _items
   require! zhutil
   _items.filter -> it
   .map zhutil.parseZHNumber .join \-
+
+not-an-article = /^(（\S+）\n|)第\S+(章|編|節)/
 
 bill-amendment = (diff, idx, c, base-index) -> (entry) ->
   h = diff.header
@@ -16,32 +18,20 @@ bill-amendment = (diff, idx, c, base-index) -> (entry) ->
     comment.=replace /\n/g "<br><br>\n"
   baseTextLines = entry[base-index] or ''
   if baseTextLines
-    baseTextLines -= /^第(.*?)條(之.*?)?\s+/
+    baseTextLines -= /^第(.*?)(條(之.*?)?|章|篇|節)\s+/
     if parse-article-heading RegExp.lastMatch - /\s+$/
       original-article = that
   newTextLines = entry[idx] || entry[base-index] || ''
-  newTextLines -= /^第(.*?)條(之.*?)?\s+/
+  newTextLines -= /^第(.*?)(條(之.*?)?|章|篇|節)\s+/
   article = parse-article-heading RegExp.lastMatch - /\s+$/
   if !original-article
     if newTextLines.match /^（\S+）\n第(.*?)條/ or newTextLines.match /^（\S+第(.*?)條，保留）/
       article = parse-article-heading RegExp.lastMatch - /\s+$/
-    if newTextLines.match /^(（\S+）\n|)第\S+(章|編)/
-      original-article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
+    if newTextLines.match not-an-article
+      article = newTextLines.replace /^（\S+）\n/, '' .split '　' .0
     else
       original-article = article || ''
   return {comment,article,original-article,content: newTextLines,base-content: baseTextLines}
-
-make-diff = ($sce) -> ({base-content, content, comment}:amendment) ->
-  difflines = line-based-diff base-content, content .map ->
-    it.left = $sce.trustAsHtml it.left || '無'
-    it.right = $sce.trustAsHtml it.right
-    it
-  comment = $sce.trustAsHtml comment
-  return {comment,difflines} <<< do
-    left-item: \§ + amendment.original-article
-    left-item-anchor: amendment.original-article
-    right-item: \§ + amendment.article
-    right-item-anchor: amendment.article
 
 diffmeta = (content) -> content?map (diff) ->
   if !diff.name
@@ -178,7 +168,7 @@ function build-steps(motions)
       steps[0].detail.push detail
   steps
 
-angular.module 'app.controllers.bills' []
+angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
 .controller LYBillsIndex: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
   $scope.current-tab = '1'
   {entries: $scope.bill-stats} <- LYModel.get "analytics" params: do
@@ -195,16 +185,6 @@ angular.module 'app.controllers.bills' []
 
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
-    $scope.diffstate = (left_right, state) ->
-      | left_right is 'left' and state isnt 'equal' => 'red'
-      | state === 'replace' || state === 'empty' || state === 'insert' || state === 'delete' => 'green'
-      | otherwise => ''
-    $scope.difftxt = (left_right, state) ->
-      | left_right is 'left' and state isnt 'equal' => '現行'
-      | state === 'replace' || state === 'empty' => '修正'
-      | state === 'delete' => '刪除'
-      | state === 'insert' => '新增'
-      | otherwise => '相同'
     $scope.opts = {+show_date}
     $scope.spies = {}
     $scope.$watch '$state.params.billId' ->
@@ -278,10 +258,10 @@ angular.module 'app.controllers.bills' []
 
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = diffmeta data?content
-        $scope.diff.map (diff) -> diff.diffcontent = diff.amendment.map make-diff $sce
         if $scope.diff?length
           total-entries = $scope.diff.map (.content.length) .reduce (+)
         $scope.showSidebar = total-entries > 3
+        $timeout $anchorScroll
 
       committee ?.= map -> { abbr: it, name: committees[it] }
       $scope <<< bill{summary,abstract,bill_id,bill_ref,doc,sponsors,cosponsors} <<< {committee} <<<
@@ -290,9 +270,7 @@ angular.module 'app.controllers.bills' []
             base-index = diff.base-index
             c = diff.comment-index
             amendment = diff.content.map bill-amendment diff, idx, c, base-index
-            diff <<< do
-                diffnew: version
-                diffcontent: amendment.map make-diff $sce
+            diff <<< diffnew: version
       $scope.$watch '$state.params.otherBills' ->
         other-bills = it?split \,
         return unless other-bills?length
@@ -320,57 +298,3 @@ angular.module 'app.controllers.bills' []
           if index == i
             v.sub = !v.sub
           else v.sub = false
-      $timeout -> $anchorScroll!
-.directive 'spy', <[$location]> ++ ($location)->
-  restrict: 'A'
-  link: (scope, elem, attrs)->
-    return unless scope.d?
-    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
-    obj = scope.spies[id] ?= {}
-    obj.in = ->
-      elem.addClass 'spy'
-      elem[0].scrollIntoViewIfNeeded()
-    obj.out = -> elem.removeClass 'spy'
-.directive 'spyTarget', <[$location]> ++ ($location)->
-  restrct: 'A'
-  link: (scope, elem, attrs)->
-    return unless scope.d?
-    id = if scope.$parent.d? then "#{scope.diffs.$$hash-key}-#{scope.d.$$hash-key}" else scope.d.$$hash-key
-    obj = scope.spies[id] ?= {}
-    obj.elem = elem
-.directive 'scrollSpy', <[$window $timeout]> ++ ($window, $timeout)->
-  restrict: 'A'
-  controller: <[$scope]> ++ ($scope)->
-    $window.diff = $scope.diff
-    $window.spies = $scope.spies
-  link: (scope, elem, attrs)->
-    update-position = ->
-      top-navbar-height = $ '.top.fixed.menu' .height!
-      for , spy of scope.spies
-        spy.top = spy.elem.offset!top - top-navbar-height
-    scope.$watch 'diff', (diffs)->
-      return unless diffs
-      for , spy of spies
-        spy.destroy = true
-      for d in diffs when d.$$hash-key?
-        spies[d.$$hash-key].destroy = false
-        for diff in d.diffcontent when diff.$$hash-key?
-          spies["#{diff.$$hash-key}-#{d.$$hash-key}"]?destroy = false
-      for key, spy of spies when spy.destroy == true
-        delete spies[key]
-      update-position()
-    scroll-handler = ->
-      scrollTop = $window.scrollY
-      the-spy = null
-      # XXX maintain a sorted array so we can optimize this
-      for , spy of scope.spies
-        spy.out()
-        if scrollTop > spy.top and !(spy.top < the-spy?.top)
-          the-spy = spy
-      the-spy?.in()
-    attrs.$observe 'scrollSpy' ->
-      if scope.$eval it
-        $($window).bind \scroll scroll-handler
-      else
-        $($window).unbind \scroll scroll-handler
-    $timeout update-position, 100

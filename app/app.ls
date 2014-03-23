@@ -19,7 +19,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
 
     .state 'bills' do
       url: '/bills'
-      templateUrl: 'app/partials/bills-hot.jade'
+      templateUrl: 'app/partials/bills-hot.html'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBillsIndex
 
@@ -77,7 +77,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
   $rootScope.$state = $state
   $rootScope.$stateParam = $stateParams
   $rootScope.go = -> $location.path it
-  $rootScope.config_build = window.global.config.BUILD
+  $rootScope.config_build = require 'config.jsenv' .BUILD
   $rootScope.$on \$stateChangeSuccess (e, {name}) ->
     window?ga? 'send' 'pageview' page: $location.$$path, title: name
   window.onYouTubeIframeAPIReady = ->

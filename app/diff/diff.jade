@@ -1,0 +1,15 @@
+.ui.two.column.stackable.grid
+  .column.two.row(ng-repeat="diffline in difflines track by $index", ng-hide="diffline.left == '' && diffline.right == ''")
+    .column.left(class="{{diffline.state}}", xng-hide="!d.diffbase")
+      .ui.segment.article-text
+        .ui.ribbon.label(ng-if="$index == 0")
+          a(id="original-{{leftItemAnchor}}",ng-href="#original-{{leftItemAnchor}}") {{leftItem}}
+        .ui.right.corner.label(ng-class="diffline.leftstate") {{diffline.leftdesc}}
+        .diff.text(href="",target="blank", ng-bind-html="diffline.left")
+    .column.right(class="{{diffline.state}}")
+      .ui.segment.article-text(ng-class="{'mobile-hide': !diffline.right}")
+        .ui.ribbon.label(ng-if="$index == 0")
+          a(id="proposed-{{rightItemAnchor}}",ng-href="#proposed-{{rightItemAnchor}}") {{rightItem}}
+        .ui.right.corner.label(ng-class="diffline.rightstate") {{diffline.rightdesc}}
+        .diff.text(href="",target="blank", ng-bind-html="diffline.right")
+  .ui.pointing.label.diff-comment(ng-bind-html="comment", ng-show="comment")

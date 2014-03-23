@@ -8,13 +8,6 @@
   #qrlink
     display: block !important
 
-  .bill
-    .replace.left, .delete.left, .replace.right, .insert.right
-      .diff.text em
-        border-bottom: 3px double lightgrey !important
-        padding-bottom: .125em !important
-
-
 .history
   path.link, .node rect
     fill: none
@@ -124,27 +117,27 @@
       width: 14.285%
 
     ui-step-color($n, $b, $c, $s, $h)
-      .ui.step.#{$n}, .ui.steps .step.#{$n}
+      .ui.step.{$n}, .ui.steps .step.{$n}
         background-color: $b
         color: $c
 
-      .ui.step.#{$n}:hover, .ui.step.#{$n}.hover
+      .ui.step.{$n}:hover, .ui.step.{$n}.hover
         background-color: $h
         color: $c
 
-      .ui.steps .step.#{$n}.hover:after, .ui.steps .step.#{$n}:hover:after, .ui.step.#{$n}:hover, .ui.step.#{$n}.hover::after
+      .ui.steps .step.{$n}.hover:after, .ui.steps .step.{$n}:hover:after, .ui.step.{$n}:hover, .ui.step.{$n}.hover::after
         background-color: $h
         border-left-color: $h
 
-      .ui.step.no-hover.#{$n}:hover, .ui.step.no-hover.#{$n}.hover
+      .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover
         background-color: $b
         color: $c
 
-      .ui.steps .step.no-hover.#{$n}.hover:after, .ui.steps .step.no-hover.#{$n}:hover:after, .ui.step.no-hover.#{$n}:hover, .ui.step.no-hover.#{$n}.hover::after
+      .ui.steps .step.no-hover.{$n}.hover:after, .ui.steps .step.no-hover.{$n}:hover:after, .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover::after
         background-color: $b
         border-left-color: $b
 
-      .ui.step.#{$n}:after
+      .ui.step.{$n}:after
         border: none
         background-color: $b
         top: 0.42em
@@ -159,6 +152,10 @@
         -webkit-box-shadow: -1px -1px 0px 0px $s inset
         -moz-box-shadow: -1px -1px 0px 0px $s inset
         box-shadow: -1px -1px 0px 0px $s inset
+
+      .ui.state.{$n}
+        background-color: $b
+        color: $c
 
     ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
     ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
@@ -294,59 +291,6 @@
     &:before,&:after
       width: 40%
 
-  .ui.segment.article-text
-    padding-top: 0.5em
-    padding-bottom: 0.5em
-    margin: 0
-  .ui.ribbon
-    margin-top: -1.5em
-
-  .diff.text
-    color: #333
-    margin-right: 0.5rem
-  .replace.left, .delete.left, .replace.right, .insert.right
-    .diff.text em
-      em-reset()
-      foobar: 1
-      background-color: lighten(#f99, 7%)
-      color: #000
-
-  .replace.right, .insert.right
-    .diff.text em
-      background-color: lighten(#A1CF88, 10%)
-
-  .column.left
-    margin: 0
-  .column.right
-    margin: 0
-
-  .ui.stackable.grid
-    &>.row
-      margin: 0
-      padding: 0
-      &>.column.right
-        margin: 0!important
-        padding-top: 0!important
-        padding-bottom: 0!important
-      &>.column.left
-        padding-top: 0!important
-        padding-bottom: 0!important
-      @media only screen and (max-width: 768px)
-        padding-top: 1rem !important
-        &>.column.right.equal
-          display: none!important
-
-  .ui.pointing.label.diff-comment
-    width: 100%
-    margin: 1em 0 1em 0
-    font-size: 1rem
-    background-color: #fffaf2
-    box-shadow(0 0 1px rgba(#000,0.5))
-    &:before
-      background-color: #fffaf2
-      border: 1px rgba(#000,0.1) solid
-      border-width: 1px 0 0 1px
-
   .ui.very.thin.sidebar
     .ui.vertical.menu
       width: 8rem
@@ -360,42 +304,52 @@
 
   @media only screen and (max-width: 768px)
     padding: 0 0.5rem 0.5rem 0.5rem
-    .mobile-hide
-      display: none
-    .ui.stackable.grid > .row > .column.left
-      margin-top: 0 !important
-      &.ng-hide
-        display: none !important
 
   @media (max-width: 640px)
-    .bill-progress .common.ui.seven.steps,
-    .bill-progress .ui.small.steps
-      width: 100%
-      display: block
-      .stage:first-child .step:first-child
-        border-radius: 0
-      .ui.step
+    .bill-progress
+      .ui.small.steps
+        .ui.step:after
+          top: 2rem
+      .common.ui.seven.steps, .ui.small.steps
         width: 100%
-        margin-bottom: 1px
-        .ui.label.pointing.below
-          margin-left: 10px
-          margin-top: 42px
-          &:before
+        display: block
+        .stage:first-child .step:first-child
+          border-radius: 0
+        .ui.step
+          width: 100%
+          padding-top: 10px
+          padding-bottom: 10px
+          margin-bottom: 1px
+          .ui.label.pointing.below
+            margin-left: 10px
+            margin-top: 42px
+            &:before
+              display: none
+          &:after
+            display: block
+            width: 1em
+            height: 1em
+            top: 50px
+            left: 50%
+            box-shadow: 1px -1px 0px 0px white inset
+          &.not-implemented
             display: none
-        &:after
-          display: block
-          width: 1em
-          height: 1em
-          top: 40px
-          left: 50%
-          box-shadow: 1px -1px 0px 0px white inset
-        &.not-implemented
-          display: none
-      .ui.state
-        margin-left: -2.5rem
-    .bill .bill-progress .ui.small.steps
-      .ui.step:after
-        top: 2rem
+        .ui.state
+          margin-left: -2.5rem
+  div[ly-diff]
+    .replace.left, .delete.left
+      .diff.text em
+        em-reset()
+        background-color: lighten(#f99, 7%)
+        color: #000
+    .replace.right, .insert.right
+      .diff.text em
+        em-reset()
+        background-color: lighten(#A1CF88, 10%)
+        color: #000
+    .ui.ribbon.label a
+      margin-top: -90px
+      padding-top: 90px
 
 div.item
   outline: none
@@ -449,9 +403,6 @@ div.item
     overflow: visible
     left: -40%
     display: block
-
-.item-section .spy
-  background-color: #e0e0c3
 
 .bill.compare
   .bill-meta

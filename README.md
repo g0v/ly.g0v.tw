@@ -7,9 +7,8 @@ WARNING: this is work in progress and the file format is likely to change!
 
 Install required packages:
 
-1.    `$ sudo gem install compass`
-2.    `$ npm install`
-3.    `$ npm run build`
+1.    `$ npm install`
+2.    `$ npm run build`
 
 Start server:
 
