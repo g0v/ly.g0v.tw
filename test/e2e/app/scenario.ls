@@ -28,6 +28,15 @@ describe 'bills' !->
           for elem in it => elem.getText!then !->
             expect it .not.toBe \§
             expect it .not.toBe \§undefined
+      element.all by.css 'div[ly-diff] .column.left' .then !->
+        for elem in it
+          expect elem.getAttribute 'class' .not.toMatch /ng-hide/
+
+    it 'left should hidden for baseless bills' !->
+      browser.get URL + 'bills/1374L15430'
+      element.all by.css 'div[ly-diff] .column.left' .then !->
+        for elem in it
+          expect elem.getAttribute 'class' .toMatch /ng-hide/
 
   describe 'sroll spy' (,) !->
     it 'should not scroll back' !->

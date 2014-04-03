@@ -152,7 +152,7 @@
                   span.summary {{r.summary}}
 
   .clearfix
-  div(scroll-spy offset="100" anchor=".right a" box=".ui.two.column.stackable.grid")
+  div(scroll-spy offset="100" anchor=".right a" box=".ui.column.stackable.grid")
     .content.default(ng-repeat="(i, d) in diff")
       a(name="{{d.name}}")
       h2.ui.horizontal.divider {{d.name}}

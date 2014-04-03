@@ -1,6 +1,6 @@
-.ui.two.column.stackable.grid
-  .column.two.row(ng-repeat="diffline in difflines track by $index", ng-hide="diffline.left == '' && diffline.right == ''")
-    .column.left(class="{{diffline.state}}", xng-hide="!d.diffbase")
+.ui.column.stackable.grid(ng-class="{one: baseless, two: !baseless, colored: !baseless}")
+  .row(ng-repeat="diffline in difflines track by $index", ng-if="diffline.left || diffline.right")
+    .column.left(class="{{diffline.state}}", ng-hide="baseless")
       .ui.segment.article-text
         .ui.ribbon.label(ng-if="$index == 0")
           a(id="original-{{leftItemAnchor}}",ng-href="#original-{{leftItemAnchor}}") {{leftItem}}
