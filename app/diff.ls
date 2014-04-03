@@ -42,3 +42,6 @@ angular.module 'ly.diff' []
         comment: $sce.trustAsHtml $scope.options.comment
     if $scope.heading.match /^(\d*?)(-(\d*?))?$/
       $scope.heading = \§ + $scope.heading
+
+    if $scope.heading-right?match /^(\d*?)(-(\d*?))?$/
+      $scope.heading-right = \§ + $scope.heading-right
