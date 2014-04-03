@@ -131,6 +131,7 @@ gulp.task 'js:app' ->
     .pipe gulp-concat 'app.js'
   s .= pipe gulp-uglify! if gutil.env.env is \production
   s.pipe gulp.dest '_public/js'
+    .pipe livereload!
 
 gulp.task 'js:vendor' <[bower]> ->
   bower = gulp-bower-files!
