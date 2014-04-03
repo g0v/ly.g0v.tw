@@ -37,7 +37,7 @@ angular.module 'ly.diff' []
         left: trim <| clone.closest '.left' .text!
         right: trim <| clone.closest '.right' .text!
     else
-      $scope <<< $scope.options{left,right,heading,anchor} <<<
+      $scope <<< $scope.options{left,right,heading,heading-right,anchor,anchor-right} <<<
         comment: $sce.trustAsHtml $scope.options.comment
     if $scope.heading.match /^(\d*?)(-(\d*?))?$/
       $scope.heading = \§ + $scope.heading
