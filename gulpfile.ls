@@ -91,6 +91,9 @@ gulp.task 'dev' <[httpServer template assets js:vendor js:app css]> ->
   LIVERELOADPORT = 35729
   livereload-server.listen LIVERELOADPORT, ->
     return gutil.log it if it
+  gulp.start 'watch'
+
+gulp.task 'watch' ->
   gulp.watch ['app/partials/**/*.jade', 'app/diff/*.jade', 'app/spy/*.jade'] <[template]>
   gulp.watch ['app/**/*.ls', 'app/**/*.jsenv'] <[js:app]>
   gulp.watch 'app/assets/**' <[assets]>
