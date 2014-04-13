@@ -50,3 +50,21 @@ describe 'diff', ->
                  {left: 'XY<em>z</em>', right: 'XY<em>Z</em>'},
                  {left: '', right: '<em>bbb</em>'},
                  {left: 'ccc', right: 'ccc'}]
+
+    it 'handles misaligned lines (or whatever)', ->
+      expect-diff do
+        input: [
+          [0, '六、公開'],
+          [1, '口述\n七、公開'],
+          [0, '播送\n'],
+          [-1, '七'],
+          [1, '八'],
+          [0, '、公開上映：指以\n'],
+          [-1, '八、公開演出\n'],
+          [0, '十二、散布'],
+        ]
+        output: [{left: '', right: '六、公開<em>口述</em>'},
+                 {left: '六、公開播送', right: '<em>七、公開</em>播送'},
+                 {left: '<em>七</em>、公開上映：指以', right: '<em>八</em>、公開上映：指以'},
+                 {left: '<em>八、公開演出</em>', right: ''},
+                 {left: '十二、散布', right: '十二、散布'}]
