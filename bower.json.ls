@@ -14,7 +14,7 @@ dependencies:
   "angular-ui-router": "0.0.1"
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
-  "ng-grid": "~2.0.7"
+  "ng-grid": "https://github.com/angular-ui/ng-grid.git#9ccc29d3b76e0ce89614f6480232ea968ba0da7e"
   "angular-qrcode": "~2.0.0"
   "jquery-scrollintoview": "Arwid/jQuery.scrollIntoView"
 
