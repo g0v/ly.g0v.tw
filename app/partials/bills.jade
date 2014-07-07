@@ -76,42 +76,20 @@
                 | 比較此議案
 
       .bill-progress(ng-if="bill_ref")
-        .common.ui.seven.steps
-          span.stage(ng-repeat="step in steps")
-            a.ui.step(ng-click="showSub($index)",ng-class="step.status.step")
-              .step-description {{step.description}}
-              .date {{step.date}}
-              //-.ui.pointing.below.label(ng-class="step.status.step") {{step.date}}
-            .ui.state(ng-class="step.status.state"): i.icon(ng-class="step.status.icon")
+        .ui.seven.steps
+          .main.step(ng-repeat="step in steps",ng-class="step.status",ng-click="showSub($index)")
+            i.icon(ng-class="step.icon")
+            .content
+              .title {{step.desc}}
+              .description {{step.date}}
 
-        .ui.small.steps(ng-repeat="step in steps",ng-show="step.sub")
-          span.stage(ng-repeat="substep in step.detail")
-            .ui.step(ng-class="substep.status.step")
-              .substep-description {{substep.description}}
+        .ui.steps(ng-repeat="step in steps",ng-show="step.sub")
+          .step(ng-repeat="substep in step.detail",ng-class="substep.step")
+            .content
+              .title {{substep.date}}
+              .description {{substep.desc}}
                 i.icon.file(ng-show="substep.links")
-                |  p.
                 a(ng-repeat="l in substep.links",target="_blank",ng-href="{{l.link}}") {{l.text}}
-              .date {{substep.date}}
-              //-.ui.pointing.below.label(ng-class="'{{substep.status.step}}'") {{substep.date}}
-            .ui.state(ng-class="substep.status.state"): i.icon(ng-class="substep.status.icon")
-
-    .ui.list.ttsmotions(ng-if="ttsmotions")
-      .item
-        i.icon.down
-        | 這應該要整合到上面的列表，但是還沒做好
-      .item(ng-repeat="ttsmotion in ttsmotions")
-          .content
-              a.header
-                span.date(ng-show='opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.date | date:'yyyy-MM-dd' }}
-                span.sitting(ng-show='!opts.show_date',ng-click='opts.show_date=!opts.show_date') {{ttsmotion.sitting_id}}
-                span {{ttsmotion.progress || ttsmotion.summary}}
-              .description
-                | {{ ttsmotion.resolution }}
-                i.icon.file(ng-show="ttsmotion.links")
-                |  p.
-                span(ng-repeat="l in ttsmotion.links")
-                  a.page(target="_blank",ng-href="{{l.link}}")
-                    | {{l.text}}
 
     h1.ui.header.bill(title="{{summary}}") {{summary}}
 
