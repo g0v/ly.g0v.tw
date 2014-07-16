@@ -14,6 +14,7 @@ angular.module 'ly.diff' []
       $scope.leftItemAnchor = $scope.anchor
       $scope.rightItem = $scope.heading-right ? $scope.leftItem
       $scope.rightItemAnchor = $scope.anchor-right ? $scope.leftItemAnchor
+      $scope.baseless = !$scope.left
       $scope.difflines = line-based-diff $scope.left, $scope.right .map ->
         it.left = $sce.trustAsHtml it.left || '無'
         it.right = $sce.trustAsHtml it.right
@@ -37,7 +38,10 @@ angular.module 'ly.diff' []
         left: trim <| clone.closest '.left' .text!
         right: trim <| clone.closest '.right' .text!
     else
-      $scope <<< $scope.options{left,right,heading,anchor} <<<
+      $scope <<< $scope.options{left,right,heading,heading-right,anchor,anchor-right} <<<
         comment: $sce.trustAsHtml $scope.options.comment
-    if $scope.heading.match /^(\d*?)(-(\d*?))?$/
+    if $scope.heading?match /^(\d*?)(-(\d*?))?$/
       $scope.heading = \§ + $scope.heading
+
+    if $scope.heading-right?match /^(\d*?)(-(\d*?))?$/
+      $scope.heading-right = \§ + $scope.heading-right

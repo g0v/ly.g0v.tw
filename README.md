@@ -92,6 +92,7 @@ Setting in cordova is really easy, all the settings are in `contrib/ly_ios/ly_g0
 
 # Test
 
+this is for test
 ## karma
 
 Reference: <http://karma-runner.github.io>

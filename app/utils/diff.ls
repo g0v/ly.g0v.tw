@@ -1,6 +1,4 @@
-make-line = -> {text: '', associate: -1}
-not-right = (target) -> target isnt \right
-not-left = (target) -> target isnt \left
+make-line = -> {text: ''}
 
 # Generate line-based diff of the given texts.  Diff is enclosed by <em> tag.
 #
@@ -49,36 +47,26 @@ char-based-diff-to-diffline = (ds) ->
       if line != ''
         line = "<em>#line</em>" if target isnt \both
         if target is \both
-          if left_lines[*-1].associate < 0
-            left_lines[*-1].associate = right_lines.length - 1
-          if right_lines[*-1].associate < 0
-            right_lines[*-1].associate = left_lines.length - 1
+          while left_lines.length < right_lines.length
+            left_lines.splice -1, 0, make-line!
+          while left_lines.length > right_lines.length
+            right_lines.splice -1, 0, make-line!
 
-      if not-right target
+      if target isnt \right
         left_lines[*-1].text += line
         if i != lines.length - 1
           left_lines.push make-line!
-      if not-left target
+      if target isnt \left
         right_lines[*-1].text += line
         if i != lines.length - 1
           right_lines.push make-line!
 
-  convert-to-difflines = (lines, side, difflines) ->
-    last = 0
-    for {text, associate}, i in lines
-      while last < associate
-        difflines[last][side] = ''
-        last++
-      difflines[last] ?= {}
-      difflines[last][side] = text
-      last++
-
-  # Merge left lines and right into difflines.  This is done by refering to
-  # "associate" link above, but it can be buggy.
   max = left_lines.length >? right_lines.length
   difflines = [ {} for i from 1 to max ]
-  convert-to-difflines right_lines, \right, difflines
-  convert-to-difflines left_lines, \left, difflines
+  for line, i in left_lines
+    difflines[i].left = line.text
+  for line, i in right_lines
+    difflines[i].right = line.text
 
   return difflines
 
