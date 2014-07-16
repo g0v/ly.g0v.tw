@@ -60,150 +60,90 @@
   .bill-progress
     .ui.steps
       margin-bottom: 1rem
-
-      .ui.step .ui.pointing.below.label
-        top: -2rem
-
+      *, :after, :before
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        box-sizing: border-box
+      .step > .icon
+        font-size: 1.3em
+        margin: 0em
+        padding: 0.2em 0.4em 0 0
+        vertical-align: middle
+      .step > .icon,
+      .step > .icon ~ .content
+        display: table-cell;
+        vertical-align: top;
+      .step .title
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+        font-size: 1.0em
+        font-weight: bold
+      .step .title ~ .description
+        margin-top: 0.2em
+        font-size: 0.9em
       .step
         display: inline-block
         position: relative
-        min-height: 3rem
-        text-align: center
-        vertical-align: middle
-        padding: 0.3rem 0 0 1rem
-        border-radius: 0
-        line-height: 1.2em
-        box-sizing: border-box
-
-        .step-description, .substep-description, .date
-          margin: 0
-          padding: 0
-          position: relative
-          z-index: 10
-        .step-description
-          font-size: large
-          font-weight: bold
-        .substep-description
-          font-weight: bold
-          a
-            color: inherit
-            padding: 0.3em 0.8em
-            border-radius(0.3em)
-            background-color: rgba(#000,0.05)
-
-      &.small
+        margin: 0em 0em
+        padding: 0.8em 1em 0.8em 1.4em
+        vertical-align: top
+        background: #ffffff
+        color: rgba(0, 0, 0, 0.8)
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15)
+        border-radius: 0em
+      .main.step:hover
+        background-color: rgba(0,0,0,.02)
+      .step:after
+        position: absolute
+        z-index: 2
+        content: ''
+        top: 50%
+        right: 0em
+        border: medium none
+        background-color: #ffffff
+        width: 1.2em
+        height: 1.2em
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        transform: translateY(-50%) translateX(50%) rotate(-45deg)
+      .step.not-yet,
+      .step.not-yet .title,
+      .step.not-yet .description
+        color: rgba(0, 0, 0, 0.2)
+      .step.scheduled
+        cursor: auto
+        background: #f0f0f0
+      .step.scheduled:after
+        background: #f0f0f0
+      @media (max-width: 1280px)
+        .step > .icon
+          display: none
         .step
-          min-height: 2.5rem
-
-      &.common
-
-        .stage:first-child
-          .step, .step:first-child, .step:last-child
-            border-corner-radius(top,left,0.315em)
-            border-corner-radius(bottom,left,0.315em)
-
-        .stage:last-child
-          .step, .step:first-child, .step:last-child
-            margin-right: 0em
-            border-corner-radius(top,right,0.315em)
-            border-corner-radius(bottom,right,0.315em)
-            &:after
-              display: none
-
-    .ui.state.hidden
-      display: none
-
-    .ui.seven.steps .stage > .step
-      width: 14.285%
-
-    ui-step-color($n, $b, $c, $s, $h)
-      .ui.step.{$n}, .ui.steps .step.{$n}
-        background-color: $b
-        color: $c
-
-      .ui.step.{$n}:hover, .ui.step.{$n}.hover
-        background-color: $h
-        color: $c
-
-      .ui.steps .step.{$n}.hover:after, .ui.steps .step.{$n}:hover:after, .ui.step.{$n}:hover, .ui.step.{$n}.hover::after
-        background-color: $h
-        border-left-color: $h
-
-      .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover
-        background-color: $b
-        color: $c
-
-      .ui.steps .step.no-hover.{$n}.hover:after, .ui.steps .step.no-hover.{$n}:hover:after, .ui.step.no-hover.{$n}:hover, .ui.step.no-hover.{$n}.hover::after
-        background-color: $b
-        border-left-color: $b
-
-      .ui.step.{$n}:after
-        border: none
-        background-color: $b
-        top: 0.42em
-        right: -1em
-        width: 2.15em
-        height: 2.15em
-        -webkit-transform: rotate(-45deg)
-        -moz-transform: rotate(-45deg)
-        -o-transform: rotate(-45deg)
-        -ms-transform: rotate(-45deg)
-        transform: rotate(-45deg)
-        -webkit-box-shadow: -1px -1px 0px 0px $s inset
-        -moz-box-shadow: -1px -1px 0px 0px $s inset
-        box-shadow: -1px -1px 0px 0px $s inset
-
-      .ui.state.{$n}
-        background-color: $b
-        color: $c
-
-    ui-step-color(scheduled,  #5c6166, #ffffff, #ffffff, darken(#5c6166, 20%))
-    ui-step-color(passed,  #5bbd72, #ffffff, #ffffff, darken(#5bbd72, 10%))
-    ui-step-color(red,    #d95c5c, #ffffff, #ffffff, darken(#d95c5c, 10%))
-    ui-step-color(blue,   #6ecff5, #ffffff, #ffffff, darken(#6ecff5, 10%))
-    ui-step-color(purple, #564f8a, #ffffff, #ffffff, darken(#564f8a, 10%))
-    ui-step-color(teal,   #00b5ad, #ffffff, #ffffff, darken(#00b5ad, 10%))
-    ui-step-color(returned, #e96633, #ffffff, #ffffff, darken(#e96633, 10%))
-    ui-step-color(not-yet,  #ffffff, #888888, #dddddd, darken(#ffffff, 5%))
-    ui-step-color(issued,   #dddddd, #333333, #ffffff, darken(#dddddd, 10%))
-
-    .ui.step.not-implemented
-      opacity: 0.5
-
-    .ui.state
-      i
-        margin: 0
-      display: inline-block
-      z-index: 10
-      position: absolute
-      background: #f00
-      padding: 0.3em
-      border-radius: 2em
-      font-size: 0.8rem
-      font-weight: 900
-      background: #444
-      border: 3px solid #eee
-      color: #fff
-      margin: 0.8em 1em 0 0
-
-    .ui.small.state,
-    .ui.small.steps .state
-      font-size: 0.65rem
-
-    .ui.large.state,
-    .ui.large.steps .state
-      font-size: 1rem
-    .ui.pointing.below.label
-      &.passed,
-      &.passed:before
-        background-color: rgb(161, 207, 100)
-        border-color: rgb(161, 207, 100)
-        color: rgb(255, 255, 255)
-      &.scheduled,
-      &.scheduled:before
-        background-color: #5c6166
-        border-color: #5c6166
-        color: #fff
+          padding: 0.8em 1em 0.8em 1.6em
+      @media (max-width: 1120px)
+        .main.step .title ~ .description
+          display: none
+    .ui.ordered.steps
+      counter-reset: ordered
+      .step:before
+        display: table-cell
+        position: static
+        padding: 0.3em 0.6em 0 0
+        font-size: 1.2em
+        counter-increment: ordered
+        content: counters(ordered, ".")
+      .step > *
+        display: table-cell
+        vertical-align: top
+    .ui.steps .step.passed > .icon:before,
+    .ui.ordered.steps .step.passed:before
+      font-family: 'Step'
+      content: '\e800'
+      color: #2ecc40
+    .ui.steps .step.scheduled .title
+      color: #009fda
+    @font-face
+      font-family: Step
+      src: url('../fonts/step.woff') format("woff"), 
+           url('../fonts/step.ttf') format("truetype")
 
   .summary
     .description
@@ -305,37 +245,6 @@
   @media only screen and (max-width: 768px)
     padding: 0 0.5rem 0.5rem 0.5rem
 
-  @media (max-width: 640px)
-    .bill-progress
-      .ui.small.steps
-        .ui.step:after
-          top: 2rem
-      .common.ui.seven.steps, .ui.small.steps
-        width: 100%
-        display: block
-        .stage:first-child .step:first-child
-          border-radius: 0
-        .ui.step
-          width: 100%
-          padding-top: 10px
-          padding-bottom: 10px
-          margin-bottom: 1px
-          .ui.label.pointing.below
-            margin-left: 10px
-            margin-top: 42px
-            &:before
-              display: none
-          &:after
-            display: block
-            width: 1em
-            height: 1em
-            top: 50px
-            left: 50%
-            box-shadow: 1px -1px 0px 0px white inset
-          &.not-implemented
-            display: none
-        .ui.state
-          margin-left: -2.5rem
   div[ly-diff]
     .replace.left, .delete.left
       .diff.text em

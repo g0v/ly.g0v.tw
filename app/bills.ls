@@ -48,125 +48,356 @@ diffmeta = (content) -> content?map (diff) ->
     diffnew: h.0
     amendment: diff.content.map bill-amendment diff, 0, c, base-index
 
-function match-motions(substeps, ttsmotions)
-  date = moment(ttsmotions.date) .format 'YYYY-MM-DD'
-  for s in substeps
-    if s.date is date and s.description is \決定： + ttsmotions.resolution.replace /\(\S+\s+\S+\)/, ''
-      s.links = ttsmotions.links
-      return
-  substeps.push {date, description: ttsmotions.resolution, links: ttsmotions.links}
+class Steps
 
-function build-steps(motions)
-  steps =
-    * name: "proposal"
+  (@bill, @lymodel, @scope) ->
+    @proposal =
       sub: false
-      description: "提案"
-      status:
-        step: "passed"
-        state: "not-yet"
-        icon: ""
+      desc:   "提案"
+      icon:   ""
+      status: "passed"
+      date:   '?.?.?'
       detail: []
-    * name: "first-reading"
+    @first_reading =
       sub: false
-      description: "一讀"
-      status:
-        step: "not-yet"
-        state: "not-yet"
-        icon: ""
+      desc:   "一讀"
+      icon:   "comment"
+      status: "scheduled"
+      date:   '?.?.?'
       detail: []
-    * name: "committee"
+    @committee =
       sub: false
-      description: "委員會"
-      status:
-        step: "not-yet"
-        state: "not-yet"
-        icon: ""
+      desc:   "付委"
+      icon:   "chat"
+      status: "not-yet"
+      date:   '?.?.?'
       detail: []
-    * name: "second-reading"
+    @second_reading =
       sub: false
-      description: "二讀"
-      status:
-        step: "not-yet not-implemented no-hover"
-        state: "not-yet"
-        icon: ""
+      desc:   "二讀"
+      icon:   "chat"
+      status: "not-yet"
+      date:   '?.?.?'
       detail: []
-    * name: "third-reading"
+    @third_reading =
       sub: false
-      description: "三讀"
-      status:
-        step: "not-yet not-implemented no-hover"
-        state: "not-yet"
-        icon: "check"
-      date: ""
+      desc:   "三讀"
+      icon:   "chat"
+      status: "not-yet"
+      date:   '?.?.?'
       detail: []
-    * name: "announced"
+    @announced =
       sub: false
-      description: "頒佈"
-      status:
-        step: "not-yet not-implemented no-hover"
-        state: "not-yet"
-        icon: "check"
-      date: ""
+      desc:   "頒佈"
+      icon:   "unmute"
+      status: "not-yet"
+      date:   '?.?.?'
       detail: []
-    * name: "implemented"
+    @implemented =
       sub: false
-      description: "生效"
-      status:
-        step: "not-yet not-implemented no-hover"
-        state: "hidden"
-        icon: ""
-      date: ""
+      desc:   "生效"
+      icon:   "legal"
+      status: "not-yet"
+      date:   '?.?.?'
       detail: []
-  for motion, i in motions
-    if i is 0 => steps.0.date = motion.dates.0.date
-    match motion.status
-    | \prioritized # example 1618L14627
-      detail =
-        name: "proposal"
-        description: motion.resolution
-        status:
-          step: "passed"
-          state: "passed"
-          icon: "star"
-        date: motion.dates[0].date
-      steps[0].status
-        ..state = "passed" if ..state is "not-yet"
-        ..icon ||= "check"
-      steps[1].status = detail.status
-      steps[1].detail.push detail
-      steps[2].status =
-        icon: "star"
-        state: "passed"
-    | \rejected # example: 335L15406
-      detail =
-        name: "proposal"
-        description: motion.resolution
-        status:
-          step: "returned"
-          state: "returned"
-          icon: "exclamation"
-        date: motion.dates[0].date
-      steps[0].detail.push detail
-      steps[0].status
-        ..icon = \exclamation
-        ..state = \returned
-    | \committee
-      detail =
-        name: "scheduled"
-        description: motion.resolution
-        status:
-          step: "passed"
-          state: "passed"
-          icon: "check"
-        date: motion.dates[0].date
-      steps[1].date = motion.dates[0].date
-      steps[1].status = detail.status
-      steps[1].detail.push detail
-      steps[0].status
-        ..state = "passed" if ..state is "not-yet"
-        ..icon ||= "check"
-      steps[0].detail.push detail
-  steps
+
+  build: (cb) ->
+    # proposal, first_reading, committee are crawled from motions.
+    @build_from_motions!
+    self <- @build_from_report!
+
+    # proposal, first_reading, committee,
+    # second_reading, third_reading, announced are crawled by ttsmotions.
+    self <- self.build_from_ttsmotions!
+
+    steps =
+      * self.proposal
+      * self.first_reading
+      * self.committee
+      * self.second_reading
+      * self.third_reading
+      * self.announced
+      * self.implemented
+    cb steps
+
+  build_from_motions: ->
+    motions = @bill.motions.filter -> it.resolution != null
+    for motion in motions
+      desc = motion.resolution
+      date = @pretty_date motion.dates.0.date
+      switch
+      # [accepted]
+      # /照案通過/ -> not legislative
+      # /提報院會/ -> not legislative
+      # /列席報告/ -> scenario 1. duplicate with 中央政府總預算案
+      #                        2. not legislative
+      # /多數通過/ -> scenario 1. duplicate with 交 xxx 委員會審查
+      #                        2. unkown committee
+      #                           eg. 887G12800-813
+
+      # [consultation]
+      # /黨團協商/ -> scenario 1. deplicate with 逕付二讀
+      #                        2. not legislative
+
+      # [rejected] eg. 335L15406
+      case desc.match /少數不通過|退回程序委員會/
+        @proposal <<<
+          status: \passed
+          date:   date
+          detail: [
+            desc:  desc
+            date:  date
+          ]
+        @first_reading <<<
+          status: \scheduled
+      # [committee] eg. 468L12892
+      case desc.match /交([^，]+?)[兩三四五六七八]?委員會|中央政府總預算案/
+        @proposal <<<
+          status: \passed
+        @first_reading <<<
+          status: \passed
+          date:   date
+        @first_reading.detail.push do
+          desc:  desc
+          date:  date
+        @committee <<<
+          status: \scheduled
+      # [extended] eg. 915G13287-1
+      case desc.match /展延審查期限/
+        @proposal <<<
+          status: \passed
+        @first_reading <<<
+          status: \passed
+        @committee <<<
+          status: \scheduled
+          date:  date
+        @committee.detail.push do
+          desc:  desc
+          date:  date
+      # [prioritized] eg. 1618L14627
+      case desc.match /逕付(院會)?二讀/
+        @proposal <<<
+          status: \passed
+        @first_reading <<<
+          status: \passed
+          date:   date
+        @first_reading.detail.push do
+          desc:  desc
+          date:  date
+        @committee <<<
+          status: \passed
+        @second_reading <<<
+          status: \scheduled
+      # [retrected] eg. 184L15146-1
+      case desc.match /同意撤回/
+        @proposal <<<
+          status: \passed
+        @first_reading <<<
+          status: \passed
+        @committee <<<
+          status: \passed
+        @second_reading <<<
+          status: \passed
+          date:   date
+        @second_reading.detail.push do
+          desc:  desc
+          date:  date
+
+  build_from_report: (cb) ->
+    self = this
+    func <- @report_of_bill @bill
+    func.finally (report) ->
+      cb self
+    report <- func.success
+    self.scope <<< {report}
+    date = self.pretty_date report.motions.0.dates.0.date
+    # eg. 335L15406
+    self.committee <<<
+      status: "passed"
+      date:   date
+    self.committee.detail.push do
+      desc:  report.summary
+      date:  date
+    self.second_reading <<<
+      if report.summary isnt /審查決議：「不予審議」/
+        status: "scheduled"
+
+  report_of_bill: (bill, cb) ->
+    func = @lymodel.get "bills" params: do
+      q: JSON.stringify do
+        report_of: $contains: bill.bill_id
+      fo: true
+    cb func
+
+  build_from_ttsmotions: (cb) ->
+    return cb this if @bill.bill_ref == /-/ # original proposal
+    self = this
+    ttsmotions <- @get_ttsmotions!
+    self.scope.ttsmotions = ttsmotions
+    for motion in ttsmotions
+      motion.links = self.links_of_ttsmotion motion
+      step = self.step_of_ttsmotion motion
+      self.update_step_by_ttsmotion step, motion
+      self.update_detail_by_ttsmotion step.detail, motion
+    cb self
+
+  get_ttsmotions: (cb) ->
+    {entries: ttsmotions} <- @lymodel.get "ttsmotions" params: do
+      s: {date: -1}
+      q: JSON.stringify do
+        bill_refs: $contains: @bill.bill_ref
+    .success
+    cb ttsmotions.reverse!
+
+  # XXX this should be processed in api.ly
+  links_of_ttsmotion: (ttsmotion) ->
+    desc = new AugmentedString ttsmotion.resolution
+    links = desc.scan /([\d-]+)\s\["(\w+)",(\d+),(\d+),(\d+),(\d+),(\d+)\]/
+    links = links.filter (link) -> link.1 == \g
+    links.map (link) ->
+      text = 'p. ' + link.0
+      vol  = new AugmentedString link.2 .rjust 3, '0'
+      vol += new AugmentedString link.3 .rjust 3, '0'
+      vol += new AugmentedString link.4 .rjust 2, '0'
+      url = "http://lis.ly.gov.tw/lgcgi/lypdftxt?#vol;#{link.5};#{link.6}"
+      {text, link: url}
+
+  step_of_ttsmotion: (ttsmotion) ->
+    process = ttsmotion.progress
+    desc    = ttsmotion.resolution
+    switch
+    case process == /提案|退回程序/ => @proposal
+    case process == /一讀/          => @first_reading
+    case process == /委員會/        => @committee
+    case process == /二讀/
+      if desc == /逕付(院會)?二讀/
+        @first_reading
+      else
+        @second_reading
+    case process == /三讀|復議/     => @third_reading
+    case process == /頒佈/          => @announced
+    case process == /生效/          => @implemented
+
+  update_step_by_ttsmotion: (step, ttsmotion) ->
+    date = @date_of_ttsmotion ttsmotion
+    process = ttsmotion.progress
+    desc    = ttsmotion.resolution
+    switch
+    # eg. 1374L15430
+    case desc == /交([^，]+?)[兩三四五六七八]?委員會|中央政府總預算案/
+      @proposal <<<
+        status: \passed
+      @first_reading <<<
+        status: \passed
+        date:   date
+      @committee <<<
+        status: \scheduled
+    case desc == /逕付(院會)?二讀/ => # do nothing
+    case process == /二讀/
+      @committee <<<
+        status: \passed
+      @second_reading <<<
+        status: \passed
+        date:   date
+      @third_reading <<<
+        status: \scheduled
+    case process == /復議/
+      @committee <<<
+        status: \passed
+      @second_reading <<<
+        status: \passed
+      @third_reading <<<
+        status: \scheduled
+        date:   date
+    case process == /三讀|復議/
+      @committee <<<
+        status: \passed
+      @second_reading <<<
+        status: \passed
+      @third_reading <<<
+        status: \passed
+        date:   date
+      @announced <<<
+        status: \scheduled
+
+  update_detail_by_ttsmotion: (detail, ttsmotion) ->
+    date  = @date_of_ttsmotion ttsmotion
+    desc  = @desc_of_ttsmotion ttsmotion
+    links = ttsmotion.links
+    steps = @substeps_of_detail detail
+    step  = steps[date + desc]
+    if step
+      step <<< {links}
+    else
+      detail.push {date, desc, links}
+
+  date_of_ttsmotion: (ttsmotion) ->
+    moment ttsmotion.date .format 'YYYY.MM.DD'
+
+  desc_of_ttsmotion: (ttsmotion) ->
+    desc = ttsmotion.resolution
+    desc = desc.replace /\(\S+\s+\S+\)/, ''
+    desc = desc.replace /\s/g, ''
+    desc
+
+  substeps_of_detail: (detail) ->
+    steps = {}
+    for step in detail
+      date = step.date
+      desc = step.desc.replace /\決定：|\s/g, ''
+      steps[date + desc] = step
+    steps
+
+  pretty_date: (date) ->
+    date.replace /-/g, \.
+
+class AugmentedString
+
+  (@string) ->
+
+  # a = "cruel world"
+  # a.scan(/\w+/)        #=> ["cruel", "world"]
+  # a.scan(/.../)        #=> ["cru", "el ", "wor"]
+  # a.scan(/(...)/)      #=> [["cru"], ["el "], ["wor"]]
+  # a.scan(/(..)(..)/)   #=> [["cr", "ue"], ["l ", "wo"]]
+  scan: (pattern) ->
+    ary = []
+    string = @string
+    while result = string.match pattern
+      i = string.index-of result.0
+      string = string.slice i + result.0.length
+      item =
+        if result.length == 1
+          result.0
+        else
+          result.slice 1
+      ary.push item
+    ary
+
+  # "hello".rjust(4)            #=> "hello"
+  # "hello".rjust(20)           #=> "               hello"
+  # "hello".rjust(20, '1234')   #=> "123412341234123hello"
+  rjust: (width, padding = ' ') ->
+    len = width - @string.length
+    if len > 0
+      times  = len / padding.length
+      remain = len % padding.length
+      string = new AugmentedString padding
+      string = string.repeat times
+      tail   = padding.slice 0, remain
+      string = string.concat tail
+      string.concat @string
+    else
+      @string
+
+  # "Ho! ".repeat(3)  #=> "Ho! Ho! Ho! "
+  # "Ho! ".repeat(0)  #=> ""
+  repeat: (times) ->
+    clone = ''
+    for i to times - 1
+      clone = clone.concat @string
+    clone
+
 
 angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
@@ -182,65 +413,8 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
         if that isnt billId and that isnt /;/
           # make bill_ref the permalink
           return $state.transitionTo 'bills', { billId: bill.bill_ref }
-        $scope.steps = build-steps bill.motions
-        if bill.bill_ref isnt /-/ # original proposal
-          require! sprintf
-          {entries: $scope.ttsmotions} <- LYModel.get "ttsmotions" params: do
-            s: {date: -1}
-            q: JSON.stringify do
-              bill_refs: $contains: bill.bill_ref
-          .success
-          for m, i in $scope.ttsmotions
-            # XXX this should be processed in api.ly
-            m.resolution -= /\(p\.(.*)\)/
-            a = RegExp.$1.split /(?:[\s,;]*)?(.*?)\s*(\[.*?\])/
-            res = []
-            do
-              [_, text, link]:x = a.slice 0, 3
-              if x.length is 3
-                link = JSON.parse link
-                # linkify type 'g'
-                #// /lgcgi/lypdftxt\?(\d\d\d?)(\d\d\d)(\d\d);(\d+);(\d+) //
-                if link.0 is \g
-                  vol = sprintf "%03d%03d%02d", ...link[1 to 3]
-                  link = "http://lis.ly.gov.tw/lgcgi/lypdftxt?#vol;#{link.4};#{link.5}"
-                res.push {text, link}
-              else
-                break
-            while a.splice 0, 3
-            m.links = res
-            switch m.progress
-            case '提案', '退回程序' => match-motions $scope.steps[0].detail, m
-            case '一讀' => match-motions $scope.steps[1].detail, m
-            case '委員會' => match-motions $scope.steps[2].detail, m
-            case '二讀' => match-motions $scope.steps[3].detail, m
-            case '三讀' => match-motions $scope.steps[4].detail, m
-            case '頒佈' => match-motions $scope.steps[5].detail, m
-            case '生效' => match-motions $scope.steps[6].detail, m
-
-          report <- LYModel.get "bills" params: do
-            q: JSON.stringify do
-              report_of: $contains: bill.bill_id
-            fo: true
-          .success
-          $scope <<< {report}
-          $scope.steps.3.date = report.motions.0.dates.0.date
-          $scope.steps.3.status
-            ..step = 'scheduled'
-          detail = do
-            name: "committee"
-            description: report.summary
-            status: do
-              if report.summary is /審查決議：「不予審議」/
-                step: "red"
-                state: "red"
-                icon: "exclamation"
-              else
-                step: "passed"
-                state: "passed"
-                icon: "check"
-          $scope.steps.2.status = detail.status
-          $scope.steps.2.detail.push detail
+        steps = new Steps bill, LYModel, $scope
+        steps.build -> $scope.steps = it
 
         data <- LYModel.get "bills/#{billId}/data" .success
         $scope.diff = diffmeta data?content
@@ -280,7 +454,9 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
         console.log matrix
 
       $scope.showSub = (index) ->
-        angular.forEach $scope.steps, (v, i) ->
-          if index == i
-            v.sub = !v.sub
-          else v.sub = false
+        angular.forEach $scope.steps, (step, i) ->
+          if (index == i and
+              step.detail.length >= 1)
+            step.sub = !step.sub
+          else
+            step.sub = false
