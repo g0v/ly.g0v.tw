@@ -1,0 +1,55 @@
+.bill-index
+  margin: 0 1rem
+  padding: 1rem 0
+  .ui.stackable.grid
+    margin: 0
+    .row
+      position: relative
+      margin: 0
+      padding: 0
+      background-color: rgba(#000,0.05)
+      border-bottom: 1px #ccc dashed
+      &:first-child .column:first-child
+        @media only screen and (max-width:768px)
+          padding: 1rem
+      .column
+        padding: 1rem
+        &:first-child
+          min-height: 13rem
+          > div[legislator]
+            position: absolute
+            .image
+              width: 100px
+              .g0v-icon:after
+                padding-left: .1em
+                font-size: 1.8em
+            .content
+              padding-top: .5em
+              text-align: center
+            .infocard
+              margin-top: 0
+              left: -5%
+            .avatar
+              width: 100px
+        @media only screen and (max-width:768px)
+          padding: 1rem!important
+          margin: 0 !important
+          &:first-child
+            padding: 1rem 1rem 0 1rem!important
+            min-height: 9rem
+        .ui.pointing.label
+          margin: 0 0 3rem 8rem
+          font-size: 1.5rem
+          background-color: #fff
+          &:before
+            background-color: #fff
+          @media only screen and (max-width:768px)
+            margin: 0 0 0 8rem
+        .detail.label
+          display: block
+          margin-bottom: 1em
+          font-size: 1.1em
+          &:last-child
+            margin-bottom: 2em
+        .timing
+          font-size: 1em

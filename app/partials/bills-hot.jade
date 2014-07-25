@@ -7,7 +7,10 @@
   .ui.two.column.stackable.grid
     .row(ng-repeat="bill in currentBills")
       .column(ng-show="bill.sponsors")
-        .item(legislator="bill.sponsors[0]")
+        .item(legislator="bill.sponsors[0]",legislator-style="{size: 'large'}")
         .ui.pointing.left.label
           a(ng-href="/bills/{{bill.bill_ref}}") {{bill.summary || 'xxxxx'}}
-      .column some feedback or statistics
+      .column
+        .ui.timing.bottom.attached.label 從提案到現在已經 7 個月 23 天
+        .ui.detail.green.label 二讀成功！
+        .ui.detail.label 三讀中
