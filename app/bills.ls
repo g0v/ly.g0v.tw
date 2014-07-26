@@ -121,6 +121,7 @@ class Steps
       * self.announced
       * self.implemented
     self.ensure_steps_status_order!
+    self.ensure_only_one_scheduled_step!
     cb self.steps
 
   build_from_motions: ->
@@ -403,6 +404,13 @@ class Steps
       ]
       status = statuses[priority]
       step.status = status
+
+  ensure_only_one_scheduled_step: ->
+    prev = @steps[0]
+    for step in @steps
+      if step.status == \scheduled == prev.status
+        prev.status = \passed
+      prev = step
 
 class AugmentedString
 
