@@ -5,12 +5,12 @@
     a.item(ng-class="{active: currentTab == '7'}",ng-click="currentTab = '7'") 本週
     a.item(ng-class="{active: currentTab == '30'}",ng-click="currentTab = '30'") 本月
   .ui.two.column.stackable.grid
-    .row(ng-repeat="bill in currentBills")
-      .column(ng-show="bill.sponsors")
+    .row(ng-repeat="bill in currentBills",ng-show="bill.sponsors")
+      .column
         .item(legislator="bill.sponsors[0]",legislator-style="{size: 'large'}")
         .ui.pointing.left.label
           a(ng-href="/bills/{{bill.bill_ref}}") {{bill.summary || 'xxxxx'}}
       .column
-        .ui.timing.bottom.attached.label 從提案到現在已經 7 個月 23 天
-        .ui.detail.green.label 二讀成功！
-        .ui.detail.label 三讀中
+        .ui.detail.label(ng-repeat="step in bill.steps",ng-class="step.status") {{step.desc}}
+        .ui.timing.label(ng-if="bill.diffDesc") 從{{bill.diffDesc}}到現在已經 {{bill.diffYear}} {{bill.diffMonth}} {{bill.diffDay}}
+        .ui.timing.label(ng-if="!bill.diffDesc") 未知提案時間

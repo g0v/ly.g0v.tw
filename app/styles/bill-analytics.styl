@@ -15,7 +15,7 @@
       .column
         padding: 1rem
         &:first-child
-          min-height: 13rem
+          min-height: 10rem
           > div[legislator]
             position: absolute
             .image
@@ -33,23 +33,26 @@
               width: 100px
         @media only screen and (max-width:768px)
           padding: 1rem!important
-          margin: 0 !important
+          margin: 0!important
           &:first-child
             padding: 1rem 1rem 0 1rem!important
             min-height: 9rem
         .ui.pointing.label
-          margin: 0 0 3rem 8rem
+          margin-left: 8rem
           font-size: 1.5rem
           background-color: #fff
           &:before
             background-color: #fff
-          @media only screen and (max-width:768px)
-            margin: 0 0 0 8rem
-        .detail.label
-          display: block
-          margin-bottom: 1em
+        .label.detail
+          margin: .25em
           font-size: 1.1em
-          &:last-child
-            margin-bottom: 2em
-        .timing
+        .label.passed
+          background-color: #A1CF64
+          color: #fff
+        .label.scheduled
+          background: #6ECFF5
+          color: #fff
+        .label.timing
+          margin: .25em
           font-size: 1em
+          background-color: #fff

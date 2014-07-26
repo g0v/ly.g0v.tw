@@ -102,6 +102,8 @@ class Steps
       detail: []
 
   build: (cb) ->
+    return @step if @step
+
     # proposal, first_reading, committee are crawled from motions.
     @build_from_motions!
     self <- @build_from_report!
@@ -110,7 +112,7 @@ class Steps
     # second_reading, third_reading, announced are crawled by ttsmotions.
     self <- self.build_from_ttsmotions!
 
-    steps =
+    self.steps =
       * self.proposal
       * self.first_reading
       * self.committee
@@ -118,7 +120,8 @@ class Steps
       * self.third_reading
       * self.announced
       * self.implemented
-    cb steps
+    self.ensure_steps_status_order!
+    cb self.steps
 
   build_from_motions: ->
     motions = @bill.motions.filter -> it.resolution != null
@@ -269,6 +272,8 @@ class Steps
     case process == /提案|退回程序/    => @proposal
     case process == /一讀/             => @first_reading
     case process == /委員會/           => @committee
+    # 882L15375
+    case process == /黨團協商/         => @second_reading
     case process == /二讀/
       if desc == /逕付(院會)?二讀/
         @first_reading
@@ -277,6 +282,9 @@ class Steps
     case process == /三讀|(?:復|覆)議/ => @third_reading
     case process == /頒佈/             => @announced
     case process == /生效/             => @implemented
+    case process == null
+      if desc == /交黨團進行協商/
+        @second_reading
 
   update_step_by_ttsmotion: (step, ttsmotion) ->
     date = @date_of_ttsmotion ttsmotion
@@ -361,6 +369,41 @@ class Steps
   pretty_date: (date) ->
     date.replace /-/g, \.
 
+  first_step_has_date: ->
+    steps = @steps.filter -> it.date != '?.?.?'
+    steps[0]
+
+  step_with_elapsed: (step) ->
+    if step
+      parts = step.date.match /(\d+)\.(\d+)\.(\d+)/
+      date = new Date parts.slice 1
+      now = new Date
+      diff = new Date now.getTime! - date.getTime!
+      diff-year  = @pretty_diff '年', diff.getUTCFullYear! - 1970
+      diff-month = @pretty_diff '個月', diff.getUTCMonth!
+      diff-day   = @pretty_diff '天', diff.getUTCDate! - 1
+      {diff-desc: step.desc, diff-year, diff-month, diff-day}
+    else
+      {}
+
+  pretty_diff: (unit, number) ->
+    if number == 0
+      ''
+    else
+      "#number #unit"
+
+  ensure_steps_status_order: ->
+    status = @steps[0].status
+    statuses = [\passed, \scheduled, \not-yet]
+    priorities = {passed: 0, scheduled: 1, not-yet: 2}
+    for step in @steps
+      priority = Math.max.apply null, [
+        priorities[step.status],
+        priorities[status]
+      ]
+      status = statuses[priority]
+      step.status = status
+
 class AugmentedString
 
   (@string) ->
@@ -420,8 +463,13 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
     [selected]? = [e for e in $scope.bill-stats when e.timeframe is it]
     selected.bills ?= [{bill_ref,count} for [bill_ref, count] in selected.content]
     for bill in selected.bills when !bill.sponsors => let bill
-      {committee}:bill-details <- LYModel.get "bills/#{bill.bill_ref}" .success
+      bill-details <- LYModel.get "bills/#{bill.bill_ref}" .success
       bill <<< bill-details
+      steps = new Steps bill, LYModel, {}
+      steps-detail <- steps.build
+      bill.steps = steps-detail
+      step = steps.first_step_has_date!
+      bill <<< steps.step_with_elapsed step
     $scope.current-bills = selected.bills
 
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
