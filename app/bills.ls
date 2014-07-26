@@ -396,7 +396,7 @@ class Steps
   ensure_steps_status_order: ->
     status = @steps[0].status
     statuses = [\passed, \scheduled, \not-yet]
-    priorities = {passed: 0, scheduled: 1, not-yet: 2}
+    priorities = {passed: 0, scheduled: 1, 'not-yet': 2}
     for step in @steps
       priority = Math.max.apply null, [
         priorities[step.status],
