@@ -11,6 +11,7 @@
         .ui.pointing.left.label
           a(ng-href="/bills/{{bill.bill_ref}}") {{bill.summary || 'xxxxx'}}
       .column
-        .ui.detail.label(ng-repeat="step in bill.steps",ng-class="step.status") {{step.desc}}
+        .ui.steps
+          .ui.step(ng-repeat="step in bill.steps",ng-class="step.status") {{step.desc}}
         .ui.timing.label(ng-if="bill.diffDesc") 從{{bill.diffDesc}}到現在已經 {{bill.diffYear}} {{bill.diffMonth}} {{bill.diffDay}}
         .ui.timing.label(ng-if="!bill.diffDesc") 未知提案時間
