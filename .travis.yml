@@ -21,7 +21,7 @@ before_script:
   - npm install -g gulp
 
 script:
-  - gulp --require LiveScript test:$TEST
+  - '[ "${TEST}" = "sauce" -a "${TRAVIS_PULL_REQUEST}" != "false"] && true || gulp --require LiveScript test:$TEST'
 
 before_deploy: "BUILD=git-`git describe --always` gulp --require LiveScript build ly-diff server --env production"
 
