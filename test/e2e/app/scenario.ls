@@ -5,6 +5,7 @@ const URL = 'http://localhost:3333/'
 
 describe 'ly.g0v.tw' (,) !->
   it 'should automatically redirect to /calendar/today when location hash/fragment is empty' !->
+    browser.ignore-synchronization = true
     browser.get URL
     url <-! browser.getCurrentUrl!.then
     expect url .toBe URL + 'calendar/today'
@@ -33,6 +34,7 @@ describe 'bills' !->
           expect elem.getAttribute 'class' .not.toMatch /ng-hide/
 
     it 'left should hidden for baseless bills' !->
+      browser.ignore-synchronization = true
       browser.get URL + 'bills/1374L15430'
       element.all by.css 'div[ly-diff] .column.left' .then !->
         for elem in it
