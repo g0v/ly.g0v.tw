@@ -122,6 +122,8 @@ class Steps
       * self.implemented
     self.ensure_steps_status_order!
     self.ensure_only_one_scheduled_step!
+    self.set_proposal_icon_if_bill_has_been_rejected!
+    self.set_proposal_date_if_first_reading_has_date!
     cb self.steps
 
   build_from_motions: ->
@@ -411,6 +413,18 @@ class Steps
       if step.status == \scheduled == prev.status
         prev.status = \passed
       prev = step
+
+  # 1374L15430
+  set_proposal_icon_if_bill_has_been_rejected: ->
+    @proposal = @steps[0]
+    if @proposal.date != '?.?.?'
+      @proposal.icon = 'exclamation'
+
+  # 1073L15722
+  set_proposal_date_if_first_reading_has_date: ->
+    [@proposal, @first_reading] = @steps
+    if @proposal.date == '?.?.?'
+      @proposal.date = @first_reading.date
 
 class AugmentedString
 
