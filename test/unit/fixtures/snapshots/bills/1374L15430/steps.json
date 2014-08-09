@@ -1,0 +1,194 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"exclamation",
+      "status":"passed",
+      "date":"2013.11.08",
+      "detail":[
+         {
+            "desc":"決定：退回程序委員會重新提出。",
+            "date":"2013.11.08",
+            "links":[
+               {
+                  "text":"p. 13",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10206501;13;13"
+               }
+            ]
+         },
+         {
+            "date":"2013.10.25",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 20",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10205801;20;20"
+               }
+            ]
+         },
+         {
+            "date":"2013.11.01",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 11",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10206101;11;11"
+               }
+            ]
+         },
+         {
+            "date":"2013.11.15",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 11",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10206801;11;11"
+               }
+            ]
+         },
+         {
+            "date":"2013.11.29",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 13",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10207401;13;13"
+               }
+            ]
+         },
+         {
+            "date":"2013.12.13",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 17-18",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10208001;17;18"
+               }
+            ]
+         },
+         {
+            "date":"2013.12.20",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 12",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10208401;12;12"
+               }
+            ]
+         },
+         {
+            "date":"2013.12.27",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 15",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10300301;15;15"
+               }
+            ]
+         },
+         {
+            "date":"2014.01.09",
+            "desc":"退回程序委員會重新提出。",
+            "links":[
+               {
+                  "text":"p. 9",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10300801;9;9"
+               }
+            ]
+         },
+         {
+            "date":"2014.03.04",
+            "desc":"退回程序委員會重新提出。[\"g\",103,13,2,285,285]",
+            "links":[
+
+            ]
+         },
+         {
+            "date":"2014.03.07",
+            "desc":"退回程序委員會重新提出。[\"g\",103,14,1,7,7]",
+            "links":[
+
+            ]
+         },
+         {
+            "date":"2014.03.14",
+            "desc":"退回程序委員會重新提出。[\"g\",103,16,1,8,8]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2014.04.11",
+      "detail":[
+         {
+            "date":"2014.04.11",
+            "desc":"交內政委員會併案審查。[\"g\",103,22,1,1,1]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"2014.04.22",
+      "detail":[
+         {
+            "date":"2014.04.22",
+            "desc":"另定期處理[\"g\",103,25,1,241,241]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

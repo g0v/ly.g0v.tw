@@ -8,6 +8,10 @@ module.exports = (karma) ->
       * "_public/js/app.js"
       * "bower_components/angular-mocks/angular-mocks.js"
       * "test/unit/**/*.spec.ls"
+      * pattern: 'test/unit/fixtures/**/*.json'
+        watched: true
+        served: true
+        included: true
     exclude: []
     reporters: ["progress"]
     port: 9876
@@ -20,6 +24,7 @@ module.exports = (karma) ->
     #plugins: ["karma-jasmine", "karma-live-preprocessor", "karma-chrome-launcher"]
     preprocessors: {
         '**/*.ls': ['live']
+        './test/unit/fixtures/**/*.json': ['json_fixtures']
     }
     singleRun: false
 

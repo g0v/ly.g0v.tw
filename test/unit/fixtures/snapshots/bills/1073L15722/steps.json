@@ -1,0 +1,81 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2013.12.06",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.12.06",
+      "detail":[
+         {
+            "date":"2013.12.06",
+            "desc":"交教育及文化、社會福利及衛生環境兩委員會審查。",
+            "links":[
+               {
+                  "text":"p. 19-20",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10207701;19;20"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

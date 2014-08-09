@@ -1,0 +1,105 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"exclamation",
+      "status":"passed",
+      "date":"2013.10.25",
+      "detail":[
+         {
+            "desc":"決定：退回程序委員會重新提出。",
+            "date":"2013.10.25",
+            "links":[
+               {
+                  "text":"p. 15",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10205801;15;15"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.11.01",
+      "detail":[
+         {
+            "desc":"決定：交司法及法制、外交及國防兩委員會審查。",
+            "date":"2013.11.01",
+            "links":[
+               {
+                  "text":"p. 7",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10206101;7;7"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+         {
+            "date":"2014.01.02",
+            "desc":"一:審查完竣；二:審查完竣；三:審查完竣",
+            "links":[
+               {
+                  "text":"p. 4-47",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10300902;4;47"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"2014.05.20",
+      "detail":[
+         {
+            "date":"2014.05.20",
+            "desc":"軍事審判法第一條、第十八條、第三十四條、第五十條、第一百三十九條、第一百四十條、第一百四十二條及第一百四十五條均維持現行法條文，不予修正。[\"g\",103,37,3,84,97]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

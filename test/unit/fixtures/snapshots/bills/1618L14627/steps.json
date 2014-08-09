@@ -1,0 +1,90 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2013.01.11",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.01.11",
+      "detail":[
+         {
+            "desc":"決定：依102年1月4日朝野黨團協商結論，逕付二讀。",
+            "date":"2013.01.11",
+            "links":[
+               {
+                  "text":"p. 32",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10200501;32;32"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"2013.01.11",
+      "detail":[
+         {
+            "date":"2013.01.11",
+            "desc":"完成三讀。離島建設條例第十三條條文修正通過。",
+            "links":[
+               {
+                  "text":"p. 73-75",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10200501;73;75"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]
