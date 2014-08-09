@@ -92,7 +92,33 @@ Setting in cordova is really easy, all the settings are in `contrib/ly_ios/ly_g0
 
 # Test
 
-this is for test
+## Unit test Architecture
+
+1.  Stub the response of api.ly.g0v.tw and save $scope.something
+
+    ![Unit test stub](doc/images/unit_test_stub.png)
+
+2.  Compare the snapshots and $scope.something
+
+    ![Unit test compare](doc/images/unit_test_compare.png)
+
+## Run tests
+
+*   Unit test
+
+    Choose one browser to prepare the test environment, and run the commands:
+
+    *   Chrome
+
+            npm run test:unit
+
+    *   Firefox
+
+            sed -i 's/browsers: \["Chrome"\]/browsers: \["Firefox"\]/' test/karma.conf.ls
+            gulp --require LiveScript test:unit
+
+*   E2E test
+
 ## karma
 
 Reference: <http://karma-runner.github.io>
