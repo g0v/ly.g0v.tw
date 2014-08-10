@@ -26,6 +26,9 @@ before_script:
 script:
   - '[ "${TEST}" = "sauce" -a "${TRAVIS_PULL_REQUEST}" != "false"] && true || gulp --require LiveScript test:$TEST'
 
+after_script:
+  - cat coverage/lcov.info | node_modules/karma-coveralls/node_modules/coveralls/bin/coveralls.js
+
 before_deploy: "BUILD=git-`git describe --always` gulp --require LiveScript build ly-diff server --env production"
 
 deploy:

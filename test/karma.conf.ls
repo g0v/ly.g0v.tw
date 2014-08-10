@@ -13,7 +13,10 @@ module.exports = (karma) ->
         served: true
         included: true
     exclude: []
-    reporters: ["progress"]
+    reporters: ["progress" "coverage" "coveralls"]
+    coverage-reporter:
+      type: 'lcov'
+      dir: 'coverage'
     port: 9876
     runnerPort: 9100
     colors: true
@@ -24,6 +27,7 @@ module.exports = (karma) ->
     #plugins: ["karma-jasmine", "karma-live-preprocessor", "karma-chrome-launcher"]
     preprocessors: {
         '**/*.ls': ['live']
+        '_public/js/app.js': ['coverage']
         './test/unit/fixtures/**/*.json': ['json_fixtures']
     }
     singleRun: false
