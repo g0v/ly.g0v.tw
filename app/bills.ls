@@ -102,6 +102,8 @@ class Steps
       detail: []
 
   build: (cb) ->
+    return @step if @step
+
     # proposal, first_reading, committee are crawled from motions.
     @build_from_motions!
     self <- @build_from_report!
@@ -110,7 +112,7 @@ class Steps
     # second_reading, third_reading, announced are crawled by ttsmotions.
     self <- self.build_from_ttsmotions!
 
-    steps =
+    self.steps =
       * self.proposal
       * self.first_reading
       * self.committee
@@ -118,7 +120,11 @@ class Steps
       * self.third_reading
       * self.announced
       * self.implemented
-    cb steps
+    self.ensure_steps_status_order!
+    self.ensure_only_one_scheduled_step!
+    self.set_proposal_icon_if_bill_has_been_rejected!
+    self.set_proposal_date_if_first_reading_has_date!
+    cb self.steps
 
   build_from_motions: ->
     motions = @bill.motions.filter -> it.resolution != null
@@ -266,17 +272,22 @@ class Steps
     process = ttsmotion.progress
     desc    = ttsmotion.resolution
     switch
-    case process == /提案|退回程序/ => @proposal
-    case process == /一讀/          => @first_reading
-    case process == /委員會/        => @committee
+    case process == /提案|退回程序/    => @proposal
+    case process == /一讀/             => @first_reading
+    case process == /委員會/           => @committee
+    # 882L15375
+    case process == /黨團協商/         => @second_reading
     case process == /二讀/
       if desc == /逕付(院會)?二讀/
         @first_reading
       else
         @second_reading
-    case process == /三讀|復議/     => @third_reading
-    case process == /頒佈/          => @announced
-    case process == /生效/          => @implemented
+    case process == /三讀|(?:復|覆)議/ => @third_reading
+    case process == /頒佈/             => @announced
+    case process == /生效/             => @implemented
+    case process == null
+      if desc == /交黨團進行協商/
+        @second_reading
 
   update_step_by_ttsmotion: (step, ttsmotion) ->
     date = @date_of_ttsmotion ttsmotion
@@ -301,15 +312,25 @@ class Steps
         date:   date
       @third_reading <<<
         status: \scheduled
-    case process == /復議/
+    case process == /(?:復|覆)議/
       @committee <<<
         status: \passed
       @second_reading <<<
         status: \passed
-      @third_reading <<<
-        status: \scheduled
-        date:   date
-    case process == /三讀|復議/
+      if desc == /(?:復|覆)議案通過/
+        @third_reading <<<
+          status: \scheduled
+          date:   date
+        @announced <<<
+          status: \not-yet
+      else
+        @third_reading <<<
+          status: \passed
+          date:   date
+        @announced <<<
+          status: \not-yet
+          status: \scheduled
+    case process == /三讀/
       @committee <<<
         status: \passed
       @second_reading <<<
@@ -350,6 +371,60 @@ class Steps
 
   pretty_date: (date) ->
     date.replace /-/g, \.
+
+  first_step_has_date: ->
+    steps = @steps.filter -> it.date != '?.?.?'
+    steps[0]
+
+  step_with_elapsed: (step) ->
+    if step
+      parts = step.date.match /(\d+)\.(\d+)\.(\d+)/
+      date = new Date parts.slice 1
+      now = new Date
+      diff = new Date now.getTime! - date.getTime!
+      diff-year  = @pretty_diff '年', diff.getUTCFullYear! - 1970
+      diff-month = @pretty_diff '個月', diff.getUTCMonth!
+      diff-day   = @pretty_diff '天', diff.getUTCDate! - 1
+      {diff-desc: step.desc, diff-year, diff-month, diff-day}
+    else
+      {}
+
+  pretty_diff: (unit, number) ->
+    if number == 0
+      ''
+    else
+      "#number #unit"
+
+  ensure_steps_status_order: ->
+    status = @steps[0].status
+    statuses = [\passed, \scheduled, \not-yet]
+    priorities = {passed: 0, scheduled: 1, 'not-yet': 2}
+    for step in @steps
+      priority = Math.max.apply null, [
+        priorities[step.status],
+        priorities[status]
+      ]
+      status = statuses[priority]
+      step.status = status
+
+  ensure_only_one_scheduled_step: ->
+    prev = @steps[0]
+    for step in @steps
+      if step.status == \scheduled == prev.status
+        prev.status = \passed
+      prev = step
+
+  # 1374L15430
+  set_proposal_icon_if_bill_has_been_rejected: ->
+    @proposal = @steps[0]
+    if @proposal.date != '?.?.?'
+      @proposal.icon = 'exclamation'
+
+  # 1073L15722
+  set_proposal_date_if_first_reading_has_date: ->
+    [@proposal, @first_reading] = @steps
+    if @proposal.date == '?.?.?'
+      @proposal.date = @first_reading.date
 
 class AugmentedString
 
@@ -400,6 +475,25 @@ class AugmentedString
 
 
 angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
+.controller LYBillsIndex: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
+  $scope.current-tab = '1'
+  {entries: $scope.bill-stats} <- LYModel.get "analytics" params: do
+    q: JSON.stringify do
+      name: 'bill'
+  .success
+  $scope.$watch 'currentTab' ->
+    [selected]? = [e for e in $scope.bill-stats when e.timeframe is it]
+    selected.bills ?= [{bill_ref,count} for [bill_ref, count] in selected.content]
+    for bill in selected.bills when !bill.sponsors => let bill
+      bill-details <- LYModel.get "bills/#{bill.bill_ref}" .success
+      bill <<< bill-details
+      steps = new Steps bill, LYModel, {}
+      steps-detail <- steps.build
+      bill.steps = steps-detail
+      step = steps.first_step_has_date!
+      bill <<< steps.step_with_elapsed step
+    $scope.current-bills = selected.bills
+
 .controller LYBills: <[$scope $state $timeout LYService LYModel $sce $anchorScroll TWLYService]> ++ ($scope, $state, $timeout, LYService, LYModel, $sce, $anchorScroll, TWLYService) ->
     $scope.diffs = []
     $scope.opts = {+show_date}

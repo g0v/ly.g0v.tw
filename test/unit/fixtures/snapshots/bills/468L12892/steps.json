@@ -1,0 +1,99 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"exclamation",
+      "status":"passed",
+      "date":"2012.03.02",
+      "detail":[
+         {
+            "desc":"決定：退回程序委員會重新提出。",
+            "date":"2012.03.02",
+            "links":[
+               {
+                  "text":"p. 2",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10100301;2;2"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2012.04.06",
+      "detail":[
+         {
+            "desc":"決定：交社會福利及衛生環境委員會審查。",
+            "date":"2012.04.06",
+            "links":[
+               {
+                  "text":"p. 5",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10101701;5;5"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+         {
+            "date":"2012.10.31",
+            "desc":"一:併案審查「就業保險法第二十二條之一及第四十四條條文修正草案」及「就業保險法增訂第二十二條之一條文草案」，審查完竣；二:委員江惠貞等擬具「就業保險法第六條條文修正草案」另定期繼續審查，委員蔣乃辛等擬具「就業保險法第十條及第十九條之三條文修正草案」不予審議，李應元等擬具「就業保險法第十一條及第十九條條文修正草案」本案不予審議，楊瓊瓔等擬具「就業保險法第十九條之一條文修正草案」不予審議，黃偉哲等擬具「就業保險法第十九條之二條文修正草案」不予審議，委員陳亭妃等擬具「就業保險法第二十五條條文修正草案」另定期繼續審查",
+            "links":[
+               {
+                  "text":"p. 297-330",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10106702;297;330"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

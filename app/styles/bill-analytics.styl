@@ -1,0 +1,86 @@
+.bill-index
+  margin: 0 1rem
+  padding: 1rem 0
+  .ui.stackable.grid
+    margin: 0
+    .row
+      position: relative
+      margin: 0
+      padding: 0
+      background-color: rgba(#000,0.05)
+      border-bottom: 1px #ccc dashed
+      &:first-child .column:first-child
+        @media only screen and (max-width:768px)
+          padding: 1rem
+      .column
+        padding: 1rem
+        &:first-child
+          min-height: 10rem
+          > div[legislator]
+            position: absolute
+            .image
+              width: 100px
+              .g0v-icon:after
+                padding-left: .1em
+                font-size: 1.8em
+            .content
+              padding-top: .5em
+              text-align: center
+            .infocard
+              margin-top: 0
+              left: -5%
+            .avatar
+              width: 100px
+        @media only screen and (max-width:768px)
+          padding: 1rem!important
+          margin: 0!important
+          &:first-child
+            padding: 1rem 1rem 0 1rem!important
+            min-height: 9rem
+        .ui.pointing.label
+          margin-left: 8rem
+          font-size: 1.5rem
+          background-color: #fff
+          &:before
+            background-color: #fff
+        .label.timing
+          margin: .25em
+          font-size: 1em
+          background-color: #fff
+      .ui.steps
+        margin: .25rem
+        *, :after, :before
+          -webkit-box-sizing: border-box
+          -moz-box-sizing: border-box
+          box-sizing: border-box
+        .step
+          cursor: auto
+          display: inline-block
+          position: relative
+          margin: 0em 0em
+          padding: 0.8em 1em 0.8em 1.4em
+          vertical-align: top
+          background: #ffffff
+          color: rgba(0, 0, 0, 0.8)
+          box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15)
+          border-radius: 0em
+        .step:after
+          position: absolute
+          z-index: 2
+          content: ''
+          top: 50%
+          right: 0em
+          border: medium none
+          background-color: #ffffff
+          width: 1.2em
+          height: 1.2em
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+          transform: translateY(-50%) translateX(50%) rotate(-45deg)
+        .step.scheduled
+          color: #009fda
+          font-weight: bold
+          background-color: #f0f0f0
+          &:after
+           background-color: #f0f0f0
+        .step.not-yet
+          color: rgba(0, 0, 0, 0.2)

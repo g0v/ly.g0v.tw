@@ -1,0 +1,44 @@
+{
+   "bill_id":"1020619070200100",
+   "bill_ref":"184L15146-1",
+   "summary":"擬請同意撤回前提之「貨物稅條例第十七條及第三十六條條文修正草案」案。",
+   "proposed_by":"本院委員許添財",
+   "abstract":"本院委員許添財、陳歐珀等18人所擬具「貨物稅條例第十七條及第三十六條條文修正草案」，因修法內容未完備，擬請撤案，請查照。",
+   "report_of":null,
+   "reconsideration_of":null,
+   "bill_type":null,
+   "sitting_introduced":null,
+   "doc":{
+      "pdf":"http://lci.ly.gov.tw/LyLCEW/agenda1/02/pdf/08/04/02/LCEWA01_080402_00052.pdf",
+      "doc":"http://lci.ly.gov.tw/LyLCEW/agenda1/02/word/08/04/02/LCEWA01_080402_00052.doc"
+   },
+   "sponsors":[
+      "許",
+      "添",
+      "財"
+   ],
+   "cosponsors":null,
+   "amendments":[
+
+   ],
+   "motions":[
+      {
+         "sitting_id":"08-04-YS-02",
+         "resolution":"決定：同意撤回。",
+         "status":"retrected",
+         "committee":null,
+         "motion_class":"announcement",
+         "agenda_item":49,
+         "item":49,
+         "dates":[
+            {
+               "calendar_id":55540,
+               "chair":null,
+               "date":"2013-09-24",
+               "time_start":"09:00:00",
+               "time_end":"18:00:00"
+            }
+         ]
+      }
+   ]
+}

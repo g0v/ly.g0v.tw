@@ -72,6 +72,7 @@ gulp.task 'test:karma' ->
     * "_public/js/app.templates.js"
     * "_public/js/app.js"
     * "bower_components/angular-mocks/angular-mocks.js"
+    * "test/unit/fixtures/**/*.json"
     * "test/unit/**/*.spec.ls"
   ]
   .pipe gulp-karma do
