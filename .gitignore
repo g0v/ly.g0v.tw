@@ -17,3 +17,6 @@ out/*
 server/*.js
 
 *.swp
+
+# coverage report
+coverage

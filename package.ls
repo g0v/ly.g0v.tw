@@ -33,6 +33,8 @@ devDependencies:
   'karma-ng-scenario': '0.1.0'
   'karma-phantomjs-launcher': '~0.1.0'
   'karma-json-fixtures-preprocessor': '0.0.0'
+  'karma-coverage': '~0.2.6'
+  'karma-coveralls': '~0.1.4'
   'bower': '1.2.x'
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
