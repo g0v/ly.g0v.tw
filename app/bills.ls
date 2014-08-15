@@ -379,7 +379,8 @@ class Steps
   step_with_elapsed: (step) ->
     if step
       parts = step.date.match /(\d+)\.(\d+)\.(\d+)/
-      date = new Date parts.slice 1
+      [year, month, day] = parts.slice 1
+      date = new Date year, month, day
       now = new Date
       diff = new Date now.getTime! - date.getTime!
       diff-year  = @pretty_diff '年', diff.getUTCFullYear! - 1970
