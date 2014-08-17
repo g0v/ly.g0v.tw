@@ -7,6 +7,7 @@ module.exports = (karma) ->
       * "_public/js/app.templates.js"
       * "_public/js/app.js"
       * "bower_components/angular-mocks/angular-mocks.js"
+      * "node_modules/timecop/timecop.js"
       * "test/unit/**/*.spec.ls"
       * pattern: 'test/unit/fixtures/**/*.json'
         watched: true

@@ -286,7 +286,11 @@ class Steps
     case process == /頒佈/             => @announced
     case process == /生效/             => @implemented
     case process == null
-      if desc == /交黨團進行協商/
+      switch
+      # 1788L13286
+      case desc == /另定期繼審審查/
+        @committee
+      case desc == /交黨團進行協商/
         @second_reading
 
   update_step_by_ttsmotion: (step, ttsmotion) ->
@@ -304,6 +308,15 @@ class Steps
       @committee <<<
         status: \scheduled
     case desc == /逕付(院會)?二讀/ => # do nothing
+    # 1788L13286
+    case desc == /另定期繼審審查/
+      @proposal <<<
+        status: \passed
+      @first_reading <<<
+        status: \passed
+      @committee <<<
+        status: \scheduled
+        date:   date
     case process == /二讀/
       @committee <<<
         status: \passed

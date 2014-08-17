@@ -42,6 +42,7 @@
     "karma-json-fixtures-preprocessor": "0.0.0",
     "karma-coverage": "~0.2.6",
     "karma-coveralls": "~0.1.4",
+    "Timecop.js": "git://github.com/jamesarosen/Timecop.js#master",
     "bower": "1.2.x",
     "mocha": "~1.14.0",
     "chai": "~1.8.0",

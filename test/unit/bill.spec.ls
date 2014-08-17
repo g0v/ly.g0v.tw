@@ -55,7 +55,11 @@ describe 'bills' ->
             * id: '1010903071000300' ref: '1061G13322'
       ]
       $location.path '/bills'
+      Timecop = window.Timecop
+      Timecop.install!
       bills_hot_dates.map ({date, bills}) ->
+        [year, month, day] = date.match /\d+/g
+        Timecop.freeze new Date year, month - 1, day
         cassette = get_analytics_cassette date
         $http-backend.when 'GET', ly_api "/analytics?q=%7B%22name%22:%22bill%22%7D"
                      .respond -> [200,  cassette]
@@ -72,6 +76,8 @@ describe 'bills' ->
         $http-backend.flush!
         snapshot = get_bills_snapshot date
         $scope.current-bills.should.deep.eq snapshot
+        Timecop.return-to-present!
+      Timecop.uninstall!
 
   describe 'LYBills' (void) ->
 
@@ -121,6 +127,7 @@ describe 'bills' ->
         * id: '1020918070200300' ref: '882L15375'
         * id: '1021125070202300' ref: '1073L15722'
         * id: '1020930070201200' ref: '1374L15430'
+        * id: '1010411070200600' ref: '1788L13286'
       bills.map (bill) ->
         $location.path "/bills/#{bill.ref}"
         $state.params.bill-id = bill.ref
