@@ -1,0 +1,87 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2012.04.20",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2012.04.20",
+      "detail":[
+         {
+            "desc":"決定：交社會福利及衛生環境委員會審查。",
+            "date":"2012.04.20",
+            "links":[
+               {
+                  "text":"p. 5",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10102201;5;5"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"2014.04.21",
+      "detail":[
+         {
+            "date":"2014.04.21",
+            "desc":"一:報告及詢答完畢；二:審查完竣；三:另定期繼審審查[\"g\",103,29,1,329,406]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]
