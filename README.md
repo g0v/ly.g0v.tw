@@ -1,7 +1,7 @@
 ly.g0v.tw
 =========
 
-[![Coverage Status](https://coveralls.io/repos/g0v/ly.g0v.tw/badge.png?branch=master](https://coveralls.io/r/g0v/ly.g0v.tw?branch=master)
+[![Coverage Status](https://coveralls.io/repos/g0v/ly.g0v.tw/badge.png?branch=master)](https://coveralls.io/r/g0v/ly.g0v.tw?branch=master)
 
 WARNING: this is work in progress and the file format is likely to change!
 
