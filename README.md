@@ -1,7 +1,7 @@
 ly.g0v.tw
 =========
 
-[![Coverage Status](https://coveralls.io/repos/g0v/ly.g0v.tw/badge.png?branch=master)](https://coveralls.io/r/g0v/ly.g0v.tw?branch=master)
+[![Coverage Status](https://coveralls.io/repos/g0v/ly.g0v.tw/badge.png?branch=master](https://coveralls.io/r/g0v/ly.g0v.tw?branch=master)
 
 WARNING: this is work in progress and the file format is likely to change!
 
@@ -9,12 +9,18 @@ WARNING: this is work in progress and the file format is likely to change!
 
 Install required packages:
 
-1.    `$ npm install`
-2.    `$ npm run build`
+```
+$ npm install
+$ npm run build
+```
 
 Start server:
 
-    $ npm run dev   # then open http://localhost:3333/
+```
+$ npm run dev
+```
+
+then open http://localhost:3333/
 
 # API Endpoint
 
@@ -38,7 +44,9 @@ List some terminologies which will be used in source code
 
 While running deploy if following message is shown:
 
-    " fatal: Not a valid object name: '-m' "
+```
+fatal: Not a valid object name: '-m'
+```
 
 It is a bug of git fixed after 1.7.11.4. Check you git version (`git --version`) and upgrade if < 1.7.11.4.
 
@@ -49,7 +57,7 @@ Using Cordova as a platform for building mobile apps
 Install Cordova through npm
 
 ```
-npm install -g cordova
+$ npm install -g cordova
 ```
 
 after you install go to the folder `contrib/ly_ios` in this repo and enter the following command:
@@ -57,38 +65,36 @@ after you install go to the folder `contrib/ly_ios` in this repo and enter the f
 
 ```
 # install emulators on ios
-npm install -g ios-sim
+$ npm install -g ios-sim
 
 # add ios platform on cordova
-cordova platform add ios
+$ cordova platform add ios
 
 # launching !!
-cordova emulate ios
+$ cordova emulate ios
 ```
 
-and you are launching your app.
+and you are launching your app. Reference: https://github.com/apache/cordova-cli
 
-Reference: https://github.com/apache/cordova-cli
-
-##Setting in cordova :
+## Setting in cordova :
 
 Setting in cordova is really easy, all the settings are in `contrib/ly_ios/ly_g0v/config.xml`
 
 ```
-    <name>ly.g0v.tw</name>
+<name>ly.g0v.tw</name>
 
-    <description>
-        ly.g0v.tw - Congress Website
-    </description>
+<description>
+    ly.g0v.tw - Congress Website
+</description>
 
-    <author href="http://g0v.tw" >
-        g0v.tw
-    </author>
+<author href="http://g0v.tw" >
+    g0v.tw
+</author>
 
-    <access origin="*"/>
+<access origin="*"/>
 
-    <content src="http://localhost:3333" />  <!-- which url you want to direct to -->
-    <!-- <content src="index.html" /> -->
+<content src="http://localhost:3333" />  <!-- which url you want to direct to -->
+<!-- <content src="index.html" /> -->
 
 ```
 
@@ -130,8 +136,9 @@ Reference: <http://karma-runner.github.io>
 To run protractor, first you need to run server for client side code described in [Usage](#usage).
 
 Then
+
 ```
-npm run protractor
+$ npm run protractor
 ```
 
 Reference: <https://github.com/angular/protractor>
