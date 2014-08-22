@@ -1,0 +1,115 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2013.10.08",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.10.08",
+      "detail":[
+         {
+            "desc":"決定：交司法及法制、外交及國防兩委員會審查。",
+            "date":"2013.09.27",
+            "links":[
+               {
+                  "text":"p. 13",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10204901;13;13"
+               }
+            ]
+         },
+         {
+            "date":"2013.10.08",
+            "desc":"另定期處理。",
+            "links":[
+               {
+                  "text":"p. 47",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10205001;47;47"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+         {
+            "date":"2014.01.06",
+            "desc":"審查完竣",
+            "links":[
+               {
+                  "text":"p. 86-132",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10301001;86;132"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+         {
+            "date":"2013.11.08",
+            "desc":"同意撤回。",
+            "links":[
+               {
+                  "text":"p. 17",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10206501;17;17"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"2014.05.20",
+      "detail":[
+         {
+            "date":"2014.05.20",
+            "desc":"完成三讀。駐外外交領事人員任用條例修正通過。[\"g\",103,37,3,219,237]",
+            "links":[
+
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

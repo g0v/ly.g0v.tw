@@ -1,0 +1,47 @@
+{
+   "paging":{
+      "count":1,
+      "l":30,
+      "sk":0
+   },
+   "entries":[
+      {
+         "tts_key":"17385:279",
+         "date":"2013-05-31T00:00:00.000Z",
+         "source":[
+            {
+               "text":"5-18",
+               "link":[
+                  "a",
+                  8,
+                  3,
+                  15,
+                  74,
+                  "5-18"
+               ]
+            }
+         ],
+         "sitting_id":"08-03-YS-15",
+         "chair":[
+            "王金平",
+            "洪秀柱"
+         ],
+         "motion_type":[
+            "法律案"
+         ],
+         "summary":"本院台灣團結聯盟立法院黨團擬具「媒體壟斷防止暨多元維護法草案」，是否有當，敬請公決。",
+         "resolution":"逕付二讀。(p.178 [\"g\",102,38,1,178,178])",
+         "progress":"一讀",
+         "topic":null,
+         "category":null,
+         "tags":null,
+         "bill_refs":[
+            "979L15307"
+         ],
+         "memo":null,
+         "agencies":null,
+         "speakers":null
+      }
+   ],
+   "query":"(\"bill_refs\" @> '{979L15307}')"
+}

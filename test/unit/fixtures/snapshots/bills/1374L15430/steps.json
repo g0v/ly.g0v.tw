@@ -124,7 +124,7 @@
       "desc":"一讀",
       "icon":"comment",
       "status":"passed",
-      "date":"2014.04.11",
+      "date":"2014.04.22",
       "detail":[
          {
             "date":"2014.04.11",
@@ -132,36 +132,7 @@
             "links":[
 
             ]
-         }
-      ]
-   },
-   {
-      "sub":false,
-      "desc":"付委",
-      "icon":"chat",
-      "status":"passed",
-      "date":"?.?.?",
-      "detail":[
-
-      ]
-   },
-   {
-      "sub":false,
-      "desc":"二讀",
-      "icon":"chat",
-      "status":"passed",
-      "date":"?.?.?",
-      "detail":[
-
-      ]
-   },
-   {
-      "sub":false,
-      "desc":"三讀",
-      "icon":"chat",
-      "status":"passed",
-      "date":"2014.04.22",
-      "detail":[
+         },
          {
             "date":"2014.04.22",
             "desc":"另定期處理[\"g\",103,25,1,241,241]",
@@ -173,9 +144,39 @@
    },
    {
       "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
       "desc":"頒佈",
       "icon":"unmute",
-      "status":"scheduled",
+      "status":"not-yet",
       "date":"?.?.?",
       "detail":[
 

@@ -1,0 +1,119 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2013.05.03",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.05.03",
+      "detail":[
+         {
+            "desc":"決定：交教育及文化委員會審查。",
+            "date":"2013.05.03",
+            "links":[
+               {
+                  "text":"p. 27",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10202601;27;27"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+         {
+            "date":"2013.11.11",
+            "desc":"一:審查完竣；二:另定期繼續審查；三:審查完竣；四:審查完竣；五:審查完竣",
+            "links":[
+               {
+                  "text":"p. 14-77",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10207202;14;77"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"passed",
+      "date":"2014.01.03",
+      "detail":[
+         {
+            "date":"2013.12.24",
+            "desc":"完成三讀。教師法第十七條條文修正通過。",
+            "links":[
+               {
+                  "text":"p. 162-166",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10208401;162;166"
+               }
+            ]
+         },
+         {
+            "date":"2013.12.31",
+            "desc":"另定期處理。",
+            "links":[
+               {
+                  "text":"p. 418",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10300301;418;418"
+               }
+            ]
+         },
+         {
+            "date":"2014.01.03",
+            "desc":"完成三讀。教師法第十七條條文修正通過。",
+            "links":[
+               {
+                  "text":"p. 51-52",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10300501;51;52"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]
