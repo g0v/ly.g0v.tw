@@ -1,0 +1,91 @@
+[
+   {
+      "sub":false,
+      "desc":"提案",
+      "icon":"",
+      "status":"passed",
+      "date":"2013.10.29",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"一讀",
+      "icon":"comment",
+      "status":"passed",
+      "date":"2013.10.29",
+      "detail":[
+         {
+            "desc":"決定：交教育及文化委員會審查。",
+            "date":"2013.10.18",
+            "links":[
+               {
+                  "text":"p. 3",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10205601;3;3"
+               }
+            ]
+         },
+         {
+            "date":"2013.10.29",
+            "desc":"「另定期處理。」",
+            "links":[
+               {
+                  "text":"p. 419",
+                  "link":"http://lis.ly.gov.tw/lgcgi/lypdftxt?10205801;419;419"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"付委",
+      "icon":"chat",
+      "status":"scheduled",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"二讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"三讀",
+      "icon":"chat",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"頒佈",
+      "icon":"unmute",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   },
+   {
+      "sub":false,
+      "desc":"生效",
+      "icon":"legal",
+      "status":"not-yet",
+      "date":"?.?.?",
+      "detail":[
+
+      ]
+   }
+]

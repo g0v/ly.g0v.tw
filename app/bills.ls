@@ -240,11 +240,13 @@ class Steps
     self = this
     ttsmotions <- @get_ttsmotions!
     self.scope.ttsmotions = ttsmotions
+    var prev_step
     for motion in ttsmotions
       motion.links = self.links_of_ttsmotion motion
-      step = self.step_of_ttsmotion motion
-      self.update_step_by_ttsmotion step, motion
+      step = self.step_of_ttsmotion prev_step, motion
+      self.update_step_by_ttsmotion prev_step, step, motion
       self.update_detail_by_ttsmotion step.detail, motion
+      prev_step = step
     cb self
 
   get_ttsmotions: (cb) ->
@@ -268,13 +270,21 @@ class Steps
       url = "http://lis.ly.gov.tw/lgcgi/lypdftxt?#vol;#{link.5};#{link.6}"
       {text, link: url}
 
-  step_of_ttsmotion: (ttsmotion) ->
+  step_of_ttsmotion: (prev_step, ttsmotion) ->
     process = ttsmotion.progress
     desc    = ttsmotion.resolution
     switch
+    case process == '復議(另定期處理)'
+      switch
+      # 1374L15430
+      case prev_step == @first_reading => @first_reading
+      # 1013L15476
+      case prev_step == @committee     => @committee
+      # 1559L14887
+      case prev_step == @third_reading => @third_reading
     case process == /提案|退回程序/    => @proposal
     case process == /一讀/             => @first_reading
-    case process == /委員會/           => @committee
+    case process == '委員會'           => @committee
     # 882L15375
     case process == /黨團協商/         => @second_reading
     case process == /二讀/
@@ -282,7 +292,11 @@ class Steps
         @first_reading
       else
         @second_reading
-    case process == /三讀|(?:復|覆)議/ => @third_reading
+    # 471G14754
+    case process == '撤回'             => @second_reading
+    case process == /三讀/             => @third_reading
+    # 882L13190
+    case process == /覆議/             => @third_reading
     case process == /頒佈/             => @announced
     case process == /生效/             => @implemented
     case process == null
@@ -293,11 +307,23 @@ class Steps
       case desc == /交黨團進行協商/
         @second_reading
 
-  update_step_by_ttsmotion: (step, ttsmotion) ->
+  update_step_by_ttsmotion: (prev_step, step, ttsmotion) ->
     date = @date_of_ttsmotion ttsmotion
     process = ttsmotion.progress
     desc    = ttsmotion.resolution
     switch
+    case process == '復議(另定期處理)'
+      switch
+      # 1374L15430
+      case prev_step == @first_reading
+        @first_reading <<<
+          date:   date
+      case prev_step == @committee
+        @committee <<<
+          date:   date
+      case prev_step == @third_reading
+        @third_reading <<<
+          date:   date
     # eg. 1374L15430
     case desc == /交([^，]+?)[兩三四五六七八]?委員會|中央政府總預算案/
       @proposal <<<
@@ -325,12 +351,12 @@ class Steps
         date:   date
       @third_reading <<<
         status: \scheduled
-    case process == /(?:復|覆)議/
+    case process == /覆議/
       @committee <<<
         status: \passed
       @second_reading <<<
         status: \passed
-      if desc == /(?:復|覆)議案通過/
+      if desc == /覆議案通過/
         @third_reading <<<
           status: \scheduled
           date:   date
@@ -341,7 +367,6 @@ class Steps
           status: \passed
           date:   date
         @announced <<<
-          status: \not-yet
           status: \scheduled
     case process == /三讀/
       @committee <<<
