@@ -537,9 +537,13 @@ angular.module 'app.controllers.bills' <[ly.diff ly.spy]>
     $scope.diffs = []
     $scope.opts = {+show_date}
     $scope.spies = {}
+    $scope.found = 'unknown'
     $scope.$watch '$state.params.billId' ->
-      {billId} = $state.params
-      {committee}:bill <- LYModel.get "bills/#{billId}" .success
+      {bill-id} = $state.params
+      req = LYModel.get "bills/#{bill-id}"
+      req.error -> $scope.found = 'no'
+      {committee}:bill <- req.success
+      $scope.found = 'yes'
       $state.current.title = "國會大代誌 - #{bill.bill_ref || bill.bill_id} - #{bill.summary}"
 
       if bill.bill_ref #legislative
