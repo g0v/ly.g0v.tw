@@ -38,7 +38,13 @@
         .column(ng-repeat="version in bill_refs")
           .ui.pointing.label.diff-comment(ng-bind="versions[version].comment", ng-show="versions[version].comment")
 
-.bill
+.bill(ng-if="found == 'no'")
+  h1 您要找的提案不在喔！
+  h2
+    | 或許您可以到
+    a(href="/bills") 這邊
+    | 看看？
+.bill(ng-if="found == 'yes'")
   .basic-info
     .bill-meta
       .links.ui.tiered.menu

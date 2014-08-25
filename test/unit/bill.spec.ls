@@ -147,6 +147,19 @@ describe 'bills' ->
         $http-backend.when 'GET', ly_api "/ttsmotions?q=%7B%22bill_refs%22:%7B%22$contains%22:%22#{bill.ref}%22%7D%7D&s=%7B%22date%22:-1%7D"
                      .respond -> [200,  cassette['ttsmotions']]
         controller = create-controller!
+        $scope.found.should.eq 'unknown'
         $http-backend.flush!
         snapshot = get_snapshot bill
+        $scope.found.should.eq 'yes'
         $scope.steps.should.deep.eq snapshot['steps']
+
+    it 'bill not found' ->
+      bill = id: '沒有人' ref: '是萬能的'
+      $location.path "/bills/#{bill.ref}"
+      $state.params.bill-id = bill.ref
+      $http-backend.when 'GET', ly_api "/bills/#{bill.ref}"
+                   .respond -> [404,  '']
+      controller = create-controller!
+      $scope.found.should.eq 'unknown'
+      $http-backend.flush!
+      $scope.found.should.eq 'no'
