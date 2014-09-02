@@ -8,7 +8,11 @@ build.xml
 .idea/*
 app/assets/*html
 
-_public
+_public/css
+_public/data
+_public/fonts
+_public/img
+_public/js/vendor.js
 node_modules/*
 bower_components/*
 npm-debug.log
