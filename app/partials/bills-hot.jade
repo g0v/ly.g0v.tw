@@ -15,3 +15,5 @@
           .ui.step(ng-repeat="step in bill.steps",ng-class="step.status") {{step.desc}}
         .ui.timing.label(ng-if="bill.diffDesc") 從{{bill.diffDesc}}到現在已經 {{bill.diffYear}} {{bill.diffMonth}} {{bill.diffDay}}
         .ui.timing.label(ng-if="!bill.diffDesc") 未知提案時間
+        .ui.count.label 瀏覽人次
+          .detail {{bill.count}}
