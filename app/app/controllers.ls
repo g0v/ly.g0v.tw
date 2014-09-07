@@ -18,7 +18,7 @@ renderCommittee = (committee) ->
     res.join ''
 
 
-angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sittings app.controllers.sittings-new app.controllers.bills app.controllers.search ng]>
+angular.module 'app.controllers' <[app.controllers.calendar app.controllers.sittings app.controllers.sittings-new app.controllers.bills app.controllers.bills-search app.controllers.search ng]>
 .run <[$rootScope]> ++ ($rootScope) ->
   $rootScope.committees = committees
 .controller AppCtrl: <[$scope $location $rootScope $sce]> ++ (s, $location, $rootScope, $sce) ->

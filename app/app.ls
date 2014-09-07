@@ -29,6 +29,12 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBills
 
+    .state 'bills-search' do
+      url: '/bills-search'
+      templateUrl: 'app/partials/bills-search.html'
+      resolve: _init: <[LYService]> ++ (.init!)
+      controller: \LYBillsSearch
+
     .state 'bills-detail.compare' do
       url: '/compare/{otherBills}'
 

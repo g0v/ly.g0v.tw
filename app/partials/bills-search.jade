@@ -1,0 +1,44 @@
+.ly-bill-search(ng-app="app.controllers.bills-search")
+  .ui.menu
+    .item 本日
+      .ui.label.light.gray {{today}}
+    a.item(ng-click="select_session(latest_session)", ng-class="session_class(latest_session)") 本會期
+      .ui.label.light.gray {{latest_session.period}}
+    .ui.simple.dropdown.item 其他會期
+      i.dropdown.icon
+      .menu
+        .item(ng-repeat="session in other_sessions", ng-click="select_session(session)", ng-class="session_class(session)") {{session.name}}
+          .ui.label.light.gray {{session.period}}
+  .ui.menu
+    .menu
+      .ui.simple.dropdown.item {{sitting_year}} 年
+        i.dropdown.icon
+        .menu
+          a.item(ng-repeat="year in sittings_year", ng-click="select_sitting_year(year)", ng-class="sittings_year_class(year)") {{year}} 年
+      .ui.simple.dropdown.item {{sitting_month + 1}} 月
+        i.dropdown.icon
+        .menu
+          a.item(ng-repeat="month in sittings_month", ng-click="select_sitting_month(month)", ng-class="sittings_month_class(month)") {{month + 1}} 月
+      .ui.simple.dropdown.item {{sitting_day}} 日
+        i.dropdown.icon
+        .menu
+          a.item(ng-repeat="day in sittings_day", ng-click="select_sitting_day(day)", ng-class="sittings_day_class(day)") {{day}} 日
+  .ui.menu
+    .right.menu
+      .ui.simple.dropdown.item {{sitting_sitting_summary}}
+        .menu
+          a.item(ng-repeat="sitting in sittings_sitting", ng-click="select_sitting_sitting(sitting)", ng-class="sittings_sitting_class(sitting)") {{sitting.summary}}
+    a.purple.item(ng-repeat="committee in committees", ng-class="committees_class(committee.type)", ng-click="select_committee(committee.type)") {{committee.name}}
+  .ui.menu.teal
+    a.item(ng-repeat="motion_type in motion_types", ng-click="select_motion_type(motion_type)", ng-class="motion_type_class(motion_type)") {{motion_type}}
+  .ui.message(ng-if="selected_motions.length == 0")
+    .header 沒有提案喔！
+    p 或許你可以考慮更改過慮條件或者更改會期？
+  .two.column.ui.stackable.grid
+    .column(ng-repeat="motion in selected_motions")
+      .ui.segment.bill-search
+        .ui.left.corner.label {{motion.type}}
+        .ui.top.right.attached.label.green {{motion.status}}
+        .ui.bottom.attached.label {{motion.proposed_by}}
+        div {{motion.summary}}
+          .ui.red.label(ng-if="motion.is_new_bill") new
