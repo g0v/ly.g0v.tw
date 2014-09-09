@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 393,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": null,
+        "id": 51460,
+        "date": "2012-09-04T00:00:00.000Z",
+        "time_start": "14:30:00",
+        "time_end": "16:00:00",
+        "type": "misc",
+        "name": "內政委員會議事相關系統教育訓練",
+        "chair": null,
+        "summary": "",
+        "committee": ["IAD"],
+        "ad": 8,
+        "session": 1,
+        "extra": null,
+        "sitting": null
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 1)"
+}

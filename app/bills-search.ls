@@ -48,10 +48,6 @@ angular.module 'app.controllers.bills-search' <[]>
     sittings.filter (sitting) ->
       sitting.session == session
 
-  dates_of_sittings = (sittings) ->
-    dates = sittings.map (sitting) ->
-      dates_of_sitting sitting
-    dates.reduce (a, b) -> a.concat b
   select_oldest_and_latest_dates = (dates) ->
     dates = dates.map (date) -> date.unix!
     oldest_date = _.min dates
@@ -61,13 +57,6 @@ angular.module 'app.controllers.bills-search' <[]>
     sitting.dates.map (date) ->
       moment date.date, 'YYYY-MM-DD'
 
-  group_sittings_by_session = (sittings) ->
-    group_by = (sitting) ->
-      "#{sitting.ad}_#{sitting.session}"
-    groups = _.uniq sittings, true, group_by
-    groups.map (group) ->
-      sittings.filter (sitting) ->
-        group_by(sitting) == group_by(group)
   build_session_from_period = (period) ->
     ad = period.ad
     session = period.session
@@ -247,8 +236,7 @@ angular.module 'app.controllers.bills-search' <[]>
   $scope.other_sessions = other_sessions_period.map (period) ->
     build_session_from_period period
 
-  sittings <- get_session_sittings latest_sitting.ad, latest_sitting.session
-  sort_sittings_by_date_ascending sittings
+  var sittings
 
   $scope.recursive_run_funcs = {}
   $scope.select_sitting_year = (selected_sitting_year) ->

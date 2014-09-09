@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 386,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": "08-03-PRO-01",
+        "id": 53320,
+        "date": "2013-02-22T00:00:00.000Z",
+        "time_start": "12:00:00",
+        "time_end": "14:00:00",
+        "type": "sitting",
+        "name": "第8屆第3會期第1次會議",
+        "chair": "段宜康",
+        "summary": "審定本院第8屆第3會期第1次會議議事日程及處理人民請願案",
+        "committee": ["PRO"],
+        "ad": 8,
+        "session": 3,
+        "extra": null,
+        "sitting": 1
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 3)"
+}

@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 792,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": "08-04-FND-07",
+        "id": 59885,
+        "date": "2014-03-20T00:00:00.000Z",
+        "time_start": "09:00:00",
+        "time_end": "17:30:00",
+        "type": "sitting",
+        "name": "立法院第8屆第5會期外交及國防委員會第7次全體委員會議",
+        "chair": "陳鎮湘",
+        "summary": "一、審查行政院函請審議「兵役法施行法部分條文修正草案」案。二、審查本院台灣團結聯盟黨團擬具「兵役法施行法第三十條條文修正草案」案。",
+        "committee": ["FND"],
+        "ad": 8,
+        "session": 4,
+        "extra": null,
+        "sitting": 7
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 4)"
+}

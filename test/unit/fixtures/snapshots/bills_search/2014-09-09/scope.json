@@ -1,0 +1,110 @@
+{
+    "today": "2014 09/09",
+    "latest_session": {
+        "name": "8 屆 6 會期",
+        "period": "2014 09/09 - 09/09",
+        "ad": 8,
+        "session": 6
+    },
+    "other_sessions": [{
+        "name": "8 屆 5 會期",
+        "period": "2014 09/03 - 09/03",
+        "ad": 8,
+        "session": 5
+    }, {
+        "name": "8 屆 4 會期",
+        "period": "2014 03/20 - 03/20",
+        "ad": 8,
+        "session": 4
+    }, {
+        "name": "8 屆 3 會期",
+        "period": "2013 08/30 - 08/30",
+        "ad": 8,
+        "session": 3
+    }, {
+        "name": "8 屆 2 會期",
+        "period": "2013 05/29 - 05/29",
+        "ad": 8,
+        "session": 2
+    }, {
+        "name": "8 屆 1 會期",
+        "period": "2012 09/04 - 09/04",
+        "ad": 8,
+        "session": 1
+    }],
+    "session": {
+        "name": "8 屆 6 會期",
+        "period": "2014 09/09 - 09/09",
+        "ad": 8,
+        "session": 6
+    },
+    "committees": [{
+        "type": "YS",
+        "name": "院會"
+    }, {
+        "type": "PRO",
+        "name": "程序"
+    }, {
+        "type": "ECO",
+        "name": "經濟"
+    }, {
+        "type": "FIN",
+        "name": "財政"
+    }, {
+        "type": "IAD",
+        "name": "內政"
+    }, {
+        "type": "FND",
+        "name": "外交國防"
+    }, {
+        "type": "SWE",
+        "name": "社服衛環"
+    }, {
+        "type": "EDU",
+        "name": "教育文化"
+    }, {
+        "type": "JUD",
+        "name": "司法法制"
+    }, {
+        "type": "TRA",
+        "name": "交通"
+    }],
+    "committees_map": {
+        "YS": "院會",
+        "PRO": "程序",
+        "ECO": "經濟",
+        "FIN": "財政",
+        "IAD": "內政",
+        "FND": "外交國防",
+        "SWE": "社服衛環",
+        "EDU": "教育文化",
+        "JUD": "司法法制",
+        "TRA": "交通"
+    },
+    "motion_types": ["全部", "修法", "預算", "查照", "其他"],
+    "committee": "PRO",
+    "sittings_year": [2014],
+    "sitting_year": 2014,
+    "sittings_month": [8],
+    "sitting_month": 8,
+    "sittings_day": [9],
+    "sitting_day": 9,
+    "sittings_sitting": [{
+        "extra": null,
+        "sitting": 1,
+        "committee": ["PRO"],
+        "id": "08-06-PRO-01",
+        "summary": "第 1 次會議"
+    }],
+    "sitting_sitting": {
+        "extra": null,
+        "sitting": 1,
+        "committee": ["PRO"],
+        "id": "08-06-PRO-01",
+        "summary": "第 1 次會議"
+    },
+    "sitting_sitting_summary": "第 1 次會議",
+    "motions": [],
+    "motion_type": "全部",
+    "selected_motions": []
+}

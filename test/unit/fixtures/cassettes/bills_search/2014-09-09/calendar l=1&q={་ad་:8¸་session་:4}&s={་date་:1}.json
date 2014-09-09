@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 792,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": "08-04-PRO-01",
+        "id": 55480,
+        "date": "2013-09-17T00:00:00.000Z",
+        "time_start": "12:00:00",
+        "time_end": "14:00:00",
+        "type": "sitting",
+        "name": "第8屆第4會期第1次會議",
+        "chair": "吳育昇",
+        "summary": "審定本院第8屆第4會期第2次會議議事日程及人民請願案",
+        "committee": ["PRO"],
+        "ad": 8,
+        "session": 4,
+        "extra": null,
+        "sitting": 1
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 4)"
+}

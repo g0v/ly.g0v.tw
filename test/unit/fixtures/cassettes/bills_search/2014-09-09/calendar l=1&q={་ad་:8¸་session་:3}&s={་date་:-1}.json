@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 386,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": null,
+        "id": 55440,
+        "date": "2013-08-30T00:00:00.000Z",
+        "time_start": "08:00:00",
+        "time_end": "21:30:00",
+        "type": "misc",
+        "name": "立法院第8屆第3會期財政委員會考察：",
+        "chair": "翁重鈞",
+        "summary": "考察預算執行情形。",
+        "committee": ["FIN"],
+        "ad": 8,
+        "session": 3,
+        "extra": null,
+        "sitting": null
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 3)"
+}
