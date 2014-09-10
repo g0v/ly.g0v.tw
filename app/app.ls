@@ -30,7 +30,7 @@ angular.module \ly.g0v.tw <[ngGrid app.controllers ly.g0v.tw.controllers app.dir
       controller: \LYBills
 
     .state 'bills-search' do
-      url: '/bills-search'
+      url: '/bills-search?ad&session&year&month&day&committee&extra&sitting&motion_type'
       templateUrl: 'app/partials/bills-search.html'
       resolve: _init: <[LYService]> ++ (.init!)
       controller: \LYBillsSearch

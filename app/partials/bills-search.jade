@@ -9,6 +9,13 @@
       .menu
         .item(ng-repeat="session in other_sessions", ng-click="select_session(session)", ng-class="session_class(session)") {{session.name}}
           .ui.label.light.gray {{session.period}}
+    .right.menu
+      .item
+        .ui.action.input
+          input(type="text", value="{{url()}}")
+          .ui.right.labeled.icon.button(clip-copy="url()", clip-click="")
+            i.copy.icon
+            | 複製網址
   .ui.menu
     .menu
       .ui.simple.dropdown.item {{sitting_year}} 年
@@ -38,7 +45,7 @@
     .column(ng-repeat="motion in selected_motions")
       .ui.segment.bill-search
         .ui.left.corner.label {{motion.type}}
-        .ui.top.right.attached.label.green {{motion.status}}
+        .ui.top.right.attached.label.green {{motion.status || '載入中...'}}
         .ui.bottom.attached.label {{motion.proposed_by}}
         div {{motion.summary}}
           .ui.red.label(ng-if="motion.is_new_bill") new

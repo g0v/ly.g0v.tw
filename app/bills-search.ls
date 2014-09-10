@@ -1,5 +1,8 @@
-angular.module 'app.controllers.bills-search' <[]>
-.controller LYBillsSearch: <[$rootScope $scope LYModel]> ++ ($root-scope, $scope, LYModel) ->
+angular.module 'app.controllers.bills-search' <[ngClipboard]>
+.controller \LYBillsSearch,
+<[$rootScope   $scope  LYModel  $stateParams   $location]> ++ (
+  $root-scope, $scope, LYModel, $state-params, $location
+) ->
   $scope.today = moment!.start-of 'day' .format 'YYYY MM/DD'
   get_latest_sitting = (cb) ->
     {entries} <- LYModel.get 'sittings' do
@@ -149,9 +152,10 @@ angular.module 'app.controllers.bills-search' <[]>
       "#{committee.join '，'}委員會聯席"
     else
       ''
-  find_suitable_committee = (sittings, committees) ->
+  find_suitable_committee = (sittings, committees, danger_type) ->
     selectable_committees = selectable_committees_of_sittings sittings
-    types = committees.map (committee) -> committee.type
+    types = [danger_type]
+    types ++= committees.map (committee) -> committee.type
     _.find types, (type) ->
       selectable_committees[type]
   selectable_committees_of_sittings = (sittings) ->
@@ -165,12 +169,60 @@ angular.module 'app.controllers.bills-search' <[]>
       sitting.committee[0]
     else
       'YS'
+  select_possible_options = (options, danger_options) ->
+    safe_option = options[*-1]
+    danger_option = _.find danger_options, (danger_option) ->
+      is_option_possible options, danger_option
+    danger_option || safe_option
   select_possible_option = (options, danger_option) ->
     safe_option = options[*-1]
-    if _.contains options, danger_option
+    if is_option_possible options, danger_option
       danger_option
     else
       safe_option
+  is_option_possible = (options, danger_option) ->
+    _.contains options, danger_option
+
+  find_suitable_session = (sessions, safe_session, danger_session) ->
+    danger_session = _.find sessions, (session) ->
+      (session.ad == danger_session.ad || !danger_session.ad) &&
+      (session.session == danger_session.session || !danger_session.session)
+    danger_session || safe_session
+  find_suitable_sitting = (sittings, danger_sittings) ->
+    safe_sitting = sittings[0]
+    danger_sittings = danger_sittings.map (danger_sitting) ->
+      suitable_sitting_in sittings, danger_sitting
+    danger_sitting = _.find danger_sittings, (sitting) ->
+      sitting
+    danger_sitting || safe_sitting
+  suitable_sitting_in = (sittings, danger_sitting) ->
+    _.find sittings, (sitting) ->
+      danger_sitting &&
+      sitting.extra == danger_sitting.extra &&
+      sitting.sitting == danger_sitting.sitting
+  find_suitable_motion_type = (motion_types, danger_types) ->
+    types = {}
+    motion_types.map (type) ->
+      types[type] = true
+    safe_type = motion_types[0]
+    danger_type = _.find danger_types, (danger_type) ->
+      types[danger_type]
+    danger_type || safe_type
+  parse_month = (month) ->
+    parse_param(month) - 1
+  parse_sitting = (extra, sitting) ->
+    extra = parse_param extra
+    sitting = parse_param sitting
+    {extra, sitting}
+  parse_session = (ad, session) ->
+    ad = parse_param ad
+    session = parse_param session
+    {ad, session}
+  parse_param = (param) ->
+    if param == /^[1-9]\d*$/
+      parse-int param
+    else
+      null
 
   find_sitting_by_id = (sittings, sitting_id) ->
     _.find sittings, (sitting) ->
@@ -247,63 +299,84 @@ angular.module 'app.controllers.bills-search' <[]>
       return
     $scope.recursive_run_funcs[\$scope.select_sitting_year] = true
     $scope.sitting_year = selected_sitting_year
+    $state-params.sitting_year = $scope.sitting_year
     months = latest_months_of_sittings(
       sittings, $scope.committee, $scope.sitting_year)
-    month = select_possible_option months, $scope.sitting_month
+    month = select_possible_options(months,
+      [parse_month($state-params.month), $scope.sitting_month])
     $scope.sittings_month = months
     $scope.select_sitting_month month
   $scope.select_sitting_month = ($scope.sitting_month) ->
+    $state-params.sitting_month = $scope.sitting_month
     $scope.recursive_run_funcs[\$scope.select_sitting_month] = true
     days = latest_days_of_sittings(
       sittings, $scope.committee, $scope.sitting_year, $scope.sitting_month)
-    day = select_possible_option days, $scope.sitting_day
+    day = select_possible_options(days,
+      [parse_param($state-params.day), $scope.sitting_day])
     $scope.sittings_day = days
     $scope.select_sitting_day day
   $scope.select_sitting_day = ($scope.sitting_day) ->
+    $state-params.sitting_day = $scope.sitting_day
     $scope.recursive_run_funcs[\$scope.select_sitting_day] = true
     sittings_sittings = latest_sittings_of_sittings(
       sittings, $scope.committee, $scope.sitting_year, $scope.sitting_month,
       $scope.sitting_day)
     sittings_sitting = format_sittings_summary sittings_sittings, $scope.committees_map
-    sitting = select_possible_option sittings_sittings, $scope.sitting_sitting
+    param_sitting = parse_sitting $state-params.extra, $state-params.sitting
+    sitting = find_suitable_sitting(sittings_sittings,
+      [param_sitting, $scope.sitting_sitting])
     committee = committee_of_sitting sitting
     $scope.sittings_sitting = sittings_sitting
     $scope.select_sitting_sitting sitting
     $scope.select_committee committee
   $scope.select_sitting_sitting = ($scope.sitting_sitting) ->
+    $state-params.extra = $scope.sitting_sitting.extra
+    $state-params.sitting = $scope.sitting_sitting.sitting
     summary = format_sitting_summary $scope.sitting_sitting, $scope.committees_map
     sitting = find_sitting_by_id sittings, $scope.sitting_sitting.id
     motions = sitting.motions
-    $scope.sitting_sitting_summary = summary
-    $scope.motions = motions
-    $scope.select_motion_type $scope.motion_type || \全部
+    motion_type = find_suitable_motion_type($scope.motion_types,
+      [$state-params.motion_type, $scope.motion_type])
     add_type_to_motions motions
     add_is_new_bill_to_motions motions, sitting
+    $scope.sitting_sitting_summary = summary
+    $scope.motions = motions
+    $scope.select_motion_type motion_type
     add_status_to_motions motions
   $scope.select_committee = (selected_committee) ->
     committees = selectable_committees_of_sittings sittings
     if !committees[selected_committee]
       return
     $scope.committee = selected_committee
+    $state-params.committee = $scope.committee
     if $scope.recursive_run_funcs[\$scope.select_committee]
       $scope.recursive_run_funcs = {}
       return
     $scope.recursive_run_funcs[\$scope.select_committee] = true
     years = latest_years_of_sittings sittings, $scope.committee
-    year = select_possible_option years, $scope.sittings_year
+    year = select_possible_options(years,
+      [parse_param($state-params.year), $scope.sitting_year])
     $scope.sittings_year = years
     $scope.sitting_year = year
     $scope.select_sitting_year year
   $scope.select_motion_type = ($scope.motion_type) ->
+    $state-params.motion_type = $scope.motion_type
     motions = select_motions_by_type $scope.motions, $scope.motion_type
     $scope.selected_motions = motions
   $scope.select_session = ($scope.session) ->
+    $state-params.ad = $scope.session.ad
+    $state-params.session = $scope.session.session
     entries <- get_session_sittings $scope.session.ad, $scope.session.session
     sittings := entries
     sort_sittings_by_date_ascending sittings
-    committee = find_suitable_committee sittings, $scope.committees
+    committee = find_suitable_committee(sittings,
+      $scope.committees, $state-params.committee)
     $scope.select_committee committee
-  $scope.select_session $scope.latest_session
+  sessions = [$scope.latest_session] ++ $scope.other_sessions
+  params_session = parse_session $state-params.ad, $state-params.session
+  session = find_suitable_session(sessions,
+    $scope.latest_session, params_session)
+  $scope.select_session session
 
   $scope.session_class = (session) ->
     if $scope.session == session then \active else ''
@@ -343,3 +416,35 @@ angular.module 'app.controllers.bills-search' <[]>
     \預算
     \查照
     \其他
+
+  $scope.url = ->
+    params =
+      $scope.session
+      $scope.sitting_year
+      $scope.sitting_month
+      $scope.sitting_day
+      $scope.committee
+      $scope.sitting_sitting
+      $scope.motion_type
+    not_prepared = _.any params, (param) ->
+      _.is-undefined param
+    if not_prepared
+      return \載入中...
+    protocol = $location.protocol!
+    port = $location.port!
+    host = $location.host!
+    path = $location.path!
+    params =
+      [\ad,          $scope.session.ad]
+      [\session,     $scope.session.session]
+      [\year,        $scope.sitting_year]
+      [\month,       $scope.sitting_month + 1]
+      [\day,         $scope.sitting_day]
+      [\committee,   $scope.committee]
+      [\extra,       $scope.sitting_sitting.extra]
+      [\sitting,     $scope.sitting_sitting.sitting]
+      [\motion_type, $scope.motion_type]
+    params = params.map (param) ->
+      param.join '='
+    params = params.join '&'
+    "#protocol://#host:#port#path?#params"
