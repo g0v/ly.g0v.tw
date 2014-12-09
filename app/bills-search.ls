@@ -288,6 +288,12 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
   $scope.other_sessions = other_sessions_period.map (period) ->
     build_session_from_period period
 
+  escape_param = (param) ->
+    if $state-params[param]
+      that.replace /[^a-z0-9]/gi, ''
+    else
+      null
+
   var sittings
 
   $scope.recursive_run_funcs = {}
@@ -303,7 +309,7 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
     months = latest_months_of_sittings(
       sittings, $scope.committee, $scope.sitting_year)
     month = select_possible_options(months,
-      [parse_month($state-params.month), $scope.sitting_month])
+      [parse_month(escape_param(\month)), $scope.sitting_month])
     $scope.sittings_month = months
     $scope.select_sitting_month month
   $scope.select_sitting_month = ($scope.sitting_month) ->
@@ -312,7 +318,7 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
     days = latest_days_of_sittings(
       sittings, $scope.committee, $scope.sitting_year, $scope.sitting_month)
     day = select_possible_options(days,
-      [parse_param($state-params.day), $scope.sitting_day])
+      [parse_param(escape_param(\day)), $scope.sitting_day])
     $scope.sittings_day = days
     $scope.select_sitting_day day
   $scope.select_sitting_day = ($scope.sitting_day) ->
@@ -322,7 +328,7 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
       sittings, $scope.committee, $scope.sitting_year, $scope.sitting_month,
       $scope.sitting_day)
     sittings_sitting = format_sittings_summary sittings_sittings, $scope.committees_map
-    param_sitting = parse_sitting $state-params.extra, $state-params.sitting
+    param_sitting = parse_sitting escape_param(\extra), escape_param(\sitting)
     sitting = find_suitable_sitting(sittings_sittings,
       [param_sitting, $scope.sitting_sitting])
     committee = committee_of_sitting sitting
@@ -336,7 +342,7 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
     sitting = find_sitting_by_id sittings, $scope.sitting_sitting.id
     motions = sitting.motions
     motion_type = find_suitable_motion_type($scope.motion_types,
-      [$state-params.motion_type, $scope.motion_type])
+      [escape_param(\motion_type), $scope.motion_type])
     add_type_to_motions motions
     add_is_new_bill_to_motions motions, sitting
     $scope.sitting_sitting_summary = summary
@@ -355,7 +361,7 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
     $scope.recursive_run_funcs[\$scope.select_committee] = true
     years = latest_years_of_sittings sittings, $scope.committee
     year = select_possible_options(years,
-      [parse_param($state-params.year), $scope.sitting_year])
+      [parse_param(escape_param(\year)), $scope.sitting_year])
     $scope.sittings_year = years
     $scope.sitting_year = year
     $scope.select_sitting_year year
@@ -370,10 +376,10 @@ angular.module 'app.controllers.bills-search' <[ngClipboard]>
     sittings := entries
     sort_sittings_by_date_ascending sittings
     committee = find_suitable_committee(sittings,
-      $scope.committees, $state-params.committee)
+      $scope.committees, escape_param(\committee))
     $scope.select_committee committee
   sessions = [$scope.latest_session] ++ $scope.other_sessions
-  params_session = parse_session $state-params.ad, $state-params.session
+  params_session = parse_session escape_param(\ad), escape_param(\session)
   session = find_suitable_session(sessions,
     $scope.latest_session, params_session)
   $scope.select_session session
