@@ -20,7 +20,7 @@ env:
     - secure: "gtSV2z58U4UJ8gzvPgPaA8+91ySrqEkcAgfhtTHEt+ayGAIZibeVi+RRSaGW\nTY3Vaonn8jfT9L7f49v4UHtsUO9fY5W4Q/kkXyrifTBfbcAlnIcVPZvvZBck\njcFwW4MqO4WwqgdR1+Yo8gQQq0tOj5lVSAEI+tJhPZQB7BdiX3M="
 
 before_script:
-  - if [ "x$TEST" == "xsauce" ]; then curl -L https://gist.githubusercontent.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash; fi
+  - if [ "x$TEST" == "xsauce" -a "${TRAVIS_PULL_REQUEST}" != "false"]; then curl -L https://gist.githubusercontent.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash; fi
   - npm install -g gulp
 
 script:
