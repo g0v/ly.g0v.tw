@@ -1,22 +1,8 @@
 {
-  "author": "clkao",
-  "status": "alpha",
   "name": "ly.g0v.tw",
   "name_zh": "國會大代誌",
-  "description": "ly.g0v.tw",
-  "description_zh": "揭露立法院資訊、立委質詢、立院院會議程、法案審理等等",
-  "homepage": "http://ly.g0v.tw/",
-  "document": "https://g0v.hackpad.com/g0v--QotRfHFRwF5",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/g0v/ly.g0v.tw"
-  },
-  "licenses": [
-    {
-      "type": "MIT License"
-    }
-  ],
-  "keywords": [
+  "status": "Alpha",
+  "tags": [
     "angularjs",
     "livescript",
     "stylus",
@@ -25,6 +11,16 @@
     "legislator",
     "ivod"
   ],
+  "license": "MIT",
+  "author": "clkao",
+  "description": "ly.g0v.tw",
+  "description_zh": "揭露立法院資訊、立委質詢、立院院會議程、法案審理等等",
+  "homepage": "http://ly.g0v.tw/",
+  "document": "https://g0v.hackpad.com/g0v--QotRfHFRwF5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g0v/ly.g0v.tw"
+  },
   "audience": [
     "public"
   ],
