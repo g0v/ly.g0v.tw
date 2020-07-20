@@ -52,7 +52,7 @@
           .item(ng-show="bill_ref") 提案編號 {{ bill_ref }}
           .item.center.right#qrlink
             qrcode(data="http://ly.g0v.tw/bills/{{bill_ref || bill_id}}",size="120")
-          a.item.hide-print(ng-href="http://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
+          a.item.hide-print(ng-href="https://api.ly.g0v.tw/v0/collections/bills/{{bill_ref || bill_id}}",target="_blank")
             i.code.icon
             | JSON
           a.item.hide-print(ng-href="http://misq.ly.gov.tw/MISQ/IQuery/misq5000QueryBillDetail.action?billNo={{ bill_id }}",target="_blank")

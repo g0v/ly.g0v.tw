@@ -2,7 +2,7 @@ OpenGraph = ->
   make-url = (req, path) -> req.protocol + '://' + req.headers.host + path
   request = require \request
   getApi = (path, cb) ->
-    err, resp, body <- request.get 'http://api.ly.g0v.tw/v0/collections' + path
+    err, resp, body <- request.get 'https://api.ly.g0v.tw/v0/collections' + path
     try
       if resp.statusCode is 200
         cb JSON.parse body
