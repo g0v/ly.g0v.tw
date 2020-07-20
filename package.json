@@ -29,7 +29,7 @@
     "express": "3.4.x",
     "prerender-node": "0.1.x",
     "jade": "1.1.x",
-    "request": "2.27.x"
+    "request": "2.88.x"
   },
   "devDependencies": {
     "LiveScript": "1.2.x",
