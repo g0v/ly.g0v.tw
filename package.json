@@ -43,7 +43,7 @@
     "karma-coverage": "~0.2.6",
     "karma-coveralls": "~0.1.4",
     "Timecop.js": "git://github.com/jamesarosen/Timecop.js#master",
-    "bower": "1.2.x",
+    "bower": "1.8.x",
     "mocha": "~1.14.0",
     "chai": "~1.8.0",
     "protractor": "~0.18.1",
