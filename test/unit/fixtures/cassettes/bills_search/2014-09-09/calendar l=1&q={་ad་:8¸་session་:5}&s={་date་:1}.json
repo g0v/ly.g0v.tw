@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 663,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": null,
+        "id": 59200,
+        "date": "2014-02-10T00:00:00.000Z",
+        "time_start": "14:30:00",
+        "time_end": "16:00:00",
+        "type": "misc",
+        "name": "委員會議事相關系統教育訓練",
+        "chair": null,
+        "summary": "委員會議事相關系統教育訓練",
+        "committee": ["ECO"],
+        "ad": 8,
+        "session": 5,
+        "extra": null,
+        "sitting": null
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 5)"
+}

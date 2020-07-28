@@ -36,9 +36,15 @@ devDependencies:
   'karma-coverage': '~0.2.6'
   'karma-coveralls': '~0.1.4'
   'Timecop.js': 'git://github.com/jamesarosen/Timecop.js#master'
+  'async': '0.9.0'
   'bower': '1.2.x'
   'mocha': '~1.14.0'
   'chai': '~1.8.0'
+  'body-parser': '~1.0.0'
+  'mkdirp': '0.5.0'
+  'colors': '0.6.2',
+  'js-beautify': '1.5.1',
+  'lodash': '2.4.1',
   'protractor': '~0.18.1'
   "streamqueue": '~0.0.5'
   gulp: '~3.5.0'

@@ -7,11 +7,12 @@ ignore: ["**/.*", "node_modules", "components"]
 dependencies:
   "commonjs-require-definition": "~0.1.2"
   jquery: "~2.0.3"
-  moment: "~2.4.0"
+  moment: "2.8.3"
   angular: "1.2.12"
   "angular-mocks": "1.2.12"
   "angular-scenario": "1.2.12"
   "angular-ui-router": "0.0.1"
+  "ng-clip": "0.2.2"
   "google-diff-match-patch-js": "~1.0.0"
   cryptojslib: "3.1.2"
   "ng-grid": "https://github.com/angular-ui/ng-grid.git#9ccc29d3b76e0ce89614f6480232ea968ba0da7e"

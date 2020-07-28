@@ -1,0 +1,27 @@
+{
+    "paging": {
+        "count": 1,
+        "l": 500,
+        "sk": 0
+    },
+    "entries": [{
+        "id": "08-06-PRO-01",
+        "name": "第8屆第6會期第1次會議",
+        "summary": "審定本院第8屆第6會期第1次會議議事日程及處理人民請願案",
+        "committee": ["PRO"],
+        "proceeding_url": null,
+        "ad": 8,
+        "session": 6,
+        "extra": null,
+        "sitting": 1,
+        "dates": [{
+            "calendar_id": 63662,
+            "chair": "吳秉叡",
+            "date": "2014-09-09",
+            "time_start": "12:00:00",
+            "time_end": "14:00:00"
+        }],
+        "motions": []
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 6)"
+}

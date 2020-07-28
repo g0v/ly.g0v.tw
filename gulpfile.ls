@@ -66,6 +66,11 @@ gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
   gulp.start 'test:util'
 
+gulp.task 'test:unit:recorder' ->
+  gulp.src 'test/unit/recorder/*.ls'
+    .pipe livescript({+bare})
+    .pipe gulp.dest 'test/unit/recorder/'
+
 gulp.task 'test:karma' ->
   gulp.src [
     * "_public/js/vendor.js"
@@ -73,6 +78,8 @@ gulp.task 'test:karma' ->
     * "_public/js/app.js"
     * "bower_components/angular-mocks/angular-mocks.js"
     * "node_modules/timecop/timecop.js"
+    * "node_modules/async/lib/async.js"
+    * "node_modules/lodash/lodash.js"
     * "test/unit/fixtures/**/*.json"
     * "test/unit/**/*.spec.ls"
   ]

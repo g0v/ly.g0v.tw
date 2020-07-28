@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 393,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": null,
+        "id": 49580,
+        "date": "2012-02-01T00:00:00.000Z",
+        "time_start": "09:00:00",
+        "time_end": "18:00:00",
+        "type": "sitting",
+        "name": "預備會議",
+        "chair": null,
+        "summary": "立法院第八屆立法委員就職宣誓暨選舉院長副院長",
+        "committee": null,
+        "ad": 8,
+        "session": 1,
+        "extra": null,
+        "sitting": 0
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 1)"
+}

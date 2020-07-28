@@ -1,0 +1,24 @@
+{
+    "paging": {
+        "count": 663,
+        "l": 1,
+        "sk": 0
+    },
+    "entries": [{
+        "sitting_id": null,
+        "id": 63560,
+        "date": "2014-09-03T00:00:00.000Z",
+        "time_start": "10:20:00",
+        "time_end": "22:00:00",
+        "type": "misc",
+        "name": "8屆第5會期財政委員會考察",
+        "chair": "賴士葆、李應元",
+        "summary": "本會訂於中華民國103年9月3日（星期三）至5日（星期五），赴上海考察自由貿易區暨金融機構運作情形。",
+        "committee": ["FIN"],
+        "ad": 8,
+        "session": 5,
+        "extra": null,
+        "sitting": null
+    }],
+    "query": "(\"ad\" = 8) AND (\"session\" = 5)"
+}
