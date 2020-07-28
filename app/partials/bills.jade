@@ -39,11 +39,12 @@
           .ui.pointing.label.diff-comment(ng-bind="versions[version].comment", ng-show="versions[version].comment")
 
 .bill(ng-if="found == 'no'")
-  h1 您要找的提案不在喔！
-  h2
-    | 或許您可以到
-    a(href="/bills") 這邊
-    | 看看？
+  .ui.message
+    .header 您要找的提案不在喔！
+    p
+      | 或許您可以到
+      a(href="/bills") 這邊
+      | 看看？
 .bill(ng-if="found == 'yes'")
   .basic-info
     .bill-meta
