@@ -3,13 +3,13 @@
   <h1 title="{{summary}}">{{summary}}</h1>
   <div ng-show="committee" class="role committee">
     <ul>
-      <li ng-repeat="c in committee"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/committee-{{c.abbr}}?size=medium" ng-alt="{{c.name}}" ng-class="{{c.abbr}}" class="avatar medium"/><span class="name">{{c.name}}委員會</span></span></li>
+      <li ng-repeat="c in committee"><span><img ng-src="https://api.ly.g0v.tw/static/avatar/committee-{{c.abbr}}?size=medium" ng-alt="{{c.name}}" ng-class="{{c.abbr}}" class="avatar medium"/><span class="name">{{c.name}}委員會</span></span></li>
     </ul>
   </div>
   <div ng-show="proposal" class="role proposal">
     <h2>提案人</h2>
     <ul>
-      <li ng-repeat="e in proposal"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=medium" ng-alt="{{e.name}}" ng-class="e.party" class="avatar medium"/><span class="name">{{e.name}}</span></span></li>
+      <li ng-repeat="e in proposal"><span><img ng-src="https://api.ly.g0v.tw/static/avatar/{{e.avatar}}?size=medium" ng-alt="{{e.name}}" ng-class="e.party" class="avatar medium"/><span class="name">{{e.name}}</span></span></li>
     </ul>
   </div>
   <div class="description">
@@ -18,7 +18,7 @@
   <div ng-show="petition" class="role petition">
     <h2>連署人</h2>
     <ul>
-      <li ng-repeat="e in petition"><span><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{e.avatar}}?size=small" ng-alt="{{e.name}}" ng-class="e.party" class="avatar"/><span class="name">{{e.name}}</span></span></li>
+      <li ng-repeat="e in petition"><span><img ng-src="https://api.ly.g0v.tw/static/avatar/{{e.avatar}}?size=small" ng-alt="{{e.name}}" ng-class="e.party" class="avatar"/><span class="name">{{e.name}}</span></span></li>
     </ul>
   </div>
   <div class="clearfix"></div>
@@ -26,7 +26,7 @@
   <div class="clearfix"></div>
   <div ng-show="related" class="related">
     <ul>
-      <li ng-repeat="r in related"><span><img ng-show="r.avatar" ng-src="http://avatars.io/50a65bb26e293122b0000073/{{r.avatar}}?size=small" ng-alt="{{r.name}}" ng-class="r.party" class="avatar"/><span class="summary">{{r.summary}}</span></span></li>
+      <li ng-repeat="r in related"><span><img ng-show="r.avatar" ng-src="https://api.ly.g0v.tw/static/avatar/{{r.avatar}}?size=small" ng-alt="{{r.name}}" ng-class="r.party" class="avatar"/><span class="summary">{{r.summary}}</span></span></li>
     </ul>
   </div>
   <div class="clearfix"></div>

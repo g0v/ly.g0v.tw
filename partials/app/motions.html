@@ -16,7 +16,7 @@
     </div>
     <ul ng-class="{{type}}" class="motions">
       <li ng-repeat="e in entries | filter:{status: status} | filter:filter">
-        <div class="avatars"><span ng-repeat="avatar in e.avatars"><img ng-src="http://avatars.io/50a65bb26e293122b0000073/{{avatar.avatar}}?size=small" ng-alt="{{avatar.name}}" ng-class="avatar.party" class="avatar"/></span></div>
+        <div class="avatars"><span ng-repeat="avatar in e.avatars"><img ng-src="https://api.ly.g0v.tw/static/avatar/{{avatar.avatar}}?size=small" ng-alt="{{avatar.name}}" ng-class="avatar.party" class="avatar"/></span></div>
         <div class="motion"><span class="item">{{ e.item }}</span><span class="proposer">{{ e.proposer }}</span><a ng-href="/bill/{{ e.id }}"><span class="summary">{{ e.summary }}</span></a></div>
         <div class="resolution">{{ e.resolution }}</div>
       </li>
